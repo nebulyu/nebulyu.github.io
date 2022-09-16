@@ -7,8 +7,26 @@
 ]]></content>
   </entry>
   <entry>
-    <title>test1</title>
-    <url>/2022/07/18/test1/</url>
-    <content><![CDATA[]]></content>
+    <title>单调数据结构小结</title>
+    <url>/2022/09/16/%E5%8D%95%E8%B0%83/</url>
+    <content><![CDATA[<h5 id="abc262-F"><a href="#abc262-F" class="headerlink" title="abc262 F"></a>abc262 F</h5><p><a href="https://atcoder.jp/contests/abc262/tasks/abc262_f">https://atcoder.jp/contests/abc262/tasks/abc262_f</a><br>根据字典序,找出k能到达的范围内最小值lead.如果选择转动操作,需要转动的点仅在lead后方.这样仅用分两种情况讨论,直接删和转后再删.对于直接删的情况,维护一个单调栈,每次更新时执行删除操作.</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="built_in">For</span>(i,<span class="number">1</span>,n)&#123;</span><br><span class="line">		<span class="keyword">while</span>(p&amp;&amp;ar[i]&lt;ar[sta1[p]]&amp;&amp;r)--r,--p;</span><br><span class="line">		++p,sta1[p]=i;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<p>如果旋转,旋转后的点删除不需要花费</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">while</span>(p&amp;&amp;ar[i]&lt;ar[sta2[p]]&amp;&amp;(r&gt;=(sta2[p]&lt;ld)))</span><br><span class="line">	r-=(sta2[p]&lt;ld),--p;</span><br><span class="line">++p,sta2[p]=i;</span><br></pre></td></tr></table></figure>
+<p>最后比较两个答案的大小即可<br><br><br></p>
+<h5 id="某大佬原创题"><a href="#某大佬原创题" class="headerlink" title="某大佬原创题"></a>某大佬原创题</h5><p>长度为n的数组 q个询问 每次询问给出一个长度L，最大化长度为L的连续子序列的最小值,$n,q\leq5e6,a_i\leq1e9$<br><br><br>对于每个点,可以记录成为min值的区间左右端点并更新答案,同时短区间的答案可由长区间继承.<br>关于这个做法的正确性,就是考虑是否每个点都对每个区间的答案进行过更新.对于长度大于$len&#x3D;r-l+1$的区间,即使更新也不会使答案更优,没有必要考虑.对于长度短于$len$的区间,直接从比较过后的长区间继承,可以保证所有短区间都被更新到.<br>这样答案满足完全覆盖,不存在漏解的情况</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="built_in">For</span>(i,<span class="number">1</span>,n) ans[r[i]-l[i]+<span class="number">1</span>]=<span class="built_in">max</span>(ans[r[i]-l[i]+<span class="number">1</span>],h[i]);</span><br><span class="line"><span class="built_in">iFor</span>(i,n<span class="number">-1</span>,<span class="number">1</span>) ans[i]=<span class="built_in">max</span>(ans[i],ans[i+<span class="number">1</span>]);</span><br></pre></td></tr></table></figure>
+<p><br><br></p>
+<h5 id="luoguP1250"><a href="#luoguP1250" class="headerlink" title="luoguP1250"></a>luoguP1250</h5><p><a href="https://www.luogu.com.cn/problem/P1950">https://www.luogu.com.cn/problem/P1950</a></p>
+<p>首先可以发现若将每一行分别作为常规单调栈矩形计数的问题,并不会影响上下层的结果,并且可以直接继承高度信息.于是就转化为做n次单调栈.<br>值得注意的是对于相连的等高项的处理,如果l[i],r[i]均只记录第一个更低位置,那么对于等高的i,i+1,这个区间内的矩形会重复计数.所以需要一个严格单调一个不严格来保证不重</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">while</span>(tp2&amp;&amp;h[st2[tp2]]&gt;=h[j])&#123;</span><br><span class="line">				l[st2[tp2]]=j+<span class="number">1</span>,--tp2;</span><br><span class="line">			&#125;</span><br><span class="line"><span class="keyword">while</span>(tp1&amp;&amp;h[st1[tp1]]&gt;h[j])&#123;</span><br><span class="line">				r[st1[tp1]]=j<span class="number">-1</span>,--tp1;</span><br><span class="line">			&#125;</span><br></pre></td></tr></table></figure>
+
+<p><br><br></p>
+<h5 id="HNOI2008水平可见直线"><a href="#HNOI2008水平可见直线" class="headerlink" title="HNOI2008水平可见直线"></a>HNOI2008水平可见直线</h5><p><a href="https://vijos.org/d/newbzoj/p/590c9879d3d8a13210993730">https://vijos.org/d/newbzoj/p/590c9879d3d8a13210993730</a><br>这题的本质就是半平面交.先按照斜率对全部直线排序,再依次塞入单调栈.被遮挡可以分为两种情况:1.k相同.那么b更大者一定更优;2.当前直线比栈顶直线位置更优,计算交点位置判断即可.<br><br><br></p>
+<h5 id="luoguP2216"><a href="#luoguP2216" class="headerlink" title="luoguP2216"></a>luoguP2216</h5><p><a href="https://www.luogu.com.cn/problem/P2216">https://www.luogu.com.cn/problem/P2216</a></p>
+<p>这题很显然是一个二维的滑动窗口.用n个单调队列维护每一行合法值,再将每一行最值塞进一个维护列的单调队列,每次移动后重置.每个点只会被扫描一次,复杂度$O(n^2)$</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">xq.<span class="built_in">reset</span>(),nq.<span class="built_in">reset</span>();</span><br><span class="line"><span class="built_in">For</span>(i,<span class="number">1</span>,a) mxq[i].<span class="built_in">pb</span>(ar[i][rt],rt),mnq[i].<span class="built_in">pb</span>(ar[i][rt],rt);</span><br><span class="line"><span class="built_in">For</span>(i,<span class="number">1</span>,n<span class="number">-1</span>) xq.<span class="built_in">pb</span>(mxq[i].<span class="built_in">vl</span>(),i),nq.<span class="built_in">pb</span>(mnq[i].<span class="built_in">vl</span>(),i);</span><br><span class="line"><span class="built_in">For</span>(i,n,a)&#123;</span><br><span class="line">	xq.<span class="built_in">pb</span>(mxq[i].<span class="built_in">vl</span>(),i),nq.<span class="built_in">pb</span>(mnq[i].<span class="built_in">vl</span>(),i);</span><br><span class="line">	ans=<span class="built_in">min</span>(ans,xq.<span class="built_in">vl</span>()-nq.<span class="built_in">vl</span>());</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+<br>
+复建的第一步!虽然仅仅水了一些单调栈和单调队列的题]]></content>
   </entry>
 </search>
