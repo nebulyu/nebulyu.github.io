@@ -201,7 +201,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2022-09-16 00:00:00 / Modified: 20:47:30" itemprop="dateCreated datePublished" datetime="2022-09-16T00:00:00+08:00">2022-09-16</time>
+              <time title="Created: 2022-09-16 00:00:00 / Modified: 20:56:13" itemprop="dateCreated datePublished" datetime="2022-09-16T00:00:00+08:00">2022-09-16</time>
             </span>
 
           
@@ -241,6 +241,167 @@
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">xq.<span class="built_in">reset</span>(),nq.<span class="built_in">reset</span>();</span><br><span class="line"><span class="built_in">For</span>(i,<span class="number">1</span>,a) mxq[i].<span class="built_in">pb</span>(ar[i][rt],rt),mnq[i].<span class="built_in">pb</span>(ar[i][rt],rt);</span><br><span class="line"><span class="built_in">For</span>(i,<span class="number">1</span>,n<span class="number">-1</span>) xq.<span class="built_in">pb</span>(mxq[i].<span class="built_in">vl</span>(),i),nq.<span class="built_in">pb</span>(mnq[i].<span class="built_in">vl</span>(),i);</span><br><span class="line"><span class="built_in">For</span>(i,n,a)&#123;</span><br><span class="line">	xq.<span class="built_in">pb</span>(mxq[i].<span class="built_in">vl</span>(),i),nq.<span class="built_in">pb</span>(mnq[i].<span class="built_in">vl</span>(),i);</span><br><span class="line">	ans=<span class="built_in">min</span>(ans,xq.<span class="built_in">vl</span>()-nq.<span class="built_in">vl</span>());</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
 <br>
 复建的第一步!虽然仅仅水了一些单调栈和单调队列的题
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/07/21/2022.9.18icpc/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="nebulyu">
+      <meta itemprop="description" content="under development">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Nebulyu'Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/07/21/2022.9.18icpc/" class="post-title-link" itemprop="url">2022.9.18icpc网赛摸鱼记</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-07-21 00:00:00" itemprop="dateCreated datePublished" datetime="2022-07-21T00:00:00+08:00">2022-07-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-09-21 21:56:53" itemprop="dateModified" datetime="2022-09-21T21:56:53+08:00">2022-09-21</time>
+              </span>
+
+          
+            <span id="/2022/07/21/2022.9.18icpc/" class="post-meta-item leancloud_visitors" data-flag-title="2022.9.18icpc网赛摸鱼记" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="2022-9-18icpc网赛"><a href="#2022-9-18icpc网赛" class="headerlink" title="2022.9.18icpc网赛"></a>2022.9.18icpc网赛</h4><p>第一次参加正式的icpc比赛,尽管最近一直在打abc练手,但感觉还是力不从心.一是对icpc没有部分分的模式还不太熟悉,二是和队友的配合不够默契,三是码力下降不少,有两个本来可过的题寄了.幸亏队友还给力,一起口胡最后A掉4题.<br><br></p>
+<h5 id="L"><a href="#L" class="headerlink" title="L"></a>L</h5><p>开的第一个题,第一眼就是sam之类的字符串转移,直接跑了.后来和老哥一起分析时又口胡建图,猜了一手结论:每个点只用向最近的同一字母转移.<br>建图的思路没错,但是连边的可行条件分析没分析到位,直接判是否在t串中相邻,实际上应该把t串中前后全部字母组合ban掉.于是痛挂一题.<br><br></p>
+<h5 id="H"><a href="#H" class="headerlink" title="H"></a>H</h5><p>倒序开题没有思路,跟榜去做签到题.直接用栈模拟操作,1发A.<br><br></p>
+<h5 id="A"><a href="#A" class="headerlink" title="A"></a>A</h5><p>乍一看毫无头绪,不过数学大佬点明了关键性质,一块连续的1只有$(len+1)&#x2F;2$个”有效1”.每一个”有效1”能消掉3个元素,若一个串中”有效1”不足$1&#x2F;3$,z则需要操作补1.区间染色,前缀和求和,复杂度$O(q)$.第一发T了,加了个快读就直接过了<br><br></p>
+<h5 id="C"><a href="#C" class="headerlink" title="C"></a>C</h5><p>考场上队友切掉的.答案就是叶子节点个数.<br>这个做法的正确性:对于所有的叶子节点,只能采用delete.考虑整棵树对每个节点只留下一个叶子,其余的全部删掉,然后shrink所有的单链,不断重复这个过程,可以发现所有的非叶子节点都可以被shrink.可以得到需要delete的只有叶节点<br><br></p>
+<h5 id="D"><a href="#D" class="headerlink" title="D"></a>D</h5><p>在考试时看假了题,以为是01个数相等,还差点误导了队友,最后s大佬切了.<br>考完再看这题才发觉是水题,直接dfs预处理,二分答案即可.<br><br></p>
+<h5 id="K"><a href="#K" class="headerlink" title="K"></a>K</h5><p>由于太菜只会$n^3$dp,于是想到了记搜剪枝.但是剪枝的条件并没有思考完备,白白的写了半个小时的假题,不仅没想出怎么优化,最后甚至正确性都没有.似乎有神仙乱剪过了,后面再找std看看吧<br><br></p>
+<h5 id="G"><a href="#G" class="headerlink" title="G"></a>G</h5><p>同样,由于太菜,只能想到裸暴力dp.一直在纠结$n^5$的复杂度,却忽视了选取多个连续时实际状态并不算多,写完心虚不敢久调,又浪费时间写了假题.<br><br><br>这场满打满算可以切掉7题,尽管第一次正式赛失误无可避免,但只搞掉4题还是有遗憾.根据最近打的3场比赛,目前最主要的目的并不是复习一些高级算法的用法,毕竟几乎用不到,而是多做一些dp,搜索之类的需要处理边界条件的题目,很久没做题带来的生疏大概就体现在细节不会写了吧.</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/07/21/abc262/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="nebulyu">
+      <meta itemprop="description" content="under development">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Nebulyu'Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/07/21/abc262/" class="post-title-link" itemprop="url">abc262</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-07-21 00:00:00" itemprop="dateCreated datePublished" datetime="2022-07-21T00:00:00+08:00">2022-07-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-09-21 21:59:29" itemprop="dateModified" datetime="2022-09-21T21:59:29+08:00">2022-09-21</time>
+              </span>
+
+          
+            <span id="/2022/07/21/abc262/" class="post-meta-item leancloud_visitors" data-flag-title="abc262" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="abc262"><a href="#abc262" class="headerlink" title="abc262"></a>abc262</h1><p>D:首先看数据范围,很明显是个$n^3$或$n^4$的题.首先枚举当前要用的数k,考虑到k的同余系下答案相等,先对序列取模,再更新背包.枚举k需要$O(n)$,序列中有n个数,每次更新背包需要$O(n^2)$,总复杂度$O(n^4)$.</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">For</span>(id,<span class="number">1</span>,n)&#123;</span><br><span class="line">		ri v=ar[id]%M;</span><br><span class="line">		<span class="comment">//dp[i][j] 选用i个数,拼成剩余系下的j </span></span><br><span class="line">		<span class="built_in">iFor</span>(i,n,<span class="number">1</span>)</span><br><span class="line">		<span class="built_in">For</span>(j,<span class="number">0</span>,M<span class="number">-1</span>)&#123;</span><br><span class="line">			dp[i][j]=(dp[i][j]+dp[i<span class="number">-1</span>][(j-v+M)%M])%MOD;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	ans=(ans+dp[M][<span class="number">0</span>])%MOD; <span class="comment">//最后答案为用M个数拼成0</span></span><br></pre></td></tr></table></figure>
+
+<p>E:考虑所有标记过点的出度总和S,与标记过点相连的同色的边数R,不同色的边数D,满足$S&#x3D;D+2R$,即若D为偶数,则S必为偶数.于是原问题可转化为从原图中选出若干点,使其出度总和为偶数,求方案数.此时点的出度可直接分为奇偶,组合数求和即可</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(ri i=<span class="number">0</span>;i*<span class="number">2</span>&lt;=k;++i) ans=(ans+<span class="built_in">C</span>(c[<span class="number">0</span>],k-i*<span class="number">2</span>)*<span class="built_in">C</span>(c[<span class="number">1</span>],i*<span class="number">2</span>)%MOD)%MOD;</span><br></pre></td></tr></table></figure>
+
+<p>F:根据字典序,找出k能到达的范围内最小值lead.如果选择转动操作,需要转动的点仅在lead后方.这样仅用分两种情况讨论,直接删和转后再删.对于直接删的情况,维护一个单调栈,每次更新时执行删除操作.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">For(i,1,n)&#123;</span><br><span class="line">		while(p&amp;&amp;ar[i]&lt;ar[sta1[p]]&amp;&amp;r)--r,--p;</span><br><span class="line">		++p,sta1[p]=i;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<p>如果旋转,旋转后的点删除不需要花费</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">while(p&amp;&amp;ar[i]&lt;ar[sta2[p]]&amp;&amp;(r&gt;=(sta2[p]&lt;ld)))r-=(sta2[p]&lt;ld),--p;</span><br><span class="line">		++p,sta2[p]=i;</span><br></pre></td></tr></table></figure>
+<p>最后比较两个答案的大小即可</p>
+
       
     </div>
 
@@ -393,7 +554,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-count">4</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
