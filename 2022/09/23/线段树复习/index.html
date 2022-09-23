@@ -20,19 +20,19 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"manual","top_n_per_article":3,"unescape":false,"preload":false,"swiftype_key":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="abc262 Fhttps:&#x2F;&#x2F;atcoder.jp&#x2F;contests&#x2F;abc262&#x2F;tasks&#x2F;abc262_f根据字典序,找出k能到达的范围内最小值lead.如果选择转动操作,需要转动的点仅在lead后方.这样仅用分两种情况讨论,直接删和转后再删.对于直接删的情况,维护一个单调栈,每次更新时执行删除操作. 1234For(i,1,n)&amp;#123;		while(p&amp;&amp;ar[i]">
+  <meta name="description" content="做了几题思维难度并不算太高的线段树题目,难点就是有巨巨巨多细节要注意. luoguP6327:https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;problem&#x2F;P6327题意:每次修改一个点,求区间sin值的和区间sin和的信息不可加,但可以考虑和差化积公式,  sin(x+v)&#x3D;sin(x)cos(v)+sin(v)cos(x)\\ cos(x+v)&#x3D;cos(x)cos(v)-sin(x)sin">
 <meta property="og:type" content="article">
-<meta property="og:title" content="单调数据结构小结">
-<meta property="og:url" content="http://example.com/2022/09/16/%E5%8D%95%E8%B0%83/index.html">
+<meta property="og:title" content="线段树练习">
+<meta property="og:url" content="http://example.com/2022/09/23/%E7%BA%BF%E6%AE%B5%E6%A0%91%E5%A4%8D%E4%B9%A0/index.html">
 <meta property="og:site_name" content="Nebulyu&#39;Blog">
-<meta property="og:description" content="abc262 Fhttps:&#x2F;&#x2F;atcoder.jp&#x2F;contests&#x2F;abc262&#x2F;tasks&#x2F;abc262_f根据字典序,找出k能到达的范围内最小值lead.如果选择转动操作,需要转动的点仅在lead后方.这样仅用分两种情况讨论,直接删和转后再删.对于直接删的情况,维护一个单调栈,每次更新时执行删除操作. 1234For(i,1,n)&amp;#123;		while(p&amp;&amp;ar[i]">
+<meta property="og:description" content="做了几题思维难度并不算太高的线段树题目,难点就是有巨巨巨多细节要注意. luoguP6327:https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;problem&#x2F;P6327题意:每次修改一个点,求区间sin值的和区间sin和的信息不可加,但可以考虑和差化积公式,  sin(x+v)&#x3D;sin(x)cos(v)+sin(v)cos(x)\\ cos(x+v)&#x3D;cos(x)cos(v)-sin(x)sin">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-09-15T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-09-23T07:58:48.184Z">
+<meta property="article:published_time" content="2022-09-22T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-09-23T07:58:31.107Z">
 <meta property="article:author" content="nebulyu">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/2022/09/16/%E5%8D%95%E8%B0%83/">
+<link rel="canonical" href="http://example.com/2022/09/23/%E7%BA%BF%E6%AE%B5%E6%A0%91%E5%A4%8D%E4%B9%A0/">
 
 
 <script id="page-configurations">
@@ -45,7 +45,7 @@
   };
 </script>
 
-  <title>单调数据结构小结 | Nebulyu'Blog</title>
+  <title>线段树练习 | Nebulyu'Blog</title>
   
 
 
@@ -179,7 +179,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/09/16/%E5%8D%95%E8%B0%83/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/09/23/%E7%BA%BF%E6%AE%B5%E6%A0%91%E5%A4%8D%E4%B9%A0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -192,7 +192,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          单调数据结构小结
+          线段树练习
         </h1>
 
         <div class="post-meta">
@@ -201,19 +201,13 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
+              
 
-              <time title="Created: 2022-09-16 00:00:00" itemprop="dateCreated datePublished" datetime="2022-09-16T00:00:00+08:00">2022-09-16</time>
+              <time title="Created: 2022-09-23 00:00:00 / Modified: 15:58:31" itemprop="dateCreated datePublished" datetime="2022-09-23T00:00:00+08:00">2022-09-23</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-09-23 15:58:48" itemprop="dateModified" datetime="2022-09-23T15:58:48+08:00">2022-09-23</time>
-              </span>
 
           
-            <span id="/2022/09/16/%E5%8D%95%E8%B0%83/" class="post-meta-item leancloud_visitors" data-flag-title="单调数据结构小结" title="Views">
+            <span id="/2022/09/23/%E7%BA%BF%E6%AE%B5%E6%A0%91%E5%A4%8D%E4%B9%A0/" class="post-meta-item leancloud_visitors" data-flag-title="线段树练习" title="Views">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -230,18 +224,28 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h5 id="abc262-F"><a href="#abc262-F" class="headerlink" title="abc262 F"></a>abc262 F</h5><p><a target="_blank" rel="noopener" href="https://atcoder.jp/contests/abc262/tasks/abc262_f">https://atcoder.jp/contests/abc262/tasks/abc262_f</a><br>根据字典序,找出k能到达的范围内最小值lead.如果选择转动操作,需要转动的点仅在lead后方.这样仅用分两种情况讨论,直接删和转后再删.对于直接删的情况,维护一个单调栈,每次更新时执行删除操作.</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">For</span>(i,<span class="number">1</span>,n)&#123;</span><br><span class="line">		<span class="keyword">while</span>(p&amp;&amp;ar[i]&lt;ar[sta1[p]]&amp;&amp;r)--r,--p;</span><br><span class="line">		++p,sta1[p]=i;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
-<p>如果旋转,旋转后的点删除不需要花费<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span>(p&amp;&amp;ar[i]&lt;ar[sta2[p]]&amp;&amp;(r&gt;=(sta2[p]&lt;ld)))</span><br><span class="line">	r-=(sta2[p]&lt;ld),--p;</span><br><span class="line">++p,sta2[p]=i;</span><br></pre></td></tr></table></figure><br>最后比较两个答案的大小即可<br><br><br></p>
-<h5 id="某大佬原创题"><a href="#某大佬原创题" class="headerlink" title="某大佬原创题"></a>某大佬原创题</h5><p>长度为n的数组 q个询问 每次询问给出一个长度L，最大化长度为L的连续子序列的最小值,$n,q\leq5e6,a_i\leq1e9$<br><br><br>对于每个点,可以记录成为min值的区间左右端点并更新答案,同时短区间的答案可由长区间继承.<br>关于这个做法的正确性,就是考虑是否每个点都对每个区间的答案进行过更新.对于长度大于$len=r-l+1$的区间,即使更新也不会使答案更优,没有必要考虑.对于长度短于$len$的区间,直接从比较过后的长区间继承,可以保证所有短区间都被更新到.<br>这样答案满足完全覆盖,不存在漏解的情况</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">For</span>(i,<span class="number">1</span>,n) ans[r[i]-l[i]+<span class="number">1</span>]=<span class="built_in">max</span>(ans[r[i]-l[i]+<span class="number">1</span>],h[i]);</span><br><span class="line"><span class="built_in">iFor</span>(i,n<span class="number">-1</span>,<span class="number">1</span>) ans[i]=<span class="built_in">max</span>(ans[i],ans[i+<span class="number">1</span>]);</span><br></pre></td></tr></table></figure>
-<p><br><br></p>
-<h5 id="luoguP1250"><a href="#luoguP1250" class="headerlink" title="luoguP1250"></a>luoguP1250</h5><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1950">https://www.luogu.com.cn/problem/P1950</a></p>
-<p>首先可以发现若将每一行分别作为常规单调栈矩形计数的问题,并不会影响上下层的结果,并且可以直接继承高度信息.于是就转化为做n次单调栈.<br>值得注意的是对于相连的等高项的处理,如果l[i],r[i]均只记录第一个更低位置,那么对于等高的i,i+1,这个区间内的矩形会重复计数.所以需要一个严格单调一个不严格来保证不重<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span>(tp2&amp;&amp;h[st2[tp2]]&gt;=h[j])&#123;</span><br><span class="line">				l[st2[tp2]]=j+<span class="number">1</span>,--tp2;</span><br><span class="line">			&#125;</span><br><span class="line"><span class="keyword">while</span>(tp1&amp;&amp;h[st1[tp1]]&gt;h[j])&#123;</span><br><span class="line">				r[st1[tp1]]=j<span class="number">-1</span>,--tp1;</span><br><span class="line">			&#125;</span><br></pre></td></tr></table></figure></p>
-<p><br><br></p>
-<h5 id="HNOI2008水平可见直线"><a href="#HNOI2008水平可见直线" class="headerlink" title="HNOI2008水平可见直线"></a>HNOI2008水平可见直线</h5><p><a target="_blank" rel="noopener" href="https://vijos.org/d/newbzoj/p/590c9879d3d8a13210993730">https://vijos.org/d/newbzoj/p/590c9879d3d8a13210993730</a><br>这题的本质就是半平面交.先按照斜率对全部直线排序,再依次塞入单调栈.被遮挡可以分为两种情况:1.k相同.那么b更大者一定更优;2.当前直线比栈顶直线位置更优,计算交点位置判断即可.<br><br><br></p>
-<h5 id="luoguP2216"><a href="#luoguP2216" class="headerlink" title="luoguP2216"></a>luoguP2216</h5><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2216">https://www.luogu.com.cn/problem/P2216</a></p>
-<p>这题很显然是一个二维的滑动窗口.用n个单调队列维护每一行合法值,再将每一行最值塞进一个维护列的单调队列,每次移动后重置.每个点只会被扫描一次,复杂度$O(n^2)$<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">xq.<span class="built_in">reset</span>(),nq.<span class="built_in">reset</span>();</span><br><span class="line"><span class="built_in">For</span>(i,<span class="number">1</span>,a) mxq[i].<span class="built_in">pb</span>(ar[i][rt],rt),mnq[i].<span class="built_in">pb</span>(ar[i][rt],rt);</span><br><span class="line"><span class="built_in">For</span>(i,<span class="number">1</span>,n<span class="number">-1</span>) xq.<span class="built_in">pb</span>(mxq[i].<span class="built_in">vl</span>(),i),nq.<span class="built_in">pb</span>(mnq[i].<span class="built_in">vl</span>(),i);</span><br><span class="line"><span class="built_in">For</span>(i,n,a)&#123;</span><br><span class="line">	xq.<span class="built_in">pb</span>(mxq[i].<span class="built_in">vl</span>(),i),nq.<span class="built_in">pb</span>(mnq[i].<span class="built_in">vl</span>(),i);</span><br><span class="line">	ans=<span class="built_in">min</span>(ans,xq.<span class="built_in">vl</span>()-nq.<span class="built_in">vl</span>());</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure><br><br><br>复建的第一步!虽然仅仅水了一些单调栈和单调队列的题</p>
+        <p>做了几题思维难度并不算太高的线段树题目,难点就是有巨巨巨多细节要注意.</p>
+<h5 id="luoguP6327-https-www-luogu-com-cn-problem-P6327"><a href="#luoguP6327-https-www-luogu-com-cn-problem-P6327" class="headerlink" title="luoguP6327:https://www.luogu.com.cn/problem/P6327"></a>luoguP6327:<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P6327">https://www.luogu.com.cn/problem/P6327</a></h5><p>题意:每次修改一个点,求区间sin值的和<br>区间sin和的信息不可加,但可以考虑和差化积公式,</p>
+<script type="math/tex; mode=display">
+sin(x+v)=sin(x)cos(v)+sin(v)cos(x)\\
+cos(x+v)=cos(x)cos(v)-sin(x)sin(v)</script><p>同时记录cos和sin值就可以转化为线段树求和.<br>由于节点的tag不能直接和子节点的和相加,需要注意每次询问时先下放标签.还有浮点运算的常数极大,下放时先判一下0,不然很容易tle.<br><br></p>
+<h5 id="luoguP1471-https-www-luogu-com-cn-problem-P1471"><a href="#luoguP1471-https-www-luogu-com-cn-problem-P1471" class="headerlink" title="luoguP1471:https://www.luogu.com.cn/problem/P1471"></a>luoguP1471:<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1471">https://www.luogu.com.cn/problem/P1471</a></h5><p>题意:每次修改一个点,求区间平均数和方差<br>首先是平均数的合并$a_3=(a_1n_1+a_2n_2)/(n_1+n_2)$<br>再考虑方差的更改,每次修改时可以$O(1)$的更新</p>
+<script type="math/tex; mode=display">
+D_1=\frac 1n\Sigma(x_i-a_1)^2\\
+D_2=\frac 1n\Sigma(x_i+v-a_2)^2\\
+D_2-D_1=\frac 1n\Sigma((x_i+v-a_2)^2-(x_i-a_1)^2)\\
+       =\frac 1n\Sigma(v^2+a_2^2+2x_iv-2a_2v-2a_2x_i-a_1^2+2x_ia_1)\\
+       =v^2+a_2^2-a_1^2-2a_2v+(2v-2a_2+2a_1)\frac 1n \Sigma x_i\\
+       =v^2+a_2^2-a_1^2-2a_2v+2a_1v-2a_1a_2+2a_1^2\\
+       =a_1^2+a_2^2+v^2+2a_1v-2a_2v-2a_1a_2</script><p>最后是方差的合并</p>
+<script type="math/tex; mode=display">
+D_1=\frac 1{n_1}\Sigma(x_1i-a_1)^2\\
+D_2=\frac 1{n_2}\Sigma(x_2i-a_2)^2\\
+D_3=\frac 1{n_1+n_2}\Sigma(x_i-a_3)^2\\
+(n_1+n_2)D_3-D_1n_1-D_2n_2=\Sigma((x_i-a_3)^2-(x_i-a_j)^2)(j=1,2)\\
+                          =\Sigma(a_3^2-a_j^2+2x_i(a_j-a_3))\\
+                          =n_1(a_3^2-a_1^2)+2n_1a_1(a_1-a_3)\\
+                          +n_2(a_3^2-a_2^2)+2n_2a_2(a_2-a_3)</script><p>最后特别要注意在合并方差时跨中点情况的判断,左右两段的长度应该取min(当前区间长度,询问区间长度)</p>
 
     </div>
 
@@ -257,13 +261,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2022/07/17/hello-world/" rel="prev" title="Hello world">
-      <i class="fa fa-chevron-left"></i> Hello world
+    <a href="/2022/09/21/abc262/" rel="prev" title="abc262">
+      <i class="fa fa-chevron-left"></i> abc262
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2022/09/21/2022.9.18icpc/" rel="next" title="2022.9.18icpc网赛摸鱼记">
-      2022.9.18icpc网赛摸鱼记 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -322,7 +323,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#abc262-F"><span class="nav-number">1.</span> <span class="nav-text">abc262 F</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%9F%90%E5%A4%A7%E4%BD%AC%E5%8E%9F%E5%88%9B%E9%A2%98"><span class="nav-number">2.</span> <span class="nav-text">某大佬原创题</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#luoguP1250"><span class="nav-number">3.</span> <span class="nav-text">luoguP1250</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#HNOI2008%E6%B0%B4%E5%B9%B3%E5%8F%AF%E8%A7%81%E7%9B%B4%E7%BA%BF"><span class="nav-number">4.</span> <span class="nav-text">HNOI2008水平可见直线</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#luoguP2216"><span class="nav-number">5.</span> <span class="nav-text">luoguP2216</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#luoguP6327-https-www-luogu-com-cn-problem-P6327"><span class="nav-number">1.</span> <span class="nav-text">luoguP6327:https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;problem&#x2F;P6327</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#luoguP1471-https-www-luogu-com-cn-problem-P1471"><span class="nav-number">2.</span> <span class="nav-text">luoguP1471:https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;problem&#x2F;P1471</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
