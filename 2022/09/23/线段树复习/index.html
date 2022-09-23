@@ -17,18 +17,18 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"manual","top_n_per_article":3,"unescape":false,"preload":false,"swiftype_key":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":3,"unescape":false,"preload":false,"swiftype_key":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="做了几题思维难度并不算太高的线段树题目,难点就是有巨巨巨多细节要注意. luoguP6327:https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;problem&#x2F;P6327题意:每次修改一个点,求区间sin值的和区间sin和的信息不可加,但可以考虑和差化积公式,  sin(x+v)&#x3D;sin(x)cos(v)+sin(v)cos(x)\\ cos(x+v)&#x3D;cos(x)cos(v)-sin(x)sin">
+  <meta name="description" content="做了几题思维难度并不算太高的线段树题目,难点就是有巨巨巨多细节要注意.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="线段树练习">
 <meta property="og:url" content="http://example.com/2022/09/23/%E7%BA%BF%E6%AE%B5%E6%A0%91%E5%A4%8D%E4%B9%A0/index.html">
 <meta property="og:site_name" content="Nebulyu&#39;Blog">
-<meta property="og:description" content="做了几题思维难度并不算太高的线段树题目,难点就是有巨巨巨多细节要注意. luoguP6327:https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;problem&#x2F;P6327题意:每次修改一个点,求区间sin值的和区间sin和的信息不可加,但可以考虑和差化积公式,  sin(x+v)&#x3D;sin(x)cos(v)+sin(v)cos(x)\\ cos(x+v)&#x3D;cos(x)cos(v)-sin(x)sin">
+<meta property="og:description" content="做了几题思维难度并不算太高的线段树题目,难点就是有巨巨巨多细节要注意.">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-09-22T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-09-23T07:58:31.107Z">
+<meta property="article:modified_time" content="2022-09-23T08:26:39.322Z">
 <meta property="article:author" content="nebulyu">
 <meta name="twitter:card" content="summary">
 
@@ -203,7 +203,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2022-09-23 00:00:00 / Modified: 15:58:31" itemprop="dateCreated datePublished" datetime="2022-09-23T00:00:00+08:00">2022-09-23</time>
+              <time title="Created: 2022-09-23 00:00:00 / Modified: 16:26:39" itemprop="dateCreated datePublished" datetime="2022-09-23T00:00:00+08:00">2022-09-23</time>
             </span>
 
           
@@ -225,11 +225,14 @@
 
       
         <p>做了几题思维难度并不算太高的线段树题目,难点就是有巨巨巨多细节要注意.</p>
-<h5 id="luoguP6327-https-www-luogu-com-cn-problem-P6327"><a href="#luoguP6327-https-www-luogu-com-cn-problem-P6327" class="headerlink" title="luoguP6327:https://www.luogu.com.cn/problem/P6327"></a>luoguP6327:<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P6327">https://www.luogu.com.cn/problem/P6327</a></h5><p>题意:每次修改一个点,求区间sin值的和<br>区间sin和的信息不可加,但可以考虑和差化积公式,</p>
+<span id="more"></span>
+<h5 id="luoguP6327"><a href="#luoguP6327" class="headerlink" title="luoguP6327"></a>luoguP6327</h5><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P6327">https://www.luogu.com.cn/problem/P6327</a></p>
+<p>题意:每次修改一个点,求区间sin值的和<br>区间sin和的信息不可加,但可以考虑和差化积公式,</p>
 <script type="math/tex; mode=display">
 sin(x+v)=sin(x)cos(v)+sin(v)cos(x)\\
 cos(x+v)=cos(x)cos(v)-sin(x)sin(v)</script><p>同时记录cos和sin值就可以转化为线段树求和.<br>由于节点的tag不能直接和子节点的和相加,需要注意每次询问时先下放标签.还有浮点运算的常数极大,下放时先判一下0,不然很容易tle.<br><br></p>
-<h5 id="luoguP1471-https-www-luogu-com-cn-problem-P1471"><a href="#luoguP1471-https-www-luogu-com-cn-problem-P1471" class="headerlink" title="luoguP1471:https://www.luogu.com.cn/problem/P1471"></a>luoguP1471:<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1471">https://www.luogu.com.cn/problem/P1471</a></h5><p>题意:每次修改一个点,求区间平均数和方差<br>首先是平均数的合并$a_3=(a_1n_1+a_2n_2)/(n_1+n_2)$<br>再考虑方差的更改,每次修改时可以$O(1)$的更新</p>
+<h5 id="luoguP1471"><a href="#luoguP1471" class="headerlink" title="luoguP1471"></a>luoguP1471</h5><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1471">https://www.luogu.com.cn/problem/P1471</a></p>
+<p>题意:每次修改一个点,求区间平均数和方差<br>首先是平均数的合并$a_3=(a_1n_1+a_2n_2)/(n_1+n_2)$<br>再考虑方差的更改,每次修改时可以$O(1)$的更新</p>
 <script type="math/tex; mode=display">
 D_1=\frac 1n\Sigma(x_i-a_1)^2\\
 D_2=\frac 1n\Sigma(x_i+v-a_2)^2\\
@@ -323,7 +326,7 @@ D_3=\frac 1{n_1+n_2}\Sigma(x_i-a_3)^2\\
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#luoguP6327-https-www-luogu-com-cn-problem-P6327"><span class="nav-number">1.</span> <span class="nav-text">luoguP6327:https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;problem&#x2F;P6327</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#luoguP1471-https-www-luogu-com-cn-problem-P1471"><span class="nav-number">2.</span> <span class="nav-text">luoguP1471:https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;problem&#x2F;P1471</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#luoguP6327"><span class="nav-number">1.</span> <span class="nav-text">luoguP6327</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#luoguP1471"><span class="nav-number">2.</span> <span class="nav-text">luoguP1471</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -369,7 +372,7 @@ D_3=\frac 1{n_1+n_2}\Sigma(x_i-a_3)^2\\
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">nebulyu</span>
+  <span class="author" itemprop="copyrightHolder">nebulyu's</span>
 </div>
 
         
