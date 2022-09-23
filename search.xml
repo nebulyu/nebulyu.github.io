@@ -80,7 +80,7 @@ D_3=\frac 1{n_1+n_2}\Sigma(x_i-a_3)^2\\
                           =\Sigma(a_3^2-a_j^2+2x_i(a_j-a_3))\\
                           =n_1(a_3^2-a_1^2)+2n_1a_1(a_1-a_3)\\
                           +n_2(a_3^2-a_2^2)+2n_2a_2(a_2-a_3)\\
-                          =(n_1+n_2)a_3^2+n_1a_1^2+n_2a_2^2</script><p>最后特别要注意在合并方差时跨中点情况的判断,左右两段的长度应该取min(当前区间长度,询问区间长度)<br><br></p>
+                          =n_1a_1^2+n_2a_2^2-(n_1+n_2)a_3^2</script><p>最后特别要注意在合并方差时跨中点情况的判断,左右两段的长度应该取min(当前区间长度,询问区间长度)<br><br></p>
 <h3 id="luoguP5142区间方差"><a href="#luoguP5142区间方差" class="headerlink" title="luoguP5142区间方差"></a>luoguP5142区间方差</h3><p><a href="https://www.luogu.com.cn/problem/P5142">https://www.luogu.com.cn/problem/P5142</a><br>基本与上题相同.longlong本身常数大,全局还带了一个$O(logn)$的求逆,无脑取模会t飞.本题需要先处理出inv数组,还要取模时判断优化,以免被卡常.</p>
 ]]></content>
   </entry>
