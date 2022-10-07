@@ -108,4 +108,26 @@ D_3=\frac 1{n_1+n_2}\Sigma(x_i-a_3)^2\\
 <p>需要注意的是,如果直接用二维线段树或外层暴力内层线段树,虽然理论复杂度是$O(n^2logn)$的,但是常数巨大,无法通过(存疑).</p>
 ]]></content>
   </entry>
+  <entry>
+    <title>网络流24题</title>
+    <url>/2022/10/07/%E7%BD%91%E7%BB%9C%E6%B5%8124%E9%A2%98/</url>
+    <content><![CDATA[<h1 id="网络流24题"><a href="#网络流24题" class="headerlink" title="网络流24题"></a>网络流24题</h1><p>在我再次退役之前,能否把24题全部做完呢?</p>
+<span id="more"></span>
+<h2 id="最大流"><a href="#最大流" class="headerlink" title="最大流"></a>最大流</h2><p><br></p>
+<h3 id="飞行员配对问题"><a href="#飞行员配对问题" class="headerlink" title="飞行员配对问题"></a>飞行员配对问题</h3><p><a href="https://www.luogu.com.cn/problem/P2756">https://www.luogu.com.cn/problem/P2756</a><br>网络流24题里的入门一题.<br>两种人之内没有交集,整个图可以看作二分图,跑匈牙利算法<br>也可以根据每个外籍飞行员和英国飞行员之间配对关系连边,看作最大流<br>在图中额外加入源点和汇点,分别与两组点连边,最大流的结果就是所求匹配数<br>最后输出方案就直接扫描残量网络,若起于外国并终于英国的边被流过则说明这两个人配对<br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">For</span>(p,<span class="number">1</span>,n1)&#123;</span><br><span class="line">        <span class="built_in">For</span>(i,<span class="number">0</span>,od[p]<span class="number">-1</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(e.f||e.t&lt;=n1) <span class="keyword">continue</span>;</span><br><span class="line">            cout&lt;&lt;p&lt;&lt;<span class="string">&quot; &quot;</span>&lt;&lt;e.t&lt;&lt;<span class="string">&quot;\n&quot;</span>;<span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure><br><br></p>
+<h3 id="试题库问题"><a href="#试题库问题" class="headerlink" title="试题库问题"></a>试题库问题</h3><p><a href="https://www.luogu.com.cn/problem/P2763">https://www.luogu.com.cn/problem/P2763</a><br>每一题仍然只能选取一次,但每张卷子都要求多道题<br>将与源点连边的容量改为题数,判断最大流是否等于总题数<br>输出方案时同上题做法<br><br></p>
+<h3 id="圆桌问题"><a href="#圆桌问题" class="headerlink" title="圆桌问题"></a>圆桌问题</h3><p><a href="https://www.luogu.com.cn/problem/P3254">https://www.luogu.com.cn/problem/P3254</a><br>试题库问题的升级版,每组点都有多种限流<br>将汇点连边的容量也改为要求就行了<br><br></p>
+<h3 id="魔术球问题"><a href="#魔术球问题" class="headerlink" title="魔术球问题"></a>魔术球问题</h3><p><a href="https://www.luogu.com.cn/problem/P2765">https://www.luogu.com.cn/problem/P2765</a><br>题意:有n个柱子,每个柱子上可以放球,相邻的球必须满足编号和为完全平方数,最大化放球的数量</p>
+<p>这一题并没有直接的给出建图的信息,需要从相邻编号和为平方的限制条件中得到球之间的合法转移关系,就可以依此建出隐式图.</p>
+<p>匹配数+柱子个数=球个数,所以我们不断试图增加匹配,在残量网络上不断跑最大流,直到匹配的最大值,就可以使球的个数最多.如果加入一个点而无法使匹配增大,那么说明球的个数已经达到了最大值.</p>
+<p>如果沿用之前直接基于每个球代表的编号点进行转移的思路,源点流出的流量可以经过中转点直接流向汇点,起不到寻找匹配的作用.这里就需要拆点,用两个点代表一个球,分别与源汇点相连,入点连向可以组成平方数的出点,每次最大流的结果就是匹配数.</p>
+<p>最后记得每次保存增加点之前的边,如果到达上限就清空并还原残量网络,最后一次跑最大流就可以得到点之间的匹配关系<br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">    ++add;lim+=<span class="number">2</span>;<span class="type">int</span> totrec=tot;</span><br><span class="line">    <span class="built_in">ins</span>(S,lim<span class="number">-1</span>,<span class="number">1</span>),<span class="built_in">ins</span>(lim,T,<span class="number">1</span>);</span><br><span class="line">    <span class="built_in">For</span>(i,<span class="number">1</span>,n+add<span class="number">-1</span>)<span class="keyword">if</span>(<span class="built_in">check</span>(i,n+add)) <span class="built_in">ins</span>(<span class="number">2</span>+i*<span class="number">2</span><span class="number">-1</span>,lim,<span class="number">1</span>);</span><br><span class="line">    <span class="built_in">dinic</span>();<span class="keyword">if</span>(add==mxf) <span class="keyword">continue</span>;</span><br><span class="line">    lim-=<span class="number">2</span>,tot=totrec;<span class="keyword">break</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;=tot;i+=<span class="number">2</span>)eg[i].f+=eg[i^<span class="number">1</span>].f,eg[i^<span class="number">1</span>].f=<span class="number">0</span>;</span><br><span class="line">mxf=<span class="number">0</span>,<span class="built_in">dinic</span>();</span><br></pre></td></tr></table></figure><br><br></p>
+<h3 id="方格取数问题"><a href="#方格取数问题" class="headerlink" title="方格取数问题"></a>方格取数问题</h3><p><a href="https://www.luogu.com.cn/problem/P2774">https://www.luogu.com.cn/problem/P2774</a><br>题意:给定一个n*m的矩阵,要求取出若干个数,使总和最大,同时满足每个数在矩阵中的位置都不相邻</p>
+<p>相邻不能同时取,这个条件给出了互斥性,暗示着可以根据矩阵中位置的奇偶性,将原图看作一张二分图,不想交的两侧分别代表奇偶点.原问题等价于二分图带权最大独立集.</p>
+<p><img src="D:\blog\hexoblog\source\_posts\p1.png" alt=""></p>
+<p>这个总和最大感觉不太好求,就转化问题,求一个取数组合使剩下的数均不相邻,且该组合最小.这种取法会将原二分图拆成两个不相连部分,与最大流的残量网络极其相像.最后的S,T集里的点就是目标取点.</p>
+<p><img src="D:\blog\hexoblog\source\_posts\p2.png" alt=""></p>
+<p><del>图中黑边为被删去的边,蓝边为可行边</del>此图有误,被删去的边可能流量在残量网络没有跑完,但经过调整后一定可以使每条边对应点的状态.</p>
+]]></content>
+  </entry>
 </search>
