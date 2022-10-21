@@ -234,9 +234,9 @@
         <h1 id="abc262"><a href="#abc262" class="headerlink" title="abc262"></a>abc262</h1><p><a target="_blank" rel="noopener" href="https://atcoder.jp/contests/abc262">https://atcoder.jp/contests/abc262</a></p>
 <span id="more"></span>
 <p>D:首先看数据范围,很明显是个$n^3$或$n^4$的题.首先枚举当前要用的数k,考虑到k的同余系下答案相等,先对序列取模,再更新背包.枚举k需要$O(n)$,序列中有n个数,每次更新背包需要$O(n^2)$,总复杂度$O(n^4)$.</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">For</span>(id,<span class="number">1</span>,n)&#123;</span><br><span class="line">		ri v=ar[id]%M;</span><br><span class="line">		<span class="comment">//dp[i][j] 选用i个数,拼成剩余系下的j </span></span><br><span class="line">		<span class="built_in">iFor</span>(i,n,<span class="number">1</span>)</span><br><span class="line">		<span class="built_in">For</span>(j,<span class="number">0</span>,M<span class="number">-1</span>)&#123;</span><br><span class="line">			dp[i][j]=(dp[i][j]+dp[i<span class="number">-1</span>][(j-v+M)%M])%MOD;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	ans=(ans+dp[M][<span class="number">0</span>])%MOD; <span class="comment">//最后答案为用M个数拼成0</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">For</span>(id,<span class="number">1</span>,n)&#123;</span><br><span class="line">        ri v=ar[id]%M;</span><br><span class="line">        <span class="comment">//dp[i][j] 选用i个数,拼成剩余系下的j </span></span><br><span class="line">        <span class="built_in">iFor</span>(i,n,<span class="number">1</span>)</span><br><span class="line">        <span class="built_in">For</span>(j,<span class="number">0</span>,M<span class="number">-1</span>)&#123;</span><br><span class="line">            dp[i][j]=(dp[i][j]+dp[i<span class="number">-1</span>][(j-v+M)%M])%MOD;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    ans=(ans+dp[M][<span class="number">0</span>])%MOD; <span class="comment">//最后答案为用M个数拼成0</span></span><br></pre></td></tr></table></figure>
 <p>E:考虑所有标记过点的出度总和S,与标记过点相连的同色的边数R,不同色的边数D,满足$S=D+2R$,即若D为偶数,则S必为偶数.于是原问题可转化为从原图中选出若干点,使其出度总和为偶数,求方案数.此时点的出度可直接分为奇偶,组合数求和即可<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(ri i=<span class="number">0</span>;i*<span class="number">2</span>&lt;=k;++i) ans=(ans+<span class="built_in">C</span>(c[<span class="number">0</span>],k-i*<span class="number">2</span>)*<span class="built_in">C</span>(c[<span class="number">1</span>],i*<span class="number">2</span>)%MOD)%MOD;</span><br></pre></td></tr></table></figure></p>
-<p>F:根据字典序,找出k能到达的范围内最小值lead.如果选择转动操作,需要转动的点仅在lead后方.这样仅用分两种情况讨论,直接删和转后再删.对于直接删的情况,维护一个单调栈,每次更新时执行删除操作.<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">For(i,1,n)&#123;</span><br><span class="line">		while(p&amp;&amp;ar[i]&lt;ar[sta1[p]]&amp;&amp;r)--r,--p;</span><br><span class="line">		++p,sta1[p]=i;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure><br>如果旋转,旋转后的点删除不需要花费<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">while(p&amp;&amp;ar[i]&lt;ar[sta2[p]]&amp;&amp;(r&gt;=(sta2[p]&lt;ld)))r-=(sta2[p]&lt;ld),--p;</span><br><span class="line">		++p,sta2[p]=i;</span><br></pre></td></tr></table></figure><br>最后比较两个答案的大小即可</p>
+<p>F:根据字典序,找出k能到达的范围内最小值lead.如果选择转动操作,需要转动的点仅在lead后方.这样仅用分两种情况讨论,直接删和转后再删.对于直接删的情况,维护一个单调栈,每次更新时执行删除操作.<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">For(i,1,n)&#123;</span><br><span class="line">        while(p&amp;&amp;ar[i]&lt;ar[sta1[p]]&amp;&amp;r)--r,--p;</span><br><span class="line">        ++p,sta1[p]=i;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure><br>如果旋转,旋转后的点删除不需要花费<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">while(p&amp;&amp;ar[i]&lt;ar[sta2[p]]&amp;&amp;(r&gt;=(sta2[p]&lt;ld)))r-=(sta2[p]&lt;ld),--p;</span><br><span class="line">        ++p,sta2[p]=i;</span><br></pre></td></tr></table></figure><br>最后比较两个答案的大小即可</p>
 
     </div>
 
@@ -252,12 +252,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2022/09/16/%E5%8D%95%E8%B0%83/" rel="prev" title="单调数据结构小结">
-      <i class="fa fa-chevron-left"></i> 单调数据结构小结
+    <a href="/2022/09/21/2022.9.18icpc/" rel="prev" title="2022.9.18icpc网赛摸鱼记">
+      <i class="fa fa-chevron-left"></i> 2022.9.18icpc网赛摸鱼记
     </a></div>
       <div class="post-nav-item">
-    <a href="/2022/09/21/2022.9.18icpc/" rel="next" title="2022.9.18icpc网赛摸鱼记">
-      2022.9.18icpc网赛摸鱼记 <i class="fa fa-chevron-right"></i>
+    <a href="/2022/09/23/%E7%BA%BF%E6%AE%B5%E6%A0%91%E7%BB%83%E4%B9%A0/" rel="next" title="线段树练习">
+      线段树练习 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -331,7 +331,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-count">9</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
