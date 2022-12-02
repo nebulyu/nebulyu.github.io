@@ -29,7 +29,7 @@
 <meta property="og:description" content="最大流">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-10-06T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-10-22T02:29:02.642Z">
+<meta property="article:modified_time" content="2022-10-25T07:06:40.367Z">
 <meta property="article:author" content="nebulyu">
 <meta name="twitter:card" content="summary">
 
@@ -210,7 +210,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-10-22 10:29:02" itemprop="dateModified" datetime="2022-10-22T10:29:02+08:00">2022-10-22</time>
+                <time title="Modified: 2022-10-25 15:06:40" itemprop="dateModified" datetime="2022-10-25T15:06:40+08:00">2022-10-25</time>
               </span>
 
           
@@ -240,6 +240,14 @@
 <p>匹配数+柱子个数=球个数,所以我们不断试图增加匹配,在残量网络上不断跑最大流,直到匹配的最大值,就可以使球的个数最多.如果加入一个点而无法使匹配增大,那么说明球的个数已经达到了最大值.</p>
 <p>如果沿用之前直接基于每个球代表的编号点进行转移的思路,源点流出的流量可以经过中转点直接流向汇点,起不到寻找匹配的作用.这里就需要拆点,用两个点代表一个球,分别与源汇点相连,入点连向可以组成平方数的出点,每次最大流的结果就是匹配数.</p>
 <p>最后记得每次保存增加点之前的边,如果到达上限就清空并还原残量网络,最后一次跑最大流就可以得到点之间的匹配关系<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">    ++add;lim+=<span class="number">2</span>;<span class="type">int</span> totrec=tot;</span><br><span class="line">    <span class="built_in">ins</span>(S,lim<span class="number">-1</span>,<span class="number">1</span>),<span class="built_in">ins</span>(lim,T,<span class="number">1</span>);</span><br><span class="line">    <span class="built_in">For</span>(i,<span class="number">1</span>,n+add<span class="number">-1</span>)<span class="keyword">if</span>(<span class="built_in">check</span>(i,n+add)) <span class="built_in">ins</span>(<span class="number">2</span>+i*<span class="number">2</span><span class="number">-1</span>,lim,<span class="number">1</span>);</span><br><span class="line">    <span class="built_in">dinic</span>();<span class="keyword">if</span>(add==mxf) <span class="keyword">continue</span>;</span><br><span class="line">    lim-=<span class="number">2</span>,tot=totrec;<span class="keyword">break</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;=tot;i+=<span class="number">2</span>)eg[i].f+=eg[i^<span class="number">1</span>].f,eg[i^<span class="number">1</span>].f=<span class="number">0</span>;</span><br><span class="line">mxf=<span class="number">0</span>,<span class="built_in">dinic</span>();</span><br></pre></td></tr></table></figure><br><br></p>
+<h2 id="矩形覆盖"><a href="#矩形覆盖" class="headerlink" title="矩形覆盖"></a>矩形覆盖</h2><p><a target="_blank" rel="noopener" href="https://atcoder.jp/contests/abc274/tasks/abc274_g">https://atcoder.jp/contests/abc274/tasks/abc274_g</a></p>
+<p>题意:给出一张矩阵,某些点处有障碍.每个点可以放置一台摄像机,选取四个方向中任一方向,对障碍前所有方格进行监视.除了障碍,所有点均需被监视.求出最小所用摄像头数.</p>
+<p>首先,可以很明显的看出,对于放置于某格某方向的摄像头,如果反向的格子为空,那么此摄像头放在反向一定不会使答案更劣.所以所有的摄像头都应该沿着障碍物放置(此处将矩阵的边缘视为障碍物).</p>
+<p>对于一条边的覆盖,两个端点只要有一个有该方向的覆盖就足够.所以只会有方向向下或向右的摄像头(向左,向上同理).</p>
+<p>现在题意被转化为,在一个联通块的上边缘和左边缘放置摄像头,使得达到全覆盖.似乎除了dp之外想不到其他的方法,但是状压dp的复杂度不对,插头dp更是没有必要.试着再次换一个角度,考虑每个点如果能达成覆盖需要满足的条件.当前仅当每个点能到达的最左点或最上点中至少其一放置摄像头,全图完成覆盖.现在题意是,有若干个二元组,每个二元组中至少一个数被选取,求最小选取数.</p>
+<p>这张图其实是一张二分图,问题就变成求解二分图的最小覆盖.根据Dilworth定理,建图后跑最大流即可求出.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">iFor</span>(i,n,<span class="number">1</span>)<span class="built_in">iFor</span>(j,m,<span class="number">1</span>)&#123;</span><br><span class="line">    <span class="keyword">if</span>(!mp[i][j])<span class="keyword">continue</span>;</span><br><span class="line">    dn[i][j]=rt[i][j]=p;</span><br><span class="line">    <span class="keyword">if</span>(mp[i+<span class="number">1</span>][j])dn[i][j]=dn[i+<span class="number">1</span>][j]; </span><br><span class="line">    <span class="keyword">if</span>(mp[i][j+<span class="number">1</span>])rt[i][j]=rt[i][j+<span class="number">1</span>];</span><br><span class="line">    <span class="built_in">con</span>(S,p,<span class="number">1</span>),<span class="built_in">con</span>(p+n*m,T,<span class="number">1</span>),<span class="built_in">con</span>(dn[i][j],rt[i][j]+n*m,INF); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><br></p>
 
     </div>
 
@@ -320,7 +328,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9C%80%E5%A4%A7%E6%B5%81"><span class="nav-number">1.</span> <span class="nav-text">最大流</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A3%9E%E8%A1%8C%E5%91%98%E9%85%8D%E5%AF%B9%E9%97%AE%E9%A2%98"><span class="nav-number">1.1.</span> <span class="nav-text">飞行员配对问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%95%E9%A2%98%E5%BA%93%E9%97%AE%E9%A2%98"><span class="nav-number">1.2.</span> <span class="nav-text">试题库问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%86%E6%A1%8C%E9%97%AE%E9%A2%98"><span class="nav-number">1.3.</span> <span class="nav-text">圆桌问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%AD%94%E6%9C%AF%E7%90%83%E9%97%AE%E9%A2%98"><span class="nav-number">1.4.</span> <span class="nav-text">魔术球问题</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9C%80%E5%A4%A7%E6%B5%81"><span class="nav-number">1.</span> <span class="nav-text">最大流</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A3%9E%E8%A1%8C%E5%91%98%E9%85%8D%E5%AF%B9%E9%97%AE%E9%A2%98"><span class="nav-number">1.1.</span> <span class="nav-text">飞行员配对问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%95%E9%A2%98%E5%BA%93%E9%97%AE%E9%A2%98"><span class="nav-number">1.2.</span> <span class="nav-text">试题库问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%86%E6%A1%8C%E9%97%AE%E9%A2%98"><span class="nav-number">1.3.</span> <span class="nav-text">圆桌问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%AD%94%E6%9C%AF%E7%90%83%E9%97%AE%E9%A2%98"><span class="nav-number">1.4.</span> <span class="nav-text">魔术球问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9F%A9%E5%BD%A2%E8%A6%86%E7%9B%96"><span class="nav-number">1.5.</span> <span class="nav-text">矩形覆盖</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -334,7 +342,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-count">10</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
