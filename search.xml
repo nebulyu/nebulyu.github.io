@@ -205,4 +205,18 @@ D_3=\frac 1{n_1+n_2}\Sigma(x_i-a_3)^2\\
 <p>需要注意的是,如果直接用二维线段树或外层暴力内层线段树,虽然理论复杂度是$O(n^2logn)$的,但是常数巨大,无法通过(存疑).</p>
 ]]></content>
   </entry>
+  <entry>
+    <title>区间dp</title>
+    <url>/2023/01/15/%E5%8C%BA%E9%97%B4dp/</url>
+    <content><![CDATA[<h1 id="区间dp"><a href="#区间dp" class="headerlink" title="区间dp"></a>区间dp</h1><span id="more"></span>
+<p><br></p>
+<h2 id="Work-or-Rest"><a href="#Work-or-Rest" class="headerlink" title="Work or Rest"></a>Work or Rest</h2><p>题目链接:<a href="https://atcoder.jp/contests/abc285/tasks/abc285_e">https://atcoder.jp/contests/abc285/tasks/abc285_e</a></p>
+<p>题意:在一个周期内任意安排假期,至少一天,使一个周期内总效率最大.每天的效率计算方法给定.</p>
+<p>思路:对于任意一段长度为l的连续工作区间,总效率都相等,而且可以通过长度为l-1的效率得到,于是先将每个长度对应的效率预处理出来.</p>
+<p>一看数据范围,确定是$n^2$或者$n^2logn$的算法.于是很自然的考虑区间dp.长度为l的区间可以由长度为i与l-i的区间拼出,且不会有后效性问题.由于循环不涉及顺序,那么直接顺推dp,复杂度$O(n^2)$.</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">For</span>(i,<span class="number">1</span>,n)&#123;</span><br><span class="line">        ans[i]=rec[i<span class="number">-1</span>];</span><br><span class="line">        <span class="built_in">For</span>(j,<span class="number">1</span>,i<span class="number">-1</span>)ans[i]=<span class="built_in">max</span>(ans[i],ans[i-j]+rec[j<span class="number">-1</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">    cout&lt;&lt;ans[n];</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h2 id="Pre-Order"><a href="#Pre-Order" class="headerlink" title="Pre-Order"></a>Pre-Order</h2><p><a href="https://atcoder.jp/contests/abc252/tasks/abc252_g">https://atcoder.jp/contests/abc252/tasks/abc252_g</a></p>
+]]></content>
+  </entry>
 </search>
