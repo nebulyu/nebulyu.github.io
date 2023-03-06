@@ -15,6 +15,10 @@
 <h5 id="K"><a href="#K" class="headerlink" title="K"></a>K</h5><p>由于太菜只会$n^3$dp,于是想到了记搜剪枝.但是剪枝的条件并没有思考完备,白白的写了半个小时的假题,不仅没想出怎么优化,最后甚至正确性都没有.似乎有神仙乱剪过了,后面再找std看看吧<br><br></p>
 <h5 id="G"><a href="#G" class="headerlink" title="G"></a>G</h5><p>同样,由于太菜,只能想到裸暴力dp.一直在纠结$n^5$的复杂度,却忽视了选取多个连续时实际状态并不算多,写完心虚不敢久调,又浪费时间写了假题.<br><br><br>这场满打满算可以切掉7题,尽管第一次正式赛失误无可避免,但只搞掉4题还是有遗憾.根据最近打的3场比赛,目前最主要的目的并不是复习一些高级算法的用法,毕竟几乎用不到,而是多做一些dp,搜索之类的需要处理边界条件的题目,很久没做题带来的生疏大概就体现在细节不会写了吧.</p>
 ]]></content>
+      <tags>
+        <tag>游记</tag>
+        <tag>水文</tag>
+      </tags>
   </entry>
   <entry>
     <title>abc262</title>
@@ -26,6 +30,10 @@
 <p>E:考虑所有标记过点的出度总和S,与标记过点相连的同色的边数R,不同色的边数D,满足$S=D+2R$,即若D为偶数,则S必为偶数.于是原问题可转化为从原图中选出若干点,使其出度总和为偶数,求方案数.此时点的出度可直接分为奇偶,组合数求和即可<br><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span>(ri i=<span class="number">0</span>;i*<span class="number">2</span>&lt;=k;++i) ans=(ans+<span class="built_in">C</span>(c[<span class="number">0</span>],k-i*<span class="number">2</span>)*<span class="built_in">C</span>(c[<span class="number">1</span>],i*<span class="number">2</span>)%MOD)%MOD;</span><br></pre></td></tr></table></figure></p>
 <p>F:根据字典序,找出k能到达的范围内最小值lead.如果选择转动操作,需要转动的点仅在lead后方.这样仅用分两种情况讨论,直接删和转后再删.对于直接删的情况,维护一个单调栈,每次更新时执行删除操作.<br><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">For(i,1,n)&#123;</span><br><span class="line">        while(p&amp;&amp;ar[i]&lt;ar[sta1[p]]&amp;&amp;r)--r,--p;</span><br><span class="line">        ++p,sta1[p]=i;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure><br>如果旋转,旋转后的点删除不需要花费<br><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">while(p&amp;&amp;ar[i]&lt;ar[sta2[p]]&amp;&amp;(r&gt;=(sta2[p]&lt;ld)))r-=(sta2[p]&lt;ld),--p;</span><br><span class="line">        ++p,sta2[p]=i;</span><br></pre></td></tr></table></figure><br>最后比较两个答案的大小即可</p>
 ]]></content>
+      <tags>
+        <tag>abc</tag>
+        <tag>atcoder</tag>
+      </tags>
   </entry>
   <entry>
     <title>fhqtreap</title>
@@ -33,24 +41,19 @@
     <content><![CDATA[<h1 id="fhqtreap"><a href="#fhqtreap" class="headerlink" title="fhqtreap"></a>fhqtreap</h1><p>这个神仙级nb的数据结构得名于神仙范皓强,既有treap的易写易懂,也有splay般易于区间处理的能力.<br><span id="more"></span><br><br></p>
 <h2 id="列队"><a href="#列队" class="headerlink" title="列队"></a>列队</h2><p><a href="https://www.luogu.com.cn/problem/P3960">https://www.luogu.com.cn/problem/P3960</a><br>题意:一个nm的矩阵,每次取出一个指定位置的数,求出这个数的编号,并把矩阵里的数先向左补齐再想上补齐,最后把取出的数塞到右下角.其中$n,m,q\in(1,3e5)$<br>考虑每次更改的部分,只有当前的行和最后一列会有更改.于是对每一行和最后一列建立平衡树维护矩阵.但是这样做的空间复杂度是$O(nm)$,无法承受.<br>由于大部分数都不会被更改,每个点都去维护的话实际上浪费了大量空间.那么就考虑去合并这些不会被更改的点,更好的做法就是直接维护区间,有分裂的需求时再动态开点.一开始对每行插入$(1,m-1)$的区间,对末尾列直接插入每一个数.在split时开新点分割区间.<br>此处的treap按排名分裂.需要注意fhqtreap的合并顺序,以及新开的点与原树的相对位置.这个细节废了我一个下午.</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">mer</span><span class="params">(<span class="type">int</span> x,<span class="type">int</span> y)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!x||!y) <span class="keyword">return</span> x+y;</span><br><span class="line">    <span class="keyword">if</span>(rd[x]&gt;=rd[y])<span class="keyword">return</span> <span class="built_in">rs</span>(x)=<span class="built_in">mer</span>(<span class="built_in">rs</span>(x),y),<span class="built_in">upd</span>(x),x;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> <span class="built_in">ls</span>(y)=<span class="built_in">mer</span>(x,<span class="built_in">ls</span>(y)),<span class="built_in">upd</span>(y),y; </span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">splp</span><span class="params">(<span class="type">int</span> p,ll k)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(k&gt;=<span class="built_in">len</span>(p)) <span class="keyword">return</span> ;</span><br><span class="line">    <span class="type">int</span> x=<span class="built_in">alc</span>(L[p]+k,R[p]);</span><br><span class="line">    R[p]=L[x]<span class="number">-1</span>,<span class="built_in">rs</span>(p)=<span class="built_in">mer</span>(x,<span class="built_in">rs</span>(p)),<span class="built_in">upd</span>(p);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">spl</span><span class="params">(<span class="type">int</span> p,<span class="type">int</span> &amp;x,<span class="type">int</span> &amp;y,ll v)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!p) <span class="keyword">return</span> x=y=<span class="number">0</span>,<span class="built_in">void</span>();</span><br><span class="line">    <span class="keyword">if</span>(sz[<span class="built_in">ls</span>(p)]&gt;=v) y=p,<span class="built_in">spl</span>(<span class="built_in">ls</span>(p),x,<span class="built_in">ls</span>(p),v);</span><br><span class="line">    <span class="keyword">else</span> <span class="built_in">splp</span>(p,v-sz[<span class="built_in">ls</span>(p)]),x=p,<span class="built_in">spl</span>(<span class="built_in">rs</span>(p),<span class="built_in">rs</span>(p),y,v-sz[<span class="built_in">ls</span>(p)]-<span class="built_in">len</span>(p));</span><br><span class="line">    <span class="built_in">upd</span>(p);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>数据结构</tag>
+        <tag>平衡树</tag>
+      </tags>
   </entry>
   <entry>
     <title>Hello world</title>
     <url>/2022/07/17/hello-world/</url>
     <content><![CDATA[<h2 id="Hello-world"><a href="#Hello-world" class="headerlink" title="Hello world"></a>Hello world</h2><p>时隔两年，终于成功的搭建了hexo博客，中途踩坑无数，希望这是最后一个helloworld</p>
 ]]></content>
-  </entry>
-  <entry>
-    <title>icpc2022济南游寄</title>
-    <url>/2022/12/01/icpc2022%E6%B5%8E%E5%8D%97%E6%B8%B8%E5%AF%84/</url>
-    <content><![CDATA[<p>第一次正式参加区域赛，不得不水一篇小作文了。</p>
-<span id="more"></span>
-<p>早上本来想睡个难得的好觉，突然起来发现有正式赛，于是飞速嗦了一碗粉，一路小跑润到机房。到了一看才十点，人都没来几个，就享受受刑前的快乐睡眠。<br>之前测环境已经测好了，预计不会出什么问题，但队长的vs自动补全没办法完全关掉，焦虑了一小会儿，决定用dev为主。</p>
-<p>开场拿到题目，m题感觉可做，应该是个贪心，不过还是继续往前看看再说。<br>k题签到题一眼秒，写出来几乎没怎么调，8分钟a掉，还算不错。<br>签完k队友开始输出，我就去开题了。花了大量时间在金牌题上，感觉最短路倍增可写，就开始小推式子，中间花了十几分钟写了假题，最后意识到做法是n4的，结束表演转而跟榜。</p>
-<p>大概这个时候z老师正在折磨s老师调e吧，看了acd，感觉没有一眼题。小猜了一个a的结论，目标区间一定连续，先除二后加减。<br>和z老师达成了共识，他继续折磨s老师写题，我就去玩c了。</p>
-<p>一开始没什么思路，想着换根。上了两个厕所后，发现儿子的状态可以直接继承父亲，子树内顺序无限制，处理兄弟的状态就可以了。<br>于是大力推了一波式子，感觉很对。虽然看似n4，主定理分析后觉得可以n3。跟队友说了，都觉得行，于是飞速码题。<br>码完还有二十分钟，交一发t了，发现会被菊花卡掉。<br>z老师给出了一个优化，size相同的兄弟等价。乍一想很对，于是加上，wa，到结束都没调出来。后来发现size相同的兄弟子树可能不同，应该除掉自身子树的方案再乘上兄弟子树的方案才对。</p>
-<p>跟大家一起去吃晚饭，见识到什么叫活不过一圈的菜。<br>最后尾银，滚榜滚到时整个人才放松下来。c没做出来有点遗憾，不过就算做出来了也不一定有au。<br>希望南京能冲一把au。</p>
-]]></content>
+      <tags>
+        <tag>水文</tag>
+      </tags>
   </entry>
   <entry>
     <title>区间dp</title>
@@ -65,6 +68,26 @@
 <p><br></p>
 <h2 id="Pre-Order"><a href="#Pre-Order" class="headerlink" title="Pre-Order"></a>Pre-Order</h2><p><a href="https://atcoder.jp/contests/abc252/tasks/abc252_g">https://atcoder.jp/contests/abc252/tasks/abc252_g</a></p>
 ]]></content>
+      <tags>
+        <tag>dp</tag>
+        <tag>区间处理</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>icpc2022济南游寄</title>
+    <url>/2022/12/01/icpc2022%E6%B5%8E%E5%8D%97%E6%B8%B8%E5%AF%84/</url>
+    <content><![CDATA[<p>第一次正式参加区域赛，不得不水一篇小作文了。</p>
+<span id="more"></span>
+<p>早上本来想睡个难得的好觉，突然起来发现有正式赛，于是飞速嗦了一碗粉，一路小跑润到机房。到了一看才十点，人都没来几个，就享受受刑前的快乐睡眠。<br>之前测环境已经测好了，预计不会出什么问题，但队长的vs自动补全没办法完全关掉，焦虑了一小会儿，决定用dev为主。</p>
+<p>开场拿到题目，m题感觉可做，应该是个贪心，不过还是继续往前看看再说。<br>k题签到题一眼秒，写出来几乎没怎么调，8分钟a掉，还算不错。<br>签完k队友开始输出，我就去开题了。花了大量时间在金牌题上，感觉最短路倍增可写，就开始小推式子，中间花了十几分钟写了假题，最后意识到做法是n4的，结束表演转而跟榜。</p>
+<p>大概这个时候z老师正在折磨s老师调e吧，看了acd，感觉没有一眼题。小猜了一个a的结论，目标区间一定连续，先除二后加减。<br>和z老师达成了共识，他继续折磨s老师写题，我就去玩c了。</p>
+<p>一开始没什么思路，想着换根。上了两个厕所后，发现儿子的状态可以直接继承父亲，子树内顺序无限制，处理兄弟的状态就可以了。<br>于是大力推了一波式子，感觉很对。虽然看似n4，主定理分析后觉得可以n3。跟队友说了，都觉得行，于是飞速码题。<br>码完还有二十分钟，交一发t了，发现会被菊花卡掉。<br>z老师给出了一个优化，size相同的兄弟等价。乍一想很对，于是加上，wa，到结束都没调出来。后来发现size相同的兄弟子树可能不同，应该除掉自身子树的方案再乘上兄弟子树的方案才对。</p>
+<p>跟大家一起去吃晚饭，见识到什么叫活不过一圈的菜。<br>最后尾银，滚榜滚到时整个人才放松下来。c没做出来有点遗憾，不过就算做出来了也不一定有au。<br>希望南京能冲一把au。</p>
+]]></content>
+      <tags>
+        <tag>游记</tag>
+        <tag>水文</tag>
+      </tags>
   </entry>
   <entry>
     <title>区间中的不动点</title>
@@ -92,6 +115,11 @@
 <p>对于$a_i\leq1e9$的范围,最多10次就可以回归到100的不动点,总复杂度$O(mlogn)$.不过需要注意最好直接在叶子结点做k次运算,不然二分下放次数过多可能会被卡常.</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">mdf</span><span class="params">(<span class="type">int</span> p,<span class="type">int</span> l,<span class="type">int</span> r,<span class="type">int</span> ql,<span class="type">int</span> qr)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(sg[p]) <span class="keyword">return</span> ;</span><br><span class="line">    <span class="keyword">if</span>(l==r)&#123;</span><br><span class="line">        sum-=ar[l];</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=k;++i)&#123;</span><br><span class="line">            ar[l]=<span class="built_in">round</span>(<span class="number">10.0</span>*<span class="built_in">sqrt</span>(ar[l]*<span class="number">1.0</span>));</span><br><span class="line">            <span class="keyword">if</span>(ar[l]==<span class="number">100</span>||ar[l]==<span class="number">0</span>||ar[l]==<span class="number">99</span>)<span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(ar[l]==<span class="number">100</span>||ar[l]==<span class="number">0</span>||ar[l]==<span class="number">99</span>)sg[p]=<span class="number">1</span>;</span><br><span class="line">        sum+=ar[l];</span><br><span class="line">        <span class="keyword">return</span> ;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(ql&lt;=mid) <span class="built_in">mdf</span>(ls,l,mid,ql,qr);</span><br><span class="line">    <span class="keyword">if</span>(qr&gt;mid) <span class="built_in">mdf</span>(rs,mid+<span class="number">1</span>,r,ql,qr);</span><br><span class="line">    sg[p]=(sg[ls]&amp;sg[rs]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 ]]></content>
+      <tags>
+        <tag>数据结构</tag>
+        <tag>区间处理</tag>
+        <tag>线段树</tag>
+      </tags>
   </entry>
   <entry>
     <title>单调数据结构小结</title>
@@ -111,6 +139,10 @@
 <h5 id="luoguP2216"><a href="#luoguP2216" class="headerlink" title="luoguP2216"></a>luoguP2216</h5><p><a href="https://www.luogu.com.cn/problem/P2216">https://www.luogu.com.cn/problem/P2216</a></p>
 <p>这题很显然是一个二维的滑动窗口.用n个单调队列维护每一行合法值,再将每一行最值塞进一个维护列的单调队列,每次移动后重置.每个点只会被扫描一次,复杂度$O(n^2)$<br><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">xq.<span class="built_in">reset</span>(),nq.<span class="built_in">reset</span>();</span><br><span class="line"><span class="built_in">For</span>(i,<span class="number">1</span>,a) mxq[i].<span class="built_in">pb</span>(ar[i][rt],rt),mnq[i].<span class="built_in">pb</span>(ar[i][rt],rt);</span><br><span class="line"><span class="built_in">For</span>(i,<span class="number">1</span>,n<span class="number">-1</span>) xq.<span class="built_in">pb</span>(mxq[i].<span class="built_in">vl</span>(),i),nq.<span class="built_in">pb</span>(mnq[i].<span class="built_in">vl</span>(),i);</span><br><span class="line"><span class="built_in">For</span>(i,n,a)&#123;</span><br><span class="line">    xq.<span class="built_in">pb</span>(mxq[i].<span class="built_in">vl</span>(),i),nq.<span class="built_in">pb</span>(mnq[i].<span class="built_in">vl</span>(),i);</span><br><span class="line">    ans=<span class="built_in">min</span>(ans,xq.<span class="built_in">vl</span>()-nq.<span class="built_in">vl</span>());</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure><br><br></p>
 ]]></content>
+      <tags>
+        <tag>数据结构</tag>
+        <tag>单调</tag>
+      </tags>
   </entry>
   <entry>
     <title>扫描线</title>
@@ -121,6 +153,10 @@
 <p>矩形覆盖的问题很自然想到扫描线,先把矩形离散,按x坐标排序,并拆分为加入线段和删除线段两部分.线段树维护y轴,每个时刻先增删线段,每个节点挂一个可删堆维护当前区间内时间最大矩形的颜色,最后dfs全树,查询当前时刻能看到颜色种类.每次查询复杂度$O(nlogn)$,总共有n次询问,总复杂度$O(n^2logn)$,可以勉强卡过.<br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//黑科技可删堆</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">HEAP</span>&#123;</span><br><span class="line">    priority_queue &lt;pii&gt; p,q;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">add</span><span class="params">(pii x)</span></span>&#123;p.<span class="built_in">push</span>(x);&#125;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">del</span><span class="params">(pii x)</span></span>&#123;q.<span class="built_in">push</span>(x);&#125;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">mt</span><span class="params">()</span></span>&#123;<span class="keyword">while</span>(p.<span class="built_in">size</span>()&amp;&amp;q.<span class="built_in">size</span>()&amp;&amp;q.<span class="built_in">top</span>()==p.<span class="built_in">top</span>())p.<span class="built_in">pop</span>(),q.<span class="built_in">pop</span>();&#125;</span><br><span class="line">    <span class="function">pii <span class="title">top</span><span class="params">()</span></span>&#123;<span class="built_in">mt</span>();<span class="keyword">return</span> p.<span class="built_in">top</span>();&#125;</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">empty</span><span class="params">()</span></span>&#123;<span class="built_in">mt</span>();<span class="keyword">return</span> p.<span class="built_in">empty</span>();&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//此处和通常的线段树稍有不同,由于维护的实际上是矩形的边,表示颜色块需要边界-1</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">add</span><span class="params">(<span class="type">int</span> p,<span class="type">int</span> l,<span class="type">int</span> r)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(ql&lt;=l&amp;&amp;r&lt;=qr) &#123;ar[p].<span class="built_in">add</span>(qii);<span class="keyword">return</span> ;&#125;</span><br><span class="line">    <span class="keyword">if</span>(ql&lt;mid) <span class="built_in">add</span>(ls,l,mid);</span><br><span class="line">    <span class="keyword">if</span>(mid&lt;qr) <span class="built_in">add</span>(rs,mid,r);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">del</span><span class="params">(<span class="type">int</span> p,<span class="type">int</span> l,<span class="type">int</span> r)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(ql&lt;=l&amp;&amp;r&lt;=qr) &#123;ar[p].<span class="built_in">del</span>(qii);<span class="keyword">return</span> ;&#125;</span><br><span class="line">    <span class="keyword">if</span>(ql&lt;mid) <span class="built_in">del</span>(ls,l,mid);</span><br><span class="line">    <span class="keyword">if</span>(mid&lt;qr) <span class="built_in">del</span>(rs,mid,r);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">dfs</span><span class="params">(<span class="type">int</span> p,<span class="type">int</span> l,<span class="type">int</span> r,pii pi)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!ar[p].<span class="built_in">empty</span>()) pi=<span class="built_in">max</span>(pi,ar[p].<span class="built_in">top</span>());</span><br><span class="line">    <span class="keyword">if</span>(r-l==<span class="number">1</span>)&#123;ans[pi.second]=<span class="number">1</span>;<span class="keyword">return</span> ;&#125;</span><br><span class="line">    <span class="built_in">dfs</span>(ls,l,mid,pi),<span class="built_in">dfs</span>(rs,mid,r,pi);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    po=<span class="built_in">pii</span>(<span class="number">0</span>,<span class="number">0</span>);</span><br><span class="line">    <span class="built_in">For</span>(i,<span class="number">1</span>,ttx)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> x:vad[i]) qii=<span class="built_in">pii</span>(x.id,ocl[x.id]),ql=x.l,qr=x.r,<span class="built_in">add</span>(<span class="number">1</span>,<span class="number">1</span>,tty);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> x:vde[i]) qii=<span class="built_in">pii</span>(x.id,ocl[x.id]),ql=x.l,qr=x.r,<span class="built_in">del</span>(<span class="number">1</span>,<span class="number">1</span>,tty);</span><br><span class="line">        <span class="built_in">dfs</span>(<span class="number">1</span>,<span class="number">1</span>,tty,po);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">int</span> cnt=<span class="number">0</span>;<span class="built_in">For</span>(i,<span class="number">1</span>,n)cnt+=ans[i];</span><br><span class="line">    cout&lt;&lt;cnt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>一个更好的做法就是在每个时刻维护每种颜色可见的总长度,直接在增删线段时更新,不需要再dfs,复杂度$O(nlogn)$.</p>
 <p>需要注意的是,如果直接用二维线段树或外层暴力内层线段树,虽然理论复杂度是$O(n^2logn)$的,但是常数巨大,无法通过(存疑).</p>
 ]]></content>
+      <tags>
+        <tag>数据结构</tag>
+        <tag>线段树</tag>
+      </tags>
   </entry>
   <entry>
     <title>数学归纳悖论</title>
@@ -141,6 +177,10 @@
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">(<span class="number">2</span>,<span class="number">1</span>,<span class="number">1</span>)-&gt;n=<span class="number">1</span>,m=<span class="number">2</span>;</span><br><span class="line">(<span class="number">1</span>,<span class="number">2</span>,<span class="number">1</span>)-&gt;n=<span class="number">2</span>,m=<span class="number">2</span>;</span><br><span class="line">(<span class="number">1</span>,<span class="number">1</span>,<span class="number">2</span>)-&gt;n=<span class="number">3</span>,m=<span class="number">2</span>;</span><br></pre></td></tr></table></figure>
 <p>对于更复杂的情况,由于每个人的数只可能是$a+b,|a-b|$.可以考虑像蓝眼睛问题一样,先假设自己的数是$|a-b|$,如果被证伪,那么自己的数肯定是$a+b$.然后就可以把问题转移到前一个猜数的人,如果在自己为$|a-b|$的条件下,前面的人无法得出结果,那么这个猜测就不可行.于是可以递归处理.<br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(p==<span class="number">1</span>)&#123;</span><br><span class="line">    <span class="keyword">if</span>(v2==v3) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span>(v2&gt;v3) <span class="keyword">return</span> <span class="built_in">dfs</span>(v2-v3,v2,v3,<span class="number">2</span>)+<span class="number">2</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> <span class="built_in">dfs</span>(v3-v2,v2,v3,<span class="number">3</span>)+<span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span>(p==<span class="number">2</span>)&#123;</span><br><span class="line">    <span class="keyword">if</span>(v1==v3) <span class="keyword">return</span> <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">if</span>(v1&gt;v3) <span class="keyword">return</span> <span class="built_in">dfs</span>(v1,v1-v3,v3,<span class="number">1</span>)+<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> <span class="built_in">dfs</span>(v1,v3-v1,v3,<span class="number">3</span>)+<span class="number">2</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span>(p==<span class="number">3</span>)&#123;</span><br><span class="line">    <span class="keyword">if</span>(v1==v2) <span class="keyword">return</span> <span class="number">3</span>;</span><br><span class="line">    <span class="keyword">if</span>(v2&gt;v1) <span class="keyword">return</span> <span class="built_in">dfs</span>(v1,v2,v2-v1,<span class="number">2</span>)+<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> <span class="built_in">dfs</span>(v1,v2,v1-v2,<span class="number">1</span>)+<span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>而唯一可以用于判断的量化标准就是沉默的轮数.对于一组数,仅当有人猜出来的轮数与给定的n轮相同,才能成为可行解.<br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">For</span>(i,<span class="number">1</span>,m<span class="number">-1</span>)&#123;</span><br><span class="line">    <span class="keyword">if</span>(p==<span class="number">1</span>)<span class="keyword">if</span>(<span class="built_in">dfs</span>(m,i,m-i,<span class="number">1</span>)==n)++T,ans[T].a=m,ans[T].b=i,ans[T].c=m-i;</span><br><span class="line">    <span class="keyword">if</span>(p==<span class="number">2</span>)<span class="keyword">if</span>(<span class="built_in">dfs</span>(i,m,m-i,<span class="number">2</span>)==n)++T,ans[T].a=i,ans[T].b=m,ans[T].c=m-i;</span><br><span class="line">    <span class="keyword">if</span>(p==<span class="number">3</span>)<span class="keyword">if</span>(<span class="built_in">dfs</span>(i,m-i,m,<span class="number">3</span>)==n)++T,ans[T].a=i,ans[T].b=m-i,ans[T].c=m;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br><br><br><del>信息真神奇啊</del></p>
 ]]></content>
+      <tags>
+        <tag>数学</tag>
+        <tag>思维</tag>
+      </tags>
   </entry>
   <entry>
     <title>最大流练习</title>
@@ -163,6 +203,10 @@
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">iFor</span>(i,n,<span class="number">1</span>)<span class="built_in">iFor</span>(j,m,<span class="number">1</span>)&#123;</span><br><span class="line">    <span class="keyword">if</span>(!mp[i][j])<span class="keyword">continue</span>;</span><br><span class="line">    dn[i][j]=rt[i][j]=p;</span><br><span class="line">    <span class="keyword">if</span>(mp[i+<span class="number">1</span>][j])dn[i][j]=dn[i+<span class="number">1</span>][j]; </span><br><span class="line">    <span class="keyword">if</span>(mp[i][j+<span class="number">1</span>])rt[i][j]=rt[i][j+<span class="number">1</span>];</span><br><span class="line">    <span class="built_in">con</span>(S,p,<span class="number">1</span>),<span class="built_in">con</span>(p+n*m,T,<span class="number">1</span>),<span class="built_in">con</span>(dn[i][j],rt[i][j]+n*m,INF); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><br></p>
 ]]></content>
+      <tags>
+        <tag>图论</tag>
+        <tag>网络流</tag>
+      </tags>
   </entry>
   <entry>
     <title>最小割练习</title>
@@ -219,6 +263,10 @@ e=f=(v3+v4-v1-v2)/2</script><p>然后以每个任务自身的代价连边,最后
 <p>用虚拟点的想法,拆点为选或不选,再将额外收益或惩罚连依赖边,最后再处理收益与惩罚的互斥性上遇到了麻烦,似乎并不好表示.</p>
 <p>考虑边的意义.先将贡献加和转化问题为求最小代价,向源汇连收益和代价.点i向点j连容量为$2E<em>{i,j}$的边,表示两者不在同一集合的代价为$2E</em>{i,j}$,就搞定辣.<br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">For</span>(i,<span class="number">1</span>,n)&#123;ll v;cin&gt;&gt;v;<span class="built_in">con</span>(i,T,v);&#125;</span><br><span class="line"><span class="built_in">For</span>(i,<span class="number">1</span>,n)<span class="built_in">For</span>(j,<span class="number">1</span>,n)&#123;</span><br><span class="line">    ll v;cin&gt;&gt;v;<span class="keyword">if</span>(i==j)<span class="keyword">continue</span>;</span><br><span class="line">    rec[j]+=v,sum+=v,<span class="built_in">con</span>(i,j,v*<span class="number">2</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">For</span>(i,<span class="number">1</span>,n)<span class="built_in">con</span>(S,i,rec[i]);</span><br></pre></td></tr></table></figure></p>
 ]]></content>
+      <tags>
+        <tag>图论</tag>
+        <tag>网络流</tag>
+      </tags>
   </entry>
   <entry>
     <title>一道思维题:矩阵快速幂(bushi</title>
@@ -235,6 +283,10 @@ e=f=(v3+v4-v1-v2)/2</script><p>然后以每个任务自身的代价连边,最后
 <p>于是就可以采用最原始的办法去做,不断的用P左乘A,比较A是否达到不动点.复杂度似乎与P的分布有关,但是可以通过本题.</p>
 <p>另外出题人特意提醒了用double,long double反而会有精度问题</p>
 ]]></content>
+      <tags>
+        <tag>思维</tag>
+        <tag>矩阵</tag>
+      </tags>
   </entry>
   <entry>
     <title>线段树维护修改</title>
@@ -266,5 +318,8 @@ D_3=\frac 1{n_1+n_2}\Sigma(x_i-a_3)^2\\
                           =n_1a_1^2+n_2a_2^2-(n_1+n_2)a_3^2</script><p>最后特别要注意在合并方差时跨中点情况的判断,左右两段的长度应该取min(当前区间长度,询问区间长度)<br><br></p>
 <h2 id="luoguP5142区间方差"><a href="#luoguP5142区间方差" class="headerlink" title="luoguP5142区间方差"></a>luoguP5142区间方差</h2><p><a href="https://www.luogu.com.cn/problem/P5142">https://www.luogu.com.cn/problem/P5142</a><br>基本与上题相同.longlong本身常数大,全局还带了一个$O(logn)$的求逆,无脑取模会t飞.本题需要先处理出inv数组,还要取模时判断优化,以免被卡常.<br><br></p>
 ]]></content>
+      <tags>
+        <tag>线段树</tag>
+      </tags>
   </entry>
 </search>
