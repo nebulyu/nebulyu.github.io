@@ -50,6 +50,7 @@
     <title>Hello world</title>
     <url>/2022/07/17/hello-world/</url>
     <content><![CDATA[<h2 id="Hello-world"><a href="#Hello-world" class="headerlink" title="Hello world"></a>Hello world</h2><p>时隔两年，终于成功的搭建了hexo博客，中途踩坑无数，希望这是最后一个helloworld</p>
+<p>博客园旧址:<a href="https://www.cnblogs.com/nebulyu/">https://www.cnblogs.com/nebulyu/</a></p>
 ]]></content>
       <tags>
         <tag>水文</tag>
@@ -269,26 +270,6 @@ e=f=(v3+v4-v1-v2)/2</script><p>然后以每个任务自身的代价连边,最后
       </tags>
   </entry>
   <entry>
-    <title>一道思维题:矩阵快速幂(bushi</title>
-    <url>/2023/03/06/%E7%9F%A9%E9%98%B5%E5%BF%AB%E9%80%9F%E5%B9%82(bushi/</url>
-    <content><![CDATA[<p>检测智商</p>
-<span id="more"></span>
-<p>校赛中的一道神仙题,难点不在算法或者特别的技巧,专杀惯性思维</p>
-<h2 id="luoguT319422-穷哥们也想发财"><a href="#luoguT319422-穷哥们也想发财" class="headerlink" title="luoguT319422 穷哥们也想发财"></a>luoguT319422 穷哥们也想发财</h2><p><a href="https://www.luogu.com.cn/problem/T319422">https://www.luogu.com.cn/problem/T319422</a></p>
-<p>题意:已知列向量A,矩阵P,变量K,其中矩阵P满足对于j,有 $\sum^n a_{i,j}=1,a_i\in(0,1) .$. 求出 $ B=(P^T)^k*A $. ,其中$P^T$代表P的转置矩阵</p>
-<p>数据范围: $ n\in (1,7e2),K\in(1,1e10) $</p>
-<p>乍一看就是矩阵快速幂的模板,几乎不能更简单.</p>
-<p>然而略加分析<del>或者tle了一发</del>可以发现,一般的矩乘快速幂复杂度,$O(n^3logK)$,在本题的数据大概能达到1e9级别,甚至做一次矩乘,都要大概3e8次运算,在double乘法的大常数下,只乘一次都会超时.</p>
-<p>回看题目,发现有一个条件没有用到, $ \sum^n a_{i,j}=1,a_i\in(0,1) .$. 这个条件可以满足在自乘若干次后矩阵P的内容趋于稳定,性质的证明涉及马尔科夫链有关.</p>
-<p>于是就可以采用最原始的办法去做,不断的用P左乘A,比较A是否达到不动点.复杂度似乎与P的分布有关,但是可以通过本题.</p>
-<p>另外出题人特意提醒了用double,long double反而会有精度问题</p>
-]]></content>
-      <tags>
-        <tag>思维</tag>
-        <tag>矩阵</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>线段树维护修改</title>
     <url>/2022/09/23/%E7%BA%BF%E6%AE%B5%E6%A0%91%E7%BB%B4%E6%8A%A4%E4%BF%AE%E6%94%B9/</url>
     <content><![CDATA[<h1 id="线段树维护修改"><a href="#线段树维护修改" class="headerlink" title="线段树维护修改"></a>线段树维护修改</h1><span id="more"></span>
@@ -320,6 +301,63 @@ D_3=\frac 1{n_1+n_2}\Sigma(x_i-a_3)^2\\
 ]]></content>
       <tags>
         <tag>线段树</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>筛法模板</title>
+    <url>/2023/03/07/%E7%AD%9B%E6%B3%95%E6%A8%A1%E6%9D%BF/</url>
+    <content><![CDATA[<p>自用筛法模板</p>
+<p><br></p>
+<span id="more"></span>
+<p>具体的解析懒得再写了，直接把博客园里之前的一篇贴过来了</p>
+<h1 id="欧拉筛"><a href="#欧拉筛" class="headerlink" title="欧拉筛"></a>欧拉筛</h1><h2 id="1-筛质数"><a href="#1-筛质数" class="headerlink" title="1.筛质数"></a>1.筛质数</h2><p>先看看线性筛本体，它的功能是判断质数，以及求最小质因数</p>
+<p>1.记录minfactor,prime</p>
+<p>2.对cur一直用prime数组筛去剩下的合数</p>
+<p>这里判断质数的标准很简单，就是判断一个数的最小质因数是否就是它本身</p>
+<p>由于是求最小质因数，$prime[j]&lt;=minfact[i]$,这样可以证明每个合数仅被它的最小质因数筛到，保证线性复杂度</p>
+<h2 id="2-求-phi-n"><a href="#2-求-phi-n" class="headerlink" title="2.求$\phi(n)$"></a>2.求$\phi(n)$</h2><p>$\phi(p)=p-1$,利用这个性质，可在判断质数的同时筛出它的欧拉函数</p>
+<p>由欧拉函数的积性性得,$\phi(mn)=\phi(m)\phi(n)$</p>
+<p>当$minfact[i]=prime[j]$,即有重复质因子时，$\phi(p^k)=p^{k-1}(p-1)$,乘上p即可</p>
+<p>不然乘上(p-1)</p>
+<h2 id="3-求-mu-n"><a href="#3-求-mu-n" class="headerlink" title="3.求$\mu(n)$"></a>3.求$\mu(n)$</h2><p>$\mu(p)=-1$,利用这个性质，可在判断质数的同时筛出它的莫比乌斯函数</p>
+<p>当$minfact[i]=prime[j]$,即有重复质因子时，$\mu(n)=0$</p>
+<p>不然乘上$\mu(n)=-\mu(i)$</p>
+<h2 id="4-求-d-n"><a href="#4-求-d-n" class="headerlink" title="4.求$d(n)$"></a>4.求$d(n)$</h2><p>比前面的两个函数要麻烦一些，求$d(n)$要记录n中最小质因子数$cnt[n]$</p>
+<p>对于质数,$cnt[n]$很显然等于1</p>
+<p>接着考虑$d(n)$,$n=\Pi^k<em>{i=1}p_i^{a_i}$,$d(n)=\Pi^k</em>{i=1}(p_i+1)$</p>
+<p>如果$minfact[i]=prime[j]$,由牛顿二项式定理得，$d(n)=d(i)/(cnt[i]+1)*(cnt(i)+2)$</p>
+<p>不然$d(n)=d(i)*d(prime[j])$</p>
+<h2 id="5-求-sigma-n"><a href="#5-求-sigma-n" class="headerlink" title="5.求$\sigma(n)$"></a>5.求$\sigma(n)$</h2><p>类似于求$d(n)$,不过这次要记录一个数组$sum[i]=\Sigma_{i=0}^kp^i$,p表示n的最小质因数，$sum[i]$表示最小质因数的k次幂下的和</p>
+<p>对于质数，$sum[i]$很显然等于p+1</p>
+<p>接着考虑$\sigma(n)$,$\sigma(n)=\Pi<em>{i=1}^k\Sigma</em>{j=0}^{a_i}p^j_i$</p>
+<p>如果$minfact[i]=prime[j]$,在求和式中加入一项$p^{k+1}$,等同于乘$(sum[i]*p+1)/sum[i]$</p>
+<p>不然$\sigma(n)=\sigma(i)*\sigma(prime[j])$</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//mf 最小质因数</span></span><br><span class="line"><span class="comment">//pr 质数 </span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">sieve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">For</span>(i,<span class="number">2</span>,LIM)&#123;</span><br><span class="line">        <span class="keyword">if</span>(!mf[i])mf[i]=pr[++TT]=i;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>,p;j&lt;=TT&amp;&amp;(p=pr[j]*i)&lt;=LIM;++j)&#123;</span><br><span class="line">            mf[p]=pr[j];</span><br><span class="line">            <span class="keyword">if</span>(pr[j]^mf[i]);</span><br><span class="line">            <span class="keyword">else</span> &#123;<span class="keyword">break</span>;&#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//phi 欧拉函数,小于x且与x互质的数的个数</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">sieve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">For</span>(i,<span class="number">2</span>,LIM)&#123;</span><br><span class="line">        <span class="keyword">if</span>(!mf[i])mf[i]=pr[++TT]=i,phi[i]=i<span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>,p;j&lt;=TT&amp;&amp;(p=pr[j]*i)&lt;=LIM;++j)&#123;</span><br><span class="line">            mf[p]=pr[j];</span><br><span class="line">            <span class="keyword">if</span>(pr[j]^mf[i])phi[p]=phi[i]*(pr[j]<span class="number">-1</span>);</span><br><span class="line">            <span class="keyword">else</span> &#123;phi[p]=phi[i]*pr[j];<span class="keyword">break</span>;&#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//mu 莫比乌斯函数</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">sieve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">For</span>(i,<span class="number">2</span>,LIM)&#123;</span><br><span class="line">        <span class="keyword">if</span>(!mf[i])mf[i]=pr[++TT]=i,mu[i]=<span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>,p;j&lt;=TT&amp;&amp;(p=pr[j]*i)&lt;=LIM;++j)&#123;</span><br><span class="line">            mf[p]=pr[j];</span><br><span class="line">            <span class="keyword">if</span>(pr[j]^mf[i])mu[p]=-mu[i];</span><br><span class="line">            <span class="keyword">else</span> &#123;mu[p]=<span class="number">0</span>;<span class="keyword">break</span>;&#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//dn 约数个数</span></span><br><span class="line"><span class="comment">//pn 最小质因子的次数 </span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">sieve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    dn[<span class="number">1</span>]=<span class="number">1</span>;</span><br><span class="line">    <span class="built_in">For</span>(i,<span class="number">2</span>,LIM)&#123;</span><br><span class="line">        <span class="keyword">if</span>(!mf[i])mf[i]=pr[++TT]=i,dn[i]=<span class="number">2</span>,pn[i]=<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>,p;j&lt;=TT&amp;&amp;(p=pr[j]*i)&lt;=LIM;++j)&#123;</span><br><span class="line">            mf[p]=pr[j];</span><br><span class="line">            <span class="keyword">if</span>(pr[j]^mf[i])	dn[p]=dn[i]&lt;&lt;<span class="number">1</span>,pn[p]=<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">else</span>&#123;dn[p]=dn[i]/(pn[i]+<span class="number">1</span>)*(pn[i]+<span class="number">2</span>),pn[p]=pn[i]+<span class="number">1</span>;<span class="keyword">break</span>;&#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//ps 最小质因数的幂次和 </span></span><br><span class="line"><span class="comment">//s 约数和 </span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">sieve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">For</span>(i,<span class="number">2</span>,LIM)&#123;</span><br><span class="line">        <span class="keyword">if</span>(!mf[i])mf[i]=pr[++TT]=i,s[i]=ps[i]=i+<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>,p;j&lt;=TT&amp;&amp;(p=pr[j]*i)&lt;=LIM;++j)&#123;</span><br><span class="line">            mf[p]=pr[j];</span><br><span class="line">            <span class="keyword">if</span>(pr[j]^mf[i])ps[p]=pr[j]+<span class="number">1</span>,s[p]=ps[i]*(pr[j]+<span class="number">1</span>);</span><br><span class="line">            <span class="keyword">else</span> &#123;ps[p]=ps[i]*pr[j]+<span class="number">1</span>,s[p]=s[i]*(ps[i]*p+<span class="number">1</span>)/ps[i];<span class="keyword">break</span>;&#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="杜教筛"><a href="#杜教筛" class="headerlink" title="杜教筛"></a>杜教筛</h1><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//需先筛出phi与mu</span></span><br><span class="line">unordered_map&lt;<span class="type">int</span>,ll&gt; ansmu,ansphi;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">get_mu</span><span class="params">(<span class="type">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(x&lt;=LIM) <span class="keyword">return</span> mu[x];</span><br><span class="line">    <span class="keyword">if</span>(ansmu.<span class="built_in">count</span>(x)) <span class="keyword">return</span> ansmu[x];</span><br><span class="line">    <span class="type">int</span> ans=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> l=<span class="number">2</span>,r;(r&lt;(<span class="number">1</span>&lt;&lt;<span class="number">31</span>)<span class="number">-1</span>)&amp;&amp;l&lt;=x;l=r+<span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        r=x/(x/l);</span><br><span class="line">        ans-=(r-l+<span class="number">1</span>)*<span class="built_in">get_mu</span>(x/l);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ansmu[x]=ans;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">ll <span class="title">get_phi</span><span class="params">(<span class="type">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(x&lt;=LIM) <span class="keyword">return</span> phi[x];</span><br><span class="line">    <span class="keyword">if</span>(ansphi.<span class="built_in">count</span>(x)) <span class="keyword">return</span> ansphi[x];</span><br><span class="line">    ll ans=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> l=<span class="number">2</span>,r;(r&lt;(<span class="number">1</span>&lt;&lt;<span class="number">31</span>)<span class="number">-1</span>)&amp;&amp;l&lt;=x;l=r+<span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        r=x/(x/l);</span><br><span class="line">        ans+=(r-l+<span class="number">1</span>)*<span class="built_in">get_phi</span>(x/l);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ansphi[x]=(ll)x*(x+<span class="number">1ll</span>)/<span class="number">2ll</span>-ans;</span><br><span class="line">&#125;  </span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>数学</tag>
+        <tag>模板</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>一道思维题:矩阵快速幂(bushi</title>
+    <url>/2023/03/06/%E4%BC%AA%E7%9F%A9%E9%98%B5%E5%BF%AB%E9%80%9F%E5%B9%82/</url>
+    <content><![CDATA[<p>检测智商</p>
+<span id="more"></span>
+<p>校赛中的一道神仙题,难点不在算法或者特别的技巧,专杀惯性思维</p>
+<h2 id="luoguT319422-穷哥们也想发财"><a href="#luoguT319422-穷哥们也想发财" class="headerlink" title="luoguT319422 穷哥们也想发财"></a>luoguT319422 穷哥们也想发财</h2><p><a href="https://www.luogu.com.cn/problem/T319422">https://www.luogu.com.cn/problem/T319422</a></p>
+<p>题意:已知列向量A,矩阵P,变量K,其中矩阵P满足对于j,有 $\sum^n a_{i,j}=1,a_i\in(0,1) .$. 求出 $ B=(P^T)^k*A $. ,其中$P^T$代表P的转置矩阵</p>
+<p>数据范围: $ n\in (1,7e2),K\in(1,1e10) $</p>
+<p>乍一看就是矩阵快速幂的模板,几乎不能更简单.</p>
+<p>然而略加分析<del>或者tle了一发</del>可以发现,一般的矩乘快速幂复杂度,$O(n^3logK)$,在本题的数据大概能达到1e9级别,甚至做一次矩乘,都要大概3e8次运算,在double乘法的大常数下,只乘一次都会超时.</p>
+<p>回看题目,发现有一个条件没有用到, $ \sum^n a_{i,j}=1,a_i\in(0,1) .$. 这个条件可以满足在自乘若干次后矩阵P的内容趋于稳定,性质的证明涉及马尔科夫链有关.</p>
+<p>于是就可以采用最原始的办法去做,不断的用P左乘A,比较A是否达到不动点.复杂度似乎与P的分布有关,但是可以通过本题.</p>
+<p>另外出题人特意提醒了用double,long double反而会有精度问题</p>
+]]></content>
+      <tags>
+        <tag>数学</tag>
+        <tag>思维</tag>
+        <tag>矩阵</tag>
       </tags>
   </entry>
 </search>
