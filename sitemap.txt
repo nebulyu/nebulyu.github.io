@@ -1,6 +1,6 @@
+https://nebulyu.github.io/2023/03/06/%E4%BC%AA%E7%9F%A9%E9%98%B5%E5%BF%AB%E9%80%9F%E5%B9%82/
 https://nebulyu.github.io/2023/03/09/kdtree/
 https://nebulyu.github.io/2022/07/17/hello-world/
-https://nebulyu.github.io/2023/03/06/%E4%BC%AA%E7%9F%A9%E9%98%B5%E5%BF%AB%E9%80%9F%E5%B9%82/
 https://nebulyu.github.io/2023/03/07/%E7%AD%9B%E6%B3%95%E6%A8%A1%E6%9D%BF/
 https://nebulyu.github.io/2022/09/28/%E6%95%B0%E5%AD%A6%E5%BD%92%E7%BA%B3%E6%82%96%E8%AE%BA/
 https://nebulyu.github.io/2022/09/21/2022.9.18icpc/
