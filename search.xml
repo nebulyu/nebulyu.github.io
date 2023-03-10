@@ -47,6 +47,44 @@
       </tags>
   </entry>
   <entry>
+    <title>KDtree</title>
+    <url>/2023/03/09/kdtree/</url>
+    <content><![CDATA[<h1 id="KDtree"><a href="#KDtree" class="headerlink" title="KDtree"></a>KDtree</h1><p><br></p>
+<span id="more"></span>
+<p>KDtree(K-Dimension tree)适用于处理与距离和位置有关的多维点对问题,本质上就是经过剪枝的暴力,难点在于估价函数的设计</p>
+<p><br></p>
+<h2 id="k远点对"><a href="#k远点对" class="headerlink" title="k远点对"></a>k远点对</h2><p>题目链接:<a href="https://www.luogu.com.cn/problem/P4357">https://www.luogu.com.cn/problem/P4357</a></p>
+<p>题意:给出n个二维点,求出第K远点对的距离.其中$n\in(1,1e6),K\in(1,1e2)$</p>
+<p>分析:按照最直接的思路,求出每一对点之间的距离再排序,时间复杂度会达到$O(n^2)$.</p>
+<p>在这个暴力的过程中,很多点对都不会产生贡献,考虑合并处理区间优化.对点集排序,对于当前选择的两个点$a_l,a_r$,如果$x_l,x_r$与$y_l,y_r$的距离和小于当前答案,那么在$x_l,x_r$之间且$y_l,y_r$之间的点对一定对答案没有影响.</p>
+<p>考虑用矩形来分割整个平面,再用点对递归分割子平面.每次选取一个维度上的中点,对当前子平面进行再划分,这样就构造出一颗二叉树.由于每个维度的区间中点不同,每次用nth_element得到,避免反复sort.KDtree的构造时间复杂度是$O(nlogn)$,与一般二分数据结构相同.</p>
+<p>至于划分的维度,可以选用方差最大的维度,这样数据分布的比较开,可以保证树高,树的形态会更平衡.为了省事也可以按维度顺序轮流选择.</p>
+<p>树上的每个结点维护一个矩形区间,表示子树在平面上的范围.</p>
+<p>查询时,用当前点来更新答案.预测左右子树与询问点的最大距离,如果最大情况下对答案都没有贡献,就没有必要进入子树了.利用预测值还有一个优化,根据左右子树预测值的大小关系,决定子树的访问顺序.</p>
+<p>单次询问的平均复杂度为$O(n^{(1-\frac{1}{k})})$,具体分析可以看这篇博客:<a href="https://blog.csdn.net/qq_50332374/article/details/123242226">https://blog.csdn.net/qq_50332374/article/details/123242226</a>. 需要注意的是,kdtree的单次查询最坏复杂度仍然是$O(n)$的,可能被刻意构造的数据卡死.<br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//估价函数</span></span><br><span class="line"><span class="function">ll <span class="title">edis</span><span class="params">(node &amp;p,PNT &amp;pn)</span></span>&#123;</span><br><span class="line">    ll res=<span class="number">0</span>;</span><br><span class="line">    <span class="built_in">For</span>(i,<span class="number">0</span>,<span class="number">1</span>)&#123;</span><br><span class="line">        ll t=<span class="built_in">max</span>(<span class="built_in">abs</span>(p.mx[i]-pn.x[i]),<span class="built_in">abs</span>(p.mn[i]-pn.x[i]));</span><br><span class="line">        res+=t*t;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">qry</span><span class="params">(node &amp;p,PNT &amp;pn)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!p.sz)<span class="keyword">return</span> ;</span><br><span class="line">    <span class="keyword">if</span>(K||<span class="built_in">dis</span>(p.pn,pn)&gt;=ans)<span class="built_in">add</span>(p.pn,pn);</span><br><span class="line">    ll dl=<span class="number">0</span>,dr=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span>(p.ls)dl=<span class="built_in">edis</span>(ar[p.ls],pn);</span><br><span class="line">    <span class="keyword">if</span>(p.rs)dr=<span class="built_in">edis</span>(ar[p.rs],pn);</span><br><span class="line">    <span class="keyword">if</span>(dl&gt;=dr)&#123;</span><br><span class="line">        <span class="keyword">if</span>(K||dl&gt;=ans) <span class="built_in">qry</span>(ar[p.ls],pn);</span><br><span class="line">        <span class="keyword">if</span>(K||dr&gt;=ans) <span class="built_in">qry</span>(ar[p.rs],pn);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(K||dr&gt;=ans) <span class="built_in">qry</span>(ar[p.rs],pn);</span><br><span class="line">        <span class="keyword">if</span>(K||dl&gt;=ans) <span class="built_in">qry</span>(ar[p.ls],pn);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br><br></p>
+<h2 id="JZPFAR"><a href="#JZPFAR" class="headerlink" title="JZPFAR"></a>JZPFAR</h2><p>题目链接:<a href="https://www.luogu.com.cn/problem/P2093">https://www.luogu.com.cn/problem/P2093</a></p>
+<p>题意:给出一个二维点集,m次查询,每次询问到指定的点距离第K大的点的标号</p>
+<p>分析:和上题处理方法相同.不过这题比较卡常,可以设置全局变量避免反复传参,把维度的循环展开成判断.<del>最后还是没卡成,一发O2才过.</del></p>
+<p><br></p>
+<h2 id="SDOI2010-捉迷藏"><a href="#SDOI2010-捉迷藏" class="headerlink" title="[SDOI2010]捉迷藏"></a>[SDOI2010]捉迷藏</h2><p>题目链接:<a href="https://www.luogu.com.cn/problem/P2479">https://www.luogu.com.cn/problem/P2479</a></p>
+<p>题意:给出一个二维点集,求出点集中的任意一点到其他点的最大和最小的距离之差的最小值</p>
+<p>分析:需要注意最大值和最小值的估价函数的写法.最大估价考虑到较远的矩形边界的距离,而最小估价考虑到矩形内部的距离.<br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function">ll <span class="title">emax</span><span class="params">(node &amp;p,PNT &amp;pn)</span></span>&#123;</span><br><span class="line">    ll res=<span class="number">0</span>;</span><br><span class="line">    <span class="built_in">For</span>(i,<span class="number">0</span>,<span class="number">1</span>)res+=<span class="built_in">max</span>(<span class="built_in">abs</span>(p.mx[i]-pn.x[i]),<span class="built_in">abs</span>(p.mn[i]-pn.x[i]));</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">ll <span class="title">emin</span><span class="params">(node &amp;p,PNT &amp;pn)</span></span>&#123;</span><br><span class="line">    ll res=<span class="number">0</span>;</span><br><span class="line">    <span class="built_in">For</span>(i,<span class="number">0</span>,<span class="number">1</span>)&#123;</span><br><span class="line">        ll t1=<span class="built_in">max</span>(<span class="number">0ll</span>,pn.x[i]-p.mx[i]);</span><br><span class="line">        ll t2=<span class="built_in">max</span>(<span class="number">0ll</span>,p.mn[i]-pn.x[i]);</span><br><span class="line">        res+=t1+t2;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><br></p>
+<h2 id="Mokia-简单题"><a href="#Mokia-简单题" class="headerlink" title="Mokia  简单题"></a>Mokia  简单题</h2><p>题目链接:<a href="https://www.luogu.com.cn/problem/P4390">https://www.luogu.com.cn/problem/P4390</a><br>        <a href="https://www.luogu.com.cn/problem/P4148">https://www.luogu.com.cn/problem/P4148</a></p>
+<p>题意:在一个$n*n$矩阵中,单点修改,矩形范围查值.操作总数不超过$4e5$</p>
+<p>分析:这次要求动态加点,如果直接把新点找个叶子挂上,可能会出现树结构的不平衡,要考虑用平衡树的方法维护kdtree.</p>
+<p>由于kdree的每一层严格对应一个维度的划分,treap类随机乱选和splay改变父子关系肯定不行,只能考虑替罪羊树的局部重构.</p>
+<p>精确查询的操作无法用估价函数剪枝,考虑用矩形覆盖的观点合并计算.</p>
+<p>如果当前矩形被目标矩形全包,那么直接返回整个矩形的和.如果两者不相交,所有的子矩形也一定不产生共享,直接返回.</p>
+<p>友情提醒一下两个矩形不相交只要满足任意一维不相交 <del>(我太菜了卡了好久)</del>.</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//被完全覆盖</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">icl</span><span class="params">(<span class="type">const</span> node &amp;p)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> </span><br><span class="line">    X1&lt;=p.mn[<span class="number">0</span>]&amp;&amp;p.mx[<span class="number">0</span>]&lt;=X2&amp;&amp;</span><br><span class="line">    Y1&lt;=p.mn[<span class="number">1</span>]&amp;&amp;p.mx[<span class="number">1</span>]&lt;=Y2;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//没有交集</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">out</span><span class="params">(<span class="type">const</span> node &amp;p)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> </span><br><span class="line">    (X1&gt;p.mx[<span class="number">0</span>]||p.mn[<span class="number">0</span>]&gt;X2)||</span><br><span class="line">    (Y1&gt;p.mx[<span class="number">1</span>]||p.mn[<span class="number">1</span>]&gt;Y2);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//结点的二维点属于查询矩形</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">init</span><span class="params">(<span class="type">const</span> node &amp;p)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> </span><br><span class="line">    p.pn.x[<span class="number">0</span>]&gt;=X1&amp;&amp;</span><br><span class="line">    p.pn.x[<span class="number">0</span>]&lt;=X2&amp;&amp;</span><br><span class="line">    p.pn.x[<span class="number">1</span>]&gt;=Y1&amp;&amp;</span><br><span class="line">    p.pn.x[<span class="number">1</span>]&lt;=Y2;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">qry</span><span class="params">(<span class="type">int</span> p)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!p) <span class="keyword">return</span> ;</span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">icl</span>(ar[p]))&#123;ans+=ar[p].sum;<span class="keyword">return</span> ;&#125;</span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">out</span>(ar[p]))&#123;<span class="keyword">return</span> ;&#125;</span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">init</span>(ar[p]))ans+=ar[p].pn.v;</span><br><span class="line">    <span class="built_in">qry</span>(ar[p].ls),<span class="built_in">qry</span>(ar[p].rs);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>数据结构</tag>
+        <tag>平衡树</tag>
+        <tag>剪枝</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hello world</title>
     <url>/2022/07/17/hello-world/</url>
     <content><![CDATA[<h2 id="Hello-world"><a href="#Hello-world" class="headerlink" title="Hello world"></a>Hello world</h2><p>时隔两年，终于成功的搭建了hexo博客，中途踩坑无数，希望这是最后一个helloworld</p>
@@ -54,6 +92,43 @@
 ]]></content>
       <tags>
         <tag>水文</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>icpc2022济南游寄</title>
+    <url>/2022/12/01/icpc2022%E6%B5%8E%E5%8D%97%E6%B8%B8%E5%AF%84/</url>
+    <content><![CDATA[<p>第一次正式参加区域赛，不得不水一篇小作文了。</p>
+<span id="more"></span>
+<p>早上本来想睡个难得的好觉，突然起来发现有正式赛，于是飞速嗦了一碗粉，一路小跑润到机房。到了一看才十点，人都没来几个，就享受受刑前的快乐睡眠。<br>之前测环境已经测好了，预计不会出什么问题，但队长的vs自动补全没办法完全关掉，焦虑了一小会儿，决定用dev为主。</p>
+<p>开场拿到题目，m题感觉可做，应该是个贪心，不过还是继续往前看看再说。<br>k题签到题一眼秒，写出来几乎没怎么调，8分钟a掉，还算不错。<br>签完k队友开始输出，我就去开题了。花了大量时间在金牌题上，感觉最短路倍增可写，就开始小推式子，中间花了十几分钟写了假题，最后意识到做法是n4的，结束表演转而跟榜。</p>
+<p>大概这个时候z老师正在折磨s老师调e吧，看了acd，感觉没有一眼题。小猜了一个a的结论，目标区间一定连续，先除二后加减。<br>和z老师达成了共识，他继续折磨s老师写题，我就去玩c了。</p>
+<p>一开始没什么思路，想着换根。上了两个厕所后，发现儿子的状态可以直接继承父亲，子树内顺序无限制，处理兄弟的状态就可以了。<br>于是大力推了一波式子，感觉很对。虽然看似n4，主定理分析后觉得可以n3。跟队友说了，都觉得行，于是飞速码题。<br>码完还有二十分钟，交一发t了，发现会被菊花卡掉。<br>z老师给出了一个优化，size相同的兄弟等价。乍一想很对，于是加上，wa，到结束都没调出来。后来发现size相同的兄弟子树可能不同，应该除掉自身子树的方案再乘上兄弟子树的方案才对。</p>
+<p>跟大家一起去吃晚饭，见识到什么叫活不过一圈的菜。<br>最后尾银，滚榜滚到时整个人才放松下来。c没做出来有点遗憾，不过就算做出来了也不一定有au。<br>希望南京能冲一把au。</p>
+]]></content>
+      <tags>
+        <tag>游记</tag>
+        <tag>水文</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>一道思维题:矩阵快速幂(bushi</title>
+    <url>/2023/03/06/%E4%BC%AA%E7%9F%A9%E9%98%B5%E5%BF%AB%E9%80%9F%E5%B9%82/</url>
+    <content><![CDATA[<p>检测智商</p>
+<span id="more"></span>
+<p>校赛中的一道神仙题,难点不在算法或者特别的技巧,专杀惯性思维</p>
+<h2 id="luoguT319422-穷哥们也想发财"><a href="#luoguT319422-穷哥们也想发财" class="headerlink" title="luoguT319422 穷哥们也想发财"></a>luoguT319422 穷哥们也想发财</h2><p><a href="https://www.luogu.com.cn/problem/T319422">https://www.luogu.com.cn/problem/T319422</a></p>
+<p>题意:已知列向量A,矩阵P,变量K,其中矩阵P满足对于j,有 $\sum^n a_{i,j}=1,a_i\in(0,1) .$. 求出 $ B=(P^T)^k*A $. ,其中$P^T$代表P的转置矩阵</p>
+<p>数据范围: $ n\in (1,7e2),K\in(1,1e10) $</p>
+<p>乍一看就是矩阵快速幂的模板,几乎不能更简单.</p>
+<p>然而略加分析<del>或者tle了一发</del>可以发现,一般的矩乘快速幂复杂度,$O(n^3logK)$,在本题的数据大概能达到1e9级别,甚至做一次矩乘,都要大概3e8次运算,在double乘法的大常数下,只乘一次都会超时.</p>
+<p>回看题目,发现有一个条件没有用到, $ \sum^n a_{i,j}=1,a_i\in(0,1) .$. 这个条件可以满足在自乘若干次后矩阵P的内容趋于稳定,性质的证明涉及马尔科夫链有关.</p>
+<p>于是就可以采用最原始的办法去做,不断的用P左乘A,比较A是否达到不动点.复杂度似乎与P的分布有关,但是可以通过本题.</p>
+<p>另外出题人特意提醒了用double,long double反而会有精度问题</p>
+]]></content>
+      <tags>
+        <tag>矩阵</tag>
+        <tag>数学</tag>
+        <tag>思维</tag>
       </tags>
   </entry>
   <entry>
@@ -72,22 +147,6 @@
       <tags>
         <tag>dp</tag>
         <tag>区间处理</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>icpc2022济南游寄</title>
-    <url>/2022/12/01/icpc2022%E6%B5%8E%E5%8D%97%E6%B8%B8%E5%AF%84/</url>
-    <content><![CDATA[<p>第一次正式参加区域赛，不得不水一篇小作文了。</p>
-<span id="more"></span>
-<p>早上本来想睡个难得的好觉，突然起来发现有正式赛，于是飞速嗦了一碗粉，一路小跑润到机房。到了一看才十点，人都没来几个，就享受受刑前的快乐睡眠。<br>之前测环境已经测好了，预计不会出什么问题，但队长的vs自动补全没办法完全关掉，焦虑了一小会儿，决定用dev为主。</p>
-<p>开场拿到题目，m题感觉可做，应该是个贪心，不过还是继续往前看看再说。<br>k题签到题一眼秒，写出来几乎没怎么调，8分钟a掉，还算不错。<br>签完k队友开始输出，我就去开题了。花了大量时间在金牌题上，感觉最短路倍增可写，就开始小推式子，中间花了十几分钟写了假题，最后意识到做法是n4的，结束表演转而跟榜。</p>
-<p>大概这个时候z老师正在折磨s老师调e吧，看了acd，感觉没有一眼题。小猜了一个a的结论，目标区间一定连续，先除二后加减。<br>和z老师达成了共识，他继续折磨s老师写题，我就去玩c了。</p>
-<p>一开始没什么思路，想着换根。上了两个厕所后，发现儿子的状态可以直接继承父亲，子树内顺序无限制，处理兄弟的状态就可以了。<br>于是大力推了一波式子，感觉很对。虽然看似n4，主定理分析后觉得可以n3。跟队友说了，都觉得行，于是飞速码题。<br>码完还有二十分钟，交一发t了，发现会被菊花卡掉。<br>z老师给出了一个优化，size相同的兄弟等价。乍一想很对，于是加上，wa，到结束都没调出来。后来发现size相同的兄弟子树可能不同，应该除掉自身子树的方案再乘上兄弟子树的方案才对。</p>
-<p>跟大家一起去吃晚饭，见识到什么叫活不过一圈的菜。<br>最后尾银，滚榜滚到时整个人才放松下来。c没做出来有点遗憾，不过就算做出来了也不一定有au。<br>希望南京能冲一把au。</p>
-]]></content>
-      <tags>
-        <tag>游记</tag>
-        <tag>水文</tag>
       </tags>
   </entry>
   <entry>
@@ -160,6 +219,32 @@
       </tags>
   </entry>
   <entry>
+    <title>最大流练习</title>
+    <url>/2022/10/07/%E6%9C%80%E5%A4%A7%E6%B5%81/</url>
+    <content><![CDATA[<h1 id="最大流"><a href="#最大流" class="headerlink" title="最大流"></a>最大流</h1><span id="more"></span>
+<h2 id="飞行员配对问题"><a href="#飞行员配对问题" class="headerlink" title="飞行员配对问题"></a>飞行员配对问题</h2><p><a href="https://www.luogu.com.cn/problem/P2756">https://www.luogu.com.cn/problem/P2756</a><br>网络流24题里的入门一题.<br>两种人之内没有交集,整个图可以看作二分图,跑匈牙利算法<br>也可以根据每个外籍飞行员和英国飞行员之间配对关系连边,看作最大流<br>在图中额外加入源点和汇点,分别与两组点连边,最大流的结果就是所求匹配数<br>最后输出方案就直接扫描残量网络,若起于外国并终于英国的边被流过则说明这两个人配对<br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">For</span>(p,<span class="number">1</span>,n1)&#123;</span><br><span class="line">        <span class="built_in">For</span>(i,<span class="number">0</span>,od[p]<span class="number">-1</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(e.f||e.t&lt;=n1) <span class="keyword">continue</span>;</span><br><span class="line">            cout&lt;&lt;p&lt;&lt;<span class="string">&quot; &quot;</span>&lt;&lt;e.t&lt;&lt;<span class="string">&quot;\n&quot;</span>;<span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure><br><br></p>
+<h2 id="试题库问题"><a href="#试题库问题" class="headerlink" title="试题库问题"></a>试题库问题</h2><p><a href="https://www.luogu.com.cn/problem/P2763">https://www.luogu.com.cn/problem/P2763</a><br>每一题仍然只能选取一次,但每张卷子都要求多道题<br>将与源点连边的容量改为题数,判断最大流是否等于总题数<br>输出方案时同上题做法<br><br></p>
+<h2 id="圆桌问题"><a href="#圆桌问题" class="headerlink" title="圆桌问题"></a>圆桌问题</h2><p><a href="https://www.luogu.com.cn/problem/P3254">https://www.luogu.com.cn/problem/P3254</a><br>试题库问题的升级版,每组点都有多种限流<br>将汇点连边的容量也改为要求就行了<br><br></p>
+<h2 id="魔术球问题"><a href="#魔术球问题" class="headerlink" title="魔术球问题"></a>魔术球问题</h2><p><a href="https://www.luogu.com.cn/problem/P2765">https://www.luogu.com.cn/problem/P2765</a><br>题意:有n个柱子,每个柱子上可以放球,相邻的球必须满足编号和为完全平方数,最大化放球的数量</p>
+<p>这一题并没有直接的给出建图的信息,需要从相邻编号和为平方的限制条件中得到球之间的合法转移关系,就可以依此建出隐式图.</p>
+<p>匹配数+柱子个数=球个数,所以我们不断试图增加匹配,在残量网络上不断跑最大流,直到匹配的最大值,就可以使球的个数最多.如果加入一个点而无法使匹配增大,那么说明球的个数已经达到了最大值.</p>
+<p>如果沿用之前直接基于每个球代表的编号点进行转移的思路,源点流出的流量可以经过中转点直接流向汇点,起不到寻找匹配的作用.这里就需要拆点,用两个点代表一个球,分别与源汇点相连,入点连向可以组成平方数的出点,每次最大流的结果就是匹配数.</p>
+<p>最后记得每次保存增加点之前的边,如果到达上限就清空并还原残量网络,最后一次跑最大流就可以得到点之间的匹配关系<br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">    ++add;lim+=<span class="number">2</span>;<span class="type">int</span> totrec=tot;</span><br><span class="line">    <span class="built_in">ins</span>(S,lim<span class="number">-1</span>,<span class="number">1</span>),<span class="built_in">ins</span>(lim,T,<span class="number">1</span>);</span><br><span class="line">    <span class="built_in">For</span>(i,<span class="number">1</span>,n+add<span class="number">-1</span>)<span class="keyword">if</span>(<span class="built_in">check</span>(i,n+add)) <span class="built_in">ins</span>(<span class="number">2</span>+i*<span class="number">2</span><span class="number">-1</span>,lim,<span class="number">1</span>);</span><br><span class="line">    <span class="built_in">dinic</span>();<span class="keyword">if</span>(add==mxf) <span class="keyword">continue</span>;</span><br><span class="line">    lim-=<span class="number">2</span>,tot=totrec;<span class="keyword">break</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;=tot;i+=<span class="number">2</span>)eg[i].f+=eg[i^<span class="number">1</span>].f,eg[i^<span class="number">1</span>].f=<span class="number">0</span>;</span><br><span class="line">mxf=<span class="number">0</span>,<span class="built_in">dinic</span>();</span><br></pre></td></tr></table></figure><br><br></p>
+<h2 id="矩形覆盖"><a href="#矩形覆盖" class="headerlink" title="矩形覆盖"></a>矩形覆盖</h2><p><a href="https://atcoder.jp/contests/abc274/tasks/abc274_g">https://atcoder.jp/contests/abc274/tasks/abc274_g</a></p>
+<p>题意:给出一张矩阵,某些点处有障碍.每个点可以放置一台摄像机,选取四个方向中任一方向,对障碍前所有方格进行监视.除了障碍,所有点均需被监视.求出最小所用摄像头数.</p>
+<p>首先,可以很明显的看出,对于放置于某格某方向的摄像头,如果反向的格子为空,那么此摄像头放在反向一定不会使答案更劣.所以所有的摄像头都应该沿着障碍物放置(此处将矩阵的边缘视为障碍物).</p>
+<p>对于一条边的覆盖,两个端点只要有一个有该方向的覆盖就足够.所以只会有方向向下或向右的摄像头(向左,向上同理).</p>
+<p>现在题意被转化为,在一个联通块的上边缘和左边缘放置摄像头,使得达到全覆盖.似乎除了dp之外想不到其他的方法,但是状压dp的复杂度不对,插头dp更是没有必要.试着再次换一个角度,考虑每个点如果能达成覆盖需要满足的条件.当前仅当每个点能到达的最左点或最上点中至少其一放置摄像头,全图完成覆盖.现在题意是,有若干个二元组,每个二元组中至少一个数被选取,求最小选取数.</p>
+<p>这张图其实是一张二分图,问题就变成求解二分图的最小覆盖.根据Dilworth定理,建图后跑最大流即可求出.</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">iFor</span>(i,n,<span class="number">1</span>)<span class="built_in">iFor</span>(j,m,<span class="number">1</span>)&#123;</span><br><span class="line">    <span class="keyword">if</span>(!mp[i][j])<span class="keyword">continue</span>;</span><br><span class="line">    dn[i][j]=rt[i][j]=p;</span><br><span class="line">    <span class="keyword">if</span>(mp[i+<span class="number">1</span>][j])dn[i][j]=dn[i+<span class="number">1</span>][j]; </span><br><span class="line">    <span class="keyword">if</span>(mp[i][j+<span class="number">1</span>])rt[i][j]=rt[i][j+<span class="number">1</span>];</span><br><span class="line">    <span class="built_in">con</span>(S,p,<span class="number">1</span>),<span class="built_in">con</span>(p+n*m,T,<span class="number">1</span>),<span class="built_in">con</span>(dn[i][j],rt[i][j]+n*m,INF); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><br></p>
+]]></content>
+      <tags>
+        <tag>图论</tag>
+        <tag>网络流</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>数学归纳悖论</title>
     <url>/2022/09/28/%E6%95%B0%E5%AD%A6%E5%BD%92%E7%BA%B3%E6%82%96%E8%AE%BA/</url>
     <content><![CDATA[<h1 id="数学归纳悖论"><a href="#数学归纳悖论" class="headerlink" title="数学归纳悖论"></a>数学归纳悖论</h1><span id="more"></span>
@@ -184,29 +269,37 @@
       </tags>
   </entry>
   <entry>
-    <title>最大流练习</title>
-    <url>/2022/10/07/%E6%9C%80%E5%A4%A7%E6%B5%81/</url>
-    <content><![CDATA[<h1 id="最大流"><a href="#最大流" class="headerlink" title="最大流"></a>最大流</h1><span id="more"></span>
-<h2 id="飞行员配对问题"><a href="#飞行员配对问题" class="headerlink" title="飞行员配对问题"></a>飞行员配对问题</h2><p><a href="https://www.luogu.com.cn/problem/P2756">https://www.luogu.com.cn/problem/P2756</a><br>网络流24题里的入门一题.<br>两种人之内没有交集,整个图可以看作二分图,跑匈牙利算法<br>也可以根据每个外籍飞行员和英国飞行员之间配对关系连边,看作最大流<br>在图中额外加入源点和汇点,分别与两组点连边,最大流的结果就是所求匹配数<br>最后输出方案就直接扫描残量网络,若起于外国并终于英国的边被流过则说明这两个人配对<br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">For</span>(p,<span class="number">1</span>,n1)&#123;</span><br><span class="line">        <span class="built_in">For</span>(i,<span class="number">0</span>,od[p]<span class="number">-1</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(e.f||e.t&lt;=n1) <span class="keyword">continue</span>;</span><br><span class="line">            cout&lt;&lt;p&lt;&lt;<span class="string">&quot; &quot;</span>&lt;&lt;e.t&lt;&lt;<span class="string">&quot;\n&quot;</span>;<span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure><br><br></p>
-<h2 id="试题库问题"><a href="#试题库问题" class="headerlink" title="试题库问题"></a>试题库问题</h2><p><a href="https://www.luogu.com.cn/problem/P2763">https://www.luogu.com.cn/problem/P2763</a><br>每一题仍然只能选取一次,但每张卷子都要求多道题<br>将与源点连边的容量改为题数,判断最大流是否等于总题数<br>输出方案时同上题做法<br><br></p>
-<h2 id="圆桌问题"><a href="#圆桌问题" class="headerlink" title="圆桌问题"></a>圆桌问题</h2><p><a href="https://www.luogu.com.cn/problem/P3254">https://www.luogu.com.cn/problem/P3254</a><br>试题库问题的升级版,每组点都有多种限流<br>将汇点连边的容量也改为要求就行了<br><br></p>
-<h2 id="魔术球问题"><a href="#魔术球问题" class="headerlink" title="魔术球问题"></a>魔术球问题</h2><p><a href="https://www.luogu.com.cn/problem/P2765">https://www.luogu.com.cn/problem/P2765</a><br>题意:有n个柱子,每个柱子上可以放球,相邻的球必须满足编号和为完全平方数,最大化放球的数量</p>
-<p>这一题并没有直接的给出建图的信息,需要从相邻编号和为平方的限制条件中得到球之间的合法转移关系,就可以依此建出隐式图.</p>
-<p>匹配数+柱子个数=球个数,所以我们不断试图增加匹配,在残量网络上不断跑最大流,直到匹配的最大值,就可以使球的个数最多.如果加入一个点而无法使匹配增大,那么说明球的个数已经达到了最大值.</p>
-<p>如果沿用之前直接基于每个球代表的编号点进行转移的思路,源点流出的流量可以经过中转点直接流向汇点,起不到寻找匹配的作用.这里就需要拆点,用两个点代表一个球,分别与源汇点相连,入点连向可以组成平方数的出点,每次最大流的结果就是匹配数.</p>
-<p>最后记得每次保存增加点之前的边,如果到达上限就清空并还原残量网络,最后一次跑最大流就可以得到点之间的匹配关系<br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">    ++add;lim+=<span class="number">2</span>;<span class="type">int</span> totrec=tot;</span><br><span class="line">    <span class="built_in">ins</span>(S,lim<span class="number">-1</span>,<span class="number">1</span>),<span class="built_in">ins</span>(lim,T,<span class="number">1</span>);</span><br><span class="line">    <span class="built_in">For</span>(i,<span class="number">1</span>,n+add<span class="number">-1</span>)<span class="keyword">if</span>(<span class="built_in">check</span>(i,n+add)) <span class="built_in">ins</span>(<span class="number">2</span>+i*<span class="number">2</span><span class="number">-1</span>,lim,<span class="number">1</span>);</span><br><span class="line">    <span class="built_in">dinic</span>();<span class="keyword">if</span>(add==mxf) <span class="keyword">continue</span>;</span><br><span class="line">    lim-=<span class="number">2</span>,tot=totrec;<span class="keyword">break</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;=tot;i+=<span class="number">2</span>)eg[i].f+=eg[i^<span class="number">1</span>].f,eg[i^<span class="number">1</span>].f=<span class="number">0</span>;</span><br><span class="line">mxf=<span class="number">0</span>,<span class="built_in">dinic</span>();</span><br></pre></td></tr></table></figure><br><br></p>
-<h2 id="矩形覆盖"><a href="#矩形覆盖" class="headerlink" title="矩形覆盖"></a>矩形覆盖</h2><p><a href="https://atcoder.jp/contests/abc274/tasks/abc274_g">https://atcoder.jp/contests/abc274/tasks/abc274_g</a></p>
-<p>题意:给出一张矩阵,某些点处有障碍.每个点可以放置一台摄像机,选取四个方向中任一方向,对障碍前所有方格进行监视.除了障碍,所有点均需被监视.求出最小所用摄像头数.</p>
-<p>首先,可以很明显的看出,对于放置于某格某方向的摄像头,如果反向的格子为空,那么此摄像头放在反向一定不会使答案更劣.所以所有的摄像头都应该沿着障碍物放置(此处将矩阵的边缘视为障碍物).</p>
-<p>对于一条边的覆盖,两个端点只要有一个有该方向的覆盖就足够.所以只会有方向向下或向右的摄像头(向左,向上同理).</p>
-<p>现在题意被转化为,在一个联通块的上边缘和左边缘放置摄像头,使得达到全覆盖.似乎除了dp之外想不到其他的方法,但是状压dp的复杂度不对,插头dp更是没有必要.试着再次换一个角度,考虑每个点如果能达成覆盖需要满足的条件.当前仅当每个点能到达的最左点或最上点中至少其一放置摄像头,全图完成覆盖.现在题意是,有若干个二元组,每个二元组中至少一个数被选取,求最小选取数.</p>
-<p>这张图其实是一张二分图,问题就变成求解二分图的最小覆盖.根据Dilworth定理,建图后跑最大流即可求出.</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">iFor</span>(i,n,<span class="number">1</span>)<span class="built_in">iFor</span>(j,m,<span class="number">1</span>)&#123;</span><br><span class="line">    <span class="keyword">if</span>(!mp[i][j])<span class="keyword">continue</span>;</span><br><span class="line">    dn[i][j]=rt[i][j]=p;</span><br><span class="line">    <span class="keyword">if</span>(mp[i+<span class="number">1</span>][j])dn[i][j]=dn[i+<span class="number">1</span>][j]; </span><br><span class="line">    <span class="keyword">if</span>(mp[i][j+<span class="number">1</span>])rt[i][j]=rt[i][j+<span class="number">1</span>];</span><br><span class="line">    <span class="built_in">con</span>(S,p,<span class="number">1</span>),<span class="built_in">con</span>(p+n*m,T,<span class="number">1</span>),<span class="built_in">con</span>(dn[i][j],rt[i][j]+n*m,INF); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><br></p>
+    <title>线段树维护修改</title>
+    <url>/2022/09/23/%E7%BA%BF%E6%AE%B5%E6%A0%91%E7%BB%B4%E6%8A%A4%E4%BF%AE%E6%94%B9/</url>
+    <content><![CDATA[<h1 id="线段树维护修改"><a href="#线段树维护修改" class="headerlink" title="线段树维护修改"></a>线段树维护修改</h1><span id="more"></span>
+<h2 id="luoguP6327区间sin和"><a href="#luoguP6327区间sin和" class="headerlink" title="luoguP6327区间sin和"></a>luoguP6327区间sin和</h2><p><a href="https://www.luogu.com.cn/problem/P6327">https://www.luogu.com.cn/problem/P6327</a></p>
+<p>题意:每次修改一个点,求区间sin值的和<br>区间sin和的信息不可加,但可以考虑和差化积公式,</p>
+<script type="math/tex; mode=display">
+sin(x+v)=sin(x)cos(v)+sin(v)cos(x)\\
+cos(x+v)=cos(x)cos(v)-sin(x)sin(v)</script><p>同时记录cos和sin值就可以转化为线段树求和.<br>由于节点的tag不能直接和子节点的和相加,需要注意每次询问时先下放标签.还有浮点运算的常数极大,下放时先判一下0,不然很容易tle.<br><br></p>
+<h2 id="luoguP1471方差"><a href="#luoguP1471方差" class="headerlink" title="luoguP1471方差"></a>luoguP1471方差</h2><p><a href="https://www.luogu.com.cn/problem/P1471">https://www.luogu.com.cn/problem/P1471</a></p>
+<p>题意:每次修改一个点,求区间平均数和方差<br>首先是平均数的合并$a_3=(a_1n_1+a_2n_2)/(n_1+n_2)$<br>再考虑方差的更改,每次修改时可以$O(1)$的更新</p>
+<script type="math/tex; mode=display">
+D_1=\frac 1n\Sigma(x_i-a_1)^2\\
+D_2=\frac 1n\Sigma(x_i+v-a_2)^2\\
+D_2-D_1=\frac 1n\Sigma((x_i+v-a_2)^2-(x_i-a_1)^2)\\
+       =\frac 1n\Sigma(v^2+a_2^2+2x_iv-2a_2v-2a_2x_i-a_1^2+2x_ia_1)\\
+       =v^2+a_2^2-a_1^2-2a_2v+(2v-2a_2+2a_1)\frac 1n \Sigma x_i\\
+       =v^2+a_2^2-a_1^2-2a_2v+2a_1v-2a_1a_2+2a_1^2\\
+       =a_1^2+a_2^2+v^2+2a_1v-2a_2v-2a_1a_2</script><p>最后是方差的合并</p>
+<script type="math/tex; mode=display">
+D_1=\frac 1{n_1}\Sigma(x_1i-a_1)^2\\
+D_2=\frac 1{n_2}\Sigma(x_2i-a_2)^2\\
+D_3=\frac 1{n_1+n_2}\Sigma(x_i-a_3)^2\\
+(n_1+n_2)D_3-D_1n_1-D_2n_2=\Sigma((x_i-a_3)^2-(x_i-a_j)^2)(j=1,2)\\
+                          =\Sigma(a_3^2-a_j^2+2x_i(a_j-a_3))\\
+                          =n_1(a_3^2-a_1^2)+2n_1a_1(a_1-a_3)\\
+                          +n_2(a_3^2-a_2^2)+2n_2a_2(a_2-a_3)\\
+                          =n_1a_1^2+n_2a_2^2-(n_1+n_2)a_3^2</script><p>最后特别要注意在合并方差时跨中点情况的判断,左右两段的长度应该取min(当前区间长度,询问区间长度)<br><br></p>
+<h2 id="luoguP5142区间方差"><a href="#luoguP5142区间方差" class="headerlink" title="luoguP5142区间方差"></a>luoguP5142区间方差</h2><p><a href="https://www.luogu.com.cn/problem/P5142">https://www.luogu.com.cn/problem/P5142</a><br>基本与上题相同.longlong本身常数大,全局还带了一个$O(logn)$的求逆,无脑取模会t飞.本题需要先处理出inv数组,还要取模时判断优化,以免被卡常.<br><br></p>
 ]]></content>
       <tags>
-        <tag>图论</tag>
-        <tag>网络流</tag>
+        <tag>线段树</tag>
       </tags>
   </entry>
   <entry>
@@ -270,40 +363,6 @@ e=f=(v3+v4-v1-v2)/2</script><p>然后以每个任务自身的代价连边,最后
       </tags>
   </entry>
   <entry>
-    <title>线段树维护修改</title>
-    <url>/2022/09/23/%E7%BA%BF%E6%AE%B5%E6%A0%91%E7%BB%B4%E6%8A%A4%E4%BF%AE%E6%94%B9/</url>
-    <content><![CDATA[<h1 id="线段树维护修改"><a href="#线段树维护修改" class="headerlink" title="线段树维护修改"></a>线段树维护修改</h1><span id="more"></span>
-<h2 id="luoguP6327区间sin和"><a href="#luoguP6327区间sin和" class="headerlink" title="luoguP6327区间sin和"></a>luoguP6327区间sin和</h2><p><a href="https://www.luogu.com.cn/problem/P6327">https://www.luogu.com.cn/problem/P6327</a></p>
-<p>题意:每次修改一个点,求区间sin值的和<br>区间sin和的信息不可加,但可以考虑和差化积公式,</p>
-<script type="math/tex; mode=display">
-sin(x+v)=sin(x)cos(v)+sin(v)cos(x)\\
-cos(x+v)=cos(x)cos(v)-sin(x)sin(v)</script><p>同时记录cos和sin值就可以转化为线段树求和.<br>由于节点的tag不能直接和子节点的和相加,需要注意每次询问时先下放标签.还有浮点运算的常数极大,下放时先判一下0,不然很容易tle.<br><br></p>
-<h2 id="luoguP1471方差"><a href="#luoguP1471方差" class="headerlink" title="luoguP1471方差"></a>luoguP1471方差</h2><p><a href="https://www.luogu.com.cn/problem/P1471">https://www.luogu.com.cn/problem/P1471</a></p>
-<p>题意:每次修改一个点,求区间平均数和方差<br>首先是平均数的合并$a_3=(a_1n_1+a_2n_2)/(n_1+n_2)$<br>再考虑方差的更改,每次修改时可以$O(1)$的更新</p>
-<script type="math/tex; mode=display">
-D_1=\frac 1n\Sigma(x_i-a_1)^2\\
-D_2=\frac 1n\Sigma(x_i+v-a_2)^2\\
-D_2-D_1=\frac 1n\Sigma((x_i+v-a_2)^2-(x_i-a_1)^2)\\
-       =\frac 1n\Sigma(v^2+a_2^2+2x_iv-2a_2v-2a_2x_i-a_1^2+2x_ia_1)\\
-       =v^2+a_2^2-a_1^2-2a_2v+(2v-2a_2+2a_1)\frac 1n \Sigma x_i\\
-       =v^2+a_2^2-a_1^2-2a_2v+2a_1v-2a_1a_2+2a_1^2\\
-       =a_1^2+a_2^2+v^2+2a_1v-2a_2v-2a_1a_2</script><p>最后是方差的合并</p>
-<script type="math/tex; mode=display">
-D_1=\frac 1{n_1}\Sigma(x_1i-a_1)^2\\
-D_2=\frac 1{n_2}\Sigma(x_2i-a_2)^2\\
-D_3=\frac 1{n_1+n_2}\Sigma(x_i-a_3)^2\\
-(n_1+n_2)D_3-D_1n_1-D_2n_2=\Sigma((x_i-a_3)^2-(x_i-a_j)^2)(j=1,2)\\
-                          =\Sigma(a_3^2-a_j^2+2x_i(a_j-a_3))\\
-                          =n_1(a_3^2-a_1^2)+2n_1a_1(a_1-a_3)\\
-                          +n_2(a_3^2-a_2^2)+2n_2a_2(a_2-a_3)\\
-                          =n_1a_1^2+n_2a_2^2-(n_1+n_2)a_3^2</script><p>最后特别要注意在合并方差时跨中点情况的判断,左右两段的长度应该取min(当前区间长度,询问区间长度)<br><br></p>
-<h2 id="luoguP5142区间方差"><a href="#luoguP5142区间方差" class="headerlink" title="luoguP5142区间方差"></a>luoguP5142区间方差</h2><p><a href="https://www.luogu.com.cn/problem/P5142">https://www.luogu.com.cn/problem/P5142</a><br>基本与上题相同.longlong本身常数大,全局还带了一个$O(logn)$的求逆,无脑取模会t飞.本题需要先处理出inv数组,还要取模时判断优化,以免被卡常.<br><br></p>
-]]></content>
-      <tags>
-        <tag>线段树</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>筛法模板</title>
     <url>/2023/03/07/%E7%AD%9B%E6%B3%95%E6%A8%A1%E6%9D%BF/</url>
     <content><![CDATA[<p>自用筛法模板</p>
@@ -337,27 +396,6 @@ D_3=\frac 1{n_1+n_2}\Sigma(x_i-a_3)^2\\
       <tags>
         <tag>数学</tag>
         <tag>模板</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>一道思维题:矩阵快速幂(bushi</title>
-    <url>/2023/03/06/%E4%BC%AA%E7%9F%A9%E9%98%B5%E5%BF%AB%E9%80%9F%E5%B9%82/</url>
-    <content><![CDATA[<p>检测智商</p>
-<span id="more"></span>
-<p>校赛中的一道神仙题,难点不在算法或者特别的技巧,专杀惯性思维</p>
-<h2 id="luoguT319422-穷哥们也想发财"><a href="#luoguT319422-穷哥们也想发财" class="headerlink" title="luoguT319422 穷哥们也想发财"></a>luoguT319422 穷哥们也想发财</h2><p><a href="https://www.luogu.com.cn/problem/T319422">https://www.luogu.com.cn/problem/T319422</a></p>
-<p>题意:已知列向量A,矩阵P,变量K,其中矩阵P满足对于j,有 $\sum^n a_{i,j}=1,a_i\in(0,1) .$. 求出 $ B=(P^T)^k*A $. ,其中$P^T$代表P的转置矩阵</p>
-<p>数据范围: $ n\in (1,7e2),K\in(1,1e10) $</p>
-<p>乍一看就是矩阵快速幂的模板,几乎不能更简单.</p>
-<p>然而略加分析<del>或者tle了一发</del>可以发现,一般的矩乘快速幂复杂度,$O(n^3logK)$,在本题的数据大概能达到1e9级别,甚至做一次矩乘,都要大概3e8次运算,在double乘法的大常数下,只乘一次都会超时.</p>
-<p>回看题目,发现有一个条件没有用到, $ \sum^n a_{i,j}=1,a_i\in(0,1) .$. 这个条件可以满足在自乘若干次后矩阵P的内容趋于稳定,性质的证明涉及马尔科夫链有关.</p>
-<p>于是就可以采用最原始的办法去做,不断的用P左乘A,比较A是否达到不动点.复杂度似乎与P的分布有关,但是可以通过本题.</p>
-<p>另外出题人特意提醒了用double,long double反而会有精度问题</p>
-]]></content>
-      <tags>
-        <tag>数学</tag>
-        <tag>思维</tag>
-        <tag>矩阵</tag>
       </tags>
   </entry>
 </search>
