@@ -398,4 +398,23 @@ e=f=(v3+v4-v1-v2)/2</script><p>然后以每个任务自身的代价连边,最后
         <tag>模板</tag>
       </tags>
   </entry>
+  <entry>
+    <title>sloppy city planning</title>
+    <url>/2023/03/15/sloppy_city_planning/</url>
+    <content><![CDATA[<p>缩点+最短路</p>
+<span id="more"></span>
+<h2 id="sloppy-city-planning"><a href="#sloppy-city-planning" class="headerlink" title="sloppy city planning"></a>sloppy city planning</h2><p>题目链接:<a href="http://8.130.108.71/problem/H">http://8.130.108.71/problem/H</a></p>
+<p>题意:在一张有向完全图上，现在可以付出给定的代价让一条边反向，求使整张图成为一个scc的最小代价</p>
+<p>分析:首先考虑图中已有的环。很容易看出对于一个环边，没有必要进行任何更改，保持初始的强连通关系一定是最优解。可以放心的缩点辣。</p>
+<p>缩点后得到的新图看似凌乱，但是可以发现一个性质——入度为0和出度为0的点都只有一个。这个图如果要成为一个scc，入度为0的点和出度为0的点一定在同一个scc内 <del>(废话)</del>。</p>
+<p>把这两个看作起点和终点，也就一定有一条在这两个点之间的链，满足所有的边全部反向，由终点指向起点。通过起点和终点之间的联通关系，图中所有的点都可以借助这条直径互相到达。</p>
+<p>反转这一条链上边的代价就是所求的答案，于是可以用最短路解决了。</p>
+<p>需要注意本题较为卡常，似乎对spfa做了特殊的hack。另外有点卡空间，vector会因为各种各样的问题去世。</p>
+]]></content>
+      <tags>
+        <tag>图论</tag>
+        <tag>缩点</tag>
+        <tag>最短路</tag>
+      </tags>
+  </entry>
 </search>
