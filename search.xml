@@ -57,25 +57,6 @@
       </tags>
   </entry>
   <entry>
-    <title>even degrees</title>
-    <url>/2023/03/18/even_degrees/</url>
-    <content><![CDATA[<p>无向图中边的定向</p>
-<span id="more"></span>
-<h2 id="even-degrees"><a href="#even-degrees" class="headerlink" title="even degrees"></a>even degrees</h2><p>题目链接:<a href="https://atcoder.jp/contests/agc035/tasks/agc035_b">https://atcoder.jp/contests/agc035/tasks/agc035_b</a></p>
-<p>题意:给出一张无向简单连通图,判断以下命题是否存在并给出一种方案,使得每个点的出度均为偶数.其中$n,m\in(1,1e5)$</p>
-<p>分析:直接给无向边定向看起来不好下手,先从简单的情况考虑</p>
-<p>对于一条链,每个点的度数为1或2,那么让两端点的出度为0,中间的任意,就可以得到答案.</p>
-<p>扩展到树上.叶子结点的度数一定为1,那么所有的叶边一定由父亲出发指向叶子.考虑处理两个树上度数为奇的非叶结点,手玩容易发现,将树链反转,仅影响两端点度数的奇偶性,对其他的没有影响.如果有偶数个出度为奇的结点,一定可以通过若干次反转使整棵树满足条件;反之,如果只有奇数个出度为奇的结点,那么一定没有合法方案.</p>
-<p>再看一张连通图上,可以先跑出一颗生成树.对于非树边任意定向,不会影响答案,奇数点的奇偶性不会改变.然后再按树的思路反转父边,最后一定满足要求.</p>
-<p>综合一下可以推出,如果边数为奇,一定无解;反之亦然.</p>
-]]></content>
-      <tags>
-        <tag>atcoder</tag>
-        <tag>图论</tag>
-        <tag>思维</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>sloppy city planning</title>
     <url>/2023/03/15/sloppy_city_planning/</url>
     <content><![CDATA[<p>缩点+最短路</p>
@@ -434,6 +415,44 @@ e=f=(v3+v4-v1-v2)/2</script><p>然后以每个任务自身的代价连边,最后
       <tags>
         <tag>数学</tag>
         <tag>模板</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ABC289F</title>
+    <url>/2023/03/24/abc289F/</url>
+    <content><![CDATA[<p>对称</p>
+<span id="more"></span>
+<h2 id="Teleporter-Takahashi"><a href="#Teleporter-Takahashi" class="headerlink" title="Teleporter Takahashi"></a>Teleporter Takahashi</h2><p>题目链接:<a href="https://atcoder.jp/contests/abc289/tasks/abc289_f">https://atcoder.jp/contests/abc289/tasks/abc289_f</a></p>
+<p>题意:给出一个平面上的矩形,从给定的起点开始,每次在矩形内选一个整点,并将起点变为此整点的对称点,询问是否能在有限的操作后到达给定的终点,如果可行给出方案.其中所有的数都满足在$(1,1e6)$内.</p>
+<p>分析:面对这种整体不好下手的问题可以先考虑简化的情形.在一维的情况下,从起点经过若干次一条线段上整点的对称到达终点.</p>
+<p>还是没有思路,先手玩一波.将x按照A对称,得到2A-x.如果再以A为对称中点转回去,显然没有什么作用.试试做一些小的改动,分别以A-1,A+1为对称中点,可以得到x-2,x+2.那么可以得出,如果线段至少含有两个整点,就一定可以将x变为x+2n $(n\in R)$.</p>
+<p>那么,如果起点和终点在线段同侧时的差为d,满足d是2的倍数,一定可以经过若干次这样的对称,其实就是d/2次,让起点和终点重合.如果d是奇数,那么一定无法达到目的.如果线段只含有一个整点,那么起点和终点要么一开始就重合,要么以此整点对称,否则一定不行.</p>
+<p>在一维进行对称移动时,另一维每次取同样的对称中心,位置就不会改变,所以每一维可以独立处理.最后把每一维的处理结果叠加起来就是答案序列.</p>
+]]></content>
+      <tags>
+        <tag>abc</tag>
+        <tag>atcoder</tag>
+        <tag>思维</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>AGC035B</title>
+    <url>/2023/03/18/agc035B/</url>
+    <content><![CDATA[<p>无向图中边的定向</p>
+<span id="more"></span>
+<h2 id="even-degrees"><a href="#even-degrees" class="headerlink" title="even degrees"></a>even degrees</h2><p>题目链接:<a href="https://atcoder.jp/contests/agc035/tasks/agc035_b">https://atcoder.jp/contests/agc035/tasks/agc035_b</a></p>
+<p>题意:给出一张无向简单连通图,判断以下命题是否存在并给出一种方案,使得每个点的出度均为偶数.其中$n,m\in(1,1e5)$</p>
+<p>分析:直接给无向边定向看起来不好下手,先从简单的情况考虑</p>
+<p>对于一条链,每个点的度数为1或2,那么让两端点的出度为0,中间的任意,就可以得到答案.</p>
+<p>扩展到树上.叶子结点的度数一定为1,那么所有的叶边一定由父亲出发指向叶子.考虑处理两个树上度数为奇的非叶结点,手玩容易发现,将树链反转,仅影响两端点度数的奇偶性,对其他的没有影响.如果有偶数个出度为奇的结点,一定可以通过若干次反转使整棵树满足条件;反之,如果只有奇数个出度为奇的结点,那么一定没有合法方案.</p>
+<p>再看一张连通图上,可以先跑出一颗生成树.对于非树边任意定向,不会影响答案,奇数点的奇偶性不会改变.然后再按树的思路反转父边,最后一定满足要求.</p>
+<p>综合一下可以推出,如果边数为奇,一定无解;反之亦然.</p>
+]]></content>
+      <tags>
+        <tag>atcoder</tag>
+        <tag>图论</tag>
+        <tag>思维</tag>
+        <tag>agc</tag>
       </tags>
   </entry>
 </search>
