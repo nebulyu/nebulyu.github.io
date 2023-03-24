@@ -455,4 +455,29 @@ e=f=(v3+v4-v1-v2)/2</script><p>然后以每个任务自身的代价连边,最后
         <tag>agc</tag>
       </tags>
   </entry>
+  <entry>
+    <title>ARC150B</title>
+    <url>/2023/03/24/arc150B/</url>
+    <content><![CDATA[<p>数论分块</p>
+<span id="more"></span>
+<h2 id="Make-Divisible"><a href="#Make-Divisible" class="headerlink" title="Make Divisible"></a>Make Divisible</h2><p>题目链接:<a href="https://atcoder.jp/contests/arc150/tasks/arc150_b">https://atcoder.jp/contests/arc150/tasks/arc150_b</a></p>
+<p>题意:给出A,B求出X,Y,满足$(A+X)|(B+Y)$,且最小化$X+Y$,其中$A,B \in (1,1e9)$</p>
+<p>分析:设比值$k=(B+Y)/(A+X)$,则有</p>
+<script type="math/tex; mode=display">
+Y=kX+kA-B,Y>=0 \\
+ans=X+Y=(k+1)X+kA-B</script><p>则可以得到X的限制</p>
+<script type="math/tex; mode=display">
+X>=B/k-A</script><p>一个更好的形式</p>
+<script type="math/tex; mode=display">
+x>=\lfloor(B-1)/k\rfloor-A+1</script><p>这样,我们可以枚举k来计算答案.</p>
+<p>由数论分块可知,最多有$\sqrt B$个有效的k.于是不断地跳k,就可以在复杂度为根号的时间内解决问题.<br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">ll k=<span class="number">1</span>,ans=A+B;</span><br><span class="line"><span class="keyword">while</span>(k&lt;B)&#123;</span><br><span class="line">    ll x=<span class="built_in">max</span>(<span class="number">0ll</span>,(B<span class="number">-1</span>)/k-A+<span class="number">1</span>);</span><br><span class="line">    ans=<span class="built_in">min</span>(ans,(k+<span class="number">1</span>)*x+k*A-B);</span><br><span class="line">    ll r=(B<span class="number">-1</span>)/((B<span class="number">-1</span>)/k);</span><br><span class="line">    k=r+<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+]]></content>
+      <tags>
+        <tag>atcoder</tag>
+        <tag>思维</tag>
+        <tag>数学</tag>
+        <tag>arc</tag>
+        <tag>数论分块</tag>
+      </tags>
+  </entry>
 </search>
