@@ -21,22 +21,17 @@
     var CONFIG = {"hostname":"nebulyu.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":3,"unescape":false,"preload":false,"swiftype_key":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="对称">
-<meta property="og:type" content="article">
-<meta property="og:title" content="ABC289F">
-<meta property="og:url" content="https://nebulyu.github.io/2023/03/24/abc289F/index.html">
+  <meta name="description" content="under development">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Nebulyu&#39;Blog">
+<meta property="og:url" content="https://nebulyu.github.io/archives/page/3/index.html">
 <meta property="og:site_name" content="Nebulyu&#39;Blog">
-<meta property="og:description" content="对称">
+<meta property="og:description" content="under development">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-03-23T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-03-24T08:38:19.108Z">
 <meta property="article:author" content="nebulyu">
-<meta property="article:tag" content="思维">
-<meta property="article:tag" content="atcoder">
-<meta property="article:tag" content="abc">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://nebulyu.github.io/2023/03/24/abc289F/">
+<link rel="canonical" href="https://nebulyu.github.io/archives/page/3/">
 
 
 <script id="page-configurations">
@@ -44,12 +39,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : true,
+    isPost : false,
     lang   : 'en'
   };
 </script>
 
-  <title>ABC289F | Nebulyu'Blog</title>
+  <title>Archive | Nebulyu'Blog</title>
   
 
 
@@ -176,93 +171,54 @@
         <div class="content-wrap">
           
 
-          <div class="content post posts-expand">
+          <div class="content archive">
             
 
-    
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://nebulyu.github.io/2023/03/24/abc289F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="nebulyu">
-      <meta itemprop="description" content="under development">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Nebulyu'Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          ABC289F
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2023-03-24 00:00:00 / Modified: 16:38:19" itemprop="dateCreated datePublished" datetime="2023-03-24T00:00:00+08:00">2023-03-24</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
+  
+  <div class="post-block">
+    <div class="posts-collapse">
+      <div class="collection-title">
+        <span class="collection-header">Um..! 21 posts in total. Keep on posting.</span>
+      </div>
 
       
-        <p>对称</p>
-<span id="more"></span>
-<h2 id="Teleporter-Takahashi"><a href="#Teleporter-Takahashi" class="headerlink" title="Teleporter Takahashi"></a>Teleporter Takahashi</h2><p>题目链接:<a target="_blank" rel="noopener" href="https://atcoder.jp/contests/abc289/tasks/abc289_f">https://atcoder.jp/contests/abc289/tasks/abc289_f</a></p>
-<p>题意:给出一个平面上的矩形,从给定的起点开始,每次在矩形内选一个整点,并将起点变为此整点的对称点,询问是否能在有限的操作后到达给定的终点,如果可行给出方案.其中所有的数都满足在$(1,1e6)$内.</p>
-<p>分析:面对这种整体不好下手的问题可以先考虑简化的情形.在一维的情况下,从起点经过若干次一条线段上整点的对称到达终点.</p>
-<p>还是没有思路,先手玩一波.将x按照A对称,得到2A-x.如果再以A为对称中点转回去,显然没有什么作用.试试做一些小的改动,分别以A-1,A+1为对称中点,可以得到x-2,x+2.那么可以得出,如果线段至少含有两个整点,就一定可以将x变为x+2n $(n\in R)$.</p>
-<p>那么,如果起点和终点在线段同侧时的差为d,满足d是2的倍数,一定可以经过若干次这样的对称,其实就是d/2次,让起点和终点重合.如果d是奇数,那么一定无法达到目的.如果线段只含有一个整点,那么起点和终点要么一开始就重合,要么以此整点对称,否则一定不行.</p>
-<p>在一维进行对称移动时,另一维每次取同样的对称中心,位置就不会改变,所以每一维可以独立处理.最后把每一维的处理结果叠加起来就是答案序列.</p>
-
+    <div class="collection-year">
+      <span class="collection-header">2022</span>
     </div>
 
-    
-    
-    
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
 
-      <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/%E6%80%9D%E7%BB%B4/" rel="tag"># 思维</a>
-              <a href="/tags/atcoder/" rel="tag"># atcoder</a>
-              <a href="/tags/abc/" rel="tag"># abc</a>
-          </div>
+      <div class="post-meta">
+        <time itemprop="dateCreated"
+              datetime="2022-07-17T00:00:00+08:00"
+              content="2022-07-17">
+          07-17
+        </time>
+      </div>
 
-        
+      <div class="post-title">
+          <a class="post-title-link" href="/2022/07/17/hello-world/" itemprop="url">
+            <span itemprop="name">Hello world</span>
+          </a>
+      </div>
 
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/2023/03/24/arc150B/" rel="prev" title="ARC150B">
-      <i class="fa fa-chevron-left"></i> ARC150B
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/2023/04/02/cf104270I/" rel="next" title="CF104270I">
-      CF104270I <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
-      </footer>
-    
+    </header>
   </article>
+
+
+    </div>
+  </div>
   
   
   
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/archives/page/2/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/archives/">1</a><a class="page-number" href="/archives/page/2/">2</a><span class="page-number current">3</span>
+  </nav>
 
 
 
@@ -314,7 +270,6 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Teleporter-Takahashi"><span class="nav-number">1.</span> <span class="nav-text">Teleporter Takahashi</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -422,71 +377,6 @@
   
 
   
-      
-
-<script>
-  if (typeof MathJax === 'undefined') {
-    // window.MathJax = {
-    //   loader: {
-    //
-    //       load: ['[tex]/mhchem'],
-    //
-    //     source: {
-    //       '[tex]/amsCd': '[tex]/amscd',
-    //       '[tex]/AMScd': '[tex]/amscd'
-    //     }
-    //   },
-    //   tex: {
-    //     inlineMath: {'[+]': [['$', '$']]},
-    //
-    //       packages: {'[+]': ['mhchem']},
-    //
-    //     tags: 'ams'
-    //   },
-    //   options: {
-    //     renderActions: {
-    //       findScript: [10, doc => {
-    //         document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
-    //           const display = !!node.type.match(/; *mode=display/);
-    //           const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
-    //           const text = document.createTextNode('');
-    //           node.parentNode.replaceChild(text, node);
-    //           math.start = {node: text, delim: '', n: 0};
-    //           math.end = {node: text, delim: '', n: 0};
-    //           doc.math.push(math);
-    //         });
-    //       }, '', false],
-    //       insertedScript: [200, () => {
-    //         document.querySelectorAll('mjx-container').forEach(node => {
-    //           let target = node.parentNode;
-    //           if (target.nodeName.toLowerCase() === 'li') {
-    //             target.parentNode.classList.add('has-jax');
-    //           }
-    //         });
-    //       }, '', false]
-    //     }
-    //   }
-    // };
-    window.MathJax = {
-      tex2jax: {
-        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-        processEscapes: true
-      }
-    };
-    (function () {
-      var script = document.createElement('script');
-      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@2.7.8/unpacked/MathJax.js?config=TeX-MML-AM_CHTML';
-      script.defer = true;
-      document.head.appendChild(script);
-    })();
-  } else {
-    MathJax.startup.document.state(0);
-    MathJax.texReset();
-    MathJax.typeset();
-  }
-</script>
-
-    
 
   
 
