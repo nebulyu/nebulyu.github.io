@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="QiET7ttAHFoc3bMl0cmzBIzJBawh36AmKvy_PU89Nz4">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"nebulyu.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":3,"unescape":false,"preload":false,"swiftype_key":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="圆方树">
+<meta property="og:type" content="article">
+<meta property="og:title" content="圆方树">
+<meta property="og:url" content="https://nebulyu.github.io/2023/09/06/%E5%9C%86%E6%96%B9%E6%A0%91/index.html">
+<meta property="og:site_name" content="Nebulyu&#39;Blog">
+<meta property="og:description" content="圆方树">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-09-05T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-09-07T04:16:51.627Z">
+<meta property="article:author" content="nebulyu">
+<meta property="article:tag" content="数据结构">
+<meta property="article:tag" content="图论">
+<meta property="article:tag" content="圆方树">
+<meta property="article:tag" content="联通性">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://nebulyu.github.io/2023/09/06/%E5%9C%86%E6%96%B9%E6%A0%91/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>圆方树 | Nebulyu'Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Nebulyu'Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">菜鸡的小站</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://nebulyu.github.io/2023/09/06/%E5%9C%86%E6%96%B9%E6%A0%91/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="nebulyu">
+      <meta itemprop="description" content="under development">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Nebulyu'Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          圆方树
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2023-09-06 00:00:00" itemprop="dateCreated datePublished" datetime="2023-09-06T00:00:00+08:00">2023-09-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-09-07 12:16:51" itemprop="dateModified" datetime="2023-09-07T12:16:51+08:00">2023-09-07</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="圆方树"><a href="#圆方树" class="headerlink" title="圆方树"></a>圆方树</h1><p><br></p>
+<span id="more"></span>
+<p>在仙人掌，无向点双连通分量图中，每条边至多只属于一个环。将原来的点视作圆点，环视作方点，重新建图，可以得到一颗圆点和方点交替的树。圆方树可以方便的处理涉及简单路径和仙人掌结构的问题。</p>
+<p>广义圆方树没有对点双连通分量的限制，可以在任何图中构造。但他与一般圆方树最明显的差别就是把所有的割边视作一个环(误。一般来说，两者差别不大，为了简便，通常用广义圆方树就可以了。</p>
+<p><br></p>
+<h2 id="APIO2018-铁人两项"><a href="#APIO2018-铁人两项" class="headerlink" title="[APIO2018] 铁人两项"></a>[APIO2018] 铁人两项</h2><p>题目链接:<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4630">https://www.luogu.com.cn/problem/P4630</a></p>
+<p>题意:给一张无重边自环的图，要求选取不同的起点s,终点t,任意不同点c,满足s到c和c到t有不相交路径。求所有合法s,t,c的方案总数。其中$n \leq 1e5,m \leq 2e5$。</p>
+<p>分析:分析题意可知，s,c,t一定在同一条链上，那么对于一条端点为s,t的链，链上所有点都是满足条件的c点。找到所有链覆盖的点，就得到了s,t确定时c的数量。</p>
+<p>现在的问题转化为求固定端点的链覆盖，这个也并不好解决，需要引入圆方树的一个性质。</p>
+<p>这里直接应用粉兔大佬博客 <a target="_blank" rel="noopener" href="https://www.cnblogs.com/PinkRabbit/p/10446473.html">https://www.cnblogs.com/PinkRabbit/p/10446473.html</a> 中的原话，推导就不放了:<br><em>对于一个点双中的两点，它们之间简单路径的并集，恰好完全等于这个点双。即同一个点双中的两不同点 u,v 之间一定存在一条简单路径经过给定的在同一个点双内的一点 w。考虑两圆点在圆方树上的路径，与路径上经过的方点相邻的圆点的集合，就等于原图中两点简单路径上的点集。</em></p>
+<p>s,t经过所有链上的点，等价于圆方树里s,t路径经过的所有圆点与方点相邻的圆点。这个结论虽然是从仙人掌图里推出来的，<del>不过看来这里也很好用</del>。</p>
+<p>对s,t，c进行计数，就是对圆方树上s,t的路径做统计。方点无法直接和圆点并列处理，考虑用点权进行预处理。方点的权值就是所有相邻的圆点数，圆点权值设为0，这样c的数量就是路径中方点的权值和减去s,t两端了。</p>
+<p>这样就转化为一个很经典的树形dp,可以换根，也可以直接做。每个点，每条边都遍历一次，复杂度为$O(m)$级别，轻松通过。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//建立圆方树，基于tarjan算法的改进</span></span><br><span class="line"><span class="comment">//最后需要--top，弹出根节点</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">dfs1</span><span class="params">(<span class="type">int</span> p)</span></span>&#123;</span><br><span class="line">    dfn[p]=low[p]=++tim,stk[++top]=p;</span><br><span class="line">    ++cnt;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">auto</span> x:ov[p])&#123;</span><br><span class="line">        <span class="keyword">if</span>(dfn[x])low[p]=<span class="built_in">min</span>(low[p],dfn[x]);</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="built_in">dfs1</span>(x);</span><br><span class="line">            low[p]=<span class="built_in">min</span>(low[p],low[x]);</span><br><span class="line">            <span class="keyword">if</span>(low[x]==dfn[p])&#123;</span><br><span class="line">                ++n2;</span><br><span class="line">                <span class="type">int</span> t=<span class="number">0</span>;</span><br><span class="line">                <span class="keyword">while</span>(t^x)t=stk[top--],ov2[t].<span class="built_in">pb</span>(n2),ov2[n2].<span class="built_in">pb</span>(t);</span><br><span class="line">                <span class="comment">///此处不应用p做判断</span></span><br><span class="line">                ov2[n2].<span class="built_in">pb</span>(p),ov2[p].<span class="built_in">pb</span>(n2);</span><br><span class="line">                val[n2]=ov2[n2].<span class="built_in">size</span>();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//进行树dp,注意s,t有标号，答案要乘2</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">dfs2</span><span class="params">(<span class="type">int</span> p,<span class="type">int</span> f)</span></span>&#123;</span><br><span class="line">    siz[p]=(p&lt;=n);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">auto</span> x:ov2[p])&#123;</span><br><span class="line">        <span class="keyword">if</span>(x==f)<span class="keyword">continue</span>;</span><br><span class="line">        <span class="built_in">dfs2</span>(x,p);</span><br><span class="line">        ans+=val[p]*siz[p]*siz[x]*<span class="number">2</span>;</span><br><span class="line">        siz[p]+=siz[x];</span><br><span class="line">    &#125;</span><br><span class="line">    ans+=val[p]*siz[p]*(cnt-siz[p])*<span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h2 id="ABC318g-Typical-Path-Problem"><a href="#ABC318g-Typical-Path-Problem" class="headerlink" title="ABC318g Typical Path Problem"></a>ABC318g Typical Path Problem</h2><p>题目链接:<a target="_blank" rel="noopener" href="https://atcoder.jp/contests/abc318/tasks/abc318_g">https://atcoder.jp/contests/abc318/tasks/abc318_g</a></p>
+<p>题意:给一张简单无向连通图，给定s,c,t三个点，判断是否有起点s,终点t,经过点c的简单路径。其中$n,m \leq 2e5$。</p>
+<p>分析:利用上一题的推导结果，可以将问题转化为，判断圆方树上s到t的链上是否有一个方点与c相邻。</p>
+<p>这个可以用很多做法来解决了，注意到树中圆点和方点交替，可以用类似于普通树上点在路径的距离判断法来简单解决。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> dis[N];</span><br><span class="line"><span class="comment">//dfs求点间距离</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">dfs2</span><span class="params">(<span class="type">int</span> p)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">auto</span> x:ov2[p])<span class="keyword">if</span>(!dis[x])dis[x]=dis[p]+<span class="number">1</span>,<span class="built_in">dfs2</span>(x); </span><br><span class="line">&#125;</span><br><span class="line"><span class="type">int</span> q1,q2,q3;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">ffor</span>(i,<span class="number">1</span>,n2)dis[i]=<span class="number">0</span>;</span><br><span class="line">    dis[q1]=<span class="number">1</span>,<span class="built_in">dfs2</span>(q1);</span><br><span class="line">    <span class="type">int</span> d=dis[q3];</span><br><span class="line">    <span class="built_in">ffor</span>(i,<span class="number">1</span>,n2)dis[i]=<span class="number">0</span>;</span><br><span class="line">    dis[q2]=<span class="number">1</span>,<span class="built_in">dfs2</span>(q2);</span><br><span class="line">    <span class="comment">//手玩几种情况，可以发现如果s,t之间的距离+3&gt;=c到s,t的距离和，则合法</span></span><br><span class="line">    <span class="keyword">if</span>(d+<span class="number">3</span>&gt;=dis[q1]+dis[q3])cout&lt;&lt;<span class="string">&quot;Yes&quot;</span>;<span class="keyword">else</span> cout&lt;&lt;<span class="string">&quot;No&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h2 id="静态仙人掌最短路"><a href="#静态仙人掌最短路" class="headerlink" title="静态仙人掌最短路"></a>静态仙人掌最短路</h2><p>题目链接:<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5236">https://www.luogu.com.cn/problem/P5236</a></p>
+<p>题意:给一张仙人掌图，即任意一条边至多只出现在一条简单回路的无向连通图。给出若干询问，每次给出一组点对，求出点对的最短距离。其中$n,q\leq1e4,m\leq2e4,w_i\leq1e5$。</p>
+<p>分析:如果不管环，那么仙人掌就是一颗树 <del>（废话</del>。一个树形图之前求最短路是很容易的，求LCA并减去距离前缀就可以了。</p>
+<p>把仙人掌根据圆方树的构造建图，考虑在树上处理点对间距离。圆点之间可以直接求，圆点和方点的交边就比较麻烦了，需要保证圆点a-方点-圆点b的距离和等于圆点ab之间的距离。</p>
+<p>通过为树选根定向的策略可以进行简化，对于树链圆点f-方点p-圆点s，设定f-p的边权为0，p-s的边权为f到s在原图中的距离，这样沿树链上行的时候就可以直接统计了。</p>
+<p>如果在查询时出现了LCA为方点的情况，即圆点s1-方点p-圆点s2这样的树链，就需要快速处理出同一个BCC中点间距离。这个情况在一次查询中最多只出现一次。</p>
+<p>总结一下，对于一个询问，先求点对的LCA<br>1.LCA是圆点，说明沿着树链的方向可以在原图中得到最短路，按照一般树上距离的方法来做。<br>2.LCA是方点，说明两侧分别沿树链上跳，最后在与LCA方点代表的环上的祖先处取到最短路。先上跳至与LCA相邻的祖先，再求出环上两点的距离。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;pil&gt;ov[N],ov2[N];</span><br><span class="line"><span class="type">int</span> dfn[N],low[N],tim;</span><br><span class="line"><span class="type">int</span> n,n2,m;</span><br><span class="line"><span class="type">int</span> stk[N],top;</span><br><span class="line"><span class="type">int</span> lop[N];</span><br><span class="line">unordered_map&lt;<span class="type">int</span>,ll&gt;mp[N],sqmp[N];</span><br><span class="line">ll sqsum[N];</span><br><span class="line"><span class="comment">//根据BCC添加方点，并预处理环上两点距离</span></span><br><span class="line"><span class="comment">//这里出于偷懒就用了map</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">create_loop</span><span class="params">(<span class="type">int</span> p,<span class="type">int</span> x)</span></span>&#123;</span><br><span class="line">    ++n2;</span><br><span class="line">    <span class="type">int</span> t=<span class="number">0</span>,len=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(t^x)t=stk[top--],lop[++len]=t;</span><br><span class="line">    lop[++len]=p;	ov2[p].<span class="built_in">pb</span>(n2,<span class="number">0</span>);</span><br><span class="line">    ll sum=mp[lop[<span class="number">1</span>]][lop[len]],pre=sum;</span><br><span class="line">    <span class="built_in">ffor</span>(i,<span class="number">1</span>,len<span class="number">-1</span>)sum+=mp[lop[i]][lop[i+<span class="number">1</span>]];</span><br><span class="line">    sqsum[n2]=sum;</span><br><span class="line">    <span class="built_in">ffor</span>(i,<span class="number">1</span>,len<span class="number">-1</span>)&#123;</span><br><span class="line">        ll d=<span class="built_in">min</span>(pre,sum-pre);</span><br><span class="line">        sqmp[n2][lop[i]]=pre;</span><br><span class="line">        pre+=mp[lop[i]][lop[i+<span class="number">1</span>]];</span><br><span class="line">        ov2[n2].<span class="built_in">pb</span>(lop[i],d);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//根据预处理，求出环sq上两点最短距离</span></span><br><span class="line"><span class="function">ll <span class="title">loop_dis</span><span class="params">(<span class="type">int</span> sq,<span class="type">int</span> p1,<span class="type">int</span> p2)</span></span>&#123;</span><br><span class="line">    ll d1=sqmp[sq][p1],d2=sqmp[sq][p2];</span><br><span class="line">    ll d=<span class="built_in">abs</span>(d1-d2);</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">min</span>(d,sqsum[sq]-d);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//建圆方树</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">dfs1</span><span class="params">(<span class="type">int</span> p)</span></span>&#123;</span><br><span class="line">    dfn[p]=low[p]=++tim,stk[++top]=p;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">auto</span> e:ov[p])&#123;<span class="type">int</span> x=e.first;</span><br><span class="line">        <span class="keyword">if</span>(dfn[x])low[p]=<span class="built_in">min</span>(low[p],dfn[x]);</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="built_in">dfs1</span>(x);</span><br><span class="line">            low[p]=<span class="built_in">min</span>(low[p],low[x]);</span><br><span class="line">            <span class="keyword">if</span>(low[x]==dfn[p])<span class="built_in">create_loop</span>(p,x);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">int</span> vis[N];</span><br><span class="line">ll dis[N];</span><br><span class="line"><span class="type">int</span> anc[N][M+<span class="number">1</span>],dep[N];</span><br><span class="line"><span class="comment">//倍增LCA预处理</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">dfs2</span><span class="params">(<span class="type">int</span> p)</span></span>&#123;</span><br><span class="line">    vis[p]=<span class="number">1</span>;</span><br><span class="line">    <span class="built_in">ffor</span>(i,<span class="number">1</span>,M)anc[p][i]=anc[anc[p][i<span class="number">-1</span>]][i<span class="number">-1</span>];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">auto</span> e:ov2[p])&#123;<span class="type">int</span> x=e.first;</span><br><span class="line">        <span class="keyword">if</span>(vis[x])<span class="keyword">continue</span>;</span><br><span class="line">        dis[x]=dis[p]+e.second;</span><br><span class="line">        anc[x][<span class="number">0</span>]=p,dep[x]=dep[p]+<span class="number">1</span>;</span><br><span class="line">        <span class="built_in">dfs2</span>(x);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">LCA</span><span class="params">(<span class="type">int</span> p1,<span class="type">int</span> p2)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(dep[p2]&gt;dep[p1])<span class="built_in">swap</span>(p1,p2);</span><br><span class="line">    <span class="built_in">rfor</span>(i,M,<span class="number">0</span>)<span class="keyword">if</span>(dep[anc[p1][i]]&gt;=dep[p2])p1=anc[p1][i];</span><br><span class="line">    <span class="keyword">if</span>(p1==p2)<span class="keyword">return</span> p1;</span><br><span class="line">    <span class="built_in">rfor</span>(i,M,<span class="number">0</span>)<span class="keyword">if</span>(anc[p1][i]^anc[p2][i])p1=anc[p1][i],p2=anc[p2][i];</span><br><span class="line">    <span class="keyword">return</span> anc[p1][<span class="number">0</span>];</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//跳到与LCA相邻的祖先</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">JMP</span><span class="params">(<span class="type">int</span> p,<span class="type">int</span> l)</span></span>&#123;</span><br><span class="line">    <span class="built_in">rfor</span>(i,M,<span class="number">0</span>)<span class="keyword">if</span>(dep[anc[p][i]]&gt;dep[l])p=anc[p][i];</span><br><span class="line">    <span class="keyword">return</span> p;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">init</span><span class="params">()</span></span>&#123;</span><br><span class="line">    n2=n;</span><br><span class="line">    <span class="built_in">ffor</span>(i,<span class="number">1</span>,n)&#123;</span><br><span class="line">        <span class="keyword">if</span>(dfn[i])<span class="keyword">continue</span>;</span><br><span class="line">        <span class="built_in">dfs1</span>(i),top=<span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">ffor</span>(i,<span class="number">1</span>,n)<span class="keyword">if</span>(!vis[i])<span class="built_in">dfs2</span>(i),anc[i][<span class="number">0</span>]=i;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">int</span> q;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">ffor</span>(i,<span class="number">1</span>,q)&#123;</span><br><span class="line">        <span class="type">int</span> p1,p2;cin&gt;&gt;p1&gt;&gt;p2;</span><br><span class="line">        <span class="type">int</span> l=<span class="built_in">LCA</span>(p1,p2);ll ans=<span class="number">0</span>;</span><br><span class="line">        <span class="comment">//LCA为圆点，同树的处理</span></span><br><span class="line">        <span class="keyword">if</span>(l&lt;=n)ans=dis[p1]+dis[p2]-dis[l]*<span class="number">2</span>;</span><br><span class="line">        <span class="comment">//LCA为方点，答案为到祖先的距离和+祖先间的最短路</span></span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="type">int</span> f1=<span class="built_in">JMP</span>(p1,l),f2=<span class="built_in">JMP</span>(p2,l);</span><br><span class="line">            ans=dis[p1]-dis[f1]+dis[p2]-dis[f2]+<span class="built_in">loop_dis</span>(l,f1,f2);</span><br><span class="line">        &#125;</span><br><span class="line">        cout&lt;&lt;ans&lt;&lt;<span class="string">&quot;\n&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><br></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag"># 数据结构</a>
+              <a href="/tags/%E5%9B%BE%E8%AE%BA/" rel="tag"># 图论</a>
+              <a href="/tags/%E5%9C%86%E6%96%B9%E6%A0%91/" rel="tag"># 圆方树</a>
+              <a href="/tags/%E8%81%94%E9%80%9A%E6%80%A7/" rel="tag"># 联通性</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/04/15/abc296F/" rel="prev" title="ABC296F">
+      <i class="fa fa-chevron-left"></i> ABC296F
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9C%86%E6%96%B9%E6%A0%91"><span class="nav-number">1.</span> <span class="nav-text">圆方树</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#APIO2018-%E9%93%81%E4%BA%BA%E4%B8%A4%E9%A1%B9"><span class="nav-number">1.1.</span> <span class="nav-text">[APIO2018] 铁人两项</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ABC318g-Typical-Path-Problem"><span class="nav-number">1.2.</span> <span class="nav-text">ABC318g Typical Path Problem</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9D%99%E6%80%81%E4%BB%99%E4%BA%BA%E6%8E%8C%E6%9C%80%E7%9F%AD%E8%B7%AF"><span class="nav-number">1.3.</span> <span class="nav-text">静态仙人掌最短路</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">nebulyu</p>
+  <div class="site-description" itemprop="description">under development</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">nebulyu's</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    // window.MathJax = {
+    //   loader: {
+    //
+    //       load: ['[tex]/mhchem'],
+    //
+    //     source: {
+    //       '[tex]/amsCd': '[tex]/amscd',
+    //       '[tex]/AMScd': '[tex]/amscd'
+    //     }
+    //   },
+    //   tex: {
+    //     inlineMath: {'[+]': [['$', '$']]},
+    //
+    //       packages: {'[+]': ['mhchem']},
+    //
+    //     tags: 'ams'
+    //   },
+    //   options: {
+    //     renderActions: {
+    //       findScript: [10, doc => {
+    //         document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+    //           const display = !!node.type.match(/; *mode=display/);
+    //           const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+    //           const text = document.createTextNode('');
+    //           node.parentNode.replaceChild(text, node);
+    //           math.start = {node: text, delim: '', n: 0};
+    //           math.end = {node: text, delim: '', n: 0};
+    //           doc.math.push(math);
+    //         });
+    //       }, '', false],
+    //       insertedScript: [200, () => {
+    //         document.querySelectorAll('mjx-container').forEach(node => {
+    //           let target = node.parentNode;
+    //           if (target.nodeName.toLowerCase() === 'li') {
+    //             target.parentNode.classList.add('has-jax');
+    //           }
+    //         });
+    //       }, '', false]
+    //     }
+    //   }
+    // };
+    window.MathJax = {
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        processEscapes: true
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@2.7.8/unpacked/MathJax.js?config=TeX-MML-AM_CHTML';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":false},"react":"opacity:0.9","log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
