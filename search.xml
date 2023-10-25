@@ -1,24 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>abc262</title>
-    <url>/2022/09/21/abc262/</url>
-    <content><![CDATA[<h1 id="abc262"><a href="#abc262" class="headerlink" title="abc262"></a>abc262</h1><p><a href="https://atcoder.jp/contests/abc262">https://atcoder.jp/contests/abc262</a></p>
+    <title>Hello world</title>
+    <url>/hello-world/</url>
+    <content><![CDATA[<h2 id="Hello-world"><a href="#Hello-world" class="headerlink" title="Hello world"></a>Hello world</h2><p>时隔两年，终于成功的搭建了hexo博客，中途踩坑无数，希望这是最后一个helloworld</p>
+<p>博客园旧址:<a href="https://www.cnblogs.com/nebulyu/">https://www.cnblogs.com/nebulyu/</a></p>
+]]></content>
+      <categories>
+        <category>hexo blog</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>ABC324F</title>
+    <url>/abc324F/</url>
+    <content><![CDATA[<p>分数规划，拓扑排序</p>
 <span id="more"></span>
-<p>D:首先看数据范围,很明显是个$n^3$或$n^4$的题.首先枚举当前要用的数k,考虑到k的同余系下答案相等,先对序列取模,再更新背包.枚举k需要$O(n)$,序列中有n个数,每次更新背包需要$O(n^2)$,总复杂度$O(n^4)$.</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="built_in">For</span>(id,<span class="number">1</span>,n)&#123;</span><br><span class="line">        ri v=ar[id]%M;</span><br><span class="line">        <span class="comment">//dp[i][j] 选用i个数,拼成剩余系下的j </span></span><br><span class="line">        <span class="built_in">iFor</span>(i,n,<span class="number">1</span>)</span><br><span class="line">        <span class="built_in">For</span>(j,<span class="number">0</span>,M<span class="number">-1</span>)&#123;</span><br><span class="line">            dp[i][j]=(dp[i][j]+dp[i<span class="number">-1</span>][(j-v+M)%M])%MOD;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    ans=(ans+dp[M][<span class="number">0</span>])%MOD; <span class="comment">//最后答案为用M个数拼成0</span></span><br></pre></td></tr></table></figure>
-<p>E:考虑所有标记过点的出度总和S,与标记过点相连的同色的边数R,不同色的边数D,满足$S=D+2R$,即若D为偶数,则S必为偶数.于是原问题可转化为从原图中选出若干点,使其出度总和为偶数,求方案数.此时点的出度可直接分为奇偶,组合数求和即可<br><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span>(ri i=<span class="number">0</span>;i*<span class="number">2</span>&lt;=k;++i) ans=(ans+<span class="built_in">C</span>(c[<span class="number">0</span>],k-i*<span class="number">2</span>)*<span class="built_in">C</span>(c[<span class="number">1</span>],i*<span class="number">2</span>)%MOD)%MOD;</span><br></pre></td></tr></table></figure></p>
-<p>F:根据字典序,找出k能到达的范围内最小值lead.如果选择转动操作,需要转动的点仅在lead后方.这样仅用分两种情况讨论,直接删和转后再删.对于直接删的情况,维护一个单调栈,每次更新时执行删除操作.<br><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">For(i,1,n)&#123;</span><br><span class="line">        while(p&amp;&amp;ar[i]&lt;ar[sta1[p]]&amp;&amp;r)--r,--p;</span><br><span class="line">        ++p,sta1[p]=i;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure><br>如果旋转,旋转后的点删除不需要花费<br><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">while(p&amp;&amp;ar[i]&lt;ar[sta2[p]]&amp;&amp;(r&gt;=(sta2[p]&lt;ld)))r-=(sta2[p]&lt;ld),--p;</span><br><span class="line">        ++p,sta2[p]=i;</span><br></pre></td></tr></table></figure><br>最后比较两个答案的大小即可</p>
+<h2 id="Beautiful-Path"><a href="#Beautiful-Path" class="headerlink" title="Beautiful Path"></a>Beautiful Path</h2><p>题目链接:<a href="https://atcoder.jp/contests/abc324/tasks/abc324_f">https://atcoder.jp/contests/abc324/tasks/abc324_f</a></p>
+<p>题意:给定一个有向无环简单图，每条边有两个属性,$cost,value$。要求选若干条边，组成一条点1到点n的路径，使得$\frac{\Sigma value_i}{\Sigma cost_i} $最大化。题目保证存在至少一条点1到点n的路径。其中$n,m \in[1,2e5]$<br>$cost,value\in[1,2e3]$</p>
+<p>分析:题目要求式子的形式很明显提示了分数规划的思路。选取一个答案，并且判断答案是否可行，二分缩小规模得到最终答案。</p>
+<p>图中找一条路径的要求可以转化为取边时存在之前状态的依赖，但更简单的想法是将图中的边重新赋权，由于DAG的特性，直接拓扑排序遍历全图，最后判断终点处权值是否非负。</p>
 ]]></content>
       <categories>
         <category>ACM</category>
         <category>练习</category>
         <category>atcoder</category>
       </categories>
+      <tags>
+        <tag>分数规划</tag>
+        <tag>二分</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>2022.9.18icpc网赛摸鱼记</title>
+    <url>/2022.9.18icpc/</url>
+    <content><![CDATA[<h4 id="2022-9-18icpc网赛"><a href="#2022-9-18icpc网赛" class="headerlink" title="2022.9.18icpc网赛"></a>2022.9.18icpc网赛</h4><p><a href="https://pintia.cn/problem-sets/1571150153619189760">https://pintia.cn/problem-sets/1571150153619189760</a></p>
+<span id="more"></span>
+<p>第一次参加正式的icpc比赛,尽管最近一直在打abc练手,但感觉还是力不从心.一是对icpc没有部分分的模式还不太熟悉,二是和队友的配合不够默契,三是码力下降不少,有两个本来可过的题寄了.幸亏队友还给力,一起口胡最后A掉4题.</p>
+<p><br></p>
+<h5 id="L"><a href="#L" class="headerlink" title="L"></a>L</h5><p>开的第一个题,第一眼就是sam之类的字符串转移,直接跑了.后来和老哥一起分析时又口胡建图,猜了一手结论:每个点只用向最近的同一字母转移.<br>建图的思路没错,但是连边的可行条件分析没分析到位,直接判是否在t串中相邻,实际上应该把t串中前后全部字母组合ban掉.于是痛挂一题.<br><br></p>
+<h5 id="H"><a href="#H" class="headerlink" title="H"></a>H</h5><p>倒序开题没有思路,跟榜去做签到题.直接用栈模拟操作,1发A.<br><br></p>
+<h5 id="A"><a href="#A" class="headerlink" title="A"></a>A</h5><p>乍一看毫无头绪,不过数学大佬点明了关键性质,一块连续的1只有$(len+1)/2$个”有效1”.每一个”有效1”能消掉3个元素,若一个串中”有效1”不足$1/3$,z则需要操作补1.区间染色,前缀和求和,复杂度$O(q)$.第一发T了,加了个快读就直接过了<br><br></p>
+<h5 id="C"><a href="#C" class="headerlink" title="C"></a>C</h5><p>考场上队友切掉的.答案就是叶子节点个数.<br>这个做法的正确性:对于所有的叶子节点,只能采用delete.考虑整棵树对每个节点只留下一个叶子,其余的全部删掉,然后shrink所有的单链,不断重复这个过程,可以发现所有的非叶子节点都可以被shrink.可以得到需要delete的只有叶节点<br><br></p>
+<h5 id="D"><a href="#D" class="headerlink" title="D"></a>D</h5><p>在考试时看假了题,以为是01个数相等,还差点误导了队友,最后s大佬切了.<br>考完再看这题才发觉是水题,直接dfs预处理,二分答案即可.<br><br></p>
+<h5 id="K"><a href="#K" class="headerlink" title="K"></a>K</h5><p>由于太菜只会$n^3$dp,于是想到了记搜剪枝.但是剪枝的条件并没有思考完备,白白的写了半个小时的假题,不仅没想出怎么优化,最后甚至正确性都没有.似乎有神仙乱剪过了,后面再找std看看吧<br><br></p>
+<h5 id="G"><a href="#G" class="headerlink" title="G"></a>G</h5><p>同样,由于太菜,只能想到裸暴力dp.一直在纠结$n^5$的复杂度,却忽视了选取多个连续时实际状态并不算多,写完心虚不敢久调,又浪费时间写了假题.<br><br><br>这场满打满算可以切掉7题,尽管第一次正式赛失误无可避免,但只搞掉4题还是有遗憾.根据最近打的3场比赛,目前最主要的目的并不是复习一些高级算法的用法,毕竟几乎用不到,而是多做一些dp,搜索之类的需要处理边界条件的题目,很久没做题带来的生疏大概就体现在细节不会写了吧.</p>
+]]></content>
+      <categories>
+        <category>ACM</category>
+        <category>游记</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>icpc2022济南游寄</title>
+    <url>/icpc2022%E6%B5%8E%E5%8D%97%E6%B8%B8%E5%AF%84/</url>
+    <content><![CDATA[<p>第一次正式参加区域赛，不得不水一篇小作文了。</p>
+<span id="more"></span>
+<p>早上本来想睡个难得的好觉，突然起来发现有正式赛，于是飞速嗦了一碗粉，一路小跑润到机房。到了一看才十点，人都没来几个，就享受受刑前的快乐睡眠。<br>之前测环境已经测好了，预计不会出什么问题，但队长的vs自动补全没办法完全关掉，焦虑了一小会儿，决定用dev为主。</p>
+<p>开场拿到题目，m题感觉可做，应该是个贪心，不过还是继续往前看看再说。<br>k题签到题一眼秒，写出来几乎没怎么调，8分钟a掉，还算不错。<br>签完k队友开始输出，我就去开题了。花了大量时间在金牌题上，感觉最短路倍增可写，就开始小推式子，中间花了十几分钟写了假题，最后意识到做法是n4的，结束表演转而跟榜。</p>
+<p>大概这个时候z老师正在折磨s老师调e吧，看了acd，感觉没有一眼题。小猜了一个a的结论，目标区间一定连续，先除二后加减。<br>和z老师达成了共识，他继续折磨s老师写题，我就去玩c了。</p>
+<p>一开始没什么思路，想着换根。上了两个厕所后，发现儿子的状态可以直接继承父亲，子树内顺序无限制，处理兄弟的状态就可以了。<br>于是大力推了一波式子，感觉很对。虽然看似n4，主定理分析后觉得可以n3。跟队友说了，都觉得行，于是飞速码题。<br>码完还有二十分钟，交一发t了，发现会被菊花卡掉。<br>z老师给出了一个优化，size相同的兄弟等价。乍一想很对，于是加上，wa，到结束都没调出来。后来发现size相同的兄弟子树可能不同，应该除掉自身子树的方案再乘上兄弟子树的方案才对。</p>
+<p>跟大家一起去吃晚饭，见识到什么叫活不过一圈的菜。<br>最后尾银，滚榜滚到时整个人才放松下来。c没做出来有点遗憾，不过就算做出来了也不一定有au。<br>希望南京能冲一把au。</p>
+]]></content>
+      <categories>
+        <category>ACM</category>
+        <category>游记</category>
+      </categories>
   </entry>
   <entry>
     <title>ABC289F</title>
-    <url>/2023/03/24/abc289F/</url>
+    <url>/abc289F/</url>
     <content><![CDATA[<p>对称</p>
 <span id="more"></span>
 <h2 id="Teleporter-Takahashi"><a href="#Teleporter-Takahashi" class="headerlink" title="Teleporter Takahashi"></a>Teleporter Takahashi</h2><p>题目链接:<a href="https://atcoder.jp/contests/abc289/tasks/abc289_f">https://atcoder.jp/contests/abc289/tasks/abc289_f</a></p>
@@ -38,28 +88,24 @@
       </tags>
   </entry>
   <entry>
-    <title>2022.9.18icpc网赛摸鱼记</title>
-    <url>/2022/09/21/2022.9.18icpc/</url>
-    <content><![CDATA[<h4 id="2022-9-18icpc网赛"><a href="#2022-9-18icpc网赛" class="headerlink" title="2022.9.18icpc网赛"></a>2022.9.18icpc网赛</h4><p><a href="https://pintia.cn/problem-sets/1571150153619189760">https://pintia.cn/problem-sets/1571150153619189760</a></p>
+    <title>abc262</title>
+    <url>/abc262/</url>
+    <content><![CDATA[<h1 id="abc262"><a href="#abc262" class="headerlink" title="abc262"></a>abc262</h1><p><a href="https://atcoder.jp/contests/abc262">https://atcoder.jp/contests/abc262</a></p>
 <span id="more"></span>
-<p>第一次参加正式的icpc比赛,尽管最近一直在打abc练手,但感觉还是力不从心.一是对icpc没有部分分的模式还不太熟悉,二是和队友的配合不够默契,三是码力下降不少,有两个本来可过的题寄了.幸亏队友还给力,一起口胡最后A掉4题.</p>
-<p><br></p>
-<h5 id="L"><a href="#L" class="headerlink" title="L"></a>L</h5><p>开的第一个题,第一眼就是sam之类的字符串转移,直接跑了.后来和老哥一起分析时又口胡建图,猜了一手结论:每个点只用向最近的同一字母转移.<br>建图的思路没错,但是连边的可行条件分析没分析到位,直接判是否在t串中相邻,实际上应该把t串中前后全部字母组合ban掉.于是痛挂一题.<br><br></p>
-<h5 id="H"><a href="#H" class="headerlink" title="H"></a>H</h5><p>倒序开题没有思路,跟榜去做签到题.直接用栈模拟操作,1发A.<br><br></p>
-<h5 id="A"><a href="#A" class="headerlink" title="A"></a>A</h5><p>乍一看毫无头绪,不过数学大佬点明了关键性质,一块连续的1只有$(len+1)/2$个”有效1”.每一个”有效1”能消掉3个元素,若一个串中”有效1”不足$1/3$,z则需要操作补1.区间染色,前缀和求和,复杂度$O(q)$.第一发T了,加了个快读就直接过了<br><br></p>
-<h5 id="C"><a href="#C" class="headerlink" title="C"></a>C</h5><p>考场上队友切掉的.答案就是叶子节点个数.<br>这个做法的正确性:对于所有的叶子节点,只能采用delete.考虑整棵树对每个节点只留下一个叶子,其余的全部删掉,然后shrink所有的单链,不断重复这个过程,可以发现所有的非叶子节点都可以被shrink.可以得到需要delete的只有叶节点<br><br></p>
-<h5 id="D"><a href="#D" class="headerlink" title="D"></a>D</h5><p>在考试时看假了题,以为是01个数相等,还差点误导了队友,最后s大佬切了.<br>考完再看这题才发觉是水题,直接dfs预处理,二分答案即可.<br><br></p>
-<h5 id="K"><a href="#K" class="headerlink" title="K"></a>K</h5><p>由于太菜只会$n^3$dp,于是想到了记搜剪枝.但是剪枝的条件并没有思考完备,白白的写了半个小时的假题,不仅没想出怎么优化,最后甚至正确性都没有.似乎有神仙乱剪过了,后面再找std看看吧<br><br></p>
-<h5 id="G"><a href="#G" class="headerlink" title="G"></a>G</h5><p>同样,由于太菜,只能想到裸暴力dp.一直在纠结$n^5$的复杂度,却忽视了选取多个连续时实际状态并不算多,写完心虚不敢久调,又浪费时间写了假题.<br><br><br>这场满打满算可以切掉7题,尽管第一次正式赛失误无可避免,但只搞掉4题还是有遗憾.根据最近打的3场比赛,目前最主要的目的并不是复习一些高级算法的用法,毕竟几乎用不到,而是多做一些dp,搜索之类的需要处理边界条件的题目,很久没做题带来的生疏大概就体现在细节不会写了吧.</p>
+<p>D:首先看数据范围,很明显是个$n^3$或$n^4$的题.首先枚举当前要用的数k,考虑到k的同余系下答案相等,先对序列取模,再更新背包.枚举k需要$O(n)$,序列中有n个数,每次更新背包需要$O(n^2)$,总复杂度$O(n^4)$.</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="built_in">For</span>(id,<span class="number">1</span>,n)&#123;</span><br><span class="line">        ri v=ar[id]%M;</span><br><span class="line">        <span class="comment">//dp[i][j] 选用i个数,拼成剩余系下的j </span></span><br><span class="line">        <span class="built_in">iFor</span>(i,n,<span class="number">1</span>)</span><br><span class="line">        <span class="built_in">For</span>(j,<span class="number">0</span>,M<span class="number">-1</span>)&#123;</span><br><span class="line">            dp[i][j]=(dp[i][j]+dp[i<span class="number">-1</span>][(j-v+M)%M])%MOD;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    ans=(ans+dp[M][<span class="number">0</span>])%MOD; <span class="comment">//最后答案为用M个数拼成0</span></span><br></pre></td></tr></table></figure>
+<p>E:考虑所有标记过点的出度总和S,与标记过点相连的同色的边数R,不同色的边数D,满足$S=D+2R$,即若D为偶数,则S必为偶数.于是原问题可转化为从原图中选出若干点,使其出度总和为偶数,求方案数.此时点的出度可直接分为奇偶,组合数求和即可<br><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span>(ri i=<span class="number">0</span>;i*<span class="number">2</span>&lt;=k;++i) ans=(ans+<span class="built_in">C</span>(c[<span class="number">0</span>],k-i*<span class="number">2</span>)*<span class="built_in">C</span>(c[<span class="number">1</span>],i*<span class="number">2</span>)%MOD)%MOD;</span><br></pre></td></tr></table></figure></p>
+<p>F:根据字典序,找出k能到达的范围内最小值lead.如果选择转动操作,需要转动的点仅在lead后方.这样仅用分两种情况讨论,直接删和转后再删.对于直接删的情况,维护一个单调栈,每次更新时执行删除操作.<br><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">For(i,1,n)&#123;</span><br><span class="line">        while(p&amp;&amp;ar[i]&lt;ar[sta1[p]]&amp;&amp;r)--r,--p;</span><br><span class="line">        ++p,sta1[p]=i;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure><br>如果旋转,旋转后的点删除不需要花费<br><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">while(p&amp;&amp;ar[i]&lt;ar[sta2[p]]&amp;&amp;(r&gt;=(sta2[p]&lt;ld)))r-=(sta2[p]&lt;ld),--p;</span><br><span class="line">        ++p,sta2[p]=i;</span><br></pre></td></tr></table></figure><br>最后比较两个答案的大小即可</p>
 ]]></content>
       <categories>
         <category>ACM</category>
-        <category>游记</category>
+        <category>练习</category>
+        <category>atcoder</category>
       </categories>
   </entry>
   <entry>
     <title>ABC296F</title>
-    <url>/2023/04/15/abc296F/</url>
+    <url>/abc296F/</url>
     <content><![CDATA[<p>逆序,奇偶性分析</p>
 <span id="more"></span>
 <h2 id="Simultaneous-Swap"><a href="#Simultaneous-Swap" class="headerlink" title="Simultaneous Swap"></a>Simultaneous Swap</h2><p>题目链接:<a href="https://atcoder.jp/contests/abc296/tasks/abc296_f">https://atcoder.jp/contests/abc296/tasks/abc296_f</a></p>
@@ -82,7 +128,7 @@
   </entry>
   <entry>
     <title>AGC035B</title>
-    <url>/2023/03/18/agc035B/</url>
+    <url>/agc035B/</url>
     <content><![CDATA[<p>无向图中边的定向</p>
 <span id="more"></span>
 <h2 id="even-degrees"><a href="#even-degrees" class="headerlink" title="even degrees"></a>even degrees</h2><p>题目链接:<a href="https://atcoder.jp/contests/agc035/tasks/agc035_b">https://atcoder.jp/contests/agc035/tasks/agc035_b</a></p>
@@ -103,8 +149,31 @@
       </tags>
   </entry>
   <entry>
+    <title>CF104270I</title>
+    <url>/cf104270I/</url>
+    <content><![CDATA[<p>尺取+线段树</p>
+<span id="more"></span>
+<h2 id="Soldier-Game"><a href="#Soldier-Game" class="headerlink" title="Soldier Game"></a>Soldier Game</h2><p>题目链接:<a href="https://codeforces.com/gym/104270/problem/I">https://codeforces.com/gym/104270/problem/I</a></p>
+<p>题意:给定一个序列$a_n$,要求将序列划为若干组,每组由一个或相邻的两个元素组成,组的权值就是组内元素的权值之和,每个元素在且仅在一组内,要求一种分组方式,使得组之间的极差最小.$n\in(1,1e5)$</p>
+<p>分析:序列最值首先考虑二分,然而知道了极差并不能直接得到一组合法的构造方式,必须明确上下界.如果用二分套二分来得到上下界,其实也不能很好的告诉你如何划分序列,比如在一个数归属左右都可以,但是会影响后面的取值的情况里,单纯从一个方向构造不一定有合法解.</p>
+<p>传统的最值转化判定的思路行不通,只能另辟蹊径.考虑分组操作的实质,就是用一些小线段对整个区间进行覆盖,如果这些线段能恰好完全覆盖整个区间,那么就可以构成一组合法解.</p>
+<p>思路似乎已经明确,将原序列分为长度为1,2的子段,排序后从小到大枚举权值最小的线段,并向后合并直到原区间被完全覆盖,最后比较每次的权值极差就得到答案.</p>
+<p>不过可能出现一种情况,线段$ [ a_{i-1},a_i] , [a_i,a_{i+1} ] $,同时存在,但$a_{i-1},a_i,a_{i+1}$没有其他的覆盖.如果每次只存覆盖次数,就无法处理这样的情况.</p>
+<p>考虑重新设计状态,$sum[p][0/1][0/1]$表示所辖区间的左右端点分别在长度为$1/2$的线段内是否全覆盖.那么可以得到线段树式的转移<br><br><br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">sum[p][i][j]=(sum[ls][i][<span class="number">0</span>]&amp;sum[rs][<span class="number">0</span>][j])|(sum[ls][i][<span class="number">1</span>]&amp;sum[rs][<span class="number">1</span>][j]);</span><br></pre></td></tr></table></figure><br><br><br>$sum[1][0][0]$就表示整个序列是否被完整覆盖.</p>
+<p>维护一个单调指针,对于每个确定的最小值线段,找到最小的上界线段满足全覆盖,记录极差,算完后再将当前的最小值线段删掉.单调指针和下界都是会访问连续的n个值,线段树每次修改$logn$,总复杂度$O(nlogn)$,可以通过本题.</p>
+]]></content>
+      <categories>
+        <category>ACM</category>
+        <category>练习</category>
+        <category>cf</category>
+      </categories>
+      <tags>
+        <tag>线段树</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>ARC150B</title>
-    <url>/2023/03/24/arc150B/</url>
+    <url>/arc150B/</url>
     <content><![CDATA[<p>数论分块</p>
 <span id="more"></span>
 <h2 id="Make-Divisible"><a href="#Make-Divisible" class="headerlink" title="Make Divisible"></a>Make Divisible</h2><p>题目链接:<a href="https://atcoder.jp/contests/arc150/tasks/arc150_b">https://atcoder.jp/contests/arc150/tasks/arc150_b</a></p>
@@ -129,72 +198,76 @@ x>=\lfloor(B-1)/k\rfloor-A+1</script><p>这样,我们可以枚举k来计算答�
       </tags>
   </entry>
   <entry>
-    <title>fhqtreap</title>
-    <url>/2022/10/21/fhqtreap/</url>
-    <content><![CDATA[<h1 id="fhqtreap"><a href="#fhqtreap" class="headerlink" title="fhqtreap"></a>fhqtreap</h1><p>这个神仙级nb的数据结构得名于神仙范皓强,既有treap的易写易懂,也有splay般易于区间处理的能力.<br><span id="more"></span><br><br></p>
-<h2 id="列队"><a href="#列队" class="headerlink" title="列队"></a>列队</h2><p><a href="https://www.luogu.com.cn/problem/P3960">https://www.luogu.com.cn/problem/P3960</a><br>题意:一个nm的矩阵,每次取出一个指定位置的数,求出这个数的编号,并把矩阵里的数先向左补齐再想上补齐,最后把取出的数塞到右下角.其中$n,m,q\in(1,3e5)$<br>考虑每次更改的部分,只有当前的行和最后一列会有更改.于是对每一行和最后一列建立平衡树维护矩阵.但是这样做的空间复杂度是$O(nm)$,无法承受.<br>由于大部分数都不会被更改,每个点都去维护的话实际上浪费了大量空间.那么就考虑去合并这些不会被更改的点,更好的做法就是直接维护区间,有分裂的需求时再动态开点.一开始对每行插入$(1,m-1)$的区间,对末尾列直接插入每一个数.在split时开新点分割区间.<br>此处的treap按排名分裂.需要注意fhqtreap的合并顺序,以及新开的点与原树的相对位置.这个细节废了我一个下午.</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">mer</span><span class="params">(<span class="type">int</span> x,<span class="type">int</span> y)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!x||!y) <span class="keyword">return</span> x+y;</span><br><span class="line">    <span class="keyword">if</span>(rd[x]&gt;=rd[y])<span class="keyword">return</span> <span class="built_in">rs</span>(x)=<span class="built_in">mer</span>(<span class="built_in">rs</span>(x),y),<span class="built_in">upd</span>(x),x;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> <span class="built_in">ls</span>(y)=<span class="built_in">mer</span>(x,<span class="built_in">ls</span>(y)),<span class="built_in">upd</span>(y),y; </span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">splp</span><span class="params">(<span class="type">int</span> p,ll k)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(k&gt;=<span class="built_in">len</span>(p)) <span class="keyword">return</span> ;</span><br><span class="line">    <span class="type">int</span> x=<span class="built_in">alc</span>(L[p]+k,R[p]);</span><br><span class="line">    R[p]=L[x]<span class="number">-1</span>,<span class="built_in">rs</span>(p)=<span class="built_in">mer</span>(x,<span class="built_in">rs</span>(p)),<span class="built_in">upd</span>(p);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">spl</span><span class="params">(<span class="type">int</span> p,<span class="type">int</span> &amp;x,<span class="type">int</span> &amp;y,ll v)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!p) <span class="keyword">return</span> x=y=<span class="number">0</span>,<span class="built_in">void</span>();</span><br><span class="line">    <span class="keyword">if</span>(sz[<span class="built_in">ls</span>(p)]&gt;=v) y=p,<span class="built_in">spl</span>(<span class="built_in">ls</span>(p),x,<span class="built_in">ls</span>(p),v);</span><br><span class="line">    <span class="keyword">else</span> <span class="built_in">splp</span>(p,v-sz[<span class="built_in">ls</span>(p)]),x=p,<span class="built_in">spl</span>(<span class="built_in">rs</span>(p),<span class="built_in">rs</span>(p),y,v-sz[<span class="built_in">ls</span>(p)]-<span class="built_in">len</span>(p));</span><br><span class="line">    <span class="built_in">upd</span>(p);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>ACM</category>
-        <category>算法</category>
-        <category>数据结构</category>
-      </categories>
-      <tags>
-        <tag>平衡树</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>CF104270I</title>
-    <url>/2023/04/02/cf104270I/</url>
-    <content><![CDATA[<p>尺取+线段树</p>
+    <title>sloppy city planning</title>
+    <url>/sloppy_city_planning/</url>
+    <content><![CDATA[<p>缩点+最短路</p>
 <span id="more"></span>
-<h2 id="Soldier-Game"><a href="#Soldier-Game" class="headerlink" title="Soldier Game"></a>Soldier Game</h2><p>题目链接:<a href="https://codeforces.com/gym/104270/problem/I">https://codeforces.com/gym/104270/problem/I</a></p>
-<p>题意:给定一个序列$a_n$,要求将序列划为若干组,每组由一个或相邻的两个元素组成,组的权值就是组内元素的权值之和,每个元素在且仅在一组内,要求一种分组方式,使得组之间的极差最小.$n\in(1,1e5)$</p>
-<p>分析:序列最值首先考虑二分,然而知道了极差并不能直接得到一组合法的构造方式,必须明确上下界.如果用二分套二分来得到上下界,其实也不能很好的告诉你如何划分序列,比如在一个数归属左右都可以,但是会影响后面的取值的情况里,单纯从一个方向构造不一定有合法解.</p>
-<p>传统的最值转化判定的思路行不通,只能另辟蹊径.考虑分组操作的实质,就是用一些小线段对整个区间进行覆盖,如果这些线段能恰好完全覆盖整个区间,那么就可以构成一组合法解.</p>
-<p>思路似乎已经明确,将原序列分为长度为1,2的子段,排序后从小到大枚举权值最小的线段,并向后合并直到原区间被完全覆盖,最后比较每次的权值极差就得到答案.</p>
-<p>不过可能出现一种情况,线段$ [ a_{i-1},a_i] , [a_i,a_{i+1} ] $,同时存在,但$a_{i-1},a_i,a_{i+1}$没有其他的覆盖.如果每次只存覆盖次数,就无法处理这样的情况.</p>
-<p>考虑重新设计状态,$sum[p][0/1][0/1]$表示所辖区间的左右端点分别在长度为$1/2$的线段内是否全覆盖.那么可以得到线段树式的转移<br><br><br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">sum[p][i][j]=(sum[ls][i][<span class="number">0</span>]&amp;sum[rs][<span class="number">0</span>][j])|(sum[ls][i][<span class="number">1</span>]&amp;sum[rs][<span class="number">1</span>][j]);</span><br></pre></td></tr></table></figure><br><br><br>$sum[1][0][0]$就表示整个序列是否被完整覆盖.</p>
-<p>维护一个单调指针,对于每个确定的最小值线段,找到最小的上界线段满足全覆盖,记录极差,算完后再将当前的最小值线段删掉.单调指针和下界都是会访问连续的n个值,线段树每次修改$logn$,总复杂度$O(nlogn)$,可以通过本题.</p>
+<h2 id="sloppy-city-planning"><a href="#sloppy-city-planning" class="headerlink" title="sloppy city planning"></a>sloppy city planning</h2><p>题目链接:<a href="http://8.130.108.71/problem/H">http://8.130.108.71/problem/H</a></p>
+<p>题意:在一张有向完全图上，现在可以付出给定的代价让一条边反向，求使整张图成为一个scc的最小代价</p>
+<p>分析:首先考虑图中已有的环。很容易看出对于一个环边，没有必要进行任何更改，保持初始的强连通关系一定是最优解。可以放心的缩点辣。</p>
+<p>缩点后得到的新图看似凌乱，但是可以发现一个性质——入度为0和出度为0的点都只有一个。这个图如果要成为一个scc，入度为0的点和出度为0的点一定在同一个scc内 <del>(废话)</del>。</p>
+<p>把这两个看作起点和终点，也就一定有一条在这两个点之间的链，满足所有的边全部反向，由终点指向起点。通过起点和终点之间的联通关系，图中所有的点都可以借助这条直径互相到达。</p>
+<p>反转这一条链上边的代价就是所求的答案，于是可以用最短路解决了。</p>
+<p>需要注意本题较为卡常，似乎对spfa做了特殊的hack。另外有点卡空间，vector会因为各种各样的问题去世。</p>
 ]]></content>
       <categories>
         <category>ACM</category>
         <category>练习</category>
-        <category>cf</category>
+        <category>其他</category>
       </categories>
       <tags>
-        <tag>线段树</tag>
+        <tag>图论</tag>
+        <tag>缩点</tag>
+        <tag>最短路</tag>
       </tags>
   </entry>
   <entry>
-    <title>Hello world</title>
-    <url>/2022/07/17/hello-world/</url>
-    <content><![CDATA[<h2 id="Hello-world"><a href="#Hello-world" class="headerlink" title="Hello world"></a>Hello world</h2><p>时隔两年，终于成功的搭建了hexo博客，中途踩坑无数，希望这是最后一个helloworld</p>
-<p>博客园旧址:<a href="https://www.cnblogs.com/nebulyu/">https://www.cnblogs.com/nebulyu/</a></p>
-]]></content>
-      <categories>
-        <category>hexo blog</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>icpc2022济南游寄</title>
-    <url>/2022/12/01/icpc2022%E6%B5%8E%E5%8D%97%E6%B8%B8%E5%AF%84/</url>
-    <content><![CDATA[<p>第一次正式参加区域赛，不得不水一篇小作文了。</p>
+    <title>一道思维题:矩阵快速幂(bushi</title>
+    <url>/%E4%BC%AA%E7%9F%A9%E9%98%B5%E5%BF%AB%E9%80%9F%E5%B9%82/</url>
+    <content><![CDATA[<p>检测智商</p>
 <span id="more"></span>
-<p>早上本来想睡个难得的好觉，突然起来发现有正式赛，于是飞速嗦了一碗粉，一路小跑润到机房。到了一看才十点，人都没来几个，就享受受刑前的快乐睡眠。<br>之前测环境已经测好了，预计不会出什么问题，但队长的vs自动补全没办法完全关掉，焦虑了一小会儿，决定用dev为主。</p>
-<p>开场拿到题目，m题感觉可做，应该是个贪心，不过还是继续往前看看再说。<br>k题签到题一眼秒，写出来几乎没怎么调，8分钟a掉，还算不错。<br>签完k队友开始输出，我就去开题了。花了大量时间在金牌题上，感觉最短路倍增可写，就开始小推式子，中间花了十几分钟写了假题，最后意识到做法是n4的，结束表演转而跟榜。</p>
-<p>大概这个时候z老师正在折磨s老师调e吧，看了acd，感觉没有一眼题。小猜了一个a的结论，目标区间一定连续，先除二后加减。<br>和z老师达成了共识，他继续折磨s老师写题，我就去玩c了。</p>
-<p>一开始没什么思路，想着换根。上了两个厕所后，发现儿子的状态可以直接继承父亲，子树内顺序无限制，处理兄弟的状态就可以了。<br>于是大力推了一波式子，感觉很对。虽然看似n4，主定理分析后觉得可以n3。跟队友说了，都觉得行，于是飞速码题。<br>码完还有二十分钟，交一发t了，发现会被菊花卡掉。<br>z老师给出了一个优化，size相同的兄弟等价。乍一想很对，于是加上，wa，到结束都没调出来。后来发现size相同的兄弟子树可能不同，应该除掉自身子树的方案再乘上兄弟子树的方案才对。</p>
-<p>跟大家一起去吃晚饭，见识到什么叫活不过一圈的菜。<br>最后尾银，滚榜滚到时整个人才放松下来。c没做出来有点遗憾，不过就算做出来了也不一定有au。<br>希望南京能冲一把au。</p>
+<p>校赛中的一道神仙题,难点不在算法或者特别的技巧,专杀惯性思维</p>
+<h2 id="luoguT319422-穷哥们也想发财"><a href="#luoguT319422-穷哥们也想发财" class="headerlink" title="luoguT319422 穷哥们也想发财"></a>luoguT319422 穷哥们也想发财</h2><p><a href="https://www.luogu.com.cn/problem/T319422">https://www.luogu.com.cn/problem/T319422</a></p>
+<p>题意:已知列向量A,矩阵P,变量K,其中矩阵P满足对于j,有 $\sum^n a_{i,j}=1,a_i\in(0,1) .$. 求出 $ B=(P^T)^k*A $. ,其中$P^T$代表P的转置矩阵</p>
+<p>数据范围: $ n\in (1,7e2),K\in(1,1e10) $</p>
+<p>乍一看就是矩阵快速幂的模板,几乎不能更简单.</p>
+<p>然而略加分析<del>或者tle了一发</del>可以发现,一般的矩乘快速幂,复杂度$O(n^3logK)$,在本题的数据大概能达到1e9级别,甚至做一次矩乘,都要大概3e8次运算,在double乘法的大常数下,只乘一次都会超时.</p>
+<p>回看题目,发现有一个条件没有用到, $ \sum^n a_{i,j}=1,a_i\in(0,1) .$. 这个条件可以满足在自乘若干次后,矩阵P的内容趋于稳定,性质的证明涉及马尔科夫链.</p>
+<p>于是就采用最原始的办法去做,不断的用P左乘A,比较A是否达到不动点.这个次数似乎与P的分布有关,不过应该不会太大,可以通过本题.</p>
+<p>另外出题人特意提醒了用double,long double反而会有精度问题</p>
 ]]></content>
       <categories>
         <category>ACM</category>
-        <category>游记</category>
+        <category>练习</category>
+        <category>其他</category>
+      </categories>
+      <tags>
+        <tag>数学</tag>
+        <tag>线性代数</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>区间dp</title>
+    <url>/%E5%8C%BA%E9%97%B4dp/</url>
+    <content><![CDATA[<h1 id="区间dp"><a href="#区间dp" class="headerlink" title="区间dp"></a>区间dp</h1><span id="more"></span>
+<p><br></p>
+<h2 id="Work-or-Rest"><a href="#Work-or-Rest" class="headerlink" title="Work or Rest"></a>Work or Rest</h2><p>题目链接:<a href="https://atcoder.jp/contests/abc285/tasks/abc285_e">https://atcoder.jp/contests/abc285/tasks/abc285_e</a></p>
+<p>题意:在一个周期内任意安排假期,至少一天,使一个周期内总效率最大.每天的效率计算方法给定.</p>
+<p>思路:对于任意一段长度为l的连续工作区间,总效率都相等,而且可以通过长度为l-1的效率得到,于是先将每个长度对应的效率预处理出来.</p>
+<p>一看数据范围,确定是$n^2$或者$n^2logn$的算法.于是很自然的考虑区间dp.长度为l的区间可以由长度为i与l-i的区间拼出,且不会有后效性问题.由于循环不涉及顺序,那么直接顺推dp,复杂度$O(n^2)$.</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">For</span>(i,<span class="number">1</span>,n)&#123;</span><br><span class="line">        ans[i]=rec[i<span class="number">-1</span>];</span><br><span class="line">        <span class="built_in">For</span>(j,<span class="number">1</span>,i<span class="number">-1</span>)ans[i]=<span class="built_in">max</span>(ans[i],ans[i-j]+rec[j<span class="number">-1</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">    cout&lt;&lt;ans[n];</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h2 id="Pre-Order"><a href="#Pre-Order" class="headerlink" title="Pre-Order"></a>Pre-Order</h2><p><a href="https://atcoder.jp/contests/abc252/tasks/abc252_g">https://atcoder.jp/contests/abc252/tasks/abc252_g</a></p>
+]]></content>
+      <categories>
+        <category>ACM</category>
+        <category>算法</category>
+        <category>dp</category>
       </categories>
   </entry>
   <entry>
     <title>KDtree</title>
-    <url>/2023/03/09/kdtree/</url>
+    <url>/kdtree/</url>
     <content><![CDATA[<h1 id="KDtree"><a href="#KDtree" class="headerlink" title="KDtree"></a>KDtree</h1><p><br></p>
 <span id="more"></span>
 <p>KDtree(K-Dimension tree)适用于处理与距离和位置有关的多维点对问题,本质上就是经过剪枝的暴力,难点在于估价函数的设计</p>
@@ -231,156 +304,23 @@ x>=\lfloor(B-1)/k\rfloor-A+1</script><p>这样,我们可以枚举k来计算答�
       </categories>
   </entry>
   <entry>
-    <title>sloppy city planning</title>
-    <url>/2023/03/15/sloppy_city_planning/</url>
-    <content><![CDATA[<p>缩点+最短路</p>
-<span id="more"></span>
-<h2 id="sloppy-city-planning"><a href="#sloppy-city-planning" class="headerlink" title="sloppy city planning"></a>sloppy city planning</h2><p>题目链接:<a href="http://8.130.108.71/problem/H">http://8.130.108.71/problem/H</a></p>
-<p>题意:在一张有向完全图上，现在可以付出给定的代价让一条边反向，求使整张图成为一个scc的最小代价</p>
-<p>分析:首先考虑图中已有的环。很容易看出对于一个环边，没有必要进行任何更改，保持初始的强连通关系一定是最优解。可以放心的缩点辣。</p>
-<p>缩点后得到的新图看似凌乱，但是可以发现一个性质——入度为0和出度为0的点都只有一个。这个图如果要成为一个scc，入度为0的点和出度为0的点一定在同一个scc内 <del>(废话)</del>。</p>
-<p>把这两个看作起点和终点，也就一定有一条在这两个点之间的链，满足所有的边全部反向，由终点指向起点。通过起点和终点之间的联通关系，图中所有的点都可以借助这条直径互相到达。</p>
-<p>反转这一条链上边的代价就是所求的答案，于是可以用最短路解决了。</p>
-<p>需要注意本题较为卡常，似乎对spfa做了特殊的hack。另外有点卡空间，vector会因为各种各样的问题去世。</p>
-]]></content>
-      <categories>
-        <category>ACM</category>
-        <category>练习</category>
-        <category>其他</category>
-      </categories>
-      <tags>
-        <tag>图论</tag>
-        <tag>缩点</tag>
-        <tag>最短路</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>一道思维题:矩阵快速幂(bushi</title>
-    <url>/2023/03/06/%E4%BC%AA%E7%9F%A9%E9%98%B5%E5%BF%AB%E9%80%9F%E5%B9%82/</url>
-    <content><![CDATA[<p>检测智商</p>
-<span id="more"></span>
-<p>校赛中的一道神仙题,难点不在算法或者特别的技巧,专杀惯性思维</p>
-<h2 id="luoguT319422-穷哥们也想发财"><a href="#luoguT319422-穷哥们也想发财" class="headerlink" title="luoguT319422 穷哥们也想发财"></a>luoguT319422 穷哥们也想发财</h2><p><a href="https://www.luogu.com.cn/problem/T319422">https://www.luogu.com.cn/problem/T319422</a></p>
-<p>题意:已知列向量A,矩阵P,变量K,其中矩阵P满足对于j,有 $\sum^n a_{i,j}=1,a_i\in(0,1) .$. 求出 $ B=(P^T)^k*A $. ,其中$P^T$代表P的转置矩阵</p>
-<p>数据范围: $ n\in (1,7e2),K\in(1,1e10) $</p>
-<p>乍一看就是矩阵快速幂的模板,几乎不能更简单.</p>
-<p>然而略加分析<del>或者tle了一发</del>可以发现,一般的矩乘快速幂,复杂度$O(n^3logK)$,在本题的数据大概能达到1e9级别,甚至做一次矩乘,都要大概3e8次运算,在double乘法的大常数下,只乘一次都会超时.</p>
-<p>回看题目,发现有一个条件没有用到, $ \sum^n a_{i,j}=1,a_i\in(0,1) .$. 这个条件可以满足在自乘若干次后,矩阵P的内容趋于稳定,性质的证明涉及马尔科夫链.</p>
-<p>于是就采用最原始的办法去做,不断的用P左乘A,比较A是否达到不动点.这个次数似乎与P的分布有关,不过应该不会太大,可以通过本题.</p>
-<p>另外出题人特意提醒了用double,long double反而会有精度问题</p>
-]]></content>
-      <categories>
-        <category>ACM</category>
-        <category>练习</category>
-        <category>其他</category>
-      </categories>
-      <tags>
-        <tag>数学</tag>
-        <tag>线性代数</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>区间dp</title>
-    <url>/2023/01/15/%E5%8C%BA%E9%97%B4dp/</url>
-    <content><![CDATA[<h1 id="区间dp"><a href="#区间dp" class="headerlink" title="区间dp"></a>区间dp</h1><span id="more"></span>
-<p><br></p>
-<h2 id="Work-or-Rest"><a href="#Work-or-Rest" class="headerlink" title="Work or Rest"></a>Work or Rest</h2><p>题目链接:<a href="https://atcoder.jp/contests/abc285/tasks/abc285_e">https://atcoder.jp/contests/abc285/tasks/abc285_e</a></p>
-<p>题意:在一个周期内任意安排假期,至少一天,使一个周期内总效率最大.每天的效率计算方法给定.</p>
-<p>思路:对于任意一段长度为l的连续工作区间,总效率都相等,而且可以通过长度为l-1的效率得到,于是先将每个长度对应的效率预处理出来.</p>
-<p>一看数据范围,确定是$n^2$或者$n^2logn$的算法.于是很自然的考虑区间dp.长度为l的区间可以由长度为i与l-i的区间拼出,且不会有后效性问题.由于循环不涉及顺序,那么直接顺推dp,复杂度$O(n^2)$.</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">For</span>(i,<span class="number">1</span>,n)&#123;</span><br><span class="line">        ans[i]=rec[i<span class="number">-1</span>];</span><br><span class="line">        <span class="built_in">For</span>(j,<span class="number">1</span>,i<span class="number">-1</span>)ans[i]=<span class="built_in">max</span>(ans[i],ans[i-j]+rec[j<span class="number">-1</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">    cout&lt;&lt;ans[n];</span><br></pre></td></tr></table></figure>
-<p><br></p>
-<h2 id="Pre-Order"><a href="#Pre-Order" class="headerlink" title="Pre-Order"></a>Pre-Order</h2><p><a href="https://atcoder.jp/contests/abc252/tasks/abc252_g">https://atcoder.jp/contests/abc252/tasks/abc252_g</a></p>
-]]></content>
-      <categories>
-        <category>ACM</category>
-        <category>算法</category>
-        <category>dp</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>区间中的不动点</title>
-    <url>/2023/01/17/%E5%8C%BA%E9%97%B4%E4%B8%AD%E7%9A%84%E4%B8%8D%E5%8A%A8%E7%82%B9/</url>
-    <content><![CDATA[<h1 id="区间中的不动点"><a href="#区间中的不动点" class="headerlink" title="区间中的不动点"></a>区间中的不动点</h1><p><br></p>
-<span id="more"></span>
-<p><br></p>
-<h2 id="花神游历各国"><a href="#花神游历各国" class="headerlink" title="花神游历各国"></a>花神游历各国</h2><p>题目链接:<a href="https://www.luogu.com.cn/problem/P4145">https://www.luogu.com.cn/problem/P4145</a></p>
-<p>题意:给定一个序列,每次操作将一段指定的区间中每一个数开方后取整,或者求一段区间的和.数据范围$n,m \leq 1e5 \quad a_i\leq1e12$.</p>
-<p>解析:很明显不能直接暴力,应该考虑区间数据结构来维护.而开方不能合并计算,打tag延迟计算的方式并不适用.</p>
-<p>观察开方运算,发现即使最大的数,$1e12$,在6次开方计算后也会变成1,且值为1的数在开方运算中不再改变.其实本质上就是这个开方后取整运算构成的群都会回归到1这个不动点.如果一段连续的区间都为1,那么这个区间在后续的操作中都不再改变.</p>
-<p>可以利用这个性质,维护区间是否全部都是不动点,如果已经都是了就不用再下放修改了.每个点最多修改6次,最后总复杂度仍然是$O(mlogn)$.</p>
-<p><br></p>
-<h2 id="The-Child-and-Sequence"><a href="#The-Child-and-Sequence" class="headerlink" title="The Child and Sequence"></a>The Child and Sequence</h2><p>题目链接:<a href="https://codeforces.com/problemset/problem/438/D">https://codeforces.com/problemset/problem/438/D</a></p>
-<p>题意:给定一个序列,每次操作将一段指定的区间对给定的模数取模,或者求一段区间的和.数据范围$n,m \leq 1e5 \quad a_i\leq1e9$.</p>
-<p>解析:很明显,取模运算也没有区间可并性,只能从运算本身的特点入手.</p>
-<p>一个数在取模后,得到的结果一定小于他的二分之一.证明涉及数论.不过可以感性理解一下,如果模数小于二分之一,得到的结果一定小于模数；如果模数大于二分之一,那么结果等于原数减模数,仍然小于二分之一.</p>
-<p>每次以二分之一的程度减少,有效操作的次数就是$logx$.对于这个$a_i\leq1e9$的范围足够了.</p>
-<p>那么我们可以维护区间最大值,如果模数大于最大值,没有必要操作,直接return,否则下放计算后重新统计最大值.总复杂度$O(mlognloga_i)$</p>
-<p><br></p>
-<h2 id="鸡格线"><a href="#鸡格线" class="headerlink" title="鸡格线"></a>鸡格线</h2><p>题目链接:<a href="https://ac.nowcoder.com/acm/contest/46800/G">https://ac.nowcoder.com/acm/contest/46800/G</a></p>
-<p>题意:给定一个序列,每次操作将一段指定的区间中的每个数做$f(x)=round(10\sqrt x)$的变换k次,其中round为四舍五入函数,或者所有数的和.数据范围$n,m \leq 1e5 \quad a_i\leq1e9$.</p>
-<p>解析:这个及格线算法看起来就是一个升级版的开方,不过还有一些不同之处.</p>
-<p>普通的开方运算中,不动点只有0和1.而这个运算中看似只有0和100,但是<del>打表</del>可以发现,99也是不动点.$f(99)=round(10\sqrt 99) \simeq round(99.4987)=99$.大于100的数会回归100,而小于99的数会回归99.线段树的tag维护子区间的叶子结点是否满足任意一个不动点.</p>
-<p>对于$a_i\leq1e9$的范围,最多10次就可以回归到100的不动点,总复杂度$O(mlogn)$.不过需要注意最好直接在叶子结点做k次运算,不然二分下放次数过多可能会被卡常.</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">mdf</span><span class="params">(<span class="type">int</span> p,<span class="type">int</span> l,<span class="type">int</span> r,<span class="type">int</span> ql,<span class="type">int</span> qr)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(sg[p]) <span class="keyword">return</span> ;</span><br><span class="line">    <span class="keyword">if</span>(l==r)&#123;</span><br><span class="line">        sum-=ar[l];</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=k;++i)&#123;</span><br><span class="line">            ar[l]=<span class="built_in">round</span>(<span class="number">10.0</span>*<span class="built_in">sqrt</span>(ar[l]*<span class="number">1.0</span>));</span><br><span class="line">            <span class="keyword">if</span>(ar[l]==<span class="number">100</span>||ar[l]==<span class="number">0</span>||ar[l]==<span class="number">99</span>)<span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(ar[l]==<span class="number">100</span>||ar[l]==<span class="number">0</span>||ar[l]==<span class="number">99</span>)sg[p]=<span class="number">1</span>;</span><br><span class="line">        sum+=ar[l];</span><br><span class="line">        <span class="keyword">return</span> ;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(ql&lt;=mid) <span class="built_in">mdf</span>(ls,l,mid,ql,qr);</span><br><span class="line">    <span class="keyword">if</span>(qr&gt;mid) <span class="built_in">mdf</span>(rs,mid+<span class="number">1</span>,r,ql,qr);</span><br><span class="line">    sg[p]=(sg[ls]&amp;sg[rs]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
+    <title>fhqtreap</title>
+    <url>/fhqtreap/</url>
+    <content><![CDATA[<h1 id="fhqtreap"><a href="#fhqtreap" class="headerlink" title="fhqtreap"></a>fhqtreap</h1><p>这个神仙级nb的数据结构得名于神仙范皓强,既有treap的易写易懂,也有splay般易于区间处理的能力.<br><span id="more"></span><br><br></p>
+<h2 id="列队"><a href="#列队" class="headerlink" title="列队"></a>列队</h2><p><a href="https://www.luogu.com.cn/problem/P3960">https://www.luogu.com.cn/problem/P3960</a><br>题意:一个nm的矩阵,每次取出一个指定位置的数,求出这个数的编号,并把矩阵里的数先向左补齐再想上补齐,最后把取出的数塞到右下角.其中$n,m,q\in(1,3e5)$<br>考虑每次更改的部分,只有当前的行和最后一列会有更改.于是对每一行和最后一列建立平衡树维护矩阵.但是这样做的空间复杂度是$O(nm)$,无法承受.<br>由于大部分数都不会被更改,每个点都去维护的话实际上浪费了大量空间.那么就考虑去合并这些不会被更改的点,更好的做法就是直接维护区间,有分裂的需求时再动态开点.一开始对每行插入$(1,m-1)$的区间,对末尾列直接插入每一个数.在split时开新点分割区间.<br>此处的treap按排名分裂.需要注意fhqtreap的合并顺序,以及新开的点与原树的相对位置.这个细节废了我一个下午.</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">mer</span><span class="params">(<span class="type">int</span> x,<span class="type">int</span> y)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!x||!y) <span class="keyword">return</span> x+y;</span><br><span class="line">    <span class="keyword">if</span>(rd[x]&gt;=rd[y])<span class="keyword">return</span> <span class="built_in">rs</span>(x)=<span class="built_in">mer</span>(<span class="built_in">rs</span>(x),y),<span class="built_in">upd</span>(x),x;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> <span class="built_in">ls</span>(y)=<span class="built_in">mer</span>(x,<span class="built_in">ls</span>(y)),<span class="built_in">upd</span>(y),y; </span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">splp</span><span class="params">(<span class="type">int</span> p,ll k)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(k&gt;=<span class="built_in">len</span>(p)) <span class="keyword">return</span> ;</span><br><span class="line">    <span class="type">int</span> x=<span class="built_in">alc</span>(L[p]+k,R[p]);</span><br><span class="line">    R[p]=L[x]<span class="number">-1</span>,<span class="built_in">rs</span>(p)=<span class="built_in">mer</span>(x,<span class="built_in">rs</span>(p)),<span class="built_in">upd</span>(p);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">spl</span><span class="params">(<span class="type">int</span> p,<span class="type">int</span> &amp;x,<span class="type">int</span> &amp;y,ll v)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!p) <span class="keyword">return</span> x=y=<span class="number">0</span>,<span class="built_in">void</span>();</span><br><span class="line">    <span class="keyword">if</span>(sz[<span class="built_in">ls</span>(p)]&gt;=v) y=p,<span class="built_in">spl</span>(<span class="built_in">ls</span>(p),x,<span class="built_in">ls</span>(p),v);</span><br><span class="line">    <span class="keyword">else</span> <span class="built_in">splp</span>(p,v-sz[<span class="built_in">ls</span>(p)]),x=p,<span class="built_in">spl</span>(<span class="built_in">rs</span>(p),<span class="built_in">rs</span>(p),y,v-sz[<span class="built_in">ls</span>(p)]-<span class="built_in">len</span>(p));</span><br><span class="line">    <span class="built_in">upd</span>(p);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>ACM</category>
         <category>算法</category>
         <category>数据结构</category>
       </categories>
       <tags>
-        <tag>线段树</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>单调数据结构小结</title>
-    <url>/2022/09/16/%E5%8D%95%E8%B0%83/</url>
-    <content><![CDATA[<p>复建的第一步!虽然仅仅水了一些单调栈和单调队列的题</p>
-<span id="more"></span>
-<h5 id="abc262-F"><a href="#abc262-F" class="headerlink" title="abc262 F"></a>abc262 F</h5><p><a href="https://atcoder.jp/contests/abc262/tasks/abc262_f">https://atcoder.jp/contests/abc262/tasks/abc262_f</a><br>根据字典序,找出k能到达的范围内最小值lead.如果选择转动操作,需要转动的点仅在lead后方.这样仅用分两种情况讨论,直接删和转后再删.对于直接删的情况,维护一个单调栈,每次更新时执行删除操作.<br><!-- more --></p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="built_in">For</span>(i,<span class="number">1</span>,n)&#123;</span><br><span class="line">        <span class="keyword">while</span>(p&amp;&amp;ar[i]&lt;ar[sta1[p]]&amp;&amp;r)--r,--p;</span><br><span class="line">        ++p,sta1[p]=i;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<p>如果旋转,旋转后的点删除不需要花费<br><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">while</span>(p&amp;&amp;ar[i]&lt;ar[sta2[p]]&amp;&amp;(r&gt;=(sta2[p]&lt;ld)))</span><br><span class="line">    r-=(sta2[p]&lt;ld),--p;</span><br><span class="line">++p,sta2[p]=i;</span><br></pre></td></tr></table></figure><br>最后比较两个答案的大小即可<br><br><br></p>
-<h5 id="某大佬原创题"><a href="#某大佬原创题" class="headerlink" title="某大佬原创题"></a>某大佬原创题</h5><p>长度为n的数组 q个询问 每次询问给出一个长度L，最大化长度为L的连续子序列的最小值,$n,q\leq5e6,a_i\leq1e9$<br><br><br>对于每个点,可以记录成为min值的区间左右端点并更新答案,同时短区间的答案可由长区间继承.<br>关于这个做法的正确性,就是考虑是否每个点都对每个区间的答案进行过更新.对于长度大于$len=r-l+1$的区间,即使更新也不会使答案更优,没有必要考虑.对于长度短于$len$的区间,直接从比较过后的长区间继承,可以保证所有短区间都被更新到.<br>这样答案满足完全覆盖,不存在漏解的情况</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="built_in">For</span>(i,<span class="number">1</span>,n) ans[r[i]-l[i]+<span class="number">1</span>]=<span class="built_in">max</span>(ans[r[i]-l[i]+<span class="number">1</span>],h[i]);</span><br><span class="line"><span class="built_in">iFor</span>(i,n<span class="number">-1</span>,<span class="number">1</span>) ans[i]=<span class="built_in">max</span>(ans[i],ans[i+<span class="number">1</span>]);</span><br></pre></td></tr></table></figure>
-<p><br><br></p>
-<h5 id="luoguP1250"><a href="#luoguP1250" class="headerlink" title="luoguP1250"></a>luoguP1250</h5><p><a href="https://www.luogu.com.cn/problem/P1950">https://www.luogu.com.cn/problem/P1950</a></p>
-<p>首先可以发现若将每一行分别作为常规单调栈矩形计数的问题,并不会影响上下层的结果,并且可以直接继承高度信息.于是就转化为做n次单调栈.<br>值得注意的是对于相连的等高项的处理,如果l[i],r[i]均只记录第一个更低位置,那么对于等高的i,i+1,这个区间内的矩形会重复计数.所以需要一个严格单调一个不严格来保证不重<br><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">while</span>(tp2&amp;&amp;h[st2[tp2]]&gt;=h[j])&#123;</span><br><span class="line">                l[st2[tp2]]=j+<span class="number">1</span>,--tp2;</span><br><span class="line">            &#125;</span><br><span class="line"><span class="keyword">while</span>(tp1&amp;&amp;h[st1[tp1]]&gt;h[j])&#123;</span><br><span class="line">                r[st1[tp1]]=j<span class="number">-1</span>,--tp1;</span><br><span class="line">            &#125;</span><br></pre></td></tr></table></figure></p>
-<p><br><br></p>
-<h5 id="HNOI2008水平可见直线"><a href="#HNOI2008水平可见直线" class="headerlink" title="HNOI2008水平可见直线"></a>HNOI2008水平可见直线</h5><p><a href="https://vijos.org/d/newbzoj/p/590c9879d3d8a13210993730">https://vijos.org/d/newbzoj/p/590c9879d3d8a13210993730</a><br>这题的本质就是半平面交.先按照斜率对全部直线排序,再依次塞入单调栈.被遮挡可以分为两种情况:1.k相同.那么b更大者一定更优;2.当前直线比栈顶直线位置更优,计算交点位置判断即可.<br><br><br></p>
-<h5 id="luoguP2216"><a href="#luoguP2216" class="headerlink" title="luoguP2216"></a>luoguP2216</h5><p><a href="https://www.luogu.com.cn/problem/P2216">https://www.luogu.com.cn/problem/P2216</a></p>
-<p>这题很显然是一个二维的滑动窗口.用n个单调队列维护每一行合法值,再将每一行最值塞进一个维护列的单调队列,每次移动后重置.每个点只会被扫描一次,复杂度$O(n^2)$<br><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">xq.<span class="built_in">reset</span>(),nq.<span class="built_in">reset</span>();</span><br><span class="line"><span class="built_in">For</span>(i,<span class="number">1</span>,a) mxq[i].<span class="built_in">pb</span>(ar[i][rt],rt),mnq[i].<span class="built_in">pb</span>(ar[i][rt],rt);</span><br><span class="line"><span class="built_in">For</span>(i,<span class="number">1</span>,n<span class="number">-1</span>) xq.<span class="built_in">pb</span>(mxq[i].<span class="built_in">vl</span>(),i),nq.<span class="built_in">pb</span>(mnq[i].<span class="built_in">vl</span>(),i);</span><br><span class="line"><span class="built_in">For</span>(i,n,a)&#123;</span><br><span class="line">    xq.<span class="built_in">pb</span>(mxq[i].<span class="built_in">vl</span>(),i),nq.<span class="built_in">pb</span>(mnq[i].<span class="built_in">vl</span>(),i);</span><br><span class="line">    ans=<span class="built_in">min</span>(ans,xq.<span class="built_in">vl</span>()-nq.<span class="built_in">vl</span>());</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure><br><br></p>
-]]></content>
-      <categories>
-        <category>ACM</category>
-        <category>算法</category>
-        <category>数据结构</category>
-      </categories>
-      <tags>
-        <tag>单调性</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>扫描线</title>
-    <url>/2023/01/17/%E6%89%AB%E6%8F%8F%E7%BA%BF/</url>
-    <content><![CDATA[<h1 id="扫描线"><a href="#扫描线" class="headerlink" title="扫描线"></a>扫描线</h1><span id="more"></span>
-<h2 id="What-a-Colorful-Wall"><a href="#What-a-Colorful-Wall" class="headerlink" title="What a Colorful Wall"></a>What a Colorful Wall</h2><p><a href="https://codeforces.com/gym/103443/problem/F">https://codeforces.com/gym/103443/problem/F</a></p>
-<p>题意:n个有颜色的矩形按顺序放在平面上,被覆盖的部分颜色不可见,求最后可见的颜色数</p>
-<p>矩形覆盖的问题很自然想到扫描线,先把矩形离散,按x坐标排序,并拆分为加入线段和删除线段两部分.线段树维护y轴,每个时刻先增删线段,每个节点挂一个可删堆维护当前区间内时间最大矩形的颜色,最后dfs全树,查询当前时刻能看到颜色种类.每次查询复杂度$O(nlogn)$,总共有n次询问,总复杂度$O(n^2logn)$,可以勉强卡过.<br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//黑科技可删堆</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">HEAP</span>&#123;</span><br><span class="line">    priority_queue &lt;pii&gt; p,q;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">add</span><span class="params">(pii x)</span></span>&#123;p.<span class="built_in">push</span>(x);&#125;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">del</span><span class="params">(pii x)</span></span>&#123;q.<span class="built_in">push</span>(x);&#125;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">mt</span><span class="params">()</span></span>&#123;<span class="keyword">while</span>(p.<span class="built_in">size</span>()&amp;&amp;q.<span class="built_in">size</span>()&amp;&amp;q.<span class="built_in">top</span>()==p.<span class="built_in">top</span>())p.<span class="built_in">pop</span>(),q.<span class="built_in">pop</span>();&#125;</span><br><span class="line">    <span class="function">pii <span class="title">top</span><span class="params">()</span></span>&#123;<span class="built_in">mt</span>();<span class="keyword">return</span> p.<span class="built_in">top</span>();&#125;</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">empty</span><span class="params">()</span></span>&#123;<span class="built_in">mt</span>();<span class="keyword">return</span> p.<span class="built_in">empty</span>();&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//此处和通常的线段树稍有不同,由于维护的实际上是矩形的边,表示颜色块需要边界-1</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">add</span><span class="params">(<span class="type">int</span> p,<span class="type">int</span> l,<span class="type">int</span> r)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(ql&lt;=l&amp;&amp;r&lt;=qr) &#123;ar[p].<span class="built_in">add</span>(qii);<span class="keyword">return</span> ;&#125;</span><br><span class="line">    <span class="keyword">if</span>(ql&lt;mid) <span class="built_in">add</span>(ls,l,mid);</span><br><span class="line">    <span class="keyword">if</span>(mid&lt;qr) <span class="built_in">add</span>(rs,mid,r);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">del</span><span class="params">(<span class="type">int</span> p,<span class="type">int</span> l,<span class="type">int</span> r)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(ql&lt;=l&amp;&amp;r&lt;=qr) &#123;ar[p].<span class="built_in">del</span>(qii);<span class="keyword">return</span> ;&#125;</span><br><span class="line">    <span class="keyword">if</span>(ql&lt;mid) <span class="built_in">del</span>(ls,l,mid);</span><br><span class="line">    <span class="keyword">if</span>(mid&lt;qr) <span class="built_in">del</span>(rs,mid,r);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">dfs</span><span class="params">(<span class="type">int</span> p,<span class="type">int</span> l,<span class="type">int</span> r,pii pi)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!ar[p].<span class="built_in">empty</span>()) pi=<span class="built_in">max</span>(pi,ar[p].<span class="built_in">top</span>());</span><br><span class="line">    <span class="keyword">if</span>(r-l==<span class="number">1</span>)&#123;ans[pi.second]=<span class="number">1</span>;<span class="keyword">return</span> ;&#125;</span><br><span class="line">    <span class="built_in">dfs</span>(ls,l,mid,pi),<span class="built_in">dfs</span>(rs,mid,r,pi);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    po=<span class="built_in">pii</span>(<span class="number">0</span>,<span class="number">0</span>);</span><br><span class="line">    <span class="built_in">For</span>(i,<span class="number">1</span>,ttx)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> x:vad[i]) qii=<span class="built_in">pii</span>(x.id,ocl[x.id]),ql=x.l,qr=x.r,<span class="built_in">add</span>(<span class="number">1</span>,<span class="number">1</span>,tty);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> x:vde[i]) qii=<span class="built_in">pii</span>(x.id,ocl[x.id]),ql=x.l,qr=x.r,<span class="built_in">del</span>(<span class="number">1</span>,<span class="number">1</span>,tty);</span><br><span class="line">        <span class="built_in">dfs</span>(<span class="number">1</span>,<span class="number">1</span>,tty,po);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">int</span> cnt=<span class="number">0</span>;<span class="built_in">For</span>(i,<span class="number">1</span>,n)cnt+=ans[i];</span><br><span class="line">    cout&lt;&lt;cnt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>一个更好的做法就是在每个时刻维护每种颜色可见的总长度,直接在增删线段时更新,不需要再dfs,复杂度$O(nlogn)$.</p>
-<p>需要注意的是,如果直接用二维线段树或外层暴力内层线段树,虽然理论复杂度是$O(n^2logn)$的,但是常数巨大,无法通过(存疑).</p>
-]]></content>
-      <categories>
-        <category>ACM</category>
-        <category>算法</category>
-        <category>数据结构</category>
-      </categories>
-      <tags>
-        <tag>线段树</tag>
+        <tag>平衡树</tag>
       </tags>
   </entry>
   <entry>
     <title>圆方树</title>
-    <url>/2023/09/06/%E5%9C%86%E6%96%B9%E6%A0%91/</url>
+    <url>/%E5%9C%86%E6%96%B9%E6%A0%91/</url>
     <content><![CDATA[<p>圆方树</p>
 <p><br></p>
 <span id="more"></span>
@@ -423,8 +363,88 @@ x>=\lfloor(B-1)/k\rfloor-A+1</script><p>这样,我们可以枚举k来计算答�
       </tags>
   </entry>
   <entry>
+    <title>区间中的不动点</title>
+    <url>/%E5%8C%BA%E9%97%B4%E4%B8%AD%E7%9A%84%E4%B8%8D%E5%8A%A8%E7%82%B9/</url>
+    <content><![CDATA[<h1 id="区间中的不动点"><a href="#区间中的不动点" class="headerlink" title="区间中的不动点"></a>区间中的不动点</h1><p><br></p>
+<span id="more"></span>
+<p><br></p>
+<h2 id="花神游历各国"><a href="#花神游历各国" class="headerlink" title="花神游历各国"></a>花神游历各国</h2><p>题目链接:<a href="https://www.luogu.com.cn/problem/P4145">https://www.luogu.com.cn/problem/P4145</a></p>
+<p>题意:给定一个序列,每次操作将一段指定的区间中每一个数开方后取整,或者求一段区间的和.数据范围$n,m \leq 1e5 \quad a_i\leq1e12$.</p>
+<p>解析:很明显不能直接暴力,应该考虑区间数据结构来维护.而开方不能合并计算,打tag延迟计算的方式并不适用.</p>
+<p>观察开方运算,发现即使最大的数,$1e12$,在6次开方计算后也会变成1,且值为1的数在开方运算中不再改变.其实本质上就是这个开方后取整运算构成的群都会回归到1这个不动点.如果一段连续的区间都为1,那么这个区间在后续的操作中都不再改变.</p>
+<p>可以利用这个性质,维护区间是否全部都是不动点,如果已经都是了就不用再下放修改了.每个点最多修改6次,最后总复杂度仍然是$O(mlogn)$.</p>
+<p><br></p>
+<h2 id="The-Child-and-Sequence"><a href="#The-Child-and-Sequence" class="headerlink" title="The Child and Sequence"></a>The Child and Sequence</h2><p>题目链接:<a href="https://codeforces.com/problemset/problem/438/D">https://codeforces.com/problemset/problem/438/D</a></p>
+<p>题意:给定一个序列,每次操作将一段指定的区间对给定的模数取模,或者求一段区间的和.数据范围$n,m \leq 1e5 \quad a_i\leq1e9$.</p>
+<p>解析:很明显,取模运算也没有区间可并性,只能从运算本身的特点入手.</p>
+<p>一个数在取模后,得到的结果一定小于他的二分之一.证明涉及数论.不过可以感性理解一下,如果模数小于二分之一,得到的结果一定小于模数；如果模数大于二分之一,那么结果等于原数减模数,仍然小于二分之一.</p>
+<p>每次以二分之一的程度减少,有效操作的次数就是$logx$.对于这个$a_i\leq1e9$的范围足够了.</p>
+<p>那么我们可以维护区间最大值,如果模数大于最大值,没有必要操作,直接return,否则下放计算后重新统计最大值.总复杂度$O(mlognloga_i)$</p>
+<p><br></p>
+<h2 id="鸡格线"><a href="#鸡格线" class="headerlink" title="鸡格线"></a>鸡格线</h2><p>题目链接:<a href="https://ac.nowcoder.com/acm/contest/46800/G">https://ac.nowcoder.com/acm/contest/46800/G</a></p>
+<p>题意:给定一个序列,每次操作将一段指定的区间中的每个数做$f(x)=round(10\sqrt x)$的变换k次,其中round为四舍五入函数,或者所有数的和.数据范围$n,m \leq 1e5 \quad a_i\leq1e9$.</p>
+<p>解析:这个及格线算法看起来就是一个升级版的开方,不过还有一些不同之处.</p>
+<p>普通的开方运算中,不动点只有0和1.而这个运算中看似只有0和100,但是<del>打表</del>可以发现,99也是不动点.$f(99)=round(10\sqrt 99) \simeq round(99.4987)=99$.大于100的数会回归100,而小于99的数会回归99.线段树的tag维护子区间的叶子结点是否满足任意一个不动点.</p>
+<p>对于$a_i\leq1e9$的范围,最多10次就可以回归到100的不动点,总复杂度$O(mlogn)$.不过需要注意最好直接在叶子结点做k次运算,不然二分下放次数过多可能会被卡常.</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">mdf</span><span class="params">(<span class="type">int</span> p,<span class="type">int</span> l,<span class="type">int</span> r,<span class="type">int</span> ql,<span class="type">int</span> qr)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(sg[p]) <span class="keyword">return</span> ;</span><br><span class="line">    <span class="keyword">if</span>(l==r)&#123;</span><br><span class="line">        sum-=ar[l];</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=k;++i)&#123;</span><br><span class="line">            ar[l]=<span class="built_in">round</span>(<span class="number">10.0</span>*<span class="built_in">sqrt</span>(ar[l]*<span class="number">1.0</span>));</span><br><span class="line">            <span class="keyword">if</span>(ar[l]==<span class="number">100</span>||ar[l]==<span class="number">0</span>||ar[l]==<span class="number">99</span>)<span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(ar[l]==<span class="number">100</span>||ar[l]==<span class="number">0</span>||ar[l]==<span class="number">99</span>)sg[p]=<span class="number">1</span>;</span><br><span class="line">        sum+=ar[l];</span><br><span class="line">        <span class="keyword">return</span> ;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(ql&lt;=mid) <span class="built_in">mdf</span>(ls,l,mid,ql,qr);</span><br><span class="line">    <span class="keyword">if</span>(qr&gt;mid) <span class="built_in">mdf</span>(rs,mid+<span class="number">1</span>,r,ql,qr);</span><br><span class="line">    sg[p]=(sg[ls]&amp;sg[rs]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>ACM</category>
+        <category>算法</category>
+        <category>数据结构</category>
+      </categories>
+      <tags>
+        <tag>线段树</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>单调数据结构小结</title>
+    <url>/%E5%8D%95%E8%B0%83/</url>
+    <content><![CDATA[<p>复建的第一步!虽然仅仅水了一些单调栈和单调队列的题</p>
+<span id="more"></span>
+<h5 id="abc262-F"><a href="#abc262-F" class="headerlink" title="abc262 F"></a>abc262 F</h5><p><a href="https://atcoder.jp/contests/abc262/tasks/abc262_f">https://atcoder.jp/contests/abc262/tasks/abc262_f</a><br>根据字典序,找出k能到达的范围内最小值lead.如果选择转动操作,需要转动的点仅在lead后方.这样仅用分两种情况讨论,直接删和转后再删.对于直接删的情况,维护一个单调栈,每次更新时执行删除操作.<br><!-- more --></p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="built_in">For</span>(i,<span class="number">1</span>,n)&#123;</span><br><span class="line">        <span class="keyword">while</span>(p&amp;&amp;ar[i]&lt;ar[sta1[p]]&amp;&amp;r)--r,--p;</span><br><span class="line">        ++p,sta1[p]=i;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>如果旋转,旋转后的点删除不需要花费<br><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">while</span>(p&amp;&amp;ar[i]&lt;ar[sta2[p]]&amp;&amp;(r&gt;=(sta2[p]&lt;ld)))</span><br><span class="line">    r-=(sta2[p]&lt;ld),--p;</span><br><span class="line">++p,sta2[p]=i;</span><br></pre></td></tr></table></figure><br>最后比较两个答案的大小即可<br><br><br></p>
+<h5 id="某大佬原创题"><a href="#某大佬原创题" class="headerlink" title="某大佬原创题"></a>某大佬原创题</h5><p>长度为n的数组 q个询问 每次询问给出一个长度L，最大化长度为L的连续子序列的最小值,$n,q\leq5e6,a_i\leq1e9$<br><br><br>对于每个点,可以记录成为min值的区间左右端点并更新答案,同时短区间的答案可由长区间继承.<br>关于这个做法的正确性,就是考虑是否每个点都对每个区间的答案进行过更新.对于长度大于$len=r-l+1$的区间,即使更新也不会使答案更优,没有必要考虑.对于长度短于$len$的区间,直接从比较过后的长区间继承,可以保证所有短区间都被更新到.<br>这样答案满足完全覆盖,不存在漏解的情况</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="built_in">For</span>(i,<span class="number">1</span>,n) ans[r[i]-l[i]+<span class="number">1</span>]=<span class="built_in">max</span>(ans[r[i]-l[i]+<span class="number">1</span>],h[i]);</span><br><span class="line"><span class="built_in">iFor</span>(i,n<span class="number">-1</span>,<span class="number">1</span>) ans[i]=<span class="built_in">max</span>(ans[i],ans[i+<span class="number">1</span>]);</span><br></pre></td></tr></table></figure>
+<p><br><br></p>
+<h5 id="luoguP1250"><a href="#luoguP1250" class="headerlink" title="luoguP1250"></a>luoguP1250</h5><p><a href="https://www.luogu.com.cn/problem/P1950">https://www.luogu.com.cn/problem/P1950</a></p>
+<p>首先可以发现若将每一行分别作为常规单调栈矩形计数的问题,并不会影响上下层的结果,并且可以直接继承高度信息.于是就转化为做n次单调栈.<br>值得注意的是对于相连的等高项的处理,如果l[i],r[i]均只记录第一个更低位置,那么对于等高的i,i+1,这个区间内的矩形会重复计数.所以需要一个严格单调一个不严格来保证不重<br><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">while</span>(tp2&amp;&amp;h[st2[tp2]]&gt;=h[j])&#123;</span><br><span class="line">                l[st2[tp2]]=j+<span class="number">1</span>,--tp2;</span><br><span class="line">            &#125;</span><br><span class="line"><span class="keyword">while</span>(tp1&amp;&amp;h[st1[tp1]]&gt;h[j])&#123;</span><br><span class="line">                r[st1[tp1]]=j<span class="number">-1</span>,--tp1;</span><br><span class="line">            &#125;</span><br></pre></td></tr></table></figure></p>
+<p><br><br></p>
+<h5 id="HNOI2008水平可见直线"><a href="#HNOI2008水平可见直线" class="headerlink" title="HNOI2008水平可见直线"></a>HNOI2008水平可见直线</h5><p><a href="https://vijos.org/d/newbzoj/p/590c9879d3d8a13210993730">https://vijos.org/d/newbzoj/p/590c9879d3d8a13210993730</a><br>这题的本质就是半平面交.先按照斜率对全部直线排序,再依次塞入单调栈.被遮挡可以分为两种情况:1.k相同.那么b更大者一定更优;2.当前直线比栈顶直线位置更优,计算交点位置判断即可.<br><br><br></p>
+<h5 id="luoguP2216"><a href="#luoguP2216" class="headerlink" title="luoguP2216"></a>luoguP2216</h5><p><a href="https://www.luogu.com.cn/problem/P2216">https://www.luogu.com.cn/problem/P2216</a></p>
+<p>这题很显然是一个二维的滑动窗口.用n个单调队列维护每一行合法值,再将每一行最值塞进一个维护列的单调队列,每次移动后重置.每个点只会被扫描一次,复杂度$O(n^2)$<br><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">xq.<span class="built_in">reset</span>(),nq.<span class="built_in">reset</span>();</span><br><span class="line"><span class="built_in">For</span>(i,<span class="number">1</span>,a) mxq[i].<span class="built_in">pb</span>(ar[i][rt],rt),mnq[i].<span class="built_in">pb</span>(ar[i][rt],rt);</span><br><span class="line"><span class="built_in">For</span>(i,<span class="number">1</span>,n<span class="number">-1</span>) xq.<span class="built_in">pb</span>(mxq[i].<span class="built_in">vl</span>(),i),nq.<span class="built_in">pb</span>(mnq[i].<span class="built_in">vl</span>(),i);</span><br><span class="line"><span class="built_in">For</span>(i,n,a)&#123;</span><br><span class="line">    xq.<span class="built_in">pb</span>(mxq[i].<span class="built_in">vl</span>(),i),nq.<span class="built_in">pb</span>(mnq[i].<span class="built_in">vl</span>(),i);</span><br><span class="line">    ans=<span class="built_in">min</span>(ans,xq.<span class="built_in">vl</span>()-nq.<span class="built_in">vl</span>());</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure><br><br></p>
+]]></content>
+      <categories>
+        <category>ACM</category>
+        <category>算法</category>
+        <category>数据结构</category>
+      </categories>
+      <tags>
+        <tag>单调性</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>扫描线</title>
+    <url>/%E6%89%AB%E6%8F%8F%E7%BA%BF/</url>
+    <content><![CDATA[<h1 id="扫描线"><a href="#扫描线" class="headerlink" title="扫描线"></a>扫描线</h1><span id="more"></span>
+<h2 id="What-a-Colorful-Wall"><a href="#What-a-Colorful-Wall" class="headerlink" title="What a Colorful Wall"></a>What a Colorful Wall</h2><p><a href="https://codeforces.com/gym/103443/problem/F">https://codeforces.com/gym/103443/problem/F</a></p>
+<p>题意:n个有颜色的矩形按顺序放在平面上,被覆盖的部分颜色不可见,求最后可见的颜色数</p>
+<p>矩形覆盖的问题很自然想到扫描线,先把矩形离散,按x坐标排序,并拆分为加入线段和删除线段两部分.线段树维护y轴,每个时刻先增删线段,每个节点挂一个可删堆维护当前区间内时间最大矩形的颜色,最后dfs全树,查询当前时刻能看到颜色种类.每次查询复杂度$O(nlogn)$,总共有n次询问,总复杂度$O(n^2logn)$,可以勉强卡过.<br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//黑科技可删堆</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">HEAP</span>&#123;</span><br><span class="line">    priority_queue &lt;pii&gt; p,q;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">add</span><span class="params">(pii x)</span></span>&#123;p.<span class="built_in">push</span>(x);&#125;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">del</span><span class="params">(pii x)</span></span>&#123;q.<span class="built_in">push</span>(x);&#125;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">mt</span><span class="params">()</span></span>&#123;<span class="keyword">while</span>(p.<span class="built_in">size</span>()&amp;&amp;q.<span class="built_in">size</span>()&amp;&amp;q.<span class="built_in">top</span>()==p.<span class="built_in">top</span>())p.<span class="built_in">pop</span>(),q.<span class="built_in">pop</span>();&#125;</span><br><span class="line">    <span class="function">pii <span class="title">top</span><span class="params">()</span></span>&#123;<span class="built_in">mt</span>();<span class="keyword">return</span> p.<span class="built_in">top</span>();&#125;</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">empty</span><span class="params">()</span></span>&#123;<span class="built_in">mt</span>();<span class="keyword">return</span> p.<span class="built_in">empty</span>();&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//此处和通常的线段树稍有不同,由于维护的实际上是矩形的边,表示颜色块需要边界-1</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">add</span><span class="params">(<span class="type">int</span> p,<span class="type">int</span> l,<span class="type">int</span> r)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(ql&lt;=l&amp;&amp;r&lt;=qr) &#123;ar[p].<span class="built_in">add</span>(qii);<span class="keyword">return</span> ;&#125;</span><br><span class="line">    <span class="keyword">if</span>(ql&lt;mid) <span class="built_in">add</span>(ls,l,mid);</span><br><span class="line">    <span class="keyword">if</span>(mid&lt;qr) <span class="built_in">add</span>(rs,mid,r);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">del</span><span class="params">(<span class="type">int</span> p,<span class="type">int</span> l,<span class="type">int</span> r)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(ql&lt;=l&amp;&amp;r&lt;=qr) &#123;ar[p].<span class="built_in">del</span>(qii);<span class="keyword">return</span> ;&#125;</span><br><span class="line">    <span class="keyword">if</span>(ql&lt;mid) <span class="built_in">del</span>(ls,l,mid);</span><br><span class="line">    <span class="keyword">if</span>(mid&lt;qr) <span class="built_in">del</span>(rs,mid,r);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">dfs</span><span class="params">(<span class="type">int</span> p,<span class="type">int</span> l,<span class="type">int</span> r,pii pi)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!ar[p].<span class="built_in">empty</span>()) pi=<span class="built_in">max</span>(pi,ar[p].<span class="built_in">top</span>());</span><br><span class="line">    <span class="keyword">if</span>(r-l==<span class="number">1</span>)&#123;ans[pi.second]=<span class="number">1</span>;<span class="keyword">return</span> ;&#125;</span><br><span class="line">    <span class="built_in">dfs</span>(ls,l,mid,pi),<span class="built_in">dfs</span>(rs,mid,r,pi);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    po=<span class="built_in">pii</span>(<span class="number">0</span>,<span class="number">0</span>);</span><br><span class="line">    <span class="built_in">For</span>(i,<span class="number">1</span>,ttx)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> x:vad[i]) qii=<span class="built_in">pii</span>(x.id,ocl[x.id]),ql=x.l,qr=x.r,<span class="built_in">add</span>(<span class="number">1</span>,<span class="number">1</span>,tty);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> x:vde[i]) qii=<span class="built_in">pii</span>(x.id,ocl[x.id]),ql=x.l,qr=x.r,<span class="built_in">del</span>(<span class="number">1</span>,<span class="number">1</span>,tty);</span><br><span class="line">        <span class="built_in">dfs</span>(<span class="number">1</span>,<span class="number">1</span>,tty,po);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">int</span> cnt=<span class="number">0</span>;<span class="built_in">For</span>(i,<span class="number">1</span>,n)cnt+=ans[i];</span><br><span class="line">    cout&lt;&lt;cnt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>一个更好的做法就是在每个时刻维护每种颜色可见的总长度,直接在增删线段时更新,不需要再dfs,复杂度$O(nlogn)$.</p>
+<p>需要注意的是,如果直接用二维线段树或外层暴力内层线段树,虽然理论复杂度是$O(n^2logn)$的,但是常数巨大,无法通过(存疑).</p>
+]]></content>
+      <categories>
+        <category>ACM</category>
+        <category>算法</category>
+        <category>数据结构</category>
+      </categories>
+      <tags>
+        <tag>线段树</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>数学归纳悖论</title>
-    <url>/2022/09/28/%E6%95%B0%E5%AD%A6%E5%BD%92%E7%BA%B3%E6%82%96%E8%AE%BA/</url>
+    <url>/%E6%95%B0%E5%AD%A6%E5%BD%92%E7%BA%B3%E6%82%96%E8%AE%BA/</url>
     <content><![CDATA[<h1 id="数学归纳悖论"><a href="#数学归纳悖论" class="headerlink" title="数学归纳悖论"></a>数学归纳悖论</h1><span id="more"></span>
 <p><br></p>
 <h3 id="蓝眼睛问题"><a href="#蓝眼睛问题" class="headerlink" title="蓝眼睛问题"></a>蓝眼睛问题</h3><p>在一个岛上,有n个蓝眼睛的人,m个黄眼睛的人.一日一名游客前来游玩,聊天的时候说:你们中有人和我一样有蓝眼睛.知道自己有蓝眼睛的人会沮丧地紫砂.那么这个岛上的人多长时间后可以知道自己眼睛的颜色呢?</p>
@@ -449,7 +469,7 @@ x>=\lfloor(B-1)/k\rfloor-A+1</script><p>这样,我们可以枚举k来计算答�
   </entry>
   <entry>
     <title>最大流练习</title>
-    <url>/2022/10/07/%E6%9C%80%E5%A4%A7%E6%B5%81/</url>
+    <url>/%E6%9C%80%E5%A4%A7%E6%B5%81/</url>
     <content><![CDATA[<h1 id="最大流"><a href="#最大流" class="headerlink" title="最大流"></a>最大流</h1><span id="more"></span>
 <h2 id="飞行员配对问题"><a href="#飞行员配对问题" class="headerlink" title="飞行员配对问题"></a>飞行员配对问题</h2><p><a href="https://www.luogu.com.cn/problem/P2756">https://www.luogu.com.cn/problem/P2756</a><br>网络流24题里的入门一题.<br>两种人之内没有交集,整个图可以看作二分图,跑匈牙利算法<br>也可以根据每个外籍飞行员和英国飞行员之间配对关系连边,看作最大流<br>在图中额外加入源点和汇点,分别与两组点连边,最大流的结果就是所求匹配数<br>最后输出方案就直接扫描残量网络,若起于外国并终于英国的边被流过则说明这两个人配对<br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">For</span>(p,<span class="number">1</span>,n1)&#123;</span><br><span class="line">        <span class="built_in">For</span>(i,<span class="number">0</span>,od[p]<span class="number">-1</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(e.f||e.t&lt;=n1) <span class="keyword">continue</span>;</span><br><span class="line">            cout&lt;&lt;p&lt;&lt;<span class="string">&quot; &quot;</span>&lt;&lt;e.t&lt;&lt;<span class="string">&quot;\n&quot;</span>;<span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure><br><br></p>
 <h2 id="试题库问题"><a href="#试题库问题" class="headerlink" title="试题库问题"></a>试题库问题</h2><p><a href="https://www.luogu.com.cn/problem/P2763">https://www.luogu.com.cn/problem/P2763</a><br>每一题仍然只能选取一次,但每张卷子都要求多道题<br>将与源点连边的容量改为题数,判断最大流是否等于总题数<br>输出方案时同上题做法<br><br></p>
@@ -480,7 +500,7 @@ x>=\lfloor(B-1)/k\rfloor-A+1</script><p>这样,我们可以枚举k来计算答�
   </entry>
   <entry>
     <title>最小割练习</title>
-    <url>/2022/10/21/%E6%9C%80%E5%B0%8F%E5%89%B2/</url>
+    <url>/%E6%9C%80%E5%B0%8F%E5%89%B2/</url>
     <content><![CDATA[<h1 id="最小割"><a href="#最小割" class="headerlink" title="最小割"></a>最小割</h1><span id="more"></span>
 <p>有某位神仙说过,一切问题都是网络流.很多涉及到代价,贡献,依赖,互斥的问题都可以转化为最小割来处理.一般不会给出明显的图关系,很多时候需要根据图中信息建立隐式图.推荐两篇论文,hbt的《最小割模型在信息学竞赛中的应用》和pty的《浅析一类最小割问题》,透彻明晰的分析了几个最常用模型.</p>
 <p><br></p>
@@ -545,7 +565,7 @@ e=f=(v3+v4-v1-v2)/2</script><p>然后以每个任务自身的代价连边,最后
   </entry>
   <entry>
     <title>线段树维护修改</title>
-    <url>/2022/09/23/%E7%BA%BF%E6%AE%B5%E6%A0%91%E7%BB%B4%E6%8A%A4%E4%BF%AE%E6%94%B9/</url>
+    <url>/%E7%BA%BF%E6%AE%B5%E6%A0%91%E7%BB%B4%E6%8A%A4%E4%BF%AE%E6%94%B9/</url>
     <content><![CDATA[<h1 id="线段树维护修改"><a href="#线段树维护修改" class="headerlink" title="线段树维护修改"></a>线段树维护修改</h1><span id="more"></span>
 <h2 id="luoguP6327区间sin和"><a href="#luoguP6327区间sin和" class="headerlink" title="luoguP6327区间sin和"></a>luoguP6327区间sin和</h2><p><a href="https://www.luogu.com.cn/problem/P6327">https://www.luogu.com.cn/problem/P6327</a></p>
 <p>题意:每次修改一个点,求区间sin值的和<br>区间sin和的信息不可加,但可以考虑和差化积公式,</p>
@@ -583,45 +603,8 @@ D_3=\frac 1{n_1+n_2}\Sigma(x_i-a_3)^2\\
       </tags>
   </entry>
   <entry>
-    <title>筛法模板</title>
-    <url>/2023/03/07/%E7%AD%9B%E6%B3%95%E6%A8%A1%E6%9D%BF/</url>
-    <content><![CDATA[<p>自用筛法模板</p>
-<p><br></p>
-<span id="more"></span>
-<p>具体的解析懒得再写了，直接把博客园里之前的一篇贴过来了</p>
-<h1 id="欧拉筛"><a href="#欧拉筛" class="headerlink" title="欧拉筛"></a>欧拉筛</h1><h2 id="1-筛质数"><a href="#1-筛质数" class="headerlink" title="1.筛质数"></a>1.筛质数</h2><p>先看看线性筛本体，它的功能是判断质数，以及求最小质因数</p>
-<p>1.记录minfactor,prime</p>
-<p>2.对cur一直用prime数组筛去剩下的合数</p>
-<p>这里判断质数的标准很简单，就是判断一个数的最小质因数是否就是它本身</p>
-<p>由于是求最小质因数，$prime[j]&lt;=minfact[i]$,这样可以证明每个合数仅被它的最小质因数筛到，保证线性复杂度</p>
-<h2 id="2-求-phi-n"><a href="#2-求-phi-n" class="headerlink" title="2.求$\phi(n)$"></a>2.求$\phi(n)$</h2><p>$\phi(p)=p-1$,利用这个性质，可在判断质数的同时筛出它的欧拉函数</p>
-<p>由欧拉函数的积性性得,$\phi(mn)=\phi(m)\phi(n)$</p>
-<p>当$minfact[i]=prime[j]$,即有重复质因子时，$\phi(p^k)=p^{k-1}(p-1)$,乘上p即可</p>
-<p>不然乘上(p-1)</p>
-<h2 id="3-求-mu-n"><a href="#3-求-mu-n" class="headerlink" title="3.求$\mu(n)$"></a>3.求$\mu(n)$</h2><p>$\mu(p)=-1$,利用这个性质，可在判断质数的同时筛出它的莫比乌斯函数</p>
-<p>当$minfact[i]=prime[j]$,即有重复质因子时，$\mu(n)=0$</p>
-<p>不然乘上$\mu(n)=-\mu(i)$</p>
-<h2 id="4-求-d-n"><a href="#4-求-d-n" class="headerlink" title="4.求$d(n)$"></a>4.求$d(n)$</h2><p>比前面的两个函数要麻烦一些，求$d(n)$要记录n中最小质因子数$cnt[n]$</p>
-<p>对于质数,$cnt[n]$很显然等于1</p>
-<p>接着考虑$d(n)$,$n=\Pi^k_{i=1}p_i^{a_i}$,$d(n)=\Pi^k_{i=1}(p_i+1)$</p>
-<p>如果$minfact[i]=prime[j]$,由牛顿二项式定理得，$d(n)=d(i)/(cnt[i]+1)*(cnt(i)+2)$</p>
-<p>不然$d(n)=d(i)*d(prime[j])$</p>
-<h2 id="5-求-sigma-n"><a href="#5-求-sigma-n" class="headerlink" title="5.求$\sigma(n)$"></a>5.求$\sigma(n)$</h2><p>类似于求$d(n)$,不过这次要记录一个数组$sum[i]=\Sigma_{i=0}^kp^i$,p表示n的最小质因数，$sum[i]$表示最小质因数的k次幂下的和</p>
-<p>对于质数，$sum[i]$很显然等于p+1</p>
-<p>接着考虑$\sigma(n)$,$\sigma(n)=\Pi_{i=1}^k\Sigma_{j=0}^{a_i}p^j_i$</p>
-<p>如果$minfact[i]=prime[j]$,在求和式中加入一项$p^{k+1}$,等同于乘$(sum[i]*p+1)/sum[i]$</p>
-<p>不然$\sigma(n)=\sigma(i)*\sigma(prime[j])$</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//mf 最小质因数</span></span><br><span class="line"><span class="comment">//pr 质数 </span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">sieve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">For</span>(i,<span class="number">2</span>,LIM)&#123;</span><br><span class="line">        <span class="keyword">if</span>(!mf[i])mf[i]=pr[++TT]=i;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>,p;j&lt;=TT&amp;&amp;(p=pr[j]*i)&lt;=LIM;++j)&#123;</span><br><span class="line">            mf[p]=pr[j];</span><br><span class="line">            <span class="keyword">if</span>(pr[j]^mf[i]);</span><br><span class="line">            <span class="keyword">else</span> &#123;<span class="keyword">break</span>;&#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//phi 欧拉函数,小于x且与x互质的数的个数</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">sieve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">For</span>(i,<span class="number">2</span>,LIM)&#123;</span><br><span class="line">        <span class="keyword">if</span>(!mf[i])mf[i]=pr[++TT]=i,phi[i]=i<span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>,p;j&lt;=TT&amp;&amp;(p=pr[j]*i)&lt;=LIM;++j)&#123;</span><br><span class="line">            mf[p]=pr[j];</span><br><span class="line">            <span class="keyword">if</span>(pr[j]^mf[i])phi[p]=phi[i]*(pr[j]<span class="number">-1</span>);</span><br><span class="line">            <span class="keyword">else</span> &#123;phi[p]=phi[i]*pr[j];<span class="keyword">break</span>;&#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//mu 莫比乌斯函数</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">sieve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">For</span>(i,<span class="number">2</span>,LIM)&#123;</span><br><span class="line">        <span class="keyword">if</span>(!mf[i])mf[i]=pr[++TT]=i,mu[i]=<span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>,p;j&lt;=TT&amp;&amp;(p=pr[j]*i)&lt;=LIM;++j)&#123;</span><br><span class="line">            mf[p]=pr[j];</span><br><span class="line">            <span class="keyword">if</span>(pr[j]^mf[i])mu[p]=-mu[i];</span><br><span class="line">            <span class="keyword">else</span> &#123;mu[p]=<span class="number">0</span>;<span class="keyword">break</span>;&#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//dn 约数个数</span></span><br><span class="line"><span class="comment">//pn 最小质因子的次数 </span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">sieve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    dn[<span class="number">1</span>]=<span class="number">1</span>;</span><br><span class="line">    <span class="built_in">For</span>(i,<span class="number">2</span>,LIM)&#123;</span><br><span class="line">        <span class="keyword">if</span>(!mf[i])mf[i]=pr[++TT]=i,dn[i]=<span class="number">2</span>,pn[i]=<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>,p;j&lt;=TT&amp;&amp;(p=pr[j]*i)&lt;=LIM;++j)&#123;</span><br><span class="line">            mf[p]=pr[j];</span><br><span class="line">            <span class="keyword">if</span>(pr[j]^mf[i])	dn[p]=dn[i]&lt;&lt;<span class="number">1</span>,pn[p]=<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">else</span>&#123;dn[p]=dn[i]/(pn[i]+<span class="number">1</span>)*(pn[i]+<span class="number">2</span>),pn[p]=pn[i]+<span class="number">1</span>;<span class="keyword">break</span>;&#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//ps 最小质因数的幂次和 </span></span><br><span class="line"><span class="comment">//s 约数和 </span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">sieve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">For</span>(i,<span class="number">2</span>,LIM)&#123;</span><br><span class="line">        <span class="keyword">if</span>(!mf[i])mf[i]=pr[++TT]=i,s[i]=ps[i]=i+<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>,p;j&lt;=TT&amp;&amp;(p=pr[j]*i)&lt;=LIM;++j)&#123;</span><br><span class="line">            mf[p]=pr[j];</span><br><span class="line">            <span class="keyword">if</span>(pr[j]^mf[i])ps[p]=pr[j]+<span class="number">1</span>,s[p]=ps[i]*(pr[j]+<span class="number">1</span>);</span><br><span class="line">            <span class="keyword">else</span> &#123;ps[p]=ps[i]*pr[j]+<span class="number">1</span>,s[p]=s[i]*(ps[i]*p+<span class="number">1</span>)/ps[i];<span class="keyword">break</span>;&#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="杜教筛"><a href="#杜教筛" class="headerlink" title="杜教筛"></a>杜教筛</h1><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//需先筛出phi与mu</span></span><br><span class="line">unordered_map&lt;<span class="type">int</span>,ll&gt; ansmu,ansphi;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">get_mu</span><span class="params">(<span class="type">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(x&lt;=LIM) <span class="keyword">return</span> mu[x];</span><br><span class="line">    <span class="keyword">if</span>(ansmu.<span class="built_in">count</span>(x)) <span class="keyword">return</span> ansmu[x];</span><br><span class="line">    <span class="type">int</span> ans=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> l=<span class="number">2</span>,r;(r&lt;(<span class="number">1</span>&lt;&lt;<span class="number">31</span>)<span class="number">-1</span>)&amp;&amp;l&lt;=x;l=r+<span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        r=x/(x/l);</span><br><span class="line">        ans-=(r-l+<span class="number">1</span>)*<span class="built_in">get_mu</span>(x/l);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ansmu[x]=ans;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">ll <span class="title">get_phi</span><span class="params">(<span class="type">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(x&lt;=LIM) <span class="keyword">return</span> phi[x];</span><br><span class="line">    <span class="keyword">if</span>(ansphi.<span class="built_in">count</span>(x)) <span class="keyword">return</span> ansphi[x];</span><br><span class="line">    ll ans=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> l=<span class="number">2</span>,r;(r&lt;(<span class="number">1</span>&lt;&lt;<span class="number">31</span>)<span class="number">-1</span>)&amp;&amp;l&lt;=x;l=r+<span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        r=x/(x/l);</span><br><span class="line">        ans+=(r-l+<span class="number">1</span>)*<span class="built_in">get_phi</span>(x/l);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ansphi[x]=(ll)x*(x+<span class="number">1ll</span>)/<span class="number">2ll</span>-ans;</span><br><span class="line">&#125;  </span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>ACM</category>
-        <category>算法</category>
-        <category>数学</category>
-      </categories>
-  </entry>
-  <entry>
     <title>线规单纯形</title>
-    <url>/2023/10/24/%E7%BA%BF%E8%A7%84%E5%8D%95%E7%BA%AF%E5%BD%A2/</url>
+    <url>/%E7%BA%BF%E8%A7%84%E5%8D%95%E7%BA%AF%E5%BD%A2/</url>
     <content><![CDATA[<p>trivival风格的一篇线规博客</p>
 <p><br></p>
 <span id="more"></span>
@@ -663,23 +646,40 @@ C=\{ c_{i,j} \}</script><p>如果不等号的方向与标准型不同，或者�
       </tags>
   </entry>
   <entry>
-    <title>ABC324F</title>
-    <url>/2023/10/17/abc324F/</url>
-    <content><![CDATA[<p>分数规划，拓扑排序</p>
+    <title>筛法模板</title>
+    <url>/%E7%AD%9B%E6%B3%95%E6%A8%A1%E6%9D%BF/</url>
+    <content><![CDATA[<p>自用筛法模板</p>
+<p><br></p>
 <span id="more"></span>
-<h2 id="Beautiful-Path"><a href="#Beautiful-Path" class="headerlink" title="Beautiful Path"></a>Beautiful Path</h2><p>题目链接:<a href="https://atcoder.jp/contests/abc324/tasks/abc324_f">https://atcoder.jp/contests/abc324/tasks/abc324_f</a></p>
-<p>题意:给定一个有向无环简单图，每条边有两个属性,$cost,value$。要求选若干条边，组成一条点1到点n的路径，使得$\frac{\Sigma value_i}{\Sigma cost_i} $最大化。题目保证存在至少一条点1到点n的路径。其中$n,m \in[1,2e5]$<br>$cost,value\in[1,2e3]$</p>
-<p>分析:题目要求式子的形式很明显提示了分数规划的思路。选取一个答案，并且判断答案是否可行，二分缩小规模得到最终答案。</p>
-<p>图中找一条路径的要求可以转化为取边时存在之前状态的依赖，但更简单的想法是将图中的边重新赋权，由于DAG的特性，直接拓扑排序遍历全图，最后判断终点处权值是否非负。</p>
-]]></content>
+<p>具体的解析懒得再写了，直接把博客园里之前的一篇贴过来了</p>
+<h1 id="欧拉筛"><a href="#欧拉筛" class="headerlink" title="欧拉筛"></a>欧拉筛</h1><h2 id="1-筛质数"><a href="#1-筛质数" class="headerlink" title="1.筛质数"></a>1.筛质数</h2><p>先看看线性筛本体，它的功能是判断质数，以及求最小质因数</p>
+<p>1.记录minfactor,prime</p>
+<p>2.对cur一直用prime数组筛去剩下的合数</p>
+<p>这里判断质数的标准很简单，就是判断一个数的最小质因数是否就是它本身</p>
+<p>由于是求最小质因数，$prime[j]&lt;=minfact[i]$,这样可以证明每个合数仅被它的最小质因数筛到，保证线性复杂度</p>
+<h2 id="2-求-phi-n"><a href="#2-求-phi-n" class="headerlink" title="2.求$\phi(n)$"></a>2.求$\phi(n)$</h2><p>$\phi(p)=p-1$,利用这个性质，可在判断质数的同时筛出它的欧拉函数</p>
+<p>由欧拉函数的积性性得,$\phi(mn)=\phi(m)\phi(n)$</p>
+<p>当$minfact[i]=prime[j]$,即有重复质因子时，$\phi(p^k)=p^{k-1}(p-1)$,乘上p即可</p>
+<p>不然乘上(p-1)</p>
+<h2 id="3-求-mu-n"><a href="#3-求-mu-n" class="headerlink" title="3.求$\mu(n)$"></a>3.求$\mu(n)$</h2><p>$\mu(p)=-1$,利用这个性质，可在判断质数的同时筛出它的莫比乌斯函数</p>
+<p>当$minfact[i]=prime[j]$,即有重复质因子时，$\mu(n)=0$</p>
+<p>不然乘上$\mu(n)=-\mu(i)$</p>
+<h2 id="4-求-d-n"><a href="#4-求-d-n" class="headerlink" title="4.求$d(n)$"></a>4.求$d(n)$</h2><p>比前面的两个函数要麻烦一些，求$d(n)$要记录n中最小质因子数$cnt[n]$</p>
+<p>对于质数,$cnt[n]$很显然等于1</p>
+<p>接着考虑$d(n)$,$n=\Pi^k_{i=1}p_i^{a_i}$,$d(n)=\Pi^k_{i=1}(p_i+1)$</p>
+<p>如果$minfact[i]=prime[j]$,由牛顿二项式定理得，$d(n)=d(i)/(cnt[i]+1)*(cnt(i)+2)$</p>
+<p>不然$d(n)=d(i)*d(prime[j])$</p>
+<h2 id="5-求-sigma-n"><a href="#5-求-sigma-n" class="headerlink" title="5.求$\sigma(n)$"></a>5.求$\sigma(n)$</h2><p>类似于求$d(n)$,不过这次要记录一个数组$sum[i]=\Sigma_{i=0}^kp^i$,p表示n的最小质因数，$sum[i]$表示最小质因数的k次幂下的和</p>
+<p>对于质数，$sum[i]$很显然等于p+1</p>
+<p>接着考虑$\sigma(n)$,$\sigma(n)=\Pi_{i=1}^k\Sigma_{j=0}^{a_i}p^j_i$</p>
+<p>如果$minfact[i]=prime[j]$,在求和式中加入一项$p^{k+1}$,等同于乘$(sum[i]*p+1)/sum[i]$</p>
+<p>不然$\sigma(n)=\sigma(i)*\sigma(prime[j])$</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//mf 最小质因数</span></span><br><span class="line"><span class="comment">//pr 质数 </span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">sieve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">For</span>(i,<span class="number">2</span>,LIM)&#123;</span><br><span class="line">        <span class="keyword">if</span>(!mf[i])mf[i]=pr[++TT]=i;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>,p;j&lt;=TT&amp;&amp;(p=pr[j]*i)&lt;=LIM;++j)&#123;</span><br><span class="line">            mf[p]=pr[j];</span><br><span class="line">            <span class="keyword">if</span>(pr[j]^mf[i]);</span><br><span class="line">            <span class="keyword">else</span> &#123;<span class="keyword">break</span>;&#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//phi 欧拉函数,小于x且与x互质的数的个数</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">sieve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">For</span>(i,<span class="number">2</span>,LIM)&#123;</span><br><span class="line">        <span class="keyword">if</span>(!mf[i])mf[i]=pr[++TT]=i,phi[i]=i<span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>,p;j&lt;=TT&amp;&amp;(p=pr[j]*i)&lt;=LIM;++j)&#123;</span><br><span class="line">            mf[p]=pr[j];</span><br><span class="line">            <span class="keyword">if</span>(pr[j]^mf[i])phi[p]=phi[i]*(pr[j]<span class="number">-1</span>);</span><br><span class="line">            <span class="keyword">else</span> &#123;phi[p]=phi[i]*pr[j];<span class="keyword">break</span>;&#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//mu 莫比乌斯函数</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">sieve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">For</span>(i,<span class="number">2</span>,LIM)&#123;</span><br><span class="line">        <span class="keyword">if</span>(!mf[i])mf[i]=pr[++TT]=i,mu[i]=<span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>,p;j&lt;=TT&amp;&amp;(p=pr[j]*i)&lt;=LIM;++j)&#123;</span><br><span class="line">            mf[p]=pr[j];</span><br><span class="line">            <span class="keyword">if</span>(pr[j]^mf[i])mu[p]=-mu[i];</span><br><span class="line">            <span class="keyword">else</span> &#123;mu[p]=<span class="number">0</span>;<span class="keyword">break</span>;&#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//dn 约数个数</span></span><br><span class="line"><span class="comment">//pn 最小质因子的次数 </span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">sieve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    dn[<span class="number">1</span>]=<span class="number">1</span>;</span><br><span class="line">    <span class="built_in">For</span>(i,<span class="number">2</span>,LIM)&#123;</span><br><span class="line">        <span class="keyword">if</span>(!mf[i])mf[i]=pr[++TT]=i,dn[i]=<span class="number">2</span>,pn[i]=<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>,p;j&lt;=TT&amp;&amp;(p=pr[j]*i)&lt;=LIM;++j)&#123;</span><br><span class="line">            mf[p]=pr[j];</span><br><span class="line">            <span class="keyword">if</span>(pr[j]^mf[i])	dn[p]=dn[i]&lt;&lt;<span class="number">1</span>,pn[p]=<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">else</span>&#123;dn[p]=dn[i]/(pn[i]+<span class="number">1</span>)*(pn[i]+<span class="number">2</span>),pn[p]=pn[i]+<span class="number">1</span>;<span class="keyword">break</span>;&#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//ps 最小质因数的幂次和 </span></span><br><span class="line"><span class="comment">//s 约数和 </span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">sieve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">For</span>(i,<span class="number">2</span>,LIM)&#123;</span><br><span class="line">        <span class="keyword">if</span>(!mf[i])mf[i]=pr[++TT]=i,s[i]=ps[i]=i+<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>,p;j&lt;=TT&amp;&amp;(p=pr[j]*i)&lt;=LIM;++j)&#123;</span><br><span class="line">            mf[p]=pr[j];</span><br><span class="line">            <span class="keyword">if</span>(pr[j]^mf[i])ps[p]=pr[j]+<span class="number">1</span>,s[p]=ps[i]*(pr[j]+<span class="number">1</span>);</span><br><span class="line">            <span class="keyword">else</span> &#123;ps[p]=ps[i]*pr[j]+<span class="number">1</span>,s[p]=s[i]*(ps[i]*p+<span class="number">1</span>)/ps[i];<span class="keyword">break</span>;&#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="杜教筛"><a href="#杜教筛" class="headerlink" title="杜教筛"></a>杜教筛</h1><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//需先筛出phi与mu</span></span><br><span class="line">unordered_map&lt;<span class="type">int</span>,ll&gt; ansmu,ansphi;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">get_mu</span><span class="params">(<span class="type">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(x&lt;=LIM) <span class="keyword">return</span> mu[x];</span><br><span class="line">    <span class="keyword">if</span>(ansmu.<span class="built_in">count</span>(x)) <span class="keyword">return</span> ansmu[x];</span><br><span class="line">    <span class="type">int</span> ans=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> l=<span class="number">2</span>,r;(r&lt;(<span class="number">1</span>&lt;&lt;<span class="number">31</span>)<span class="number">-1</span>)&amp;&amp;l&lt;=x;l=r+<span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        r=x/(x/l);</span><br><span class="line">        ans-=(r-l+<span class="number">1</span>)*<span class="built_in">get_mu</span>(x/l);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ansmu[x]=ans;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">ll <span class="title">get_phi</span><span class="params">(<span class="type">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(x&lt;=LIM) <span class="keyword">return</span> phi[x];</span><br><span class="line">    <span class="keyword">if</span>(ansphi.<span class="built_in">count</span>(x)) <span class="keyword">return</span> ansphi[x];</span><br><span class="line">    ll ans=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> l=<span class="number">2</span>,r;(r&lt;(<span class="number">1</span>&lt;&lt;<span class="number">31</span>)<span class="number">-1</span>)&amp;&amp;l&lt;=x;l=r+<span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        r=x/(x/l);</span><br><span class="line">        ans+=(r-l+<span class="number">1</span>)*<span class="built_in">get_phi</span>(x/l);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ansphi[x]=(ll)x*(x+<span class="number">1ll</span>)/<span class="number">2ll</span>-ans;</span><br><span class="line">&#125;  </span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>ACM</category>
-        <category>练习</category>
-        <category>atcoder</category>
+        <category>算法</category>
+        <category>数学</category>
       </categories>
-      <tags>
-        <tag>分数规划</tag>
-        <tag>二分</tag>
-      </tags>
   </entry>
 </search>
