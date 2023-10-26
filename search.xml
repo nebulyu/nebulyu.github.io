@@ -709,6 +709,9 @@ C=\{ c_{i,j} \}</script><p>如果不等号的方向与标准型不同，或者�
 <p>优化了left bar的导引</p>
 <p>更换博客title等</p>
 <p>添加了一个acm队友的友链，想做成双排的效果，但未成功</p>
+<p>前面很长一段时间没有记录log，算丢失了</p>
+<h2 id="2022-7-17"><a href="#2022-7-17" class="headerlink" title="2022.7.17"></a>2022.7.17</h2><p>hexo博客成功部署到github上</p>
+<p>安照之前部署的操作就成功了，控制了所有变量发现只有宽带供应商换了，猜测之前没法部署的原因是湖北移动把github给墙了</p>
 ]]></content>
       <categories>
         <category>hexo blog</category>
