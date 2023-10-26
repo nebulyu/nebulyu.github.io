@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="QiET7ttAHFoc3bMl0cmzBIzJBawh36AmKvy_PU89Nz4">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"nebulyu.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":3,"unescape":false,"preload":false,"swiftype_key":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="斯特林数笔记整理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="斯特林数笔记小结">
+<meta property="og:url" content="https://nebulyu.github.io/%E6%96%AF%E7%89%B9%E6%9E%97%E6%95%B0%E7%AC%94%E8%AE%B0%E5%B0%8F%E7%BB%93/index.html">
+<meta property="og:site_name" content="蒟蒻的小站">
+<meta property="og:description" content="斯特林数笔记整理">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-08-15T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-10-26T06:42:48.611Z">
+<meta property="article:author" content="nebulyu">
+<meta property="article:tag" content="数学">
+<meta property="article:tag" content="组合数学">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://nebulyu.github.io/%E6%96%AF%E7%89%B9%E6%9E%97%E6%95%B0%E7%AC%94%E8%AE%B0%E5%B0%8F%E7%BB%93/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>斯特林数笔记小结 | 蒟蒻的小站</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">蒟蒻的小站</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">加油捏</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/home/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-links">
+
+    <a href="/links/" rel="section"><i class="link fa-fw"></i>Links</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://nebulyu.github.io/%E6%96%AF%E7%89%B9%E6%9E%97%E6%95%B0%E7%AC%94%E8%AE%B0%E5%B0%8F%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="nebulyu">
+      <meta itemprop="description" content="施工中QAQ">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="蒟蒻的小站">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          斯特林数笔记小结
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-08-16 00:00:00" itemprop="dateCreated datePublished" datetime="2020-08-16T00:00:00+08:00">2020-08-16</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-10-26 14:42:48" itemprop="dateModified" datetime="2023-10-26T14:42:48+08:00">2023-10-26</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/OI/" itemprop="url" rel="index"><span itemprop="name">OI</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/OI/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>斯特林数笔记整理</p>
+<span id="more"></span>
+<h1 id="斯特林数笔记整理"><a href="#斯特林数笔记整理" class="headerlink" title="斯特林数笔记整理"></a>斯特林数笔记整理</h1><p>&emsp;最近快被数学折磨疯了，具体数学上得快内容也难，在此整理一下所学的内容</p>
+<h2 id="第一类斯特林数"><a href="#第一类斯特林数" class="headerlink" title="第一类斯特林数"></a>第一类斯特林数</h2><p>&emsp;第一类斯特林数$\begin{bmatrix}<br>n\\<br>k<br>\end{bmatrix}$表示从$n$个元素中组成$k$个循环的方案数，此处的循环合起来构成一个与原排列对应的置换(参考置换群)。注意:循环的内部是圆周有序的，即$(a_1a_2a_3)$与$(a_2a_3a_1)$等价。</p>
+<p>&emsp;从组合的意义可以得到$\begin{bmatrix}n\\k\end{bmatrix}$的递推式</p>
+<script type="math/tex; mode=display">
+\begin{bmatrix}n\\k\end{bmatrix}=(n-1)\begin{bmatrix}n-1\\k\end{bmatrix}+\begin{bmatrix}n-1\\k-1\end{bmatrix}</script><p>&emsp;即当前的状态可以由直接添加一个新集合与放在任意一个元素后面转移而来</p>
+<p>&emsp;根据置换的性质，可以得到$\begin{bmatrix}n\\k\end{bmatrix}$与$n!$的关系</p>
+<script type="math/tex; mode=display">
+\Sigma_k\begin{bmatrix}n\\k\end{bmatrix}=n!</script><p>&emsp;由于任何一个置换都与一个排列一一对应，所以置换的总数与排列的总数相等</p>
+<p>&emsp;第一类斯特林数还可以用与上升幂与下降幂的展开</p>
+<script type="math/tex; mode=display">
+X^{\overline{n}}=\Sigma\begin{bmatrix}n\\k\end{bmatrix}x^k\\
+X^{\underline{n}}=\Sigma\begin{bmatrix}n\\k\end{bmatrix}(-1)^{n-k}x^k\\</script><p>&emsp;首先可以直观感性的理解一下,$X^{\underline{n}}&lt;X^n&lt;X^{\overline{n}}$,所以$X^n$转化成下降幂需要容斥，而上升幂则不用。这两个公式非常有用，直接将上升幂下降幂与自然幂联系在一起。形式上也较为简洁，类似于二项式反演。</p>
+<p>&emsp;至于证明，<del>懒得写了</del>，这篇文章的大部分公式证明都可以利用数学归纳法，大概思路就是先对和式进行扰动，利用吸收公式化简式子，并提取出公因式，最后利用递推式直接导出结果。</p>
+<h2 id="第二类斯特林数"><a href="#第二类斯特林数" class="headerlink" title="第二类斯特林数"></a>第二类斯特林数</h2><p>&emsp;相似的，第二类斯特林数$\begin{Bmatrix}n\\k\end{Bmatrix}$表示将$n$个元素划分为$k$个非空集合的方案数，可以读作”n子集k”。比起$\begin{bmatrix}n\\k\end{bmatrix}$,$\begin{Bmatrix}n\\k\end{Bmatrix}$由于其内部无序性，显然不会更大。由于组合意义更加简洁，它的出现也更为频繁。</p>
+<p>&emsp;从组合的意义可以得到$\begin{Bmatrix}n\\k\end{Bmatrix}$的递推式</p>
+<script type="math/tex; mode=display">
+\begin{Bmatrix}n\\k\end{Bmatrix}=k\begin{Bmatrix}n-1\\k\end{Bmatrix}+\begin{Bmatrix}n-1\\k-1\end{Bmatrix}</script><p>&emsp;即当前的状态可以由直接添加一个新集合与插入任意一个已有集合转移而来</p>
+<p>&emsp;第二类斯特林数由于其无序性，没有与阶乘有关的和式。但是它同样有关于上升幂下降幂与自然幂的展开式</p>
+<script type="math/tex; mode=display">
+X^n=\Sigma_k\begin{Bmatrix}n\\k\end{Bmatrix}x^{\underline{k}}\\
+X^n=\Sigma_k\begin{Bmatrix}n\\k\end{Bmatrix}(-1)^{n-k}x^{\overline{k}}\\</script><p>&emsp;类比于上面的反演式，$-1$可以从容斥的角度来理解</p>
+<p>&emsp;类似于组合数，斯特林数并不要求$n,k$均为正整数，关于有符号斯特林数也有一个优美的公式</p>
+<script type="math/tex; mode=display">
+\begin{bmatrix}n\\k\end{bmatrix}=\begin{Bmatrix}-k\\-n\end{Bmatrix}</script><p>&emsp;关于两类斯特林数还有许多关于组合数的求和公式，从组合意义的角度去理解比较好，证明的话除了数学归纳法其他的方式过于繁琐<del>我太菜了不会</del>，在此不赘述</p>
+<h2 id="斯特林反演"><a href="#斯特林反演" class="headerlink" title="斯特林反演"></a>斯特林反演</h2><p>&emsp;就是将上面几个关于上升幂下降幂与自然幂的式子结合起来看</p>
+<script type="math/tex; mode=display">
+X^n=\Sigma_k\begin{Bmatrix}n\\k\end{Bmatrix}x^{\underline{k}}\\
+X^n=\Sigma_k\begin{Bmatrix}n\\k\end{Bmatrix}(-1)^{n-k}x^{\overline{k}}\\
+X^{\overline{n}}=\Sigma\begin{bmatrix}n\\k\end{bmatrix}x^k\\
+X^{\underline{n}}=\Sigma\begin{bmatrix}n\\k\end{bmatrix}(-1)^{n-k}x^k\\</script><p>&emsp;得到</p>
+<script type="math/tex; mode=display">
+g(n)=\Sigma_k(-1)^{n-k}\begin{bmatrix}n\\k\end{bmatrix}f(k)\\
+f(n)=\Sigma_k\begin{Bmatrix}n\\k\end{Bmatrix}g(k)\\</script><p>&emsp;证明的话把式子一层层剥开，直接交换顺序组合在一起就是了。</p>
+<p><br></p>
+<p><br></p>
+<p>&emsp;目前并没有做过很多利用斯特林数性质的题，<del>一题都不会做</del>，基本也是和组合数中的求和式扯在一起。以后会慢慢收集一些题再归纳整理。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%95%B0%E5%AD%A6/" rel="tag"># 数学</a>
+              <a href="/tags/%E7%BB%84%E5%90%88%E6%95%B0%E5%AD%A6/" rel="tag"># 组合数学</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/3768%E9%A2%98%E8%A7%A3/" rel="prev" title="简单的数学题">
+      <i class="fa fa-chevron-left"></i> 简单的数学题
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020.11.14CSP%E6%B8%B8%E8%AE%B0/" rel="next" title="2020.11.14CSP游记">
+      2020.11.14CSP游记 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%96%AF%E7%89%B9%E6%9E%97%E6%95%B0%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86"><span class="nav-number">1.</span> <span class="nav-text">斯特林数笔记整理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E7%B1%BB%E6%96%AF%E7%89%B9%E6%9E%97%E6%95%B0"><span class="nav-number">1.1.</span> <span class="nav-text">第一类斯特林数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E7%B1%BB%E6%96%AF%E7%89%B9%E6%9E%97%E6%95%B0"><span class="nav-number">1.2.</span> <span class="nav-text">第二类斯特林数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%AF%E7%89%B9%E6%9E%97%E5%8F%8D%E6%BC%94"><span class="nav-number">1.3.</span> <span class="nav-text">斯特林反演</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">nebulyu</p>
+  <div class="site-description" itemprop="description">施工中QAQ</div>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">nebulyu's</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    // window.MathJax = {
+    //   loader: {
+    //
+    //       load: ['[tex]/mhchem'],
+    //
+    //     source: {
+    //       '[tex]/amsCd': '[tex]/amscd',
+    //       '[tex]/AMScd': '[tex]/amscd'
+    //     }
+    //   },
+    //   tex: {
+    //     inlineMath: {'[+]': [['$', '$']]},
+    //
+    //       packages: {'[+]': ['mhchem']},
+    //
+    //     tags: 'ams'
+    //   },
+    //   options: {
+    //     renderActions: {
+    //       findScript: [10, doc => {
+    //         document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+    //           const display = !!node.type.match(/; *mode=display/);
+    //           const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+    //           const text = document.createTextNode('');
+    //           node.parentNode.replaceChild(text, node);
+    //           math.start = {node: text, delim: '', n: 0};
+    //           math.end = {node: text, delim: '', n: 0};
+    //           doc.math.push(math);
+    //         });
+    //       }, '', false],
+    //       insertedScript: [200, () => {
+    //         document.querySelectorAll('mjx-container').forEach(node => {
+    //           let target = node.parentNode;
+    //           if (target.nodeName.toLowerCase() === 'li') {
+    //             target.parentNode.classList.add('has-jax');
+    //           }
+    //         });
+    //       }, '', false]
+    //     }
+    //   }
+    // };
+    window.MathJax = {
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        processEscapes: true
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@2.7.8/unpacked/MathJax.js?config=TeX-MML-AM_CHTML';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":false},"react":"opacity:0.9","log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

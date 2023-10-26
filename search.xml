@@ -13,7 +13,6 @@
       <categories>
         <category>ACM</category>
         <category>练习</category>
-        <category>atcoder</category>
       </categories>
       <tags>
         <tag>分数规划</tag>
@@ -39,6 +38,9 @@
         <category>ACM</category>
         <category>游记</category>
       </categories>
+      <tags>
+        <tag>水文</tag>
+      </tags>
   </entry>
   <entry>
     <title>icpc2022济南游寄</title>
@@ -55,6 +57,9 @@
         <category>ACM</category>
         <category>游记</category>
       </categories>
+      <tags>
+        <tag>水文</tag>
+      </tags>
   </entry>
   <entry>
     <title>ABC289F</title>
@@ -71,7 +76,6 @@
       <categories>
         <category>ACM</category>
         <category>练习</category>
-        <category>atcoder</category>
       </categories>
       <tags>
         <tag>构造</tag>
@@ -90,8 +94,10 @@
       <categories>
         <category>ACM</category>
         <category>练习</category>
-        <category>atcoder</category>
       </categories>
+      <tags>
+        <tag>动归</tag>
+      </tags>
   </entry>
   <entry>
     <title>ABC296F</title>
@@ -110,7 +116,6 @@
       <categories>
         <category>ACM</category>
         <category>练习</category>
-        <category>atcoder</category>
       </categories>
       <tags>
         <tag>逆序</tag>
@@ -132,7 +137,6 @@
       <categories>
         <category>ACM</category>
         <category>练习</category>
-        <category>atcoder</category>
       </categories>
       <tags>
         <tag>图论</tag>
@@ -155,9 +159,9 @@
       <categories>
         <category>ACM</category>
         <category>练习</category>
-        <category>cf</category>
       </categories>
       <tags>
+        <tag>数据结构</tag>
         <tag>线段树</tag>
       </tags>
   </entry>
@@ -181,9 +185,9 @@ x>=\lfloor(B-1)/k\rfloor-A+1</script><p>这样,我们可以枚举k来计算答�
       <categories>
         <category>ACM</category>
         <category>练习</category>
-        <category>atcoder</category>
       </categories>
       <tags>
+        <tag>数学</tag>
         <tag>数论分块</tag>
       </tags>
   </entry>
@@ -203,7 +207,6 @@ x>=\lfloor(B-1)/k\rfloor-A+1</script><p>这样,我们可以枚举k来计算答�
       <categories>
         <category>ACM</category>
         <category>练习</category>
-        <category>其他</category>
       </categories>
       <tags>
         <tag>图论</tag>
@@ -229,7 +232,6 @@ x>=\lfloor(B-1)/k\rfloor-A+1</script><p>这样,我们可以枚举k来计算答�
       <categories>
         <category>ACM</category>
         <category>练习</category>
-        <category>其他</category>
       </categories>
       <tags>
         <tag>数学</tag>
@@ -252,8 +254,10 @@ x>=\lfloor(B-1)/k\rfloor-A+1</script><p>这样,我们可以枚举k来计算答�
       <categories>
         <category>ACM</category>
         <category>算法</category>
-        <category>dp</category>
       </categories>
+      <tags>
+        <tag>动归</tag>
+      </tags>
   </entry>
   <entry>
     <title>KDtree</title>
@@ -290,8 +294,10 @@ x>=\lfloor(B-1)/k\rfloor-A+1</script><p>这样,我们可以枚举k来计算答�
       <categories>
         <category>ACM</category>
         <category>算法</category>
-        <category>数据结构</category>
       </categories>
+      <tags>
+        <tag>数据结构</tag>
+      </tags>
   </entry>
   <entry>
     <title>fhqtreap</title>
@@ -302,9 +308,9 @@ x>=\lfloor(B-1)/k\rfloor-A+1</script><p>这样,我们可以枚举k来计算答�
       <categories>
         <category>ACM</category>
         <category>算法</category>
-        <category>数据结构</category>
       </categories>
       <tags>
+        <tag>数据结构</tag>
         <tag>平衡树</tag>
       </tags>
   </entry>
@@ -345,9 +351,10 @@ x>=\lfloor(B-1)/k\rfloor-A+1</script><p>这样,我们可以枚举k来计算答�
       <categories>
         <category>ACM</category>
         <category>算法</category>
-        <category>图论</category>
       </categories>
       <tags>
+        <tag>图论</tag>
+        <tag>缩点</tag>
         <tag>圆方树</tag>
         <tag>连通性</tag>
       </tags>
@@ -381,9 +388,9 @@ x>=\lfloor(B-1)/k\rfloor-A+1</script><p>这样,我们可以枚举k来计算答�
       <categories>
         <category>ACM</category>
         <category>算法</category>
-        <category>数据结构</category>
       </categories>
       <tags>
+        <tag>数据结构</tag>
         <tag>线段树</tag>
       </tags>
   </entry>
@@ -408,9 +415,9 @@ x>=\lfloor(B-1)/k\rfloor-A+1</script><p>这样,我们可以枚举k来计算答�
       <categories>
         <category>ACM</category>
         <category>算法</category>
-        <category>数据结构</category>
       </categories>
       <tags>
+        <tag>数据结构</tag>
         <tag>单调性</tag>
       </tags>
   </entry>
@@ -426,9 +433,9 @@ x>=\lfloor(B-1)/k\rfloor-A+1</script><p>这样,我们可以枚举k来计算答�
       <categories>
         <category>ACM</category>
         <category>算法</category>
-        <category>数据结构</category>
       </categories>
       <tags>
+        <tag>数据结构</tag>
         <tag>线段树</tag>
       </tags>
   </entry>
@@ -454,8 +461,10 @@ x>=\lfloor(B-1)/k\rfloor-A+1</script><p>这样,我们可以枚举k来计算答�
       <categories>
         <category>ACM</category>
         <category>算法</category>
-        <category>数学</category>
       </categories>
+      <tags>
+        <tag>数学</tag>
+      </tags>
   </entry>
   <entry>
     <title>最大流练习</title>
@@ -481,9 +490,9 @@ x>=\lfloor(B-1)/k\rfloor-A+1</script><p>这样,我们可以枚举k来计算答�
       <categories>
         <category>ACM</category>
         <category>算法</category>
-        <category>图论</category>
       </categories>
       <tags>
+        <tag>图论</tag>
         <tag>网络流</tag>
         <tag>最大流</tag>
       </tags>
@@ -546,9 +555,9 @@ e=f=(v3+v4-v1-v2)/2</script><p>然后以每个任务自身的代价连边,最后
       <categories>
         <category>ACM</category>
         <category>算法</category>
-        <category>数学</category>
       </categories>
       <tags>
+        <tag>图论</tag>
         <tag>网络流</tag>
         <tag>最小割</tag>
       </tags>
@@ -586,9 +595,9 @@ D_3=\frac 1{n_1+n_2}\Sigma(x_i-a_3)^2\\
       <categories>
         <category>ACM</category>
         <category>算法</category>
-        <category>数据结构</category>
       </categories>
       <tags>
+        <tag>数据结构</tag>
         <tag>线段树</tag>
       </tags>
   </entry>
@@ -629,9 +638,9 @@ C=\{ c_{i,j} \}</script><p>如果不等号的方向与标准型不同，或者�
       <categories>
         <category>ACM</category>
         <category>算法</category>
-        <category>数学</category>
       </categories>
       <tags>
+        <tag>数学</tag>
         <tag>线性代数</tag>
       </tags>
   </entry>
@@ -669,8 +678,10 @@ C=\{ c_{i,j} \}</script><p>如果不等号的方向与标准型不同，或者�
       <categories>
         <category>ACM</category>
         <category>算法</category>
-        <category>数学</category>
       </categories>
+      <tags>
+        <tag>数学</tag>
+      </tags>
   </entry>
   <entry>
     <title>Hello world</title>
@@ -685,8 +696,10 @@ C=\{ c_{i,j} \}</script><p>如果不等号的方向与标准型不同，或者�
   <entry>
     <title>博客维护log</title>
     <url>/%E5%8D%9A%E5%AE%A2%E7%BB%B4%E6%8A%A4log/</url>
-    <content><![CDATA[<p>记录博客框架的各种乱搞</p>
+    <content><![CDATA[<p>记录博客的更新与框架的各种乱搞</p>
 <span id="more"></span>
+<h2 id="2023-10-26"><a href="#2023-10-26" class="headerlink" title="2023.10.26"></a>2023.10.26</h2><p>选取了一些OI时期写的勉强能看小作文与题解，除了加上hexo的格式和标签之外基本没有做任何更改，保留了原汁原味的童真（</p>
+<p>categories界面又改成减缩版了，细节整合进tag里</p>
 <h2 id="2023-10-25"><a href="#2023-10-25" class="headerlink" title="2023.10.25"></a>2023.10.25</h2><p>尝试自定义home page，重定向了left bar中的home，但是没成功的重定义一进去的主页</p>
 <p>将博文分类进子文件夹中，并更改了permant link，url更好看了（</p>
 <p>考虑将OI时期的文章迁过来</p>
@@ -699,5 +712,430 @@ C=\{ c_{i,j} \}</script><p>如果不等号的方向与标准型不同，或者�
       <categories>
         <category>hexo blog</category>
       </categories>
+  </entry>
+  <entry>
+    <title>最小树形图</title>
+    <url>/%E6%9C%80%E5%B0%8F%E6%A0%91%E5%BD%A2%E5%9B%BE/</url>
+    <content><![CDATA[<p>最小树形图</p>
+<span id="more"></span>
+<h1 id="最小树形图"><a href="#最小树形图" class="headerlink" title="最小树形图"></a>最小树形图</h1><p>概念:在一个给定边的有向图中，求以一个点为根的生成树，换句话说这个图中只有一个点入度为0，其余点入度均为1,且在此基础上进行约束，如要求边权和最小等</p>
+<p>首先，在最小树形图中一般要以弧的形式存图，并保存一个点的前驱</p>
+<p>主体就是朱刘算法，分4个步骤</p>
+<p>1.求最短弧集合</p>
+<p>2.判断集合中是否有环，具体就是自己成为自己的祖先，从当前结点一直染色，直到染到根或自己 </p>
+<p>3.若有环，缩点，重新求最短弧集合</p>
+<p>4.统计结果输出</p>
+<p>比较重要的就是缩点时的操作，据说可以用tarjan优化，日后学会了再补上</p>
+<p>类似于并查集的思想，记录每个集合中的代表结点，并对所有弧进行一次修改</p>
+<p>关键在于处理好改权值的问题，将每个点在环外入边的权值减去环内入边的权值，同时保留每次的统计和，只计算增量 </p>
+<p>​                                                                                        ——2020.5.11</p>
+<p><br></p>
+<p>最重要的步骤也是最容易写错的步骤还是最后一步的减边权了，用更好理解的话说，如果一个点位于环内，一个点位于环外，那么就要将环外的点到环内的点的费用减掉环内最小的费用，也就相当于删除指向环内的点的边 而从环外点指向环内</p>
+<p>顺便，由于最小树形图的求解最多进行n次，每一次至少会有m条1边待处理，复杂度$O(nm)$</p>
+<h3 id="不定根最小树形图"><a href="#不定根最小树形图" class="headerlink" title="不定根最小树形图"></a>不定根最小树形图</h3><p>类似于大部分图论算法，利用虚拟源点来处理不定根问题</p>
+<p>统计所有边权和，建立虚拟源点，并向原图中每个点连一条大于sum的边，避免对结果产生影响</p>
+<p>原图中的根就是直接与虚拟源点相邻的点，可以在松弛时统计出来</p>
+<p>例题:<a href="http://acm.hdu.edu.cn/showproblem.php?pid=2121">http://acm.hdu.edu.cn/showproblem.php?pid=2121</a></p>
+]]></content>
+      <categories>
+        <category>OI</category>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>图论</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>OI线段树</title>
+    <url>/%E7%BA%BF%E6%AE%B5%E6%A0%91%E5%A4%8D%E4%B9%A0/</url>
+    <content><![CDATA[<p>做了几题思维难度并不算太高的线段树题目,难点就是有巨巨巨多细节要注意.</p>
+<span id="more"></span>
+<h5 id="luoguP6327-https-www-luogu-com-cn-problem-P6327"><a href="#luoguP6327-https-www-luogu-com-cn-problem-P6327" class="headerlink" title="luoguP6327:https://www.luogu.com.cn/problem/P6327"></a>luoguP6327:<a href="https://www.luogu.com.cn/problem/P6327">https://www.luogu.com.cn/problem/P6327</a></h5><p>题意:每次修改一个点,求区间sin值的和<br>区间sin和的信息不可加,但可以考虑和差化积公式,</p>
+<script type="math/tex; mode=display">
+sin(x+v)=sin(x)cos(v)+sin(v)cos(x)
+cos(x+v)=cos(x)cos(v)-sin(x)sin(v)</script><p>同时记录cos和sin值就可以转化为线段树求和.<br>由于节点的tag不能直接和子节点的和相加,需要注意每次询问时先下放标签.还有浮点运算的常数极大,下放时先判一下0,不然很容易tle.<br><br></p>
+<h5 id="luoguP1471-https-www-luogu-com-cn-problem-P1471"><a href="#luoguP1471-https-www-luogu-com-cn-problem-P1471" class="headerlink" title="luoguP1471:https://www.luogu.com.cn/problem/P1471"></a>luoguP1471:<a href="https://www.luogu.com.cn/problem/P1471">https://www.luogu.com.cn/problem/P1471</a></h5><p>题意:每次修改一个点,求区间平均数和方差<br>首先是平均数的合并$a_3=(a_1n_1+a_2n_2)/(n_1+n_2)$<br>再考虑方差的更改,每次修改时可以$O(1)$的更新</p>
+<script type="math/tex; mode=display">
+D_1=\frac 1n\Sigma(x_i-a_1)^2\\
+D_2=\frac 1n\Sigma(x_i+v-a_2)^2\\
+D_2-D_1=\frac 1n\Sigma((x_i+v-a_2)^2-(x_i-a_1)^2)\\
+       =\frac 1n\Sigma(v^2+a_2^2+2x_iv-2a_2v-2a_2x_i-a_1^2+2x_ia_1)\\
+       =v^2+a_2^2-a_1^2-2a_2v+(2v-2a_2+2a_1)\frac 1n \Sigma x_i\\
+       =v^2+a_2^2-a_1^2-2a_2v+2a_1v-2a_1a_2+2a_1^2\\
+       =a_1^2+a_2^2+v^2+2a_1v-2a_2v-2a_1a_2</script><p>最后是方差的合并</p>
+<script type="math/tex; mode=display">
+D_1=\frac 1{n_1}\Sigma(x_1i-a_1)^2\\
+D_2=\frac 1{n_2}\Sigma(x_2i-a_2)^2\\
+D_3=\frac 1{n_1+n_2}\Sigma(x_i-a_3)^2\\
+(n_1+n_2)D_3-D_1n_1-D_2n_2=\Sigma((x_i-a_3)^2-(x_i-a_j)^2)(j=1,2)\\
+                          =\Sigma(a_3^2-a_j^2+2x_i(a_j-a_3))\\
+                          =n_1(a_3^2-a_1^2)+2n_1a_1(a_1-a_3)\\
+                          +n_2(a_3^2-a_2^2)+2n_2a_2(a_2-a_3)</script><p>最后特别要注意在合并方差时跨中点情况的判断,左右两段的长度应该取min(当前区间长度,询问区间长度)</p>
+]]></content>
+      <categories>
+        <category>OI</category>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>数据结构</tag>
+        <tag>线段树</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>群基础知识</title>
+    <url>/%E7%BE%A4%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</url>
+    <content><![CDATA[<p>群基础知识</p>
+<span id="more"></span>
+<h1 id="群"><a href="#群" class="headerlink" title="群"></a>群</h1><p>群是一个在定义运算中<strong>封闭</strong>的集合，群$G=(S,<em>)$,$S$表示群中的元素，$</em>$是一个定义于$S$中元素的二元运算,且具有以下性质</p>
+<p>1.封闭性:$\forall p1,p2\in G,p1*p2\in G$</p>
+<p>2.结合律:$p1<em>(p2</em>p3)=(p1<em>p2)</em>p3​$</p>
+<p>3.存在单位元:$p<em>e=e</em>p=p​$</p>
+<p>4.存在逆元:$p1<em>p2=p2</em>p1=e$,$p1,p2$互为逆元,且逆元唯一</p>
+<p>特别的，如果G中元素满足交换律，则称其为一个阿贝尔群</p>
+<p>群阶:$\mid G\mid=\mid S\mid$,集合中元素个数</p>
+<p>对于运算$p1*p2​$,可简写为$p1p2​$，$p^k​$等价于$\Pi_{i=1}^kp​$</p>
+<p>对于运算$p1<em>p2=p1</em>p3$,存在$p2=p3$</p>
+<p>运算$(p1<em>p2)^{-1}$等于$p1^{-1}</em>p2^{-1}$</p>
+<h3 id="子群"><a href="#子群" class="headerlink" title="子群"></a>子群</h3><p>集合H是G的子集，若H关于$*$封闭，则H称为G的子群</p>
+<p>子群存在与全集相同的逆元和单位元</p>
+<h3 id="陪集"><a href="#陪集" class="headerlink" title="陪集"></a>陪集</h3><p>对于G,它的子群H的左陪集aH定义为$\</p>
+]]></content>
+      <categories>
+        <category>OI</category>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>数学</tag>
+        <tag>组合数学</tag>
+        <tag>群论</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>置换群的性质与burnside引理</title>
+    <url>/%E7%BD%AE%E6%8D%A2%E7%BE%A4%E7%9A%84%E6%80%A7%E8%B4%A8%E4%B8%8Eburnside%E5%BC%95%E7%90%86/</url>
+    <content><![CDATA[<p>置换群的性质与burnside引理</p>
+<span id="more"></span>
+<h1 id="置换群"><a href="#置换群" class="headerlink" title="置换群"></a>置换群</h1><p>顾名思义，由置换作为元素的群，$n=\mid S\mid$,n称为置换群G的阶,G中有$n!$个置换</p>
+<p>一个置换群中的性质:</p>
+<p>1.封闭性:两个置换，即映射，他们的运算结果也是一个等阶映射。</p>
+<p>注意，(1 2)之类的不完整循环仅仅是缩写，只表示其他元素直射，不要误认为他们不等阶</p>
+<p>2.结合律:$p1<em>(p2</em>p3)=(p1<em>p2)</em>p3$一样成立</p>
+<p>3.单位元:e表示所有元素直射</p>
+<p>4.逆元:就是p的反射，对于一个由对换的积表示的p</p>
+<p>$p=(a1\space a2)……(ak\space an)$</p>
+<p>则$p^{-1}=(ak\space an)……(a1\space a2)​$</p>
+<p>置换群的重要之处在于任意有限群都与置换群同构，置换群通过元素之间的映射表示变换，即可以表示一切有限群</p>
+<p>一个置换分解为对换积的奇偶性成为该置换的奇偶性，一个群中奇偶置换的个数相等，等于$1/2*n!$</p>
+<h3 id="轨道-稳定化子定理"><a href="#轨道-稳定化子定理" class="headerlink" title="轨道-稳定化子定理"></a>轨道-稳定化子定理</h3><p>轨道:在G中，所有k可以映射到的点集被称为轨道，$E_k$，又称等价类</p>
+<p>稳定化子:在G中，所有k为直射的置换的集合被称为稳定化子，$Z_k$,并且其为G的子群</p>
+<p>$\mid Z_k\mid*\mid E_k\mid=\mid G\mid​$</p>
+<p><br><br></p>
+<h1 id="Burnside引理"><a href="#Burnside引理" class="headerlink" title="Burnside引理"></a>Burnside引理</h1><p>G是$N={1,2……n}$上的置换群，G在N上可引出不同的等价类，并且其个数为</p>
+<p>$l=\mid G\mid^{-1} *\Sigma^{g}_{i=1}c_1(a_i)​$</p>
+<p>burnside引理的严格证明较复杂，在此略去，只谈一下我的理解</p>
+<p>对于同一个等价类，其中所有元素会保持在一个置换中保持相同的性质，即都作为不动点或都不作为不动点</p>
+<p>关于这个公式，直接看肯定有不理解之处，只能在实践中体会</p>
+<p><br><br></p>
+<p>举一个例子,求n个不同的人围成一桌的方案数</p>
+<p>首先，我们知道这是个圆周排列，方案数为$(n-1)!$</p>
+<p>用burnside引理的角度，一共存在$n!$种方案，对于每一个方案，存在$(n-1)$个与其循环同构的置换</p>
+<p>并且这$n$个循环同构的置换贡献总共为1</p>
+<p>考虑这组置换中的每一个点，由于每一个点权重相等，且这组没有本质区别的置换每一次循环的格式相同</p>
+<p>可以把贡献分摊在每一个点上，看成每一个点贡献为1，由于权重相等，这组置换的贡献为n，去重后为1</p>
+<p><br></p>
+<p>这个题非常简单，但是它揭露了几个性质:</p>
+<p>1.每个点权重相等，即在统计时不会因为置换的原因而改变贡献</p>
+<p>2.burnside引理要列举每一个状态，时间复杂度实际上是阶乘级的</p>
+<p>3.最关键的步骤在找同构。这个题中由于是圆周，体现为循环</p>
+<p>先写到这里，后面会陆续找一些例题来分析(咕咕咕</p>
+]]></content>
+      <categories>
+        <category>OI</category>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>数学</tag>
+        <tag>组合数学</tag>
+        <tag>群论</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>OI狄利克雷卷积</title>
+    <url>/%E7%8B%84%E5%88%A9%E5%85%8B%E9%9B%B7%E5%8D%B7%E7%A7%AF/</url>
+    <content><![CDATA[<p>一些狄利克雷卷积性质的证明</p>
+<span id="more"></span>
+<p>1.$\phi * I=id​$</p>
+<p>可以表示成$n=\Sigma_{d\mid n}\phi(d)$</p>
+<p>对于证明这类的式子，一般有以下个步骤</p>
+<p>1.证明$f(1)$</p>
+<p>2.证明$f(p)$</p>
+<p>3.证明$f(p^k)$</p>
+<p>4.证明$f(p_1^{k1}*p_2^{k2})​$</p>
+<p>5.证明普遍性</p>
+<p>以欧拉函数的这一性质为例</p>
+<p>1.$\phi(1)=1​$,直接由定义得出</p>
+<p>2.$\phi(1)=1,\phi(p)=p-1,\phi(1)+phi(p)=p​$</p>
+<p>3.$\Sigma^k_{i=0}\phi(p^i)=1+\Sigma^k_{i=1}\phi(p^i)=1+\Sigma^k_{i=1}p^{i-1}<em>(p-1)=1+(p-1)</em>(p^k-1)/(p-1)=p^k​$</p>
+<p>4.$p_1^{k1}<em>p_2^{k2}=\Sigma_{d1\mid p1^{k1}}\phi(d1)</em>\Sigma_{d2\mid p2^{k2}}\phi(d2)=\Sigma_{d\mid p_1^{k1}*p_2^{k2}}\phi(d)$</p>
+<p>5.对于普遍的情况，依次拆成2个数利用性质4即可得出</p>
+<p>即$\phi * I=id$</p>
+<p>2.$\mu *I=\epsilon​$</p>
+<p>这个性质并没有上面的复杂，只需要3个步骤即可证出</p>
+<p>1.$\mu(1)=1,\epsilon(1)=1$,由定义得</p>
+<p>2.对于一个拥有重复质因子数的数，$\mu(n)=0,\epsilon(n)=0$</p>
+<p>3.对于$n=\Pi_{i=1}^kp_i$,含有i项质数的项数为n-i+1,由组合数的性质(二项式定理)可得，奇项数等于偶项数，$\mu(n)=0$</p>
+<p>即$\mu *I=\epsilon$</p>
+<p>3.$\mu *id=\phi$</p>
+<p>由性质1，2可推出</p>
+<p>4.在莫比乌斯反演中，有两条核心卷积式</p>
+<p>1.$F=I*f$</p>
+<p>2.$f=\mu *F$</p>
+<p>2式可由1式与性质2推得，用卷积来推要比直接拆开方便理解很多</p>
+]]></content>
+      <categories>
+        <category>OI</category>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>数学</tag>
+        <tag>组合数学</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>2019.11.7集训小记</title>
+    <url>/2019.11.7%E9%9B%86%E8%AE%AD%E5%B0%8F%E8%AE%B0/</url>
+    <content><![CDATA[<p>上古时期的机房cs回忆录</p>
+<span id="more"></span>
+<h1 id="2019-11信息学竞赛娄底集训小记"><a href="#2019-11信息学竞赛娄底集训小记" class="headerlink" title="2019.11信息学竞赛娄底集训小记"></a>2019.11信息学竞赛娄底集训小记</h1><h2 id="1-开头"><a href="#1-开头" class="headerlink" title="1.开头"></a>1.开头</h2><p>​    很幸运地，我来娄底参加了此次封闭式OI集训，在此过程中我经历了许多前所未闻的事情，吃了不少苦，也收获颇丰。</p>
+<h2 id="2-关于OI的理解"><a href="#2-关于OI的理解" class="headerlink" title="2.关于OI的理解"></a>2.关于OI的理解</h2><p>​    虽然以前有过一些OI经历，但在集训中我才逐渐彻底认识OI。作为竞赛，OI当然有思维难度，但与其他竞赛或普通学科不同，OI里的算法需要自己钻研和领悟。由于没有标答，只要你有分，你就是正确，与其说是考试，OI更像一种艺术创作，关于算法的抽象艺术。真正的艺术是需要一个人思考与创造的。</p>
+<h2 id="3-我与OI的磨合"><a href="#3-我与OI的磨合" class="headerlink" title="3.我与OI的磨合"></a>3.我与OI的磨合</h2><p>​    在一开始，我并不习惯这种独自学习的方式，固执的按从前的方式来学习，过于依赖同伴的讨论与老师的引领，对于问题不加思索就提问，缺少自我探寻的过程，只是被动的等着老师来喂，讲多少会多少，水平提升一直有限，思路也一直局限在做过的题内。</p>
+<p>​    当然，这样做一定会栽跟头。在经历的一段不适应后，我开始思考去改变。经过向教练的启迪和自我的思索，我逐渐调整了自己的学习方式。</p>
+<p>​    首先，就是关于动手。OI是一门需要实践的学科，听一万遍不如自己动手写一遍代码，从前我一直认为听会了就会了，但是动起手来才发现有如此多的细节需要去注意，也因此收获了不少，代码能力相应提高，对算法也有了更深的认识。</p>
+<p>​    其次，反思与总结。之前我一直没有重做写过的题的习惯，但是再看一遍代码或许可以帮助你理解调试过程中的错误，并汲取教训，更能对不太理解的算法有更深一步的认识，还能由此对算法进行拓展和更进一步的应用。</p>
+<p>​    再者，得分技巧的应用。在OI中，能写正解固然好，但是往往是写不出正解的。一开始，我甚至不屑于写部分分，一心只想拿满分，但是能力不够，想写又写不出正解使人焦虑，当然就考不好。不比其他学科，就算不是完全正确的算法，在OI中也有意义。从不屑于写暴力算法到逐渐掌握常规偏分方法，其实反而提高了我的整体能力，也能拿到更高的分。</p>
+<p>​    最后，也是最重要的，先想清楚再动手。以前一直是看到题不管三七二十一就直接开始编码，但这样从没有读懂题甚至没有读题就下手，写到一半又返工重做，其实是最浪费时间的，而且还会自己弄乱心态，陷入改了错，错了改的死循环。其实读懂了题，想清楚了做法，写代码的时间非常短，而且思路通畅，bug也少，便于调试，更为自己增添一份信心。</p>
+<h2 id="4-关于OI的心态变化"><a href="#4-关于OI的心态变化" class="headerlink" title="4.关于OI的心态变化"></a>4.关于OI的心态变化</h2><p>​    其实从不熟悉到熟悉一件事，想法肯定会变，但是我对OI的看法确实发生了好几次大转弯。</p>
+<p>最开始，我刚接触OI时，还不知道这是个竞赛，只是单纯的觉得电脑好玩，代码好帅，于是就抱着试试看的心态，上了这条“贼船”。由于以前成绩一直不错，我并没有太重视OI的思维难度，自以为很强，却连基本功都不扎实。</p>
+<p>​    当然，我立马就受到打击，完全无法看懂的题目与如听天书般的算法严重的摧残了我的自信心，我几乎时快要被劝退了。但在妈妈的鼓励下，我坚持去啃，对于一个不懂的点就一直啃，直到啃懂为止。终于，我有了一些进步，也能解决一些简单的问题，又开始过分自信起来。</p>
+<p>​    但是随着学习的深入，内容不断变难，再也不是一直学就能学懂的了。加上考试内容的急剧增难，有时我连一道题都写不出。一次又一次这样的挫折几乎使我放弃，但凭着对OI的热爱日益加深，我没有退缩，反而找多种方法来解决问题，不断拓展思路，渐渐开始真正地适应了OI生活。在此过程中，我的抗打击能力在不断地困难与向教练“无止境的劝退”中获得了极大的提升，思考能力和学习习惯也得到了飞升。学习OI，确实使我成为了一个更好的人。</p>
+<h2 id="5-总结"><a href="#5-总结" class="headerlink" title="5.总结"></a>5.总结</h2><p>​    虽然前方肯定还有困难，也许比以前经历过的更为艰辛，但我相信我能撑过去，并不断提升个人能力，学习更多，更有趣，也或许更难以理解的算法，并进行自己的创造，也为自己的未来铺路。但更重要的，从开始到此刻，也到未来，学习OI都是基于我的兴趣，我为自己能坚持我喜欢的事情，并逐渐变强，在OI之路上提升自我而感到振奋。</p>
+<p>​            </p>
+]]></content>
+      <categories>
+        <category>OI</category>
+        <category>游记</category>
+      </categories>
+      <tags>
+        <tag>水文</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>2021.2.27退役感伤</title>
+    <url>/2021.2.27%E9%80%80%E5%BD%B9%E6%84%9F%E4%BC%A4/</url>
+    <content><![CDATA[<p>半退役时期的可怜小作文</p>
+<span id="more"></span>
+<h1 id="寒假小结及近期规划"><a href="#寒假小结及近期规划" class="headerlink" title="寒假小结及近期规划"></a>寒假小结及近期规划</h1><p>&emsp;这个寒假对我来说是一段非常宝贵的时间，无论是从心态调整到学习文化课的具体知识。</p>
+<p><br></p>
+<h2 id="竞赛的反思"><a href="#竞赛的反思" class="headerlink" title="竞赛的反思"></a>竞赛的反思</h2><p>&emsp;从初中开始，前前后后将近3年的竞赛生涯结束了，这对于我来说是一个很重要的转折点。竞赛对我整体的影响一言难尽，但在当下最重要的是完全摆脱退竞带来的不良影响。</p>
+<p>&emsp;自从元旦决定退出竞赛时，我一直没有完全适应。在文化课的学习中，常常因为没有调整好心理，而导致效率底下。一开始的几天，我在晚上完全睡不着觉，更加耽误时间。经常感到颓废和迷茫，无法提起精力。过去一段时间付出了大量的心血，现在所得远少于预期，并且就这样退出，确实心有不甘。</p>
+<p>&emsp;这段时间我一直在自我反思到底是哪里出了问题，但是我认为在之前的一次次比赛中我确实积累了足够的经验，也掌握了适合于自己的方法，并且全身心地投入其中，得承认客观因素确实有影响。</p>
+<p>&emsp;在寒假中我不断地安慰自己，并非没有实力，也并非没有资格，有时候确实运气不佳，退出也并非一个坏选择。我也经常去外面走走散散心，但是并没有起到我预想的调整的作用。有时候我看到以前竞赛时的书籍或资料，心中还是十分感慨，以后不可能再有这样的机会去投入大把的时间做我喜欢的事情了。</p>
+<p>&emsp;不过我还是慢慢接受了退役这个事实，我意识到真正影响我的不是退役这件事本身，而是自身定位的问题。很久以来我都把自己看作于一个竞赛生，放弃了很多自由与时间去追求竞赛成绩，却忘记了我一开始学习竞赛是出于爱好。退役并不意味着放弃长期的爱好，只是去除了追求奖项的功利。我思考了很多关于人生的追求和意义的问题，认识到退役并没有造成什么本质上的改变，只不过是一个小小的转折罢了，对它感叹世事是没有意义的。</p>
+<p>&emsp;一开始认为退役是一个打击，现在看来其实是一个重新认识自我的机会。辛亏有这个寒假作为缓冲，我在心理上做出了很大的调整。即便如此，我知道我并没有完全放下这个心里包袱，我还是很担心开学后我的心理状态。</p>
+<h2 id="文化课学习"><a href="#文化课学习" class="headerlink" title="文化课学习"></a>文化课学习</h2><p>&emsp;尽管已经做好了刚刚退役是没有办法考好的准备，期末考试的结果还是差强人意。</p>
+<p>&emsp;在刚退役的一个月里，班上确实有文化课的安排，但是并不详细，也并不深入，大部分时间主要是自习。</p>
+<p>&emsp;我规划了各科目的学习目标，找出以前没有做的练习册，又买了一些资料，自己刷题。效果显著，从基本不会到可以做一些题。但是对比投入全部的时间精力的文化课学生肯定有差距，考试成绩差也是预料之中。</p>
+<p>&emsp;幸好有一个寒假来弥补。我把从入学时的练习册全部找出来，一本一本的刷，刷完再买缺的题，一个寒假补了很多基础知识。尽管自己确实进步飞快，但是相比大部分人肯定处于落后，并且预期长期处于落后。</p>
+<p>&emsp;但是我对自己的学习能力非常有信心。竞赛教给我了很强的自学能力与自觉性，远超常规学生。并且我不怕吃苦，已经锻炼出了很强的毅力。短期看来应该败多胜少，不过在一段时间的学习后，等时间的差距稍拉平，成绩就应该比较可观了。</p>
+<p>&emsp;至于来到了一个新环境，我并不觉得这有什么问题。无论是哪一批教师或学生，都不影响我做自己的事情。我不在意环境的影响。</p>
+<p><br></p>
+<p>&emsp;写的很杂，主要是自己的一些感想。马上就要开学了，确实有些忐忑，主要是因为对未知的恐惧。正式开学后，我相信自己能调整好。</p>
+]]></content>
+      <categories>
+        <category>OI</category>
+        <category>游记</category>
+      </categories>
+      <tags>
+        <tag>水文</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>2020.11.14CSP游记</title>
+    <url>/2020.11.14CSP%E6%B8%B8%E8%AE%B0/</url>
+    <content><![CDATA[<p>上古时期的CSP游记</p>
+<span id="more"></span>
+<h1 id="CSP游记与总结"><a href="#CSP游记与总结" class="headerlink" title="CSP游记与总结"></a>CSP游记与总结</h1><p>&emsp;对于这次CSP我最大的感觉就是庆幸，庆幸这只是CSP，不会在更大程度上影响我后续的发展，导致直接退役。</p>
+<p>&emsp;考试形式的变化直接导致原来的策略行不通，进而导致整场考试全部乱了阵脚。</p>
+<p>&emsp;刚开题面，简单看了一下全卷，T1是一个大模拟，T2应该是一个数位DP，T3是一个DS，T4是一个博弈题。</p>
+<p>&emsp;顺着开题，先做T1。又是日期计算的题目，从学OI开始以来最令人恐惧的东西。最直接的想法就是直接模拟，按照特殊日期分界分别处理。一开始直接累加day，发现在多组数据下直接炸飞。后来按400year，4year分别取模，中间加上是否经过100特判。刚开始用了1.5h，有一点小问题，最后要交之前有改了一个判断，过了样例。感觉要fst，结果不出所料，洛谷数据只有40分。</p>
+<p>&emsp;T2出人意料的简单，一上来就按题意码了一发数位DP，发现不需要，直接判断可行性后取2的幂次减n即可，发现用longlong会炸，改成了ull，还是不够大，决定先放下，后面再继续处理。</p>
+<p>&emsp;T3一看就是个DS题。看起来很像之前做过的一道离线分治题，就打了一发线段树。后来发现可以用平衡树合并解决，但是时间不够就码了一发vector替代，轻松过了大样例，却被自己的样例卡飞了。看起来复杂度并不是很对，但是并不像继续折磨这题了，只剩2h了，还有T4。说到vector，特地为了保险没开万能头，不想在头文件上出锅，结果Dev的iostream包括了vector，CCF的没有，不能编译，直接裂开。</p>
+<p>&emsp;T3正解就是一个拓排，记录每个add的被调用次数。先直接乘，最后直接加完输出。</p>
+<p>&emsp;T4是一个确定性问题，一开始就想到直接处理出过程序列，再扫描判断。可惜时间比较紧，代码写的很乱，最后重构了好几发都没有写对，白送的70分都拿不到。</p>
+<p>&emsp;最后简单检查了一下，直接交了，自我感觉不错，但是有点慌。出考场和同学交流后发现大部分人没有做出T3T4，T1很多人也做了很久，稍微心安了一点。后面在洛谷上测了一下，40+95+0+15=150，和预期的300+差了一半。</p>
+<p>&emsp;作为一名已经经过一年多训练的选手，考出这个分数是不应该的事情，甚至比去年还低。其实从能力上来看，我完全可以很轻松地拿到370分。这些题目都是在我能力范围内的，做不出来除了策略问题，还有心态问题。</p>
+<p>&emsp;太久都没有做正规的模拟赛了，前一阶段时间的重点都在学一些新东西和总结更为高级的数据结构上，独立思考的时间并不多。后面还有近20天的时间，估计会有大量的模拟考和网赛，可以调整一下状态了。做题的重心也要做出改变，看看去年不会的题和noip中的高档题，保证联赛在300分以上就比较安全了。</p>
+]]></content>
+      <categories>
+        <category>OI</category>
+        <category>游记</category>
+      </categories>
+      <tags>
+        <tag>水文</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>简单的数学题</title>
+    <url>/3768%E9%A2%98%E8%A7%A3/</url>
+    <content><![CDATA[<p>luogu3768</p>
+<span id="more"></span>
+<h1 id="luogu3768-简单的数学题题解"><a href="#luogu3768-简单的数学题题解" class="headerlink" title="luogu3768 简单的数学题题解"></a>luogu3768 简单的数学题题解</h1><p>​    原题地址:<a href="https://www.luogu.com.cn/problem/P3768">https://www.luogu.com.cn/problem/P3768</a></p>
+<p>​    题意:求</p>
+<script type="math/tex; mode=display">
+\Sigma_{i=1}^n\Sigma_{j=1}^n ijgcd(i,j)</script><p>​    这个式子看起来很基础，但是可以看到数据范围大于$1e8$，求和上指标又同为$n$,此题肯定有一些特殊的做法</p>
+<p>​    先按照常规的套路，设</p>
+<script type="math/tex; mode=display">
+d=(i,j)</script><p>​    并将$d$直接提出来</p>
+<script type="math/tex; mode=display">
+\Sigma_{d=1}^nd^3  \Sigma_{i=1}^{n/d}\Sigma_{j=1}^{n/d}ij[(i,j)=1]</script><p>​    右边的式子用莫比乌斯函数的和式替代</p>
+<script type="math/tex; mode=display">
+\Sigma_{d=1}^nd^3  \Sigma_{i=1}^{n/d}\Sigma_{j=1}^{n/d}ij\Sigma_{k|(i,j)}\mu(k)</script><p>​    将$k$往左边提</p>
+<script type="math/tex; mode=display">
+\Sigma_{d=1}^nd^3  \Sigma_{k=1}^{n/d}k^2\mu(k)(\Sigma_{i=1}^{n/kd}i)^2</script><p>​    设右边的和式为$c$,并用$T=kd$换元</p>
+<script type="math/tex; mode=display">
+\Sigma_{d=1}^nd^3  \Sigma_{T=1}^n c(T)^2(T/d)^2\mu(T/d)</script><p>​    整理式子</p>
+<script type="math/tex; mode=display">
+\Sigma_{T=1}^nc(T)^2T^2\Sigma_{d|T}d\mu(T/d)</script><p>​    根据狄利克雷卷积的性质</p>
+<script type="math/tex; mode=display">
+\varphi=\mu*id</script><p>​    可以将右边的式子用$\varphi$代替</p>
+<script type="math/tex; mode=display">
+\Sigma_{T=1}^n c(T)^2T^2\varphi(T)</script><p>​    观察右侧的式子，可以发现$T^2\varphi(T)$是一个积性函数(两个数论函数的积仍为积性函数)，考虑处理这一部分，试图用杜教筛的式子向上套</p>
+<script type="math/tex; mode=display">
+g(1)S(n)=\Sigma_{i=1}^nH_i-\Sigma_{i=2}^ng(i)S(n/i)</script><p>​    其中</p>
+<script type="math/tex; mode=display">
+S(n)=\Sigma_{i=1}^nf(i),H=f*g,f(n)=n^2\varphi(n)</script><p>​    观察$f(n)$，$\varphi$难以直接处理，肯定要被转化掉，那就利用狄利克雷卷积中的$id=I*\varphi$,设$g(n)=1$则</p>
+<script type="math/tex; mode=display">
+H(n)=n^2\Sigma_{d|n}\varphi(d)=n^3</script><p>​    通过解递推方程可以发现，$\Sigma_{i=1}^nH_i$就是原式中的$c^2$,于是式子的形式就很简洁了</p>
+<script type="math/tex; mode=display">
+S(n)=c(n)^2-\Sigma_{i=2}^ni^2S(n/i)</script><p>​    直接代入原式求解就可以辣</p>
+<p>​    小结:此题在莫反的基础上有扩展，上指标相同看似简化条件，实际上对性能要求更高。推式子时利用了狄利克雷卷积来处理$\mu$,并在最后杜教筛处理前缀和时再次利用了$\varphi$的性质，算是对数论函数关系的灵活拓展</p>
+]]></content>
+      <categories>
+        <category>OI</category>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>数学</tag>
+        <tag>莫比乌斯反演</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>GSS1线段树题解</title>
+    <url>/GSS1%E9%A2%98%E8%A7%A3/</url>
+    <content><![CDATA[<p>GSS1线段树</p>
+<span id="more"></span>
+<p>题目链接:<a href="https://www.luogu.com.cn/problem/SP1043">https://www.luogu.com.cn/problem/SP1043</a></p>
+<p>考虑采用分治的思想来维护最大子段和，那么一个大的序列的最大子段和是怎么表示的呢？</p>
+<p>想到用区间的左右端点表示这个最大子段和所在的区间，于是我们对这个区间的端点位置进行讨论。</p>
+<p><img src="https://cdn.luogu.com.cn/upload/pic/40495.png" alt="img"></p>
+<p>这个图表示所有端点都在左边的区间上的情况，于是把左子区间的最大子段和计入候选值。</p>
+<p><img src="https://cdn.luogu.com.cn/upload/pic/40531.png" alt="img"></p>
+<p>这个图表示所有端点都在右边的区间上的情况，于是把右子区间的最大子段和计入候选值。</p>
+<p><img src="https://cdn.luogu.com.cn/upload/pic/40532.png" alt="img"></p>
+<p>这个图表示区间左端点在左边，右端点在右边的情况，这个可以拆分成左子区间的最大后缀和加上右子区间的最大前缀和，将这个值计入候选值。</p>
+<p>将这三个最大子段和的候选值去\maxmax即得该区间的最大子段和。</p>
+<p>为了维护最大子段和，引进了最大前缀和和最大后缀和，所以接下来解决区间的最大前缀和和最大后缀和。</p>
+<p>还是使用分治的思想，把要求的区间分成两个子区间，对前缀和的右端点进行讨论。</p>
+<p><img src="https://cdn.luogu.com.cn/upload/pic/40535.png" alt="img"></p>
+<p>这个图表示右端点在左边的情况，此时将左区间的最大前缀和计入候选值。</p>
+<p><img src="https://cdn.luogu.com.cn/upload/pic/40536.png" alt="img"></p>
+<p>这个图表示右端点在右边的情况，此时可拆分成左子区间和和右子区间的最大前缀和，将这个值计入候选值。</p>
+<p>以上两个候选值取\maxmax即得到该区间的最大前缀和，最大后缀和同理。</p>
+<p>维护最大前缀和与后缀和是，引入了区间和，而这个是很好完成的。</p>
+<p>在查询的时候分类讨论一下，如果这个区间要拆分，那么将两个部分算出来后在合并一下就好了，所以建议大家在这一天写<strong>结构体式线段树</strong>，返回结构体就好归并啦。</p>
+<p>看起来不可做，实际上还好，此题是做过的这种类型的第一题，继续</p>
+]]></content>
+      <categories>
+        <category>OI</category>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>数据结构</tag>
+        <tag>线段树</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>斯特林数笔记小结</title>
+    <url>/%E6%96%AF%E7%89%B9%E6%9E%97%E6%95%B0%E7%AC%94%E8%AE%B0%E5%B0%8F%E7%BB%93/</url>
+    <content><![CDATA[<p>斯特林数笔记整理</p>
+<span id="more"></span>
+<h1 id="斯特林数笔记整理"><a href="#斯特林数笔记整理" class="headerlink" title="斯特林数笔记整理"></a>斯特林数笔记整理</h1><p>&emsp;最近快被数学折磨疯了，具体数学上得快内容也难，在此整理一下所学的内容</p>
+<h2 id="第一类斯特林数"><a href="#第一类斯特林数" class="headerlink" title="第一类斯特林数"></a>第一类斯特林数</h2><p>&emsp;第一类斯特林数$\begin{bmatrix}<br>n\\<br>k<br>\end{bmatrix}$表示从$n$个元素中组成$k$个循环的方案数，此处的循环合起来构成一个与原排列对应的置换(参考置换群)。注意:循环的内部是圆周有序的，即$(a_1a_2a_3)$与$(a_2a_3a_1)$等价。</p>
+<p>&emsp;从组合的意义可以得到$\begin{bmatrix}n\\k\end{bmatrix}$的递推式</p>
+<script type="math/tex; mode=display">
+\begin{bmatrix}n\\k\end{bmatrix}=(n-1)\begin{bmatrix}n-1\\k\end{bmatrix}+\begin{bmatrix}n-1\\k-1\end{bmatrix}</script><p>&emsp;即当前的状态可以由直接添加一个新集合与放在任意一个元素后面转移而来</p>
+<p>&emsp;根据置换的性质，可以得到$\begin{bmatrix}n\\k\end{bmatrix}$与$n!$的关系</p>
+<script type="math/tex; mode=display">
+\Sigma_k\begin{bmatrix}n\\k\end{bmatrix}=n!</script><p>&emsp;由于任何一个置换都与一个排列一一对应，所以置换的总数与排列的总数相等</p>
+<p>&emsp;第一类斯特林数还可以用与上升幂与下降幂的展开</p>
+<script type="math/tex; mode=display">
+X^{\overline{n}}=\Sigma\begin{bmatrix}n\\k\end{bmatrix}x^k\\
+X^{\underline{n}}=\Sigma\begin{bmatrix}n\\k\end{bmatrix}(-1)^{n-k}x^k\\</script><p>&emsp;首先可以直观感性的理解一下,$X^{\underline{n}}&lt;X^n&lt;X^{\overline{n}}$,所以$X^n$转化成下降幂需要容斥，而上升幂则不用。这两个公式非常有用，直接将上升幂下降幂与自然幂联系在一起。形式上也较为简洁，类似于二项式反演。</p>
+<p>&emsp;至于证明，<del>懒得写了</del>，这篇文章的大部分公式证明都可以利用数学归纳法，大概思路就是先对和式进行扰动，利用吸收公式化简式子，并提取出公因式，最后利用递推式直接导出结果。</p>
+<h2 id="第二类斯特林数"><a href="#第二类斯特林数" class="headerlink" title="第二类斯特林数"></a>第二类斯特林数</h2><p>&emsp;相似的，第二类斯特林数$\begin{Bmatrix}n\\k\end{Bmatrix}$表示将$n$个元素划分为$k$个非空集合的方案数，可以读作”n子集k”。比起$\begin{bmatrix}n\\k\end{bmatrix}$,$\begin{Bmatrix}n\\k\end{Bmatrix}$由于其内部无序性，显然不会更大。由于组合意义更加简洁，它的出现也更为频繁。</p>
+<p>&emsp;从组合的意义可以得到$\begin{Bmatrix}n\\k\end{Bmatrix}$的递推式</p>
+<script type="math/tex; mode=display">
+\begin{Bmatrix}n\\k\end{Bmatrix}=k\begin{Bmatrix}n-1\\k\end{Bmatrix}+\begin{Bmatrix}n-1\\k-1\end{Bmatrix}</script><p>&emsp;即当前的状态可以由直接添加一个新集合与插入任意一个已有集合转移而来</p>
+<p>&emsp;第二类斯特林数由于其无序性，没有与阶乘有关的和式。但是它同样有关于上升幂下降幂与自然幂的展开式</p>
+<script type="math/tex; mode=display">
+X^n=\Sigma_k\begin{Bmatrix}n\\k\end{Bmatrix}x^{\underline{k}}\\
+X^n=\Sigma_k\begin{Bmatrix}n\\k\end{Bmatrix}(-1)^{n-k}x^{\overline{k}}\\</script><p>&emsp;类比于上面的反演式，$-1$可以从容斥的角度来理解</p>
+<p>&emsp;类似于组合数，斯特林数并不要求$n,k$均为正整数，关于有符号斯特林数也有一个优美的公式</p>
+<script type="math/tex; mode=display">
+\begin{bmatrix}n\\k\end{bmatrix}=\begin{Bmatrix}-k\\-n\end{Bmatrix}</script><p>&emsp;关于两类斯特林数还有许多关于组合数的求和公式，从组合意义的角度去理解比较好，证明的话除了数学归纳法其他的方式过于繁琐<del>我太菜了不会</del>，在此不赘述</p>
+<h2 id="斯特林反演"><a href="#斯特林反演" class="headerlink" title="斯特林反演"></a>斯特林反演</h2><p>&emsp;就是将上面几个关于上升幂下降幂与自然幂的式子结合起来看</p>
+<script type="math/tex; mode=display">
+X^n=\Sigma_k\begin{Bmatrix}n\\k\end{Bmatrix}x^{\underline{k}}\\
+X^n=\Sigma_k\begin{Bmatrix}n\\k\end{Bmatrix}(-1)^{n-k}x^{\overline{k}}\\
+X^{\overline{n}}=\Sigma\begin{bmatrix}n\\k\end{bmatrix}x^k\\
+X^{\underline{n}}=\Sigma\begin{bmatrix}n\\k\end{bmatrix}(-1)^{n-k}x^k\\</script><p>&emsp;得到</p>
+<script type="math/tex; mode=display">
+g(n)=\Sigma_k(-1)^{n-k}\begin{bmatrix}n\\k\end{bmatrix}f(k)\\
+f(n)=\Sigma_k\begin{Bmatrix}n\\k\end{Bmatrix}g(k)\\</script><p>&emsp;证明的话把式子一层层剥开，直接交换顺序组合在一起就是了。</p>
+<p><br></p>
+<p><br></p>
+<p>&emsp;目前并没有做过很多利用斯特林数性质的题，<del>一题都不会做</del>，基本也是和组合数中的求和式扯在一起。以后会慢慢收集一些题再归纳整理。</p>
+]]></content>
+      <categories>
+        <category>OI</category>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>数学</tag>
+        <tag>组合数学</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>OI莫反总结</title>
+    <url>/OI%E8%8E%AB%E5%8F%8D%E6%80%BB%E7%BB%93/</url>
+    <content><![CDATA[<p>莫比乌斯反演小结</p>
+<span id="more"></span>
+<h1 id="莫比乌斯反演小结"><a href="#莫比乌斯反演小结" class="headerlink" title="莫比乌斯反演小结"></a>莫比乌斯反演小结</h1><p>​    最近做了一点莫反的简单题目，虽然式子的推导并不算很复杂，但是没有见过肯定想不出来。感觉莫反非常需要技巧，在此总结一下翻过的车和学到的思路。写的非常简单，后面做了更多的题目可能会新增。</p>
+<h2 id="1-求和顺序的改变"><a href="#1-求和顺序的改变" class="headerlink" title="1.求和顺序的改变"></a>1.求和顺序的改变</h2><p>​    虽然这一步看起来没有什么技术含量，对元素的顺序改变也不影响结果，但是对于人来说推式子时思路更清晰。如果内层函数较为复杂新设函数单独求解。</p>
+<h2 id="2-换元法"><a href="#2-换元法" class="headerlink" title="2.换元法"></a>2.换元法</h2><p>​    换元是最为常用的一种基本方法，主要体现在用积或商替换原来的式子，实现求和式中下标与限制条件之间的运算与求和式与狄利克雷卷积式之间的转换</p>
+<p>​    下标转换最为典型的应用就是在$\Sigma_{i=1}^n \Sigma_{j=1}^m[(i,j)=k]$中将$i,j$换为$it<em>k,jt</em>k$,从而消去k，转化为更简洁的形式$\Sigma_{i=1}^{n/k} \Sigma_{j=1}^{m/k}[(i,j)=1]$</p>
+<p>​    此外，在某些情况下，换元法可以进行加速，如:YY的GCD<a href="https://www.luogu.com.cn/problem/P2257.此处的换元法将嵌套的函数拆开，虽然看起来更复杂了，却可以利用其加速">https://www.luogu.com.cn/problem/P2257.此处的换元法将嵌套的函数拆开，虽然看起来更复杂了，却可以利用其加速</a></p>
+<h2 id="3-约数和转前缀和"><a href="#3-约数和转前缀和" class="headerlink" title="3.约数和转前缀和"></a>3.约数和转前缀和</h2><p>​    这也是一个非常常规的操作，主要用于处理由元函数得出的式子,比如$[(i,j)=1]=&gt; \Sigma_{d|(i,j)}\mu(d)$,此时枚举d，将式子变换为$\Sigma_{d=1}^n\mu(d)$,并改变$i,j$的枚举策略</p>
+<h2 id="4-对于-varphi-的应用"><a href="#4-对于-varphi-的应用" class="headerlink" title="4.对于$\varphi$的应用"></a>4.对于$\varphi$的应用</h2><p>​    虽然叫莫比乌斯反演，但是$\varphi$的某些性质使得它可以大幅度的优化求解，比如<a href="https://www.luogu.com.cn/problem/P2568。">https://www.luogu.com.cn/problem/P2568。</a></p>
+<p>​    $\varphi$的处理可以直接起飞，但是限制较多，目前看来只有下标限制相同的求和才可以转为求$\varphi$,本质也是利用狄利克雷卷积的性质</p>
+]]></content>
+      <categories>
+        <category>OI</category>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>数学</tag>
+        <tag>莫比乌斯反演</tag>
+      </tags>
   </entry>
 </search>
