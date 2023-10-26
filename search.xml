@@ -700,6 +700,7 @@ C=\{ c_{i,j} \}</script><p>如果不等号的方向与标准型不同，或者�
 <span id="more"></span>
 <h2 id="2023-10-26"><a href="#2023-10-26" class="headerlink" title="2023.10.26"></a>2023.10.26</h2><p>选取了一些OI时期写的勉强能看小作文与题解，除了加上hexo的格式和标签之外基本没有做任何更改，保留了原汁原味的童真（</p>
 <p>categories界面又改成减缩版了，细节整合进tag里</p>
+<p>试图给categories加一个可折叠效果，但是失败了</p>
 <h2 id="2023-10-25"><a href="#2023-10-25" class="headerlink" title="2023.10.25"></a>2023.10.25</h2><p>尝试自定义home page，重定向了left bar中的home，但是没成功的重定义一进去的主页</p>
 <p>将博文分类进子文件夹中，并更改了permant link，url更好看了（</p>
 <p>考虑将OI时期的文章迁过来</p>
