@@ -24,11 +24,11 @@
 }
 
 .spoiler.collapsed .spoiler-title:before {
-    content: "¡ø ";
+    content: "â–¼ unfold";
 }
 
 .spoiler.expanded .spoiler-title:before {
-    content: "¨‹ ";
+    content: "â–² fold";
 }
 
 .spoiler .spoiler-content {
@@ -52,7 +52,7 @@
 }
 
 .spoiler.expanded .spoiler-content {
-    max-height: 3000px;
+    max-height: 10000px;
     overflow: hidden;
 }
 
