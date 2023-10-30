@@ -18,18 +18,18 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"nebulyu.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":3,"unescape":false,"preload":false,"swiftype_key":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"nebulyu.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":3,"unescape":false,"preload":false,"swiftype_key":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="记录博客的更新与框架的各种乱搞">
+  <meta name="description" content="记录博客框架的更新">
 <meta property="og:type" content="article">
 <meta property="og:title" content="博客维护log">
 <meta property="og:url" content="https://nebulyu.github.io/%E5%8D%9A%E5%AE%A2%E7%BB%B4%E6%8A%A4log/index.html">
 <meta property="og:site_name" content="Nebulyu&#39;s Blog">
-<meta property="og:description" content="记录博客的更新与框架的各种乱搞">
+<meta property="og:description" content="记录博客框架的更新">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-07-16T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-10-26T07:24:54.770Z">
+<meta property="article:published_time" content="2022-07-16T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-10-30T07:45:46.537Z">
 <meta property="article:author" content="nebulyu">
 <meta name="twitter:card" content="summary">
 
@@ -213,14 +213,14 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2023-07-17 00:00:00" itemprop="dateCreated datePublished" datetime="2023-07-17T00:00:00+08:00">2023-07-17</time>
+              <time title="Created: 2022-07-17 00:00:00" itemprop="dateCreated datePublished" datetime="2022-07-17T00:00:00+08:00">2022-07-17</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-10-26 15:24:54" itemprop="dateModified" datetime="2023-10-26T15:24:54+08:00">2023-10-26</time>
+                <time title="Modified: 2023-10-30 15:45:46" itemprop="dateModified" datetime="2023-10-30T15:45:46+08:00">2023-10-30</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -243,8 +243,12 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>记录博客的更新与框架的各种乱搞</p>
+        <p>记录博客框架的更新</p>
 <span id="more"></span>
+<h2 id="2023-10-30"><a href="#2023-10-30" class="headerlink" title="2023.10.30"></a>2023.10.30</h2><p>加入了代码折叠功能，主要参考 <a target="_blank" rel="noopener" href="https://wty-yy.space/posts/44830/#:~:text=%E4%BB%A3%E7%A0%81%E6%8A%98%E5%8F%A0%20%E5%85%88%E5%B0%9D%E8%AF%95%E8%BF%87%E5%BE%88%E5%A4%9Anext%E4%B8%BB%E9%A2%98%E4%B8%8B%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%B9%E6%B3%95%EF%BC%8C%E4%B8%8D%E4%BC%9A%E5%A5%97%E7%94%A8%E8%BF%87%E6%9D%A5%EF%BC%88%E6%B2%A1%E5%AD%A6%E8%BF%87JavaScript%E7%9A%84%E7%97%9B~%EF%BC%89%EF%BC%8C%E5%8D%B3%E4%BD%BF%E5%A5%97%E7%94%A8%E8%BF%87%E6%9D%A5%E5%90%8E%EF%BC%8C%E4%B9%9F%E5%87%BA%E7%8E%B0%E6%8C%89%E9%92%AE%E4%B8%8D%E6%98%BE%E7%A4%BA%EF%BC%8C%E6%8A%98%E5%8F%A0%E6%A1%86%E4%BD%8D%E7%BD%AE%E4%B8%8D%E6%AD%A3%E7%A1%AE%E7%AD%89%E7%AD%89%E9%97%AE%E9%A2%98%EF%BC%8C%E6%89%80%E4%BB%A5%E6%9C%80%E5%90%8E%E8%BF%98%E6%98%AF%E4%BD%BF%E7%94%A8%E7%9A%84hexo%E7%9A%84%E6%8F%92%E4%BB%B6%EF%BC%8C%E7%9C%9F%E9%A6%99%20%E6%93%8D%E4%BD%9C%E5%BE%88%E7%AE%80%E5%8D%95%20hexo-sliding-spoiler%E6%8F%92%E4%BB%B6%20github%E9%93%BE%E6%8E%A5%3A,hexo-sliding-spoiler%20%E6%8F%92%E4%BB%B6%E5%AE%89%E8%A3%85%20npm%20install%20hexo-sliding-spoiler.虽然还没有把旧博文加上折叠功能。">https://wty-yy.space/posts/44830/#:~:text=%E4%BB%A3%E7%A0%81%E6%8A%98%E5%8F%A0%20%E5%85%88%E5%B0%9D%E8%AF%95%E8%BF%87%E5%BE%88%E5%A4%9Anext%E4%B8%BB%E9%A2%98%E4%B8%8B%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%B9%E6%B3%95%EF%BC%8C%E4%B8%8D%E4%BC%9A%E5%A5%97%E7%94%A8%E8%BF%87%E6%9D%A5%EF%BC%88%E6%B2%A1%E5%AD%A6%E8%BF%87JavaScript%E7%9A%84%E7%97%9B~%EF%BC%89%EF%BC%8C%E5%8D%B3%E4%BD%BF%E5%A5%97%E7%94%A8%E8%BF%87%E6%9D%A5%E5%90%8E%EF%BC%8C%E4%B9%9F%E5%87%BA%E7%8E%B0%E6%8C%89%E9%92%AE%E4%B8%8D%E6%98%BE%E7%A4%BA%EF%BC%8C%E6%8A%98%E5%8F%A0%E6%A1%86%E4%BD%8D%E7%BD%AE%E4%B8%8D%E6%AD%A3%E7%A1%AE%E7%AD%89%E7%AD%89%E9%97%AE%E9%A2%98%EF%BC%8C%E6%89%80%E4%BB%A5%E6%9C%80%E5%90%8E%E8%BF%98%E6%98%AF%E4%BD%BF%E7%94%A8%E7%9A%84hexo%E7%9A%84%E6%8F%92%E4%BB%B6%EF%BC%8C%E7%9C%9F%E9%A6%99%20%E6%93%8D%E4%BD%9C%E5%BE%88%E7%AE%80%E5%8D%95%20hexo-sliding-spoiler%E6%8F%92%E4%BB%B6%20github%E9%93%BE%E6%8E%A5%3A,hexo-sliding-spoiler%20%E6%8F%92%E4%BB%B6%E5%AE%89%E8%A3%85%20npm%20install%20hexo-sliding-spoiler.虽然还没有把旧博文加上折叠功能。</a></p>
+<p>可以考虑写一个自动化程序来实现。</p>
+<p>加入了代码复制功能，主要参考 <a target="_blank" rel="noopener" href="https://blog.csdn.net/CodeJoker_7/article/details/123235303">https://blog.csdn.net/CodeJoker_7/article/details/123235303</a></p>
+<p>博客越来越像一个成品了</p>
 <h2 id="2023-10-26"><a href="#2023-10-26" class="headerlink" title="2023.10.26"></a>2023.10.26</h2><p>选取了一些OI时期写的勉强能看小作文与题解，除了加上hexo的格式和标签之外基本没有做任何更改，保留了原汁原味的童真（</p>
 <p>categories界面又改成减缩版了，细节整合进tag里</p>
 <p>试图给categories加一个可折叠效果，但是失败了</p>
@@ -259,7 +263,7 @@
 <p>前面很长一段时间没有记录log，算丢失了</p>
 <h2 id="2022-7-17"><a href="#2022-7-17" class="headerlink" title="2022.7.17"></a>2022.7.17</h2><p>hexo博客成功部署到github上</p>
 <p>安照之前部署的操作就成功了，控制了所有变量发现只有宽带供应商换了，猜测之前没法部署的原因是湖北移动把github给墙了</p>
-
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
     </div>
 
     
@@ -274,12 +278,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/abc296F/" rel="prev" title="ABC296F">
-      <i class="fa fa-chevron-left"></i> ABC296F
+    <a href="/2021.2.27%E9%80%80%E5%BD%B9%E6%84%9F%E4%BC%A4/" rel="prev" title="2021.2.27退役感伤">
+      <i class="fa fa-chevron-left"></i> 2021.2.27退役感伤
     </a></div>
       <div class="post-nav-item">
-    <a href="/%E5%9C%86%E6%96%B9%E6%A0%91/" rel="next" title="圆方树">
-      圆方树 <i class="fa fa-chevron-right"></i>
+    <a href="/hello-world/" rel="next" title="Hello world">
+      Hello world <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -339,7 +343,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#2023-10-26"><span class="nav-number">1.</span> <span class="nav-text">2023.10.26</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2023-10-25"><span class="nav-number">2.</span> <span class="nav-text">2023.10.25</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2023-10-24"><span class="nav-number">3.</span> <span class="nav-text">2023.10.24</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2022-7-17"><span class="nav-number">4.</span> <span class="nav-text">2022.7.17</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#2023-10-30"><span class="nav-number">1.</span> <span class="nav-text">2023.10.30</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2023-10-26"><span class="nav-number">2.</span> <span class="nav-text">2023.10.26</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2023-10-25"><span class="nav-number">3.</span> <span class="nav-text">2023.10.25</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2023-10-24"><span class="nav-number">4.</span> <span class="nav-text">2023.10.24</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2022-7-17"><span class="nav-number">5.</span> <span class="nav-text">2022.7.17</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
