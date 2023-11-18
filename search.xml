@@ -729,9 +729,9 @@ C=\{ c_{i,j} \}</script><p>如果不等号的方向与标准型不同，或者�
   <entry>
     <title>博客维护log</title>
     <url>/%E5%8D%9A%E5%AE%A2%E7%BB%B4%E6%8A%A4log/</url>
-    <content><![CDATA[<p>记录博客框架的更新</p>
+    <content><![CDATA[<p>记录博客框架与功能的更新</p>
 <span id="more"></span>
-<h2 id="2023-10-30"><a href="#2023-10-30" class="headerlink" title="2023.10.30"></a>2023.10.30</h2><p>加入了代码折叠功能，主要参考 <a href="https://wty-yy.space/posts/44830/#:~:text=%E4%BB%A3%E7%A0%81%E6%8A%98%E5%8F%A0%20%E5%85%88%E5%B0%9D%E8%AF%95%E8%BF%87%E5%BE%88%E5%A4%9Anext%E4%B8%BB%E9%A2%98%E4%B8%8B%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%B9%E6%B3%95%EF%BC%8C%E4%B8%8D%E4%BC%9A%E5%A5%97%E7%94%A8%E8%BF%87%E6%9D%A5%EF%BC%88%E6%B2%A1%E5%AD%A6%E8%BF%87JavaScript%E7%9A%84%E7%97%9B~%EF%BC%89%EF%BC%8C%E5%8D%B3%E4%BD%BF%E5%A5%97%E7%94%A8%E8%BF%87%E6%9D%A5%E5%90%8E%EF%BC%8C%E4%B9%9F%E5%87%BA%E7%8E%B0%E6%8C%89%E9%92%AE%E4%B8%8D%E6%98%BE%E7%A4%BA%EF%BC%8C%E6%8A%98%E5%8F%A0%E6%A1%86%E4%BD%8D%E7%BD%AE%E4%B8%8D%E6%AD%A3%E7%A1%AE%E7%AD%89%E7%AD%89%E9%97%AE%E9%A2%98%EF%BC%8C%E6%89%80%E4%BB%A5%E6%9C%80%E5%90%8E%E8%BF%98%E6%98%AF%E4%BD%BF%E7%94%A8%E7%9A%84hexo%E7%9A%84%E6%8F%92%E4%BB%B6%EF%BC%8C%E7%9C%9F%E9%A6%99%20%E6%93%8D%E4%BD%9C%E5%BE%88%E7%AE%80%E5%8D%95%20hexo-sliding-spoiler%E6%8F%92%E4%BB%B6%20github%E9%93%BE%E6%8E%A5%3A,hexo-sliding-spoiler%20%E6%8F%92%E4%BB%B6%E5%AE%89%E8%A3%85%20npm%20install%20hexo-sliding-spoiler">https://wty-yy.space/posts/44830/#:~:text=%E4%BB%A3%E7%A0%81%E6%8A%98%E5%8F%A0%20%E5%85%88%E5%B0%9D%E8%AF%95%E8%BF%87%E5%BE%88%E5%A4%9Anext%E4%B8%BB%E9%A2%98%E4%B8%8B%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%B9%E6%B3%95%EF%BC%8C%E4%B8%8D%E4%BC%9A%E5%A5%97%E7%94%A8%E8%BF%87%E6%9D%A5%EF%BC%88%E6%B2%A1%E5%AD%A6%E8%BF%87JavaScript%E7%9A%84%E7%97%9B~%EF%BC%89%EF%BC%8C%E5%8D%B3%E4%BD%BF%E5%A5%97%E7%94%A8%E8%BF%87%E6%9D%A5%E5%90%8E%EF%BC%8C%E4%B9%9F%E5%87%BA%E7%8E%B0%E6%8C%89%E9%92%AE%E4%B8%8D%E6%98%BE%E7%A4%BA%EF%BC%8C%E6%8A%98%E5%8F%A0%E6%A1%86%E4%BD%8D%E7%BD%AE%E4%B8%8D%E6%AD%A3%E7%A1%AE%E7%AD%89%E7%AD%89%E9%97%AE%E9%A2%98%EF%BC%8C%E6%89%80%E4%BB%A5%E6%9C%80%E5%90%8E%E8%BF%98%E6%98%AF%E4%BD%BF%E7%94%A8%E7%9A%84hexo%E7%9A%84%E6%8F%92%E4%BB%B6%EF%BC%8C%E7%9C%9F%E9%A6%99%20%E6%93%8D%E4%BD%9C%E5%BE%88%E7%AE%80%E5%8D%95%20hexo-sliding-spoiler%E6%8F%92%E4%BB%B6%20github%E9%93%BE%E6%8E%A5%3A,hexo-sliding-spoiler%20%E6%8F%92%E4%BB%B6%E5%AE%89%E8%A3%85%20npm%20install%20hexo-sliding-spoiler</a>.</p>
+<h2 id="2023-10-30"><a href="#2023-10-30" class="headerlink" title="2023.10.30"></a>2023.10.30</h2><p>加入了代码折叠功能，主要参考 <a href="https://wty-yy.space/posts/44830/">https://wty-yy.space/posts/44830/</a></p>
 <p>虽然还没有把旧博文加上折叠部分。可以考虑写一个自动化程序来实现。</p>
 <p>加入了代码复制功能，主要参考 <a href="https://blog.csdn.net/CodeJoker_7/article/details/123235303">https://blog.csdn.net/CodeJoker_7/article/details/123235303</a></p>
 <p>博客越来越像一个成品了</p>
@@ -1337,7 +1337,66 @@ g_n^{2k}=g_{n/2}^{k}(mod P)</script><p>那么就可以利用类似于上述的�
     </div>
 </div>
 <p><br><br></p>
-<h1 id="多项式运算"><a href="#多项式运算" class="headerlink" title="多项式运算"></a>多项式运算</h1><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
+<h1 id="多项式运算"><a href="#多项式运算" class="headerlink" title="多项式运算"></a>多项式运算</h1><h2 id="求导，积分"><a href="#求导，积分" class="headerlink" title="求导，积分"></a>求导，积分</h2><p>对于一个多项式函数，求导和积分的原理都非常简单。在计算机中的实现就是移动项并变换相应系数。<br>在ntt的做法中，可以预处理阶乘和逆阶乘。</p>
+<p>代码:</p>
+<div class='spoiler collapsed'>
+    <div class='spoiler-title'>
+        
+    </div>
+    <div class='spoiler-content'>
+        <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">ll fac[N],ifac[N];</span><br><span class="line"><span class="comment">//取k阶导或求k次积分</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">deviate</span><span class="params">(ll *a,<span class="type">int</span> n,<span class="type">int</span> k=<span class="number">1</span>)</span></span>&#123;</span><br><span class="line">    <span class="built_in">ffor</span>(i,<span class="number">0</span>,n-k<span class="number">-1</span>)a[i]=a[i+k]*fac[i+k]%P*ifac[i]%P;</span><br><span class="line">    <span class="keyword">return</span> n-k;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">integrate</span><span class="params">(ll *a,<span class="type">int</span> n,<span class="type">int</span> k=<span class="number">1</span>)</span></span>&#123;</span><br><span class="line">    <span class="built_in">rfor</span>(i,n<span class="number">-1</span>,<span class="number">0</span>)a[i+k]=a[i]*ifac[i+k]%P*fac[i]%P;</span><br><span class="line">    <span class="built_in">ffor</span>(i,<span class="number">0</span>,k<span class="number">-1</span>)a[i]=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">return</span> n+k;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">init</span><span class="params">()</span></span>&#123;</span><br><span class="line">    fac[<span class="number">0</span>]=ifac[<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line">    <span class="built_in">ffor</span>(i,<span class="number">1</span>,N<span class="number">-1</span>)fac[i]=fac[i<span class="number">-1</span>]*i%P;</span><br><span class="line">    ifac[N<span class="number">-1</span>]=<span class="built_in">fsp</span>(fac[N<span class="number">-1</span>]);</span><br><span class="line">    <span class="built_in">rfor</span>(i,N<span class="number">-1</span>,<span class="number">1</span>)ifac[i<span class="number">-1</span>]=ifac[i]*i%P;</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+
+    </div>
+</div>
+<p><br></p>
+<h2 id="求逆"><a href="#求逆" class="headerlink" title="求逆"></a>求逆</h2><p>$F(x)$的多项式逆元定义为$F(x)G(x)\equiv 1 (mod x^n)$。这个逆元只针对原多项式长度范围内的部分，对于乘积超出的部分直接忽略。</p>
+<p>考虑递归求解。在递归边界$n=1$，$G_0=f_0^{-1}$。</p>
+<p>在模$x^{\frac{n}{2}}$的意义下，定义$F(X)$的逆多项式$H(x)$。$H(x)$通过递归逐次求解。</p>
+<script type="math/tex; mode=display">
+F(x)H(x)\equiv 1(mod x^{\frac{n}{2}})\\
+F(x)G(x)\equiv 1(mod x^n)\\
+\downarrow \\
+F(x)(H(x)-G(x))\equiv 0(mod x^{\frac{n}{2}})\\
+H(x)-G(x)\equiv 0(mod x^{\frac{n}{2}})</script><p>可以看出，在低位$x^{\frac{n}{2}}$以下，$H(X)=G(X)$，即$H(X)$就是$G(X)$的低位部分。至于高位部分，考虑平方</p>
+<script type="math/tex; mode=display">
+G^2(x)\equiv 2H(X)G(x)-H^2(x)(mod x^n)\\
+F(x)*G^2(x)\equiv F(x)*2H(x)G(x)-F(x)*H^2(x)(mod x^n)\\
+\downarrow \\
+G(x)\equiv 2H(x)-F(x)*H^2(x)(mod x^n)</script><p>这样，通过$\frac{n}{2}$项式$H(X)$，就可以得到$n$项式$G(X)$。</p>
+<p>根据fft的经验，二进制分治的递归可以改写成迭代，求逆也可以改用迭代，这样时空开销更小。</p>
+<p>代码:</p>
+<div class='spoiler collapsed'>
+    <div class='spoiler-title'>
+        
+    </div>
+    <div class='spoiler-content'>
+        <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// n:多项式f原长度</span></span><br><span class="line">ll inv_f[N];</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">poly_inv</span><span class="params">(ll *f,ll *g,<span class="type">int</span> n)</span></span>&#123;</span><br><span class="line">    <span class="built_in">ffor</span>(i,<span class="number">0</span>,n<span class="number">-1</span>)g[i]=<span class="number">0</span>;g[<span class="number">0</span>]=<span class="built_in">fsp</span>(f[<span class="number">0</span>]);</span><br><span class="line">    <span class="keyword">for</span>(ll len=<span class="number">1</span>;len&lt;(n&lt;&lt;<span class="number">1</span>);len&lt;&lt;=<span class="number">1</span>)&#123;</span><br><span class="line">        ll lim=len&lt;&lt;<span class="number">1</span>;</span><br><span class="line">        <span class="built_in">ffor</span>(i,<span class="number">0</span>,lim<span class="number">-1</span>)inv_f[i]=<span class="number">0</span>;</span><br><span class="line">        <span class="built_in">ffor</span>(i,<span class="number">0</span>,len<span class="number">-1</span>)inv_f[i]=f[i];</span><br><span class="line">        <span class="built_in">ntt</span>(inv_f,lim),<span class="built_in">ntt</span>(g,lim);</span><br><span class="line">        <span class="built_in">ffor</span>(i,<span class="number">0</span>,lim<span class="number">-1</span>)g[i]=(P+<span class="number">2ll</span>-inv_f[i]*g[i]%P)%P*g[i]%P;</span><br><span class="line">        <span class="built_in">ntt</span>(g,lim,<span class="number">-1</span>);</span><br><span class="line">        <span class="built_in">ffor</span>(i,len,lim<span class="number">-1</span>)g[i]=<span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+    </div>
+</div>
+<p><br></p>
+<h2 id="开根"><a href="#开根" class="headerlink" title="开根"></a>开根</h2><p>$F(x)$的根式定义为$G^2(x)\equiv F(x) (mod x^n)$。按照求逆的套路，考虑分治合并。</p>
+<p>当$H(x)$是$F(x)$在一半长度下的根式</p>
+<script type="math/tex; mode=display">
+H(x)\equiv G(x)(mod x^{\frac{n}{2}})\\
+H(x)-G(x)\equiv 0(mod x^{\frac{n}{2}})\\
+(H(x)-G(x))^2\equiv 0(mod x^n)\\
+\downarrow \\
+G^2(x)+H^2(x)-2G(x)H(x)\equiv 0(mod x^n)\\
+F(x)+H^2(x)-2G(x)H(x)\equiv 0(mod x^n)\\
+\frac{F(x)+H^2(x)}{2H(x)}\equiv G(x)(mod x^n)\\</script><p>递归，求$H(x)$的逆元，就可由半长根式得全长根式</p>
+<p>代码:</p>
+<div class='spoiler collapsed'>
+    <div class='spoiler-title'>
+        
+    </div>
+    <div class='spoiler-content'>
+        <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">ll sqrt_f[N],sqrt_inv[N];</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">poly_sqrt</span><span class="params">(ll *f,ll *g,<span class="type">int</span> n)</span></span>&#123;</span><br><span class="line">    <span class="built_in">ffor</span>(i,<span class="number">0</span>,n<span class="number">-1</span>)g[i]=<span class="number">0</span>;g[<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(ll len=<span class="number">1</span>;len&lt;(n&lt;&lt;<span class="number">1</span>);len&lt;&lt;=<span class="number">1</span>)&#123;</span><br><span class="line">        ll lim=len&lt;&lt;<span class="number">1</span>;</span><br><span class="line">        <span class="built_in">ffor</span>(i,<span class="number">0</span>,lim<span class="number">-1</span>)sqrt_f[i]=sqrt_inv[i]=<span class="number">0</span>;</span><br><span class="line">        <span class="built_in">ffor</span>(i,<span class="number">0</span>,len<span class="number">-1</span>)sqrt_f[i]=f[i];</span><br><span class="line">        <span class="built_in">poly_inv</span>(g,sqrt_inv,len);</span><br><span class="line">        <span class="built_in">ntt</span>(sqrt_f,lim),<span class="built_in">ntt</span>(sqrt_inv,lim);</span><br><span class="line">        <span class="built_in">ffor</span>(i,<span class="number">0</span>,lim<span class="number">-1</span>)sqrt_f[i]=sqrt_inv[i]*sqrt_f[i]%P;</span><br><span class="line">        <span class="built_in">ntt</span>(sqrt_f,lim,<span class="number">-1</span>);</span><br><span class="line">        <span class="built_in">ffor</span>(i,<span class="number">0</span>,len<span class="number">-1</span>)g[i]=(sqrt_f[i]+g[i])%P*inv2%P;</span><br><span class="line">        <span class="built_in">ffor</span>(i,len,lim<span class="number">-1</span>)g[i]=<span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+    </div>
+</div>
+<p><br></p>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
       <categories>
         <category>ACM</category>
         <category>算法</category>
