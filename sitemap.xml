@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://nebulyu.github.io/links/index.html</loc>
+    
+    <lastmod>2023-11-18</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://nebulyu.github.io/ccpc2023%E6%B7%B1%E5%9C%B3%E6%B8%B8%E8%AE%B0/</loc>
     
     <lastmod>2023-11-18</lastmod>
@@ -365,15 +374,6 @@
     <loc>https://nebulyu.github.io/home/index.html</loc>
     
     <lastmod>2023-10-25</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://nebulyu.github.io/links/index.html</loc>
-    
-    <lastmod>2023-10-24</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
