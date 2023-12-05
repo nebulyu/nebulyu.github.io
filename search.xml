@@ -510,7 +510,7 @@ x>=\lfloor(B-1)/k\rfloor-A+1</script><p>这样,我们可以枚举k来计算答�
 <h2 id="小M的作物"><a href="#小M的作物" class="headerlink" title="小M的作物"></a>小M的作物</h2><p><a href="https://www.luogu.com.cn/problem/P1361">https://www.luogu.com.cn/problem/P1361</a><br>题意:有n种作物,每一种可以种在A,B两个田里,分别收获$a_i,b_i$的价值.给出m种组合,若组合内所有作物都种在A,B内,额外获得$ea_i,eb_i$的价值.求出可以获得的最大价值.</p>
 <p>首先不看额外附加的价值,直接贪心就是答案.贪心策略毫无疑问就是选取较大者,也可以转述为两者之和减去较小者.<del>很容易联想到</del>,最小割也可以用来求两者中的较小值.将权值作为容量,分别连向源汇,达到满流后,总流量就是二者中的较小者.最大价值可以预先存下所有价值的和,再减去最小割得到.</p>
 <p>那么这个直接能无脑贪心的问题,为什么要去扯上最小割呢?最小割可以处理依赖关系下的求值,刚好能解决组合额外价值的计算.考虑将每种作物拆分为A,B两个点,分别代表选择田地A或B,再将组合建立虚拟点,可以发现图中的依赖关系,任一个组合能被选取仅当所有目标作物都选为对应的土地,即$ma_i$依赖于$a_j,(j \in {S_i})$全部被选取.</p>
-<p><img src="E:\PD\pics\最小割1.png" style="zoom: 50%;" /></p>
+<p><img src="https://pic.imgdb.cn/item/656f0ce8c458853aefdcc958.png" style="zoom: 50%;" /></p>
 <p>此处并不需要直接把代表作物的点拆出来,因为入点和出点之间的边容量为无穷,合并也不会影响结果.黑边的容量为无限.在最小割中,以代价或贡献的角度考虑,无限容量代表永远不割去此条边,即不选择依赖项直接选则目的项的代价无限大.这样就可以保证,要么不选此项,割掉其与源汇点的边,要么捆绑式选取所有依赖点.</p>
 <p>求额外价值的方法和单个点一样,预先将价值加到总和中,最后减去最小割.<br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">For</span>(i,<span class="number">1</span>,n)cin&gt;&gt;rec[i][<span class="number">0</span>],sum+=rec[i][<span class="number">0</span>];</span><br><span class="line"><span class="built_in">For</span>(i,<span class="number">1</span>,n)cin&gt;&gt;rec[i][<span class="number">1</span>],sum+=rec[i][<span class="number">1</span>];</span><br><span class="line"><span class="built_in">For</span>(i,<span class="number">1</span>,n)<span class="built_in">con</span>(S,i,rec[i][<span class="number">0</span>]),<span class="built_in">con</span>(i,T,rec[i][<span class="number">1</span>]);</span><br><span class="line"><span class="built_in">For</span>(i,<span class="number">1</span>,m)&#123;</span><br><span class="line">    <span class="built_in">con</span>(S,p1,v1),<span class="built_in">con</span>(p2,T,v2),sum+=v1+v2;</span><br><span class="line">    <span class="built_in">For</span>(j,<span class="number">1</span>,k)&#123;ll p;cin&gt;&gt;p;<span class="built_in">con</span>(p1,p,INF),<span class="built_in">con</span>(p,p2,INF);&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">dinic</span>();</span><br><span class="line">cout&lt;&lt;sum-mxf;</span><br></pre></td></tr></table></figure></p>
 <p><br></p>
@@ -522,7 +522,7 @@ x>=\lfloor(B-1)/k\rfloor-A+1</script><p>这样,我们可以枚举k来计算答�
 <p>这个模型太眼熟了,可以用pty论文中的方法解决.<br>简单回顾一下模型,<del>知道的大佬可以直接跳过</del></p>
 <h3 id="机械调度"><a href="#机械调度" class="headerlink" title="机械调度"></a>机械调度</h3><p>有n个任务,每个可以在机械A,B上完成,所选的方案记为二元组$(x,y)$.选择A或B会产生$A_i,B_i$的代价.对于每一组$(x,y)$,都会产生一组给定的代价,$v_1,v_2,v_3,v_4$.求一种方案使得总代价最小.</p>
 <p>对于每个任务的代价,暂不考虑,可以最后再加到割边上去.现考虑二元组的影响,在原图上重新建边.</p>
-<p><img src="E:\PD\texts\总结\浅析一类最小割问题(pty).png" style="zoom:150%;" /></p>
+<p><img src="https://pic.imgdb.cn/item/656f0d41c458853aefde1fc6.png" style="zoom:150%;" /></p>
 <p>边的容量必须满足以下限制</p>
 <script type="math/tex; mode=display">
 a+b=v1 \\
@@ -538,9 +538,9 @@ e=f=(v3+v4-v1-v2)/2</script><p>然后以每个任务自身的代价连边,最后
 <h3 id=""><a href="#" class="headerlink" title=" "></a> </h3><p>回到本题,将所有的代价取负变为贡献,答案就是所有容量的和减去最小割.<br>与模型唯一的不同就是划分不同时的代价变成了贡献,那就预先把所有的贡献加和,再将容量的差加到相同划分的代价上,最后如果划分不同时结果会相抵消.<br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">For</span>(i,<span class="number">2</span>,n<span class="number">-1</span>)&#123;ll v;cin&gt;&gt;v;v*=<span class="number">2</span>,sum+=v,<span class="built_in">con</span>(S,i,v);&#125;</span><br><span class="line"><span class="built_in">For</span>(i,<span class="number">2</span>,n<span class="number">-1</span>)&#123;ll v;cin&gt;&gt;v;v*=<span class="number">2</span>,sum+=v,<span class="built_in">con</span>(i,T,v);&#125;</span><br><span class="line"><span class="built_in">For</span>(i,<span class="number">1</span>,m)&#123;</span><br><span class="line">    <span class="type">int</span> p1,p2;ll v1,v2,v3;</span><br><span class="line">    cin&gt;&gt;p1&gt;&gt;p2&gt;&gt;v1&gt;&gt;v2&gt;&gt;v3;</span><br><span class="line">    sub+=v3,v1+=v3,v2+=v3;</span><br><span class="line">    v1*=<span class="number">2</span>,v2*=<span class="number">2</span>,sum+=v1+v2;</span><br><span class="line">    <span class="built_in">con</span>(S,p1,v1/<span class="number">2</span>);</span><br><span class="line">    <span class="built_in">con</span>(S,p2,v1/<span class="number">2</span>);</span><br><span class="line">    <span class="built_in">con</span>(p1,T,v2/<span class="number">2</span>);</span><br><span class="line">    <span class="built_in">con</span>(p2,T,v2/<span class="number">2</span>);</span><br><span class="line">    <span class="built_in">con</span>(p1,p2,(v1+v2)/<span class="number">2</span>);</span><br><span class="line">    <span class="built_in">con</span>(p2,p1,(v1+v2)/<span class="number">2</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br><br></p>
 <h2 id="方格取数问题"><a href="#方格取数问题" class="headerlink" title="方格取数问题"></a>方格取数问题</h2><p><a href="https://www.luogu.com.cn/problem/P2774">https://www.luogu.com.cn/problem/P2774</a><br>题意:给定一个n*m的矩阵,要求取出若干个数,使总和最大,同时满足每个数在矩阵中的位置都不相邻</p>
 <p>相邻不能同时取,这个条件给出了互斥性,暗示着可以根据矩阵中位置的奇偶性,将原图看作一张二分图,不相交的两侧分别代表奇偶点,代表两个点至少一条连向源汇的边被割掉,即至少弃掉一个点.原问题等价于二分图带权最大独立集.</p>
-<p><img src="E:\PD\pics\p1.png" style="zoom:50%;" /></p>
+<p><img src="https://pic.imgdb.cn/item/656f0d6cc458853aefdeb155.png" style="zoom:50%;" /></p>
 <p>这个总和最大感觉不太好求,就转化问题,求一个取数组合使剩下的数均不相邻,且该组合最小.这种取法会将原二分图拆成两个不相连部分,与最大流的残量网络极其相像.最后的S,T集里的点就是目标取点.</p>
-<p><img src="E:\PD\pics\p2.png" style="zoom:50%;" /></p>
+<p><img src="https://pic.imgdb.cn/item/656f0d6cc458853aefdeb012.png" style="zoom:50%;" /></p>
 <p><del>图中黑边为被删去的边,蓝边为可行边</del>此图有误,被删去的边可能流量在残量网络没有跑完,但经过调整后一定可以使每条边对应点的状态.<br><br></p>
 <h2 id="圈地计划"><a href="#圈地计划" class="headerlink" title="圈地计划"></a>圈地计划</h2><p><a href="https://www.luogu.com.cn/problem/P1935">https://www.luogu.com.cn/problem/P1935</a><br>题意:一个nm矩阵,每个点位选择A或B,得到收益$a_{ij},b_{ij}$.若两个相邻的点选择不同,获得额外收益$C_{ij}+C_{kl}$.求所能获得的最大收益.</p>
 <p>推荐先做这一题<a href="https://www.luogu.com.cn/problem/P1646,本题的简单版">https://www.luogu.com.cn/problem/P1646,本题的简单版</a>.</p>
@@ -551,7 +551,7 @@ e=f=(v3+v4-v1-v2)/2</script><p>然后以每个任务自身的代价连边,最后
 <h2 id="人员雇佣"><a href="#人员雇佣" class="headerlink" title="人员雇佣"></a>人员雇佣</h2><p><a href="https://www.luogu.com.cn/problem/P1791">https://www.luogu.com.cn/problem/P1791</a><br>题意:有n个员工,雇佣成本分别为$a_i$.若$i,j$两个员工同时雇佣,则获得收益$E_{i,j}$,如果其中一人被雇佣而另一人没有,则付出额外代价$E_{i,j}$.求最大收益.</p>
 <p>用虚拟点的想法,拆点为选或不选,再将额外收益或惩罚连依赖边,最后再处理收益与惩罚的互斥性上遇到了麻烦,似乎并不好表示.</p>
 <p>考虑边的意义.先将贡献加和转化问题为求最小代价,向源汇连收益和代价.点i向点j连容量为$2E_{i,j}$的边,表示两者不在同一集合的代价为$2E_{i,j}$,就搞定辣.<br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">For</span>(i,<span class="number">1</span>,n)&#123;ll v;cin&gt;&gt;v;<span class="built_in">con</span>(i,T,v);&#125;</span><br><span class="line"><span class="built_in">For</span>(i,<span class="number">1</span>,n)<span class="built_in">For</span>(j,<span class="number">1</span>,n)&#123;</span><br><span class="line">    ll v;cin&gt;&gt;v;<span class="keyword">if</span>(i==j)<span class="keyword">continue</span>;</span><br><span class="line">    rec[j]+=v,sum+=v,<span class="built_in">con</span>(i,j,v*<span class="number">2</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">For</span>(i,<span class="number">1</span>,n)<span class="built_in">con</span>(S,i,rec[i]);</span><br></pre></td></tr></table></figure></p>
-]]></content>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
       <categories>
         <category>ACM</category>
         <category>算法</category>
@@ -733,6 +733,7 @@ C=\{ c_{i,j} \}</script><p>如果不等号的方向与标准型不同，或者�
 <span id="more"></span>
 <h2 id="2023-12-5"><a href="#2023-12-5" class="headerlink" title="2023.12.5"></a>2023.12.5</h2><p>根据这篇文章<a href="https://zhuanlan.zhihu.com/p/138500516把主页改成了自定义页面，但是还没有添加内容">https://zhuanlan.zhihu.com/p/138500516把主页改成了自定义页面，但是还没有添加内容</a></p>
 <p>打算找个好看的主页模板蒯过来</p>
+<p>添加了图床<a href="https://www.superbed.cn/">https://www.superbed.cn/</a></p>
 <h2 id="2023-10-30"><a href="#2023-10-30" class="headerlink" title="2023.10.30"></a>2023.10.30</h2><p>加入了代码折叠功能，主要参考 <a href="https://wty-yy.space/posts/44830/">https://wty-yy.space/posts/44830/</a></p>
 <p>虽然还没有把旧博文加上折叠部分。可以考虑写一个自动化程序来实现。</p>
 <p>加入了代码复制功能，主要参考 <a href="https://blog.csdn.net/CodeJoker_7/article/details/123235303">https://blog.csdn.net/CodeJoker_7/article/details/123235303</a></p>
