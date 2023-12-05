@@ -731,6 +731,8 @@ C=\{ c_{i,j} \}</script><p>如果不等号的方向与标准型不同，或者�
     <url>/%E5%8D%9A%E5%AE%A2%E7%BB%B4%E6%8A%A4log/</url>
     <content><![CDATA[<p>记录博客框架与功能的更新</p>
 <span id="more"></span>
+<h2 id="2023-12-5"><a href="#2023-12-5" class="headerlink" title="2023.12.5"></a>2023.12.5</h2><p>根据这篇文章<a href="https://zhuanlan.zhihu.com/p/138500516把主页改成了自定义页面，但是还没有添加内容">https://zhuanlan.zhihu.com/p/138500516把主页改成了自定义页面，但是还没有添加内容</a></p>
+<p>打算找个好看的主页模板蒯过来</p>
 <h2 id="2023-10-30"><a href="#2023-10-30" class="headerlink" title="2023.10.30"></a>2023.10.30</h2><p>加入了代码折叠功能，主要参考 <a href="https://wty-yy.space/posts/44830/">https://wty-yy.space/posts/44830/</a></p>
 <p>虽然还没有把旧博文加上折叠部分。可以考虑写一个自动化程序来实现。</p>
 <p>加入了代码复制功能，主要参考 <a href="https://blog.csdn.net/CodeJoker_7/article/details/123235303">https://blog.csdn.net/CodeJoker_7/article/details/123235303</a></p>
@@ -1482,6 +1484,24 @@ F(x)+H^2(x)-2G(x)H(x)\equiv 0(mod x^n)\\
       </categories>
       <tags>
         <tag>水文</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>sg函数</title>
+    <url>/sg%E5%87%BD%E6%95%B0/</url>
+    <content><![CDATA[<p>基本博弈</p>
+<span id="more"></span>
+<p><a href="https://www.luogu.com.cn/problem/P2148">https://www.luogu.com.cn/problem/P2148</a></p>
+<p><a href="https://www.luogu.com.cn/problem/P2252">https://www.luogu.com.cn/problem/P2252</a></p>
+<p><a href="https://www.luogu.com.cn/problem/P4279">https://www.luogu.com.cn/problem/P4279</a></p>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
+      <categories>
+        <category>ACM</category>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>数学</tag>
+        <tag>博弈论</tag>
       </tags>
   </entry>
 </search>
