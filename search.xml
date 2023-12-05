@@ -734,22 +734,27 @@ C=\{ c_{i,j} \}</script><p>如果不等号的方向与标准型不同，或者�
 <h2 id="2023-12-5"><a href="#2023-12-5" class="headerlink" title="2023.12.5"></a>2023.12.5</h2><p>根据这篇文章<a href="https://zhuanlan.zhihu.com/p/138500516">https://zhuanlan.zhihu.com/p/138500516</a> 把主页改成了自定义页面</p>
 <p>目前还没有添加内容，打算找个好看的主页模板蒯过来</p>
 <p>添加了图床<a href="https://www.superbed.cn/">https://www.superbed.cn/</a></p>
+<p><br></p>
 <h2 id="2023-10-30"><a href="#2023-10-30" class="headerlink" title="2023.10.30"></a>2023.10.30</h2><p>加入了代码折叠功能，主要参考 <a href="https://wty-yy.space/posts/44830/">https://wty-yy.space/posts/44830/</a></p>
 <p>虽然还没有把旧博文加上折叠部分。可以考虑写一个自动化程序来实现。</p>
 <p>加入了代码复制功能，主要参考 <a href="https://blog.csdn.net/CodeJoker_7/article/details/123235303">https://blog.csdn.net/CodeJoker_7/article/details/123235303</a></p>
 <p>博客越来越像一个成品了</p>
+<p><br></p>
 <h2 id="2023-10-26"><a href="#2023-10-26" class="headerlink" title="2023.10.26"></a>2023.10.26</h2><p>选取了一些OI时期写的勉强能看小作文与题解，除了加上hexo的格式和标签之外基本没有做任何更改，保留了原汁原味的童真（</p>
 <p>categories界面又改成减缩版了，细节整合进tag里</p>
 <p>试图给categories加一个可折叠效果，但是失败了</p>
+<p><br></p>
 <h2 id="2023-10-25"><a href="#2023-10-25" class="headerlink" title="2023.10.25"></a>2023.10.25</h2><p>尝试自定义home page，重定向了left bar中的home，但是没成功的重定义一进去的主页</p>
 <p>将博文分类进子文件夹中，并更改了permant link，url更好看了（</p>
 <p>考虑将OI时期的文章迁过来</p>
+<p><br></p>
 <h2 id="2023-10-24"><a href="#2023-10-24" class="headerlink" title="2023.10.24"></a>2023.10.24</h2><p>大改</p>
 <p>加入了categories，并精简了tag</p>
 <p>优化了left bar的导引</p>
 <p>更换博客title等</p>
 <p>添加了一个acm队友的友链，想做成双排的效果，但未成功</p>
 <p>前面很长一段时间没有记录log，算丢失了</p>
+<p><br></p>
 <h2 id="2022-7-17"><a href="#2022-7-17" class="headerlink" title="2022.7.17"></a>2022.7.17</h2><p>hexo博客成功部署到github上</p>
 <p>安照之前部署的操作就成功了，控制了所有变量发现只有宽带供应商换了，猜测之前没法部署的原因是湖北移动把github给墙了</p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
