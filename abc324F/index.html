@@ -28,7 +28,7 @@
 <meta property="og:site_name" content="Nebulyu&#39;s Blog">
 <meta property="og:description" content="分数规划，拓扑排序">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-10-16T16:00:00.000Z">
+<meta property="article:published_time" content="2023-10-16T23:00:00.000Z">
 <meta property="article:modified_time" content="2023-10-26T06:46:38.028Z">
 <meta property="article:author" content="nebulyu">
 <meta property="article:tag" content="分数规划">
@@ -210,14 +210,14 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2023-10-17 00:00:00" itemprop="dateCreated datePublished" datetime="2023-10-17T00:00:00+08:00">2023-10-17</time>
+              <time title="Created: 2023-10-17 00:00:00" itemprop="dateCreated datePublished" datetime="2023-10-17T00:00:00+01:00">2023-10-17</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-10-26 14:46:38" itemprop="dateModified" datetime="2023-10-26T14:46:38+08:00">2023-10-26</time>
+                <time title="Modified: 2023-10-26 07:46:38" itemprop="dateModified" datetime="2023-10-26T07:46:38+01:00">2023-10-26</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -250,7 +250,7 @@
 <p>题意:给定一个有向无环简单图，每条边有两个属性,$cost,value$。要求选若干条边，组成一条点1到点n的路径，使得$\frac{\Sigma value_i}{\Sigma cost_i} $最大化。题目保证存在至少一条点1到点n的路径。其中$n,m \in[1,2e5]$<br>$cost,value\in[1,2e3]$</p>
 <p>分析:题目要求式子的形式很明显提示了分数规划的思路。选取一个答案，并且判断答案是否可行，二分缩小规模得到最终答案。</p>
 <p>图中找一条路径的要求可以转化为取边时存在之前状态的依赖，但更简单的想法是将图中的边重新赋权，由于DAG的特性，直接拓扑排序遍历全图，最后判断终点处权值是否非负。</p>
-
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
     </div>
 
     

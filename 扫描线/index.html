@@ -28,11 +28,11 @@
 <meta property="og:site_name" content="Nebulyu&#39;s Blog">
 <meta property="og:description" content="扫描线">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-01-16T16:00:00.000Z">
+<meta property="article:published_time" content="2023-01-17T00:00:00.000Z">
 <meta property="article:modified_time" content="2023-10-26T06:45:10.779Z">
 <meta property="article:author" content="nebulyu">
-<meta property="article:tag" content="数据结构">
 <meta property="article:tag" content="线段树">
+<meta property="article:tag" content="数据结构">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="https://nebulyu.github.io/%E6%89%AB%E6%8F%8F%E7%BA%BF/">
@@ -210,14 +210,14 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2023-01-17 00:00:00" itemprop="dateCreated datePublished" datetime="2023-01-17T00:00:00+08:00">2023-01-17</time>
+              <time title="Created: 2023-01-17 00:00:00" itemprop="dateCreated datePublished" datetime="2023-01-17T00:00:00+00:00">2023-01-17</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-10-26 14:45:10" itemprop="dateModified" datetime="2023-10-26T14:45:10+08:00">2023-10-26</time>
+                <time title="Modified: 2023-10-26 07:45:10" itemprop="dateModified" datetime="2023-10-26T07:45:10+01:00">2023-10-26</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -249,7 +249,7 @@
 <p>题意:n个有颜色的矩形按顺序放在平面上,被覆盖的部分颜色不可见,求最后可见的颜色数</p>
 <p>矩形覆盖的问题很自然想到扫描线,先把矩形离散,按x坐标排序,并拆分为加入线段和删除线段两部分.线段树维护y轴,每个时刻先增删线段,每个节点挂一个可删堆维护当前区间内时间最大矩形的颜色,最后dfs全树,查询当前时刻能看到颜色种类.每次查询复杂度$O(nlogn)$,总共有n次询问,总复杂度$O(n^2logn)$,可以勉强卡过.<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//黑科技可删堆</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">HEAP</span>&#123;</span><br><span class="line">    priority_queue &lt;pii&gt; p,q;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">add</span><span class="params">(pii x)</span></span>&#123;p.<span class="built_in">push</span>(x);&#125;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">del</span><span class="params">(pii x)</span></span>&#123;q.<span class="built_in">push</span>(x);&#125;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">mt</span><span class="params">()</span></span>&#123;<span class="keyword">while</span>(p.<span class="built_in">size</span>()&amp;&amp;q.<span class="built_in">size</span>()&amp;&amp;q.<span class="built_in">top</span>()==p.<span class="built_in">top</span>())p.<span class="built_in">pop</span>(),q.<span class="built_in">pop</span>();&#125;</span><br><span class="line">    <span class="function">pii <span class="title">top</span><span class="params">()</span></span>&#123;<span class="built_in">mt</span>();<span class="keyword">return</span> p.<span class="built_in">top</span>();&#125;</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">empty</span><span class="params">()</span></span>&#123;<span class="built_in">mt</span>();<span class="keyword">return</span> p.<span class="built_in">empty</span>();&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//此处和通常的线段树稍有不同,由于维护的实际上是矩形的边,表示颜色块需要边界-1</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">add</span><span class="params">(<span class="type">int</span> p,<span class="type">int</span> l,<span class="type">int</span> r)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(ql&lt;=l&amp;&amp;r&lt;=qr) &#123;ar[p].<span class="built_in">add</span>(qii);<span class="keyword">return</span> ;&#125;</span><br><span class="line">    <span class="keyword">if</span>(ql&lt;mid) <span class="built_in">add</span>(ls,l,mid);</span><br><span class="line">    <span class="keyword">if</span>(mid&lt;qr) <span class="built_in">add</span>(rs,mid,r);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">del</span><span class="params">(<span class="type">int</span> p,<span class="type">int</span> l,<span class="type">int</span> r)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(ql&lt;=l&amp;&amp;r&lt;=qr) &#123;ar[p].<span class="built_in">del</span>(qii);<span class="keyword">return</span> ;&#125;</span><br><span class="line">    <span class="keyword">if</span>(ql&lt;mid) <span class="built_in">del</span>(ls,l,mid);</span><br><span class="line">    <span class="keyword">if</span>(mid&lt;qr) <span class="built_in">del</span>(rs,mid,r);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">dfs</span><span class="params">(<span class="type">int</span> p,<span class="type">int</span> l,<span class="type">int</span> r,pii pi)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!ar[p].<span class="built_in">empty</span>()) pi=<span class="built_in">max</span>(pi,ar[p].<span class="built_in">top</span>());</span><br><span class="line">    <span class="keyword">if</span>(r-l==<span class="number">1</span>)&#123;ans[pi.second]=<span class="number">1</span>;<span class="keyword">return</span> ;&#125;</span><br><span class="line">    <span class="built_in">dfs</span>(ls,l,mid,pi),<span class="built_in">dfs</span>(rs,mid,r,pi);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    po=<span class="built_in">pii</span>(<span class="number">0</span>,<span class="number">0</span>);</span><br><span class="line">    <span class="built_in">For</span>(i,<span class="number">1</span>,ttx)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> x:vad[i]) qii=<span class="built_in">pii</span>(x.id,ocl[x.id]),ql=x.l,qr=x.r,<span class="built_in">add</span>(<span class="number">1</span>,<span class="number">1</span>,tty);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> x:vde[i]) qii=<span class="built_in">pii</span>(x.id,ocl[x.id]),ql=x.l,qr=x.r,<span class="built_in">del</span>(<span class="number">1</span>,<span class="number">1</span>,tty);</span><br><span class="line">        <span class="built_in">dfs</span>(<span class="number">1</span>,<span class="number">1</span>,tty,po);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">int</span> cnt=<span class="number">0</span>;<span class="built_in">For</span>(i,<span class="number">1</span>,n)cnt+=ans[i];</span><br><span class="line">    cout&lt;&lt;cnt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>一个更好的做法就是在每个时刻维护每种颜色可见的总长度,直接在增删线段时更新,不需要再dfs,复杂度$O(nlogn)$.</p>
 <p>需要注意的是,如果直接用二维线段树或外层暴力内层线段树,虽然理论复杂度是$O(n^2logn)$的,但是常数巨大,无法通过(存疑).</p>
-
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
     </div>
 
     
@@ -258,8 +258,8 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag"># 数据结构</a>
               <a href="/tags/%E7%BA%BF%E6%AE%B5%E6%A0%91/" rel="tag"># 线段树</a>
+              <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag"># 数据结构</a>
           </div>
 
         

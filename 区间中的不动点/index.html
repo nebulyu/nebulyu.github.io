@@ -28,11 +28,11 @@
 <meta property="og:site_name" content="Nebulyu&#39;s Blog">
 <meta property="og:description" content="区间中的不动点">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-01-16T16:00:00.000Z">
+<meta property="article:published_time" content="2023-01-17T00:00:00.000Z">
 <meta property="article:modified_time" content="2023-10-26T06:45:27.979Z">
 <meta property="article:author" content="nebulyu">
-<meta property="article:tag" content="数据结构">
 <meta property="article:tag" content="线段树">
+<meta property="article:tag" content="数据结构">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="https://nebulyu.github.io/%E5%8C%BA%E9%97%B4%E4%B8%AD%E7%9A%84%E4%B8%8D%E5%8A%A8%E7%82%B9/">
@@ -210,14 +210,14 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2023-01-17 00:00:00" itemprop="dateCreated datePublished" datetime="2023-01-17T00:00:00+08:00">2023-01-17</time>
+              <time title="Created: 2023-01-17 00:00:00" itemprop="dateCreated datePublished" datetime="2023-01-17T00:00:00+00:00">2023-01-17</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-10-26 14:45:27" itemprop="dateModified" datetime="2023-10-26T14:45:27+08:00">2023-10-26</time>
+                <time title="Modified: 2023-10-26 07:45:27" itemprop="dateModified" datetime="2023-10-26T07:45:27+01:00">2023-10-26</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -266,7 +266,7 @@
 <p>普通的开方运算中,不动点只有0和1.而这个运算中看似只有0和100,但是<del>打表</del>可以发现,99也是不动点.$f(99)=round(10\sqrt 99) \simeq round(99.4987)=99$.大于100的数会回归100,而小于99的数会回归99.线段树的tag维护子区间的叶子结点是否满足任意一个不动点.</p>
 <p>对于$a_i\leq1e9$的范围,最多10次就可以回归到100的不动点,总复杂度$O(mlogn)$.不过需要注意最好直接在叶子结点做k次运算,不然二分下放次数过多可能会被卡常.</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">mdf</span><span class="params">(<span class="type">int</span> p,<span class="type">int</span> l,<span class="type">int</span> r,<span class="type">int</span> ql,<span class="type">int</span> qr)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(sg[p]) <span class="keyword">return</span> ;</span><br><span class="line">    <span class="keyword">if</span>(l==r)&#123;</span><br><span class="line">        sum-=ar[l];</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=k;++i)&#123;</span><br><span class="line">            ar[l]=<span class="built_in">round</span>(<span class="number">10.0</span>*<span class="built_in">sqrt</span>(ar[l]*<span class="number">1.0</span>));</span><br><span class="line">            <span class="keyword">if</span>(ar[l]==<span class="number">100</span>||ar[l]==<span class="number">0</span>||ar[l]==<span class="number">99</span>)<span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(ar[l]==<span class="number">100</span>||ar[l]==<span class="number">0</span>||ar[l]==<span class="number">99</span>)sg[p]=<span class="number">1</span>;</span><br><span class="line">        sum+=ar[l];</span><br><span class="line">        <span class="keyword">return</span> ;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(ql&lt;=mid) <span class="built_in">mdf</span>(ls,l,mid,ql,qr);</span><br><span class="line">    <span class="keyword">if</span>(qr&gt;mid) <span class="built_in">mdf</span>(rs,mid+<span class="number">1</span>,r,ql,qr);</span><br><span class="line">    sg[p]=(sg[ls]&amp;sg[rs]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
     </div>
 
     
@@ -275,8 +275,8 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag"># 数据结构</a>
               <a href="/tags/%E7%BA%BF%E6%AE%B5%E6%A0%91/" rel="tag"># 线段树</a>
+              <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag"># 数据结构</a>
           </div>
 
         

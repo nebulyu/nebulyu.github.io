@@ -28,7 +28,7 @@
 <meta property="og:site_name" content="Nebulyu&#39;s Blog">
 <meta property="og:description" content="数论分块">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-03-23T16:00:00.000Z">
+<meta property="article:published_time" content="2023-03-24T00:00:00.000Z">
 <meta property="article:modified_time" content="2023-10-26T06:46:59.357Z">
 <meta property="article:author" content="nebulyu">
 <meta property="article:tag" content="数学">
@@ -210,14 +210,14 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2023-03-24 00:00:00" itemprop="dateCreated datePublished" datetime="2023-03-24T00:00:00+08:00">2023-03-24</time>
+              <time title="Created: 2023-03-24 00:00:00" itemprop="dateCreated datePublished" datetime="2023-03-24T00:00:00+00:00">2023-03-24</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-10-26 14:46:59" itemprop="dateModified" datetime="2023-10-26T14:46:59+08:00">2023-10-26</time>
+                <time title="Modified: 2023-10-26 07:46:59" itemprop="dateModified" datetime="2023-10-26T07:46:59+01:00">2023-10-26</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -257,7 +257,7 @@ X>=B/k-A</script><p>一个更好的形式</p>
 <script type="math/tex; mode=display">
 x>=\lfloor(B-1)/k\rfloor-A+1</script><p>这样,我们可以枚举k来计算答案.</p>
 <p>由数论分块可知,最多有$\sqrt B$个有效的k.于是不断地跳k,就可以在复杂度为根号的时间内解决问题.<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ll k=<span class="number">1</span>,ans=A+B;</span><br><span class="line"><span class="keyword">while</span>(k&lt;B)&#123;</span><br><span class="line">    ll x=<span class="built_in">max</span>(<span class="number">0ll</span>,(B<span class="number">-1</span>)/k-A+<span class="number">1</span>);</span><br><span class="line">    ans=<span class="built_in">min</span>(ans,(k+<span class="number">1</span>)*x+k*A-B);</span><br><span class="line">    ll r=(B<span class="number">-1</span>)/((B<span class="number">-1</span>)/k);</span><br><span class="line">    k=r+<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
     </div>
 
     
