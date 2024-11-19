@@ -182,6 +182,129 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://nebulyu.github.io/haskell%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="nebulyu">
+      <meta itemprop="description" content="施工中(*>.<*)">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Nebulyu's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/haskell%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/" class="post-title-link" itemprop="url">haskell基本语法</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2024-11-19 00:00:00 / Modified: 16:42:40" itemprop="dateCreated datePublished" datetime="2024-11-19T00:00:00+00:00">2024-11-19</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/haskell/" itemprop="url" rel="index"><span itemprop="name">haskell</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="语法入门"><a href="#语法入门" class="headerlink" title="语法入门"></a>语法入门</h1><p>haskell作为一个实验性强于实践性的语言,有很多基础语法与传统的c系差异巨大,以往的知识,除了算法,难以直接代入,基本上就是要完全重新开始学.</p>
+<p>本文主要面向对c,cpp等命令式编程语言熟悉的读者,主要的内容在于一些思维陷阱和新颖语法的记录,对于haskell中非常基础并且和其他语言相似的部分不会着墨.</p>
+<p>关于教材与参考:</p>
+<p>不要在入门的时候再看什么中文教材了,尤其是《Haskell函数式编程入门》这种教材.它具有典型的缺陷,比如一次性引入过多新知识而没有完整解释,包含大量与程序无关的冗长内容,对某些可能已经更改的语法细节过度纠结,缺乏渐进的示例,语言表述不准确,甚至有些内容显得玄妙或晦涩.这种教材更适合作为字典使用,而不是入门教材.</p>
+<p>推荐 <a target="_blank" rel="noopener" href="https://learnyouahaskell.com/ ">learn you a haskell</a>.这个教材简明易懂,作为入门来说非常适合,英语也比较平白无华,属于说人话而不怎么说废话的教材.更好的是在线版本免费</p>
+<p>haskell可以下载安装后使用vscode作为ide, 常见解释器ghci 即 glasgow haskell compiler iterative, 便于入门学习</p>
+<p><br></p>
+<h2 id="基本常识"><a href="#基本常识" class="headerlink" title="基本常识"></a>基本常识</h2><p>不等于用<code>/=</code>来表示</p>
+<p>Haskell中用空格来表示参数直接的间隔,不需要<code>,</code><br>比如<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">add</span> <span class="number">1</span> <span class="number">2</span></span><br></pre></td></tr></table></figure></p>
+<p>如果你看到类似 <code>bar (bar 3)</code> 的表达式,它并不是将 <code>bar</code> 和 <code>3</code> 作为参数传递给 <code>bar</code>,而是先用 <code>3</code> 调用函数 <code>bar</code>,得到一个结果,然后再用这个结果调用一次 <code>bar</code>.在C语言中,类似于 <code>bar(bar(3))</code>.</p>
+<p>Haskell中的函数定义不依赖于文本顺序.这个意味着在程序文本中随意调换不同函数的顺序不会有什么影响.</p>
+<p>函数名称以小写字母开头,类型名称以大写字母开头.这个并不只是约定俗成的传统,而是系统强制的要求</p>
+<p>haskell中没有常见意义里的循环遍历,而是采用函数的方式处理,基础语法中暂不涉及,放在后面函数部分中</p>
+<p><br></p>
+<h2 id="if-else"><a href="#if-else" class="headerlink" title="if-else"></a>if-else</h2><p>具体格式为<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">if</span> condition <span class="keyword">then</span> action1 <span class="keyword">else</span> action2</span><br></pre></td></tr></table></figure></p>
+<p><code>else</code> 是强制要求的.</p>
+<p><br></p>
+<h2 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h2><p>在haskell中数组的本质:语法糖,对列表的简写,下面的写法是完全等价的<br>$[a_1,a_i,a_n] == a_1:a_i:a_n:[] == a_1:a_i:a_n$<br>其中<code>x:xs</code>代表元素<code>x</code>连接列表<code>xs</code>,<code>[]</code>代表空集</p>
+<p>由于列表本质是同类元素连接的属性,一个列表中绝对只能含有完全同类的元素</p>
+<p>字符串也是一个语法糖,其完全等价于字符数组<br><code>&quot;Ciallo&quot; == [&#39;C&#39;,&#39;i&#39;,&#39;a&#39;,&#39;l&#39;,&#39;l&#39;,&#39;o&#39;] == &#39;C&#39;:&#39;i&#39;:&#39;a&#39;:&#39;l&#39;:&#39;l&#39;:&#39;o&#39;:[]</code></p>
+<p>集合中的空集,注意:<code>[]</code>、<code>[[]]</code> 和 <code>[[],[],[]]</code> 是完全不同的.第一个是空列表,第二个是包含一个空列表的列表,第三个是包含三个空列表的列表.</p>
+<p>数组下标从0开始,下标取值:<code>!!</code></p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">ghci</span>&gt; [<span class="number">9.4</span>,<span class="number">33.2</span>,<span class="number">96.2</span>,<span class="number">11.2</span>,<span class="number">23.25</span>] !! <span class="number">1</span></span><br><span class="line"><span class="number">33.2</span></span><br></pre></td></tr></table></figure>
+<p><code>++</code> 用于合并数组,两个操作数必须都是数组.</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">ghci</span>&gt; <span class="string">&quot;114&quot;</span> ++ <span class="string">&quot;514&quot;</span></span><br><span class="line"><span class="string">&quot;114514&quot;</span></span><br></pre></td></tr></table></figure>
+<p>比较大小:同类型按字典序比较.</p>
+<p><code>head</code> 和 <code>tail</code> 表示列表的头部和尾部,<code>init</code> 和 <code>last</code> 表示列表的初始部分和最后一个元素.</p>
+<p><code>take</code> 从列表前面取若干元素,<code>drop</code> 从列表中删除前若干元素.</p>
+<p><code>head _______________________tail</code><br><code>|[-----------------------------]</code><br><code>********************************</code><br><code>[-----------------------------]|</code><br><code>init________________________last</code></p>
+<p><code>elem</code> 判断元素是否存在于列表中.</p>
+<p>生成数列示例:</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">ghci</span>&gt; take <span class="number">24</span> [<span class="number">13</span>,<span class="number">26</span>..]</span><br></pre></td></tr></table></figure>
+<p>循环:</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">ghci</span>&gt; take <span class="number">10</span> (cycle [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>])</span><br><span class="line">[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line"><span class="title">ghci</span>&gt; take <span class="number">12</span> (cycle <span class="string">&quot;LOL &quot;</span>)</span><br><span class="line"><span class="string">&quot;LOL LOL LOL &quot;</span></span><br></pre></td></tr></table></figure>
+<p>重复:</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">ghci</span>&gt; take <span class="number">10</span> (repeat <span class="number">5</span>)</span><br><span class="line">[<span class="number">5</span>,<span class="number">5</span>,<span class="number">5</span>,<span class="number">5</span>,<span class="number">5</span>,<span class="number">5</span>,<span class="number">5</span>,<span class="number">5</span>,<span class="number">5</span>,<span class="number">5</span>]</span><br></pre></td></tr></table></figure>
+<p>管道符号前面的部分称为输出函数,<code>x</code> 是变量,<code>N</code> 是输入集合,<code>x &lt;= 10</code> 是谓词.这意味着集合包含了所有满足谓词的自然数的两倍值.</p>
+<p><code>&lt;-</code> 表示属于:</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">ghci</span>&gt; [x*<span class="number">2</span> | x &lt;- [<span class="number">1</span>..<span class="number">10</span>]]</span><br><span class="line">[<span class="number">2</span>,<span class="number">4</span>,<span class="number">6</span>,<span class="number">8</span>,<span class="number">10</span>,<span class="number">12</span>,<span class="number">14</span>,<span class="number">16</span>,<span class="number">18</span>,<span class="number">20</span>]</span><br><span class="line"></span><br><span class="line"><span class="title">ghci</span>&gt; [x*<span class="number">2</span> | x &lt;- [<span class="number">1</span>..<span class="number">10</span>], x*<span class="number">2</span> &gt;= <span class="number">12</span>]</span><br><span class="line">[<span class="number">12</span>,<span class="number">14</span>,<span class="number">16</span>,<span class="number">18</span>,<span class="number">20</span>]</span><br><span class="line"></span><br><span class="line"><span class="title">ghci</span>&gt; [ x*y | x &lt;- [<span class="number">2</span>,<span class="number">5</span>,<span class="number">10</span>], y &lt;- [<span class="number">8</span>,<span class="number">10</span>,<span class="number">11</span>]]</span><br><span class="line">[<span class="number">16</span>,<span class="number">20</span>,<span class="number">22</span>,<span class="number">40</span>,<span class="number">50</span>,<span class="number">55</span>,<span class="number">80</span>,<span class="number">100</span>,<span class="number">110</span>]</span><br></pre></td></tr></table></figure>
+<p>组合名词和形容词:</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">ghci</span>&gt; <span class="keyword">let</span> nouns = [<span class="string">&quot;hobo&quot;</span>,<span class="string">&quot;frog&quot;</span>,<span class="string">&quot;pope&quot;</span>]</span><br><span class="line"><span class="title">ghci</span>&gt; <span class="keyword">let</span> adjectives = [<span class="string">&quot;lazy&quot;</span>,<span class="string">&quot;grouchy&quot;</span>,<span class="string">&quot;scheming&quot;</span>]</span><br><span class="line"><span class="title">ghci</span>&gt; [adjective ++ <span class="string">&quot; &quot;</span> ++ noun | adjective &lt;- adjectives, noun &lt;- nouns]</span><br><span class="line">[<span class="string">&quot;lazy hobo&quot;</span>,<span class="string">&quot;lazy frog&quot;</span>,<span class="string">&quot;lazy pope&quot;</span>,<span class="string">&quot;grouchy hobo&quot;</span>,<span class="string">&quot;grouchy frog&quot;</span>,<span class="string">&quot;grouchy pope&quot;</span>,<span class="string">&quot;scheming hobo&quot;</span>,<span class="string">&quot;scheming frog&quot;</span>,<span class="string">&quot;scheming pope&quot;</span>]</span><br></pre></td></tr></table></figure>
+<p><code>_</code> 表示任意值,仅关心其存在:</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">length&#x27;</span> xs = sum [<span class="number">1</span> | _ &lt;- xs]</span><br></pre></td></tr></table></figure>
+<p>与数论中对1求和相似.</p>
+<p>过滤偶数示例:</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">ghci</span>&gt; <span class="keyword">let</span> xxs = [[<span class="number">1</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">5</span>],[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>],[<span class="number">1</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">6</span>,<span class="number">3</span>,<span class="number">1</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">6</span>]]</span><br><span class="line"><span class="title">ghci</span>&gt; [ [ x | x &lt;- xs, even x ] | xs &lt;- xxs]</span><br><span class="line">[[<span class="number">2</span>,<span class="number">2</span>,<span class="number">4</span>],[<span class="number">2</span>,<span class="number">4</span>,<span class="number">6</span>,<span class="number">8</span>],[<span class="number">2</span>,<span class="number">4</span>,<span class="number">2</span>,<span class="number">6</span>,<span class="number">2</span>,<span class="number">6</span>]]</span><br></pre></td></tr></table></figure>
+<p>首先从 <code>xxs</code> 中取出每个子列表 <code>xs</code>,然后再从 <code>xs</code> 中取出符合条件的元素.</p>
+<p><br></p>
+<h2 id="元组"><a href="#元组" class="headerlink" title="元组"></a>元组</h2><p>元组,tuple,可以包含列表,例如字符串.</p>
+<p>元组更加严格,因为每种不同大小的元组都有自己的类型,所以不能编写通用函数来向元组追加元素.</p>
+<p>没有一元元组,或者说一元元组就是单个元素本身.</p>
+<p><code>fst</code> 和 <code>snd</code> 只能用于二元组.</p>
+<p><code>zip</code> 自动截取:</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">ghci</span>&gt; zip [<span class="number">5</span>..<span class="number">15</span>] [<span class="string">&quot;im&quot;</span>,<span class="string">&quot;a&quot;</span>,<span class="string">&quot;turtle&quot;</span>]</span><br><span class="line">[(<span class="number">5</span>,<span class="string">&quot;im&quot;</span>),(<span class="number">6</span>,<span class="string">&quot;a&quot;</span>),(<span class="number">7</span>,<span class="string">&quot;turtle&quot;</span>)]</span><br></pre></td></tr></table></figure>
+<p>求满足条件的直角三角形:</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">ghci</span>&gt; <span class="keyword">let</span> rightTriangles&#x27; = [ (a,b,c) | c &lt;- [<span class="number">1</span>..<span class="number">10</span>], b &lt;- [<span class="number">1</span>..c], a &lt;- [<span class="number">1</span>..b], a^<span class="number">2</span> + b^<span class="number">2</span> == c^<span class="number">2</span>, a+b+c == <span class="number">24</span>]</span><br><span class="line"><span class="title">ghci</span>&gt; rightTriangles&#x27;</span><br><span class="line">[(<span class="number">6</span>,<span class="number">8</span>,<span class="number">10</span>)]</span><br></pre></td></tr></table></figure>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://nebulyu.github.io/%E6%B5%B7%E4%B8%8A%E7%94%9F%E6%98%8E%E6%9C%88,%E5%A4%A9%E6%B6%AF%E5%85%B1%E6%AD%A4%E6%97%B6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -933,92 +1056,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/abc324F/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://nebulyu.github.io/%E5%9C%86%E6%96%B9%E6%A0%91/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="nebulyu">
-      <meta itemprop="description" content="施工中(*>.<*)">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Nebulyu's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/%E5%9C%86%E6%96%B9%E6%A0%91/" class="post-title-link" itemprop="url">圆方树</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2023-09-06 00:00:00" itemprop="dateCreated datePublished" datetime="2023-09-06T00:00:00+01:00">2023-09-06</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-10-26 07:47:39" itemprop="dateModified" datetime="2023-10-26T07:47:39+01:00">2023-10-26</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ACM/" itemprop="url" rel="index"><span itemprop="name">ACM</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ACM/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>圆方树</p>
-<p><br></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/%E5%9C%86%E6%96%B9%E6%A0%91/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
