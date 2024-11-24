@@ -1765,4 +1765,58 @@ x>=\lfloor(B-1)/k\rfloor-A+1</script><p>这样,我们可以枚举k来计算答�
         <tag>数据结构</tag>
       </tags>
   </entry>
+  <entry>
+    <title>群基础知识</title>
+    <url>/%E7%BE%A4%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</url>
+    <content><![CDATA[<p>群基础知识</p>
+<span id="more"></span>
+<h1 id="群"><a href="#群" class="headerlink" title="群"></a>群</h1><p>群是一个在定义运算中<strong>封闭</strong>的集合，群$G=(S,<em>)$,$S$表示群中的元素，$</em>$是一个定义于$S$中元素的二元运算,且具有以下性质</p>
+<p>1.封闭性:$\forall p1,p2\in G,p1*p2\in G$</p>
+<p>2.结合律:$p1<em>(p2</em>p3)=(p1<em>p2)</em>p3​$</p>
+<p>3.存在单位元:$p<em>e=e</em>p=p​$</p>
+<p>4.存在逆元:$p1<em>p2=p2</em>p1=e$,$p1,p2$互为逆元,且逆元唯一</p>
+<p>特别的，如果G中元素满足交换律，则称其为一个阿贝尔群</p>
+<p>群阶:$\mid G\mid=\mid S\mid$,集合中元素个数</p>
+<p>对于运算$p1*p2​$,可简写为$p1p2​$，$p^k​$等价于$\Pi_{i=1}^kp​$</p>
+<p>对于运算$p1<em>p2=p1</em>p3$,存在$p2=p3$</p>
+<p>运算$(p1<em>p2)^{-1}$等于$p1^{-1}</em>p2^{-1}$</p>
+<h3 id="子群"><a href="#子群" class="headerlink" title="子群"></a>子群</h3><p>集合H是G的子集，若H关于$*$封闭，则H称为G的子群</p>
+<p>子群存在与全集相同的逆元和单位元</p>
+<h3 id="陪集"><a href="#陪集" class="headerlink" title="陪集"></a>陪集</h3><p>对于G,它的子群H的左陪集aH定义为$ \{ \{ah\mid h\in S\}\}​$,右陪集同理</p>
+<p>陪集还是一个类似的集合，比如$(R,+)$的子群$(Z,+)$,在R中找一个数，比如2，对Z中每一个数+2后形成的新集合，就称为2确定的$(R,+)$中整数子群的左陪集</p>
+<p>现在讨论右陪集的性质，左陪集同理</p>
+<script type="math/tex; mode=display">
+Ha\bigcap Hb=
+\begin{cases}
+Ha& \text{Ha=Hb}\\
+\phi& \text{else}
+\end{cases}
+​</script><p>这个性质说明可以将群G划分为一个子群互不相交的集合的并，并可以由此推导出<strong>拉格朗日定理</strong></p>
+<p>$\mid G\mid=\mid G:H\mid *\mid H\mid$,其中$G:H$表示G的子群H的不同右陪集个数</p>
+<p>即一个群的子群的个数整除该群的阶数</p>
+<p><br><br></p>
+<h1 id="置换"><a href="#置换" class="headerlink" title="置换"></a>置换</h1><p>就是在两个由1到n的集合中的满射，用</p>
+<p>$A=$ </p>
+<p>$(a1,a2……an)$    </p>
+<p>$(b1,b2……bn)$</p>
+<p>来表示，$a_i-&gt;b_i​$,每个元素之间存在映射关系</p>
+<p>一个置换可用循环来简写，$(a_1,a_2……a_n)​$等价于</p>
+<p>$(a_1,a_2……a_n)$</p>
+<p>$(a_2……a_n,a_1)​$</p>
+<p>任何一个置换都可用若干循环的乘积来表示</p>
+<p>可以把一个置换分解为从各个点迭代映射到的所有点的集合的乘积</p>
+<p>每个这样的乘积称为换位(二阶循环也可称为对换)，两个不相交的换位满足交换律</p>
+<p>并且任意置换也可写作若干个对换的积</p>
+<p>这样的分解并不唯一，但是他们的奇偶性唯一(指分解为对换)</p>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
+      <categories>
+        <category>OI</category>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>数学</tag>
+        <tag>组合数学</tag>
+        <tag>群论</tag>
+      </tags>
+  </entry>
 </search>
