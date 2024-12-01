@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="QiET7ttAHFoc3bMl0cmzBIzJBawh36AmKvy_PU89Nz4">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.css" integrity="sha256-gkQVf8UKZgQ0HyuxL/VnacadJ+D2Kox2TCEBuNQg5+w=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"nebulyu.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.21.1","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12,"onmobile":false},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":null,"post_block":null,"post_header":null,"post_body":null,"coll_header":null,"sidebar":"fadeInDown"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":3,"unescape":false,"preload":false,"trigger":"auto","swiftype_key":null}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="Haskell 函数进阶本文会涉及 Haskell 中的部分进阶函数概念.这些功能是 Haskell 编程的基础,也是许多高级功能的核心.函数不仅是输入和输出的工具,它们在 Haskell 中是一等公民,可以像数据一样传递、组合和操作.这种特性使得 Haskell 编程语言能够通过组合简单的函数来构建复杂的程序结构.Haskell 还具有惰性求值、类型推导和强大的高阶函数功能,让它非常适合表达数学">
+<meta property="og:type" content="article">
+<meta property="og:title" content="haskell函数进阶">
+<meta property="og:url" content="https://nebulyu.github.io/haskell%E5%87%BD%E6%95%B0%E8%BF%9B%E9%98%B6/index.html">
+<meta property="og:site_name" content="Nebulyu&#39;s Blog">
+<meta property="og:description" content="Haskell 函数进阶本文会涉及 Haskell 中的部分进阶函数概念.这些功能是 Haskell 编程的基础,也是许多高级功能的核心.函数不仅是输入和输出的工具,它们在 Haskell 中是一等公民,可以像数据一样传递、组合和操作.这种特性使得 Haskell 编程语言能够通过组合简单的函数来构建复杂的程序结构.Haskell 还具有惰性求值、类型推导和强大的高阶函数功能,让它非常适合表达数学">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-12-01T00:00:00.000Z">
+<meta property="article:modified_time" content="2024-12-01T00:16:06.301Z">
+<meta property="article:author" content="nebulyu">
+<meta property="article:tag" content="haskell">
+<meta property="article:tag" content="语法">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://nebulyu.github.io/haskell%E5%87%BD%E6%95%B0%E8%BF%9B%E9%98%B6/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://nebulyu.github.io/haskell%E5%87%BD%E6%95%B0%E8%BF%9B%E9%98%B6/","path":"haskell函数进阶/","title":"haskell函数进阶"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>haskell函数进阶 | Nebulyu's Blog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Nebulyu's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">归档站</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-categories"><a href="/categories/" rel="section">Categories</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section">Archives</a></li><li class="menu-item menu-item-links"><a href="/links/" rel="section">links</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger">Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="Searching..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Haskell-%E5%87%BD%E6%95%B0%E8%BF%9B%E9%98%B6"><span class="nav-number">1.</span> <span class="nav-text">Haskell 函数进阶</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E5%8C%96%E5%87%BD%E6%95%B0"><span class="nav-number">1.1.</span> <span class="nav-text">简化函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E4%BD%9C%E4%B8%BA%E5%8F%82%E6%95%B0"><span class="nav-number">1.2.</span> <span class="nav-text">函数作为参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Map-and-Filter"><span class="nav-number">1.3.</span> <span class="nav-text">Map and Filter</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Fold"><span class="nav-number">1.4.</span> <span class="nav-text">Fold</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%90%E7%AE%97%E7%AC%A6-%E5%92%8C-%E7%BB%84%E5%90%88"><span class="nav-number">1.5.</span> <span class="nav-text">运算符 $ 和 组合 .</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-number">1.5.1.</span> <span class="nav-text">运算符 $</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%84%E5%90%88"><span class="nav-number">1.5.2.</span> <span class="nav-text">组合.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%92%8C-%E7%BB%93%E5%90%88%E4%BD%BF%E7%94%A8%E7%9A%84%E4%BE%8B%E5%AD%90"><span class="nav-number">1.5.3.</span> <span class="nav-text">$ 和 . 结合使用的例子</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">nebulyu</p>
+  <div class="site-description" itemprop="description">施工中(*>.<*)</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">49</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">28</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://nebulyu.github.io/haskell%E5%87%BD%E6%95%B0%E8%BF%9B%E9%98%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="nebulyu">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Nebulyu's Blog">
+      <meta itemprop="description" content="施工中(*>.<*)">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="haskell函数进阶 | Nebulyu's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          haskell函数进阶
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2024-12-01 00:00:00 / Modified: 00:16:06" itemprop="dateCreated datePublished" datetime="2024-12-01T00:00:00+00:00">2024-12-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/haskell/" itemprop="url" rel="index"><span itemprop="name">haskell</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="Haskell-函数进阶"><a href="#Haskell-函数进阶" class="headerlink" title="Haskell 函数进阶"></a>Haskell 函数进阶</h1><p>本文会涉及 Haskell 中的部分进阶函数概念.这些功能是 Haskell 编程的基础,也是许多高级功能的核心.函数不仅是输入和输出的工具,它们在 Haskell 中是一等公民,可以像数据一样传递、组合和操作.这种特性使得 Haskell 编程语言能够通过组合简单的函数来构建复杂的程序结构.Haskell 还具有惰性求值、类型推导和强大的高阶函数功能,让它非常适合表达数学模型和处理抽象问题.由于haskell官方库的东西太多太杂,而且有很多完全是实验性质的内容,本文只涉及一些极为常用的部分.</p>
+<h2 id="简化函数"><a href="#简化函数" class="headerlink" title="简化函数"></a>简化函数</h2><p>简化函数是 Curry 化的应用,最常见的用途就是省去这个函数紧接着的参数</p>
+<p>示例<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">divideByTen</span> :: (<span class="type">Floating</span> a) =&gt; a -&gt; a</span><br><span class="line"><span class="title">divideByTen</span> = (/<span class="number">10</span>)</span><br><span class="line"></span><br><span class="line"><span class="title">isUpperAlphanum</span> :: <span class="type">Char</span> -&gt; <span class="type">Bool</span></span><br><span class="line"><span class="title">isUpperAlphanum</span> = (`elem` [<span class="string">&#x27;A&#x27;</span>..<span class="string">&#x27;Z&#x27;</span>])</span><br></pre></td></tr></table></figure><br>说明</p>
+<ul>
+<li><strong><code>divideByTen</code></strong>: 这个函数接受一个数字,将其除以 10.它实际上是通过 Currying 技术将除法操作简化成了一个只接受一个参数的函数.</li>
+<li><strong><code>isUpperAlphanum</code></strong>: 检查字符是否属于大写英文字母.</li>
+</ul>
+<p><strong>注意</strong>:</p>
+<ul>
+<li><code>(-4)</code> 表示负号操作.</li>
+<li><code>subtract 4</code> 表示减去 4 的操作.</li>
+</ul>
+<p><br></p>
+<h2 id="函数作为参数"><a href="#函数作为参数" class="headerlink" title="函数作为参数"></a>函数作为参数</h2><p>Haskell 中的函数可以作为输入参数传递.</p>
+<p><strong>类型 <code>(a -&gt; a)</code></strong>:表示 <code>f</code> 是一个将 <code>a</code> 类型值映射到 <code>a</code> 类型值的函数.</p>
+<p>示例<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">applyTwice</span> :: (a -&gt; a) -&gt; a -&gt; a</span><br><span class="line"><span class="title">applyTwice</span> f x = f (f x)</span><br></pre></td></tr></table></figure><br>说明</p>
+<ul>
+<li><strong><code>applyTwice</code></strong>:这个函数接受一个函数 <code>f</code> 和一个值 <code>x</code>,然后将 <code>f</code> 应用两次于 <code>x</code>.例如,applyTwice (+3) 10 会先将 10 增加 3 得到 13,再把 13 增加 3 得到 16.</li>
+</ul>
+<p>更多示例<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">applyTill</span> :: (<span class="type">Ord</span> t1, <span class="type">Num</span> t1) =&gt; (t2 -&gt; t2) -&gt; t2 -&gt; t1 -&gt; t2</span><br><span class="line"><span class="title">applyTill</span> f x n </span><br><span class="line">    | n &gt; <span class="number">1</span> = f (applyTill f x (n - <span class="number">1</span>))</span><br><span class="line">    | otherwise = f x</span><br><span class="line"></span><br><span class="line"><span class="title">zipWith&#x27;</span> :: (a -&gt; b -&gt; c) -&gt; [a] -&gt; [b] -&gt; [c]</span><br><span class="line"><span class="title">zipWith&#x27;</span> _ [] _ = []</span><br><span class="line"><span class="title">zipWith&#x27;</span> _ _ [] = []</span><br><span class="line"><span class="title">zipWith&#x27;</span> f (x:xs) (y:ys) = f x y : zipWith&#x27; f xs ys</span><br><span class="line"></span><br><span class="line"><span class="title">flip&#x27;</span> :: (a -&gt; b -&gt; c) -&gt; b -&gt; a -&gt; c</span><br><span class="line"><span class="title">flip&#x27;</span> f y x = f x y</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li><strong><code>applyTill</code></strong>: 这个函数会将函数 <code>f</code> 应用到 <code>x</code> 上 <code>n</code> 次,直到达到终止条件.例如,applyTill (+1) 0 5 会递归地把 +1 操作应用 5 次.</li>
+<li><strong><code>zipWith&#39;</code></strong>: 按照给定的二元函数,将两个列表对应位置的元素进行组合.</li>
+<li><strong><code>flip&#39;</code></strong>: 交换二元函数的参数顺序.</li>
+</ul>
+<p><br></p>
+<h2 id="Map-and-Filter"><a href="#Map-and-Filter" class="headerlink" title="Map and Filter"></a>Map and Filter</h2><p>map 和 filter 是列表操作的两大经典函数,它们的核心思想是将函数作用于列表中的每个元素,或者根据条件筛选元素.map 是一种批量操作,它将给定的函数作用于列表中的每个元素.而 filter 则是基于条件对列表进行筛选.它们都是典型的高阶函数,因为它们接受其他函数作为参数.这种函数式操作使得代码更加简洁,避免了显式的循环结构.</p>
+<p>示例<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">map</span> :: (a -&gt; b) -&gt; [a] -&gt; [b]</span><br><span class="line"><span class="title">map</span> _ [] = []</span><br><span class="line"><span class="title">map</span> f (x:xs) = f x : map f xs</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li><strong><code>map</code></strong>:将给定的函数 <code>f</code> 应用于列表的每个元素.例如,map (*2) [1,2,3] 会返回 [2,4,6].</li>
+</ul>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">filter</span> :: (a -&gt; <span class="type">Bool</span>) -&gt; [a] -&gt; [a]</span><br><span class="line"><span class="title">filter</span> _ [] = []</span><br><span class="line"><span class="title">filter</span> p (x:xs) </span><br><span class="line">    | p x       = x : filter p xs</span><br><span class="line">    | otherwise = filter p xs</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong><code>filter</code></strong>:根据谓词 <code>p</code>过滤列表中的元素.例如,filter (&gt;2) [1,2,3,4] 会返回 [3,4],筛选出大于 2 的元素.</li>
+</ul>
+<p><br></p>
+<h2 id="Fold"><a href="#Fold" class="headerlink" title="Fold"></a>Fold</h2><p>折叠操作是一种将列表中的元素合并成一个单一结果的方法.Haskell 提供了 foldl 和 foldr 两种方式,分别从左到右和从右到左地遍历列表.它们本质上是一种将递归模式转化为迭代的方式,在处理列表时非常高效.</p>
+<p>示例<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">sum&#x27;</span> :: (<span class="type">Num</span> a) =&gt; [a] -&gt; a</span><br><span class="line"><span class="title">sum&#x27;</span> xs = foldl (<span class="type">CHUacc</span> x -&gt; acc + x) <span class="number">0</span> xs</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li><strong>sum’</strong> :使用 foldl 从左到右对列表求和.foldl 的第一个参数是一个累积函数,0 是初始值,xs 是要遍历的列表.</li>
+</ul>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">map&#x27;</span> :: (a -&gt; b) -&gt; [a] -&gt; [b]</span><br><span class="line"><span class="title">map&#x27;</span> f xs = foldr (<span class="type">CHUx</span> acc -&gt; f x : acc) [] xs</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p><strong>map’</strong> :使用 foldr 实现的 map,它将每个元素通过函数 f 转换后返回新的列表.</p>
+</li>
+<li><p><strong>折叠的关键</strong>:遍历列表并根据元素返回结果.</p>
+</li>
+<li><strong>区别</strong>:<code>foldl</code> 从左到右,<code>foldr</code> 从右到左,右折叠可以处理无限列表.</li>
+</ul>
+<p><br></p>
+<h2 id="运算符-和-组合"><a href="#运算符-和-组合" class="headerlink" title="运算符 $ 和 组合 ."></a>运算符 $ 和 组合 <code>.</code></h2><h3 id="运算符"><a href="#运算符" class="headerlink" title="运算符 $"></a>运算符 $</h3><p>$ 运算符是 Haskell 中一个非常特殊的运算符,它的优先级非常低(低于所有常见的操作符).事实上, $ 运算符的优先级是最低的(0),所以它会吞噬掉表达式中多余的括号.<code>$</code> 运算符的作用是将它右边的表达式应用到左边的函数上,等价于将一个函数应用于一个表达式.</p>
+<p>在实际使用中,$ 最主要的作用是用来 减少括号,特别是在嵌套的函数调用中,避免过多的括号.</p>
+<p>示例<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">ghci</span>&gt; sqrt $ <span class="number">3</span> + <span class="number">4</span> + <span class="number">9</span></span><br><span class="line"><span class="title">ghci</span>&gt; map ($ <span class="number">3</span>) [(<span class="number">4</span>+), (<span class="number">10</span>*), (^<span class="number">2</span>), sqrt]</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>$ :使用 $ 运算符,表达式 3 + 4 + 9 会先被求值,然后传递给 sqrt 函数,等同于 sqrt (3 + 4 + 9).</li>
+</ul>
+<h3 id="组合"><a href="#组合" class="headerlink" title="组合."></a>组合<code>.</code></h3><p>. 运算符是 函数组合运算符,它的作用是将多个函数组合成一个函数.. 运算符的优先级是较高的(9),比大多数运算符都要高.它是右结合的,也就是说它会将最右边的函数优先组合..通过这个运算符,您可以把多个简单的函数“串联”起来,形成一个新的函数,从而避免冗长的函数调用.</p>
+<p>组合运算符:<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">fn</span> = ceiling . negate . tan . cos . max <span class="number">50</span></span><br></pre></td></tr></table></figure></p>
+<ul>
+<li><code>.</code> :将多个函数组合起来,使得函数调用更直观.fn 是一个组合函数,它先求 x 和 50 的最大值,再进行 cos 和 tan 运算,最后取负并取整.</li>
+</ul>
+<h3 id="和-结合使用的例子"><a href="#和-结合使用的例子" class="headerlink" title="$ 和 . 结合使用的例子"></a>$ 和 . 结合使用的例子</h3><p>有时,我们会在同一个表达式中同时使用 $ 和 .,这通常是为了优化代码的结构,使其更加简洁.例如:<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">ghci</span>&gt; ceiling . sqrt $ <span class="number">3</span> + <span class="number">4</span> + <span class="number">9</span></span><br><span class="line"><span class="number">4</span></span><br></pre></td></tr></table></figure></p>
+<p>在这个例子中,$ 用来减少括号的使用,ceiling . sqrt 则先计算平方根,然后对结果取整.$ 确保 3 + 4 + 9 会先被求值,然后传递给组合后的函数.</p>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/haskell/" rel="tag"># haskell</a>
+              <a href="/tags/%E8%AF%AD%E6%B3%95/" rel="tag"># 语法</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/%E9%87%8D%E6%96%B0%E8%A3%85%E4%BF%AE%E5%8D%9A%E5%AE%A2/" rel="prev" title="">
+                  <i class="fa fa-angle-left"></i> 
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">nebulyu's</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.umd.js" integrity="sha256-a+H7FYzJv6oU2hfsfDGM2Ohw/cR9v+hPfxHCLdmCrE8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+  <script src="/js/third-party/fancybox.js"></script>
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","per_page":true,"mhchem":true,"js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@2.7.8/unpacked/MathJax.js?config=TeX-MML-AM_CHTML"}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

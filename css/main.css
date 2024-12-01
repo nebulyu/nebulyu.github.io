@@ -1194,8 +1194,34 @@ pre code {
   padding: 2px 5px;
   text-shadow: 1px 1px 0 rgba(0,0,0,0.1);
 }
-.use-motion .menu-item {
-  visibility: hidden;
+.book-mark-link {
+  border-bottom: 0;
+  position: fixed;
+  top: -10px;
+  transition: top 0.3s;
+  right: 30px;
+}
+@media (max-width: 991px) {
+  .book-mark-link {
+    right: 20px;
+  }
+}
+@media (max-width: 991px) {
+  .book-mark-link {
+    display: none;
+  }
+}
+.book-mark-link::before {
+  color: #222;
+  font-size: 32px;
+  line-height: 1;
+  content: '\f02e';
+  font-family: 'Font Awesome 6 Free';
+  font-weight: 900;
+}
+.book-mark-link:hover,
+.book-mark-link-fixed {
+  top: -2px;
 }
 @media (max-width: 991px) {
   .sidebar {
@@ -1236,7 +1262,7 @@ pre code {
     vertical-align: middle;
   }
   .links-of-author a::before {
-    background: #ff9cff;
+    background: #f705eb;
     display: inline-block;
     margin-right: 3px;
     transform: translateY(-2px);
@@ -1673,7 +1699,6 @@ pre code {
 }
 .back-to-top span {
   margin-right: 8px;
-  display: none;
 }
 .back-to-top .fa {
   text-align: center;
@@ -1718,20 +1743,6 @@ pre code {
 .post-button {
   margin-top: 40px;
   text-align: center;
-}
-.use-motion .post-block,
-.use-motion .pagination,
-.use-motion .comments {
-  visibility: hidden;
-}
-.use-motion .post-header {
-  visibility: hidden;
-}
-.use-motion .post-body {
-  visibility: hidden;
-}
-.use-motion .collection-header {
-  visibility: hidden;
 }
 .posts-collapse .post-content {
   margin-bottom: 35px;
@@ -2670,7 +2681,6 @@ header.header {
     color: var(--text-color);
     margin-top: 12px;
     max-height: calc(100vh - 24px);
-    visibility: hidden;
   }
   .site-state-item {
     padding: 0 10px;
