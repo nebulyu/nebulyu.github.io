@@ -20,15 +20,15 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"nebulyu.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.21.1","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12,"onmobile":false},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":null,"post_block":null,"post_header":null,"post_body":null,"coll_header":null,"sidebar":"fadeInDown"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":3,"unescape":false,"preload":false,"trigger":"auto","swiftype_key":null}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="motion:  enable: false  async: false  transition: # All available transition variants: https:&#x2F;&#x2F;theme-next.js.org&#x2F;animate&#x2F; menu_item:  post_block:  post_header:  post_body:  coll_header:  # Only for Pi">
+    <meta name="description" content="很久没有更新hexo和next的有关升级了,导致后来的不断增加功能中出了问题,现在看来需要重新施工了 最开始是安装博客计数功能的busuanzi无法正确显示数字,查看很多问题后发现与l2d冲突.而我之前用的l2d已经停止了支持,也没有办法在新版的next主题下直接使用.于是只能先舍掉l2d,先将博客的主题升级和其他部分完成 next更新的最大改动在于将主文件夹从themes的子文件夹移到了node">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Nebulyu&#39;s Blog">
+<meta property="og:title" content="重新装修博客">
 <meta property="og:url" content="https://nebulyu.github.io/%E9%87%8D%E6%96%B0%E8%A3%85%E4%BF%AE%E5%8D%9A%E5%AE%A2/index.html">
 <meta property="og:site_name" content="Nebulyu&#39;s Blog">
-<meta property="og:description" content="motion:  enable: false  async: false  transition: # All available transition variants: https:&#x2F;&#x2F;theme-next.js.org&#x2F;animate&#x2F; menu_item:  post_block:  post_header:  post_body:  coll_header:  # Only for Pi">
+<meta property="og:description" content="很久没有更新hexo和next的有关升级了,导致后来的不断增加功能中出了问题,现在看来需要重新施工了 最开始是安装博客计数功能的busuanzi无法正确显示数字,查看很多问题后发现与l2d冲突.而我之前用的l2d已经停止了支持,也没有办法在新版的next主题下直接使用.于是只能先舍掉l2d,先将博客的主题升级和其他部分完成 next更新的最大改动在于将主文件夹从themes的子文件夹移到了node">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2024-11-24T18:39:26.570Z">
-<meta property="article:modified_time" content="2024-11-24T18:49:16.574Z">
+<meta property="article:published_time" content="2024-12-25T00:00:00.000Z">
+<meta property="article:modified_time" content="2024-12-25T23:03:44.780Z">
 <meta property="article:author" content="nebulyu">
 <meta name="twitter:card" content="summary">
 
@@ -36,10 +36,10 @@
 <link rel="canonical" href="https://nebulyu.github.io/%E9%87%8D%E6%96%B0%E8%A3%85%E4%BF%AE%E5%8D%9A%E5%AE%A2/">
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://nebulyu.github.io/%E9%87%8D%E6%96%B0%E8%A3%85%E4%BF%AE%E5%8D%9A%E5%AE%A2/","path":"重新装修博客/","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://nebulyu.github.io/%E9%87%8D%E6%96%B0%E8%A3%85%E4%BF%AE%E5%8D%9A%E5%AE%A2/","path":"重新装修博客/","title":"重新装修博客"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title> | Nebulyu's Blog</title>
+<title>重新装修博客 | Nebulyu's Blog</title>
   
 
 
@@ -126,7 +126,7 @@
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+    <div class="sidebar-inner sidebar-overview-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           Table of Contents
@@ -139,7 +139,6 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Back-to-top-in-sidebar"><span class="nav-number">1.</span> <span class="nav-text">Back to top in sidebar.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Scroll-percent-label-in-b2t-button"><span class="nav-number">2.</span> <span class="nav-text">Scroll percent label in b2t button.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Customize-the-color-of-the-bookmark"><span class="nav-number">3.</span> <span class="nav-text">Customize the color of the bookmark.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#If-auto-save-the-reading-progress-when-closing-the-page-or-clicking-the-bookmark-icon"><span class="nav-number">4.</span> <span class="nav-text">If auto, save the reading progress when closing the page or clicking the bookmark-icon.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#If-manual-only-save-it-by-clicking-the-bookmark-icon"><span class="nav-number">5.</span> <span class="nav-text">If manual, only save it by clicking the bookmark-icon.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Vanilla-JavaScript-plugin-for-lazyloading-images"><span class="nav-number">6.</span> <span class="nav-text">Vanilla JavaScript plugin for lazyloading images.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#For-more-information-https-apoorv-pro-lozad-js-demo"><span class="nav-number">7.</span> <span class="nav-text">For more information: https:&#x2F;&#x2F;apoorv.pro&#x2F;lozad.js&#x2F;demo&#x2F;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#FancyBox-is-a-tool-that-offers-a-nice-and-elegant-way-to-add-zooming-functionality-for-images"><span class="nav-number">8.</span> <span class="nav-text">FancyBox is a tool that offers a nice and elegant way to add zooming functionality for images.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#For-more-information-https-fancyapps-com-fancybox"><span class="nav-number">9.</span> <span class="nav-text">For more information: https:&#x2F;&#x2F;fancyapps.com&#x2F;fancybox&#x2F;</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -203,12 +202,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | Nebulyu's Blog">
+      <meta itemprop="name" content="重新装修博客 | Nebulyu's Blog">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          
+          重新装修博客
         </h1>
 
         <div class="post-meta-container">
@@ -220,7 +219,16 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2024-11-24 18:39:26 / Modified: 18:49:16" itemprop="dateCreated datePublished" datetime="2024-11-24T18:39:26+00:00">2024-11-24</time>
+      <time title="Created: 2024-12-25 00:00:00 / Modified: 23:03:44" itemprop="dateCreated datePublished" datetime="2024-12-25T00:00:00+00:00">2024-12-25</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/hexo-blog/" itemprop="url" rel="index"><span itemprop="name">hexo blog</span></a>
+        </span>
     </span>
 
   
@@ -239,28 +247,13 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><p>motion:<br>  enable: false<br>  async: false<br>  transition:</p>
-<pre><code># All available transition variants: https://theme-next.js.org/animate/
-menu_item: 
-post_block: 
-post_header: 
-post_body: 
-coll_header: 
-# Only for Pisces | Gemini.
-sidebar: fadeInDown
-此处注意不填会导致侧边栏无法出现
-</code></pre><p>动画</p>
-<p><a target="_blank" rel="noopener" href="https://ferguschen.github.io/2016/11/11/%E3%80%90%E9%9A%8F%E8%AE%B0%E3%80%91hexo-next%E9%83%A8%E7%BD%B2%E5%90%8E%E6%97%A0%E6%B3%95%E6%98%BE%E7%A4%BA%E5%8D%9A%E5%AE%A2/">https://ferguschen.github.io/2016/11/11/%E3%80%90%E9%9A%8F%E8%AE%B0%E3%80%91hexo-next%E9%83%A8%E7%BD%B2%E5%90%8E%E6%97%A0%E6%B3%95%E6%98%BE%E7%A4%BA%E5%8D%9A%E5%AE%A2/</a><br>渲染问题</p>
-<p>back2top:<br>  enable: true</p>
-<h1 id="Back-to-top-in-sidebar"><a href="#Back-to-top-in-sidebar" class="headerlink" title="Back to top in sidebar."></a>Back to top in sidebar.</h1><p>  sidebar: false</p>
-<h1 id="Scroll-percent-label-in-b2t-button"><a href="#Scroll-percent-label-in-b2t-button" class="headerlink" title="Scroll percent label in b2t button."></a>Scroll percent label in b2t button.</h1><p>  scrollpercent: true</p>
-<p>bookmark:<br>  enable: true</p>
-<h1 id="Customize-the-color-of-the-bookmark"><a href="#Customize-the-color-of-the-bookmark" class="headerlink" title="Customize the color of the bookmark."></a>Customize the color of the bookmark.</h1><p>  color: “#222”</p>
-<h1 id="If-auto-save-the-reading-progress-when-closing-the-page-or-clicking-the-bookmark-icon"><a href="#If-auto-save-the-reading-progress-when-closing-the-page-or-clicking-the-bookmark-icon" class="headerlink" title="If auto, save the reading progress when closing the page or clicking the bookmark-icon."></a>If auto, save the reading progress when closing the page or clicking the bookmark-icon.</h1><h1 id="If-manual-only-save-it-by-clicking-the-bookmark-icon"><a href="#If-manual-only-save-it-by-clicking-the-bookmark-icon" class="headerlink" title="If manual, only save it by clicking the bookmark-icon."></a>If manual, only save it by clicking the bookmark-icon.</h1><p>  save: auto</p>
-<h1 id="Vanilla-JavaScript-plugin-for-lazyloading-images"><a href="#Vanilla-JavaScript-plugin-for-lazyloading-images" class="headerlink" title="Vanilla JavaScript plugin for lazyloading images."></a>Vanilla JavaScript plugin for lazyloading images.</h1><h1 id="For-more-information-https-apoorv-pro-lozad-js-demo"><a href="#For-more-information-https-apoorv-pro-lozad-js-demo" class="headerlink" title="For more information: https://apoorv.pro/lozad.js/demo/"></a>For more information: <a target="_blank" rel="noopener" href="https://apoorv.pro/lozad.js/demo/">https://apoorv.pro/lozad.js/demo/</a></h1><p>lazyload: true</p>
-<p>fancybox<br>fancybox 可以在点击图片时放大该图片，并且可以快速浏览当前文章的所有图片</p>
-<h1 id="FancyBox-is-a-tool-that-offers-a-nice-and-elegant-way-to-add-zooming-functionality-for-images"><a href="#FancyBox-is-a-tool-that-offers-a-nice-and-elegant-way-to-add-zooming-functionality-for-images" class="headerlink" title="FancyBox is a tool that offers a nice and elegant way to add zooming functionality for images."></a>FancyBox is a tool that offers a nice and elegant way to add zooming functionality for images.</h1><h1 id="For-more-information-https-fancyapps-com-fancybox"><a href="#For-more-information-https-fancyapps-com-fancybox" class="headerlink" title="For more information: https://fancyapps.com/fancybox/"></a>For more information: <a target="_blank" rel="noopener" href="https://fancyapps.com/fancybox/">https://fancyapps.com/fancybox/</a></h1><p>fancybox: true</p>
-<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
+    <div class="post-body" itemprop="articleBody"><p>很久没有更新hexo和next的有关升级了,导致后来的不断增加功能中出了问题,现在看来需要重新施工了</p>
+<p>最开始是安装博客计数功能的busuanzi无法正确显示数字,查看很多问题后发现与l2d冲突.而我之前用的l2d已经停止了支持,也没有办法在新版的next主题下直接使用.于是只能先舍掉l2d,先将博客的主题升级和其他部分完成</p>
+<p>next更新的最大改动在于将主文件夹从themes的子文件夹移到了node的相关modules里面,并且对于原有的config文件格式进行了较大的更改.如果想保持原有的效果,很多样式和功能都需要重新手动配置</p>
+<p>在此把除了单纯enable的内容修改进行记录</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">//关于淡入的动画效果和侧边栏的显示</span><br><span class="line">motion:</span><br><span class="line">  enable: false</span><br><span class="line">  async: false</span><br><span class="line">  transition:</span><br><span class="line">    # All available transition variants: https://theme-next.js.org/animate/</span><br><span class="line">    menu_item: </span><br><span class="line">    post_block: </span><br><span class="line">    post_header: </span><br><span class="line">    post_body: </span><br><span class="line">    coll_header: </span><br><span class="line">    # Only for Pisces | Gemini.</span><br><span class="line">    sidebar: fadeInDown</span><br><span class="line">    //此处注意不填会导致侧边栏无法出现动画</span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://ferguschen.github.io/2016/11/11/%E3%80%90%E9%9A%8F%E8%AE%B0%E3%80%91hexo-next%E9%83%A8%E7%BD%B2%E5%90%8E%E6%97%A0%E6%B3%95%E6%98%BE%E7%A4%BA%E5%8D%9A%E5%AE%A2/">渲染配置有误导致的部署后无法显示问题</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">//返回顶部</span><br><span class="line">back2top:</span><br><span class="line">  enable: true</span><br><span class="line">  # Back to top in sidebar.</span><br><span class="line">  sidebar: false</span><br><span class="line">  # Scroll percent label in b2t button.</span><br><span class="line">  scrollpercent: true</span><br><span class="line"></span><br><span class="line">//右上角自定义书签</span><br><span class="line">bookmark:</span><br><span class="line">  enable: false</span><br><span class="line">  # Customize the color of the bookmark.</span><br><span class="line">  color: &quot;#222&quot;</span><br><span class="line">  # If auto, save the reading progress when closing the page or clicking the bookmark-icon.</span><br><span class="line">  # If manual, only save it by clicking the bookmark-icon.</span><br><span class="line">  save: auto</span><br><span class="line"></span><br><span class="line"># Vanilla JavaScript plugin for lazyloading images.</span><br><span class="line"># For more information: https://apoorv.pro/lozad.js/demo/</span><br><span class="line">lazyload: true</span><br><span class="line"></span><br><span class="line">//fancybox 可以在点击图片时放大该图片，并且可以快速浏览当前文章的所有图片</span><br><span class="line"></span><br><span class="line"># FancyBox is a tool that offers a nice and elegant way to add zooming functionality for images.</span><br><span class="line"># For more information: https://fancyapps.com/fancybox/</span><br><span class="line">fancybox: true</span><br><span class="line"></span><br></pre></td></tr></table></figure><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
     </div>
 
     
@@ -273,14 +266,11 @@ sidebar: fadeInDown
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/haskell%E5%87%BD%E6%95%B0%E5%9F%BA%E6%9C%AC/" rel="prev" title="haskell函数基本">
-                  <i class="fa fa-angle-left"></i> haskell函数基本
+                <a href="/haskell%E7%B1%BB%E5%9E%8B/" rel="prev" title="haskell类型">
+                  <i class="fa fa-angle-left"></i> haskell类型
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/haskell%E5%87%BD%E6%95%B0%E8%BF%9B%E9%98%B6/" rel="next" title="haskell函数进阶">
-                  haskell函数进阶 <i class="fa fa-angle-right"></i>
-                </a>
             </div>
           </div>
     </footer>
@@ -370,7 +360,7 @@ sidebar: fadeInDown
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","per_page":true,"mhchem":true,"js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@2.7.8/unpacked/MathJax.js?config=TeX-MML-AM_CHTML"}}</script>
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","per_page":true,"mhchem":true,"js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@2.7.8/unpacked/MathJax.js?config=TeX-MML-AM_CHTML"}}</script>
 <script src="/js/third-party/math/mathjax.js"></script>
 
 
